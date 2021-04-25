@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -8,6 +9,10 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+//Parsear el body usando body parser
+app.use(bodyParser.json()); // body en formato json
+app.use(bodyParser.urlencoded({ extended: false })); //body formulario
 
 const db = require("./src/models");
 const dbConfig = require("./src/config/db.config");
