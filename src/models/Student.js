@@ -6,10 +6,10 @@ const Student = mongoose.model(
     performance: moongose.Schema.Types.ObjectId,
     learningStyle: moongose.Schema.Types.ObjectId,
     course: [
-        {
-           type: mongoose.Schema.Types.ObjectId,
-           ref: "Course"
-        }
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course"
+      }
     ],
   })
 );

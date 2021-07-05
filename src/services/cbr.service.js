@@ -1,5 +1,5 @@
 class CbrService {
-    _contructor(){
+    initial(){
         
-    }
+    }    
 }

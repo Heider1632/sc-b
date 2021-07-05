@@ -6,7 +6,9 @@ const Resource = mongoose.model(
     name: String,
     description: String, 
     type: String,
-    uri: String
+    url: String,
+    rating: Number,
+    estimatedTime: Date
   })
 );
 

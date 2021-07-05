@@ -5,14 +5,7 @@ const Lesson = mongoose.model(
   new mongoose.Schema({
     cod: String,
     type: String,
-    course: mongoose.Schema.Types.ObjectId,
-    structure: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Resource"
-      }
-    ]
-    
+    resource: mongoose.Schema.Types.ObjectId,
   })
 );
 
