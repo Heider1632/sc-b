@@ -3,9 +3,7 @@ const db = require("../models");
 //every time the user has a success login the metacore package is called
 class MetacorePackage  {
 
-    crb;
-
-    __constructor(cbr){
+    constructor(){
         this.cbr = crb;
     }
 
