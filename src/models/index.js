@@ -15,6 +15,7 @@ db.student = require("./Student");
 db.course = require("./Course");
 db.learningStyle = require("./LearningStyle");
 db.learningStyleDimension = require("./LearningStyleDimension");
+db.resources = require("./Resource");
 
 
 //METCACORE
@@ -22,6 +23,7 @@ db.session = require("./Session");
 db.trace = require("./Trace");
 db.profile = require("./Profile");
 
-
+//CBR
+db.cases = require("./Case");
 
 module.exports = db;

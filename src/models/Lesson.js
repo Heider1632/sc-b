@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const Lesson = mongoose.model(
   "Lesson",
   new mongoose.Schema({
-    cod: String,
     type: String,
-    resource: mongoose.Schema.Types.ObjectId,
+    learningStyle: moongose.Schema.Types.ObjectId,
+    resources: [ mongoose.Schema.Types.ObjectId ],
   })
 );
 

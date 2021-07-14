@@ -98,7 +98,10 @@ class MetacorePackage  {
     }
 
     //call cbr
-    getPlan(id_student, id_course){}
+    getPlan(id_student, id_course){
+        //conditional to active cbr (if)
+        //else false
+    }
 }
 
 exports.module = MetacorePackage(crb);
