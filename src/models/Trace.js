@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 const Trace = mongoose.model(
   "Trace",
   new mongoose.Schema({
-    id_student: moongose.Schema.Types.ObjectId,
-    id_course: moongose.Schema.Types.ObjectId,
+    id_student: mongoose.Schema.Types.ObjectId,
+    id_course: mongoose.Schema.Types.ObjectId,
     lessonAssements: [
         {
-            id_lesson: moongose.Schema.Types.ObjectId,
+            id_lesson: mongoose.Schema.Types.ObjectId,
             assessment: Number,
             time_use: Number,
             like: Boolean,
         }
     ],
-    errors: [
+    logs: [
       {
         name: String
       }

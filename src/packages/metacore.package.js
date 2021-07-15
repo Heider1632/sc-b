@@ -15,22 +15,22 @@ class MetacorePackage  {
         });
     }
 
-    setTrace(id_student, id_course, lessonAssements, errors){
+    setTrace(id_student, id_course, lessonAssements, logs){
         db.trace.create({
             id_student: id_student,
             id_course: id_course,
             lessonAssements: lessonAssements,
-            errors: errors
+            logs: logs
         }).exec((err, res) => {
             if(err) throw err;
             return true;
         });
     }
 
-    update(_id, lessonAssements, errors){
+    update(_id, lessonAssements, logs){
         db.trace.findOneAndUpdate(_id, {  $set : {
             lessonAssements: lessonAssements,
-            errors: errors
+            logs: logs
         } }, { new: true }).exec((err, res) => {
             if(err) throw err;
             return true;
@@ -84,13 +84,13 @@ class MetacorePackage  {
     getError(id_trace){
         db.trace.findOne(id_trace).exec((err, res) => {
             if(err) throw err;
-            return res.errors;
+            return res.logs;
         });
     }
 
-    setError(id_trace){
+    setError(id_trace, logs){
         db.trace.findOneAndUpdate(id_trace, {  $set : {
-            errors: errors
+            logs: logs
         } }, { new: true }).exec((err, res) => {
             if(err) throw err;
             return true;

@@ -25,7 +25,7 @@ class CbrService {
     }
 
     coincident(id_lesson){
-        //mongodb query
+        //mongodb query avanced
         //do it how agreggation to get max use cases and success case;
         //1. equal learning style 2. equal lesson course 3. max use cases 4. max success cases;
         db.cases.find({ "context.lessons" : { $in: id_lesson }  }).lean().exec( (err, res) => {
@@ -42,7 +42,7 @@ class CbrService {
         //     if (err) throw err;
         //     if(res) 
         // });
-        this.adapt(result ?? {});
+        this.adapt(result);
     }
 
     create(id_student, lessons, id_course){
@@ -61,8 +61,12 @@ class CbrService {
         }
 
         newCase.euclideanWight = 0;
-        newCase.success = 0;
-        newCase.errors = 0;
+        newCase.results = {
+            uses : 0,
+            success : 0,
+            errors : 0,
+        };
+        
 
         //get resources
         lessons.map(async lesson => {

@@ -9,8 +9,8 @@ const Resource = mongoose.model(
     url: String,
     rating: Number,
     estimatedTime: Date,
-    strategyPedagogic: moongose.Schema.Types.ObjectId,
-    id_lesson: moongose.Schema.Types.ObjectId
+    strategyPedagogic: mongoose.Schema.Types.ObjectId,
+    id_lesson: mongoose.Schema.Types.ObjectId
   })
 );
 
