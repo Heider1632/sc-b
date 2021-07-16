@@ -1,8 +1,10 @@
 const db = require("../models");
 class CbrService {
-    constructor(id_student, id_lesson){
+    constructor(id_student, id_lesson, metacore){
         this.id_student = id_student;
         this.id_lesson = id_lesson;
+
+        this.metacore = metacore;
         
         this.performance(id_student, id_lesson);
     }
@@ -24,10 +26,10 @@ class CbrService {
         });
     }
 
-    coincident(id_lesson){
+    coincident(id_student, id_lesson, id_course){
         //mongodb query avanced
         //do it how agreggation to get max use cases and success case;
-        //1. equal learning style 2. equal lesson course 3. max use cases 4. max success cases;
+        //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
         db.cases.find({ "context.lessons" : { $in: id_lesson }  }).lean().exec( (err, res) => {
             if (err) throw err;
             if(res.lenght > 0) return res[0]._id;
@@ -116,8 +118,11 @@ class CbrService {
 
     }
 
-    async storage(){
-        //call metacore services save case
+    async storage(c, profile, trace){
+        //call metacore services save case, profile, trace student
+        this.metacore.setProfile(profile)
+        this.metacore.setTrace(trace)
+        this.metacore.setCases(c)
     }
 
 }

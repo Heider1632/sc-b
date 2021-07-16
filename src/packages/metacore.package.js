@@ -27,7 +27,7 @@ class MetacorePackage  {
         });
     }
 
-    update(_id, lessonAssements, logs){
+    updateTrace(_id, lessonAssements, logs){
         db.trace.findOneAndUpdate(_id, {  $set : {
             lessonAssements: lessonAssements,
             logs: logs
