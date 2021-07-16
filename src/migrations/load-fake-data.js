@@ -1,6 +1,7 @@
 const db = require("../models");
 const dbConfig = require("../config/db.config");
 const faker = require("faker");
+const bcrypt = require("bcryptjs");
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -15,7 +16,7 @@ db.mongoose
     process.exit();
   });
 
-  let learnings = ["perception","processing","reception","undestanding"];
+  let learnings = ["perception","processing","reception","understanding"];
 
 async function generateFakeUserStudent(){
   try {
@@ -24,18 +25,18 @@ async function generateFakeUserStudent(){
       console.log(index);
       
       let userRole = await db.role.findOne({ name: "user" });
-      let newUser = await db.users.create({
-        email: faker.email.findName(),
-        password: faker.password.findName(),
+      let newUser = await db.user.create({
+        email: faker.internet.email(),
+        password: bcrypt.hashSync(faker.internet.password(), 8),
         roles: [userRole._id]
       });
       
       let randomLearningStyle = await db.learningStyle.findOne({ name: learnings[Math.floor(Math.random()*learnings.length)] })
 
       if(newUser){
-        db.students.create({
-          name: faker.name.findName(),
-          lastname: faker.lastname.findName(),
+        db.student.create({
+          name: faker.name.firstName(),
+          lastname: faker.name.lastName(),
           learningStyle: randomLearningStyle._id,
           user: newUser._id
         });
@@ -43,12 +44,15 @@ async function generateFakeUserStudent(){
     }
 
   } catch(err){
-      console.error("no se pudo cargar la informacion")
+      console.error(err.message)
   } 
 }
 
 function generateFakeCases(){
-
+  for (let index = 0; index < 50; index++) {
+    
+    
+  }
 }
 
 if (process.argv.includes('--students')) {
