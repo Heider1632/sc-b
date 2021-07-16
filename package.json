@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "learning": "node ./src/migrations/load-data.js --learning",
+    "dimensions": "node ./src/migrations/load-data.js --dimensions",
+    "students": "node ./src/migrations/load-fake-data.js --students",
+    "cases": "node ./src/migrations/load-fake-data.js --cases"
+
   },
   "keywords": [],
   "author": "",
