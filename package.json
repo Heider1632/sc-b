@@ -10,14 +10,13 @@
     "dimensions": "node ./src/migrations/load-data.js --dimensions",
     "students": "node ./src/migrations/load-fake-data.js --students",
     "cases": "node ./src/migrations/load-fake-data.js --cases"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "faker": "^5.5.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.12"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
