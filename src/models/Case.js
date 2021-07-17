@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
-const Case = mongoose.model(
-  "Case",
-  new mongoose.Schema({
+const CaseSchema = new mongoose.Schema({
     context: {
         id_student: { type: mongoose.Schema.Types.ObjectId, index: true },
         id_course: mongoose.Schema.Types.ObjectId,
@@ -28,7 +26,11 @@ const Case = mongoose.model(
         errors: Number
     }
     
-  }, { timestamp: true } )
-);
+}, { timestamp: true });
 
-module.exports = Case;
+CaseSchema.statics.getStundentCases = function (){
+    return this.aggregate([])
+}
+  
+
+module.exports = mongoose.model("Case", CaseSchema);

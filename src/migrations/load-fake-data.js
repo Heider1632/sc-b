@@ -48,10 +48,17 @@ async function generateFakeUserStudent(){
   } 
 }
 
-function generateFakeCases(){
-  for (let index = 0; index < 50; index++) {
-    
-    
+async function generateFakeCases(){
+  try{
+    for (let index = 0; index < 50; index++) {
+      let randomUser = await (await db.student.findOne().limit(-1)
+      .populate({ path: 'learningStyle', select: 'name' }).skip(Math.floor(Math.random()*10)))
+  
+      
+      
+    }
+  } catch(error){
+    console.error(error.message);
   }
 }
 
