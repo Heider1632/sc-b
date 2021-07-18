@@ -48,6 +48,62 @@ async function generateFakeUserStudent(){
   } 
 }
 
+async function generateFakeCourse(){
+  try {
+    let course = await db.course.create({
+      name: "Sifilis Gestacionaria",
+      description: "algo",
+      hasObjectiveCourse: "goal"
+    });
+
+    let typeLessons = [
+      {
+        title: "¿Qué es la sifilis gestasionaria?",
+        type: "introduction"
+      }, 
+      { 
+        title: "¿Para que sirve?",
+        type: "definition" 
+      },
+      { 
+        title: "Mira algunos casos de la sifilis gestacionaria...",
+        type: "example" 
+      },
+      { 
+        title: "Aprendamos como prevenir la sifilis gestacionaria!",
+        type: "activity" 
+      },
+      { 
+        title: "¿Qué aprendimos?",
+        type: "evaluation" 
+      }
+    ];
+
+    typeLessons.map(async structure => {
+      let lessons = await db.lesson.create({
+        title: structure.title,
+        type: structure.type,
+        course: course._id
+      })
+    })
+    
+
+
+  } catch (error){
+    console.log(error.message)
+    process.exit();
+  }
+}
+
+async function generateFakeResources(){
+  try {
+    // generate 75 random resources
+  } catch (error){
+    console.log(error.message)
+    process.exit();
+  }
+}
+
 async function generateFakeCases(){
   try{
     for (let index = 0; index < 50; index++) {
@@ -66,6 +122,8 @@ if (process.argv.includes('--students')) {
   generateFakeUserStudent();
 } else if (process.argv.includes('--cases')){
   generateFakeCases();
+} else if (process.argv.includes('--course')){
+  generateFakeCourse();
 }
   
 

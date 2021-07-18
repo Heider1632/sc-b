@@ -6,13 +6,13 @@ const Course = mongoose.model(
     name: String,
     description: String, 
     hasObjetiveCouse: String,
-    student: [
+    students: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Student"
       }
     ],
-    lesson: [
+    lessons: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Lesson"

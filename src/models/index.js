@@ -14,10 +14,13 @@ db.ROLES = ["user", "admin", "moderator"];
 db.user = require("./User");
 db.student = require("./Student");
 db.course = require("./Course");
+db.lesson = require("./Lesson");
 db.learningStyle = require("./LearningStyle");
 db.learningStyleDimension = require("./LearningStyleDimension");
 db.resources = require("./Resource");
-
+db.pedagogicTactic = require("./PedagogicTactic");
+db.learningTheory = require("./LearningTheory");
+db.strategyPedagogic = require("./StrategyPedagogic");
 
 //METCACORE
 db.session = require("./Session");

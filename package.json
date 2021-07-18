@@ -9,7 +9,10 @@
     "learning": "node ./src/migrations/load-data.js --learning",
     "dimensions": "node ./src/migrations/load-data.js --dimensions",
     "students": "node ./src/migrations/load-fake-data.js --students",
-    "cases": "node ./src/migrations/load-fake-data.js --cases"
+    "theories": "node ./src/migrations/load-data.js --theories",
+    "pedagogictatics": "node ./src/migrations/load-data.js --pedagogictatics",
+    "course": "node ./src/migrations/load-fake-data.js --course",
+    "resources": "node ./src/migrations/load-fake-data.js --resources"
   },
   "keywords": [],
   "author": "",
