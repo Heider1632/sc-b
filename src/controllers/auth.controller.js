@@ -8,7 +8,6 @@ var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
   const user = new User({
-    username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8)
   });
@@ -64,12 +63,7 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
 
-  User.findOne(
-    {$or:[
-      { username: req.body.username },
-      { email: req.body.email }
-    ]}
-  )
+  User.findOne({ email: req.body.email })
     .populate("roles", "-__v")
     .exec((err, user) => {
       if (err) {
@@ -93,21 +87,19 @@ exports.signin = (req, res) => {
         });
       }
 
-      var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400 // 24 hours
-      });
-
       var authorities = [];
-
+      
       for (let i = 0; i < user.roles.length; i++) {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
-
+      
+      var token = jwt.sign({ id: user.id, email: user.email, roles: authorities }, config.secret, {
+        expiresIn: 86400 // 24 hours
+      });
       //initializate metacore package
       
       res.status(200).send({
         id: user._id,
-        username: user.username,
         email: user.email,
         roles: authorities,
         accessToken: token
