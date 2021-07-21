@@ -16,7 +16,7 @@ class MetacorePackage  {
     }
 
     // BasicElement
-        getTrace(id_student, id_course){
+    getTrace(id_student, id_course){
         db.trace.find({ id_ustuden: id_student, id_course: id_course }).exec( (res, data ) => {
             if(err) throw err;
             return data;
@@ -106,11 +106,11 @@ class MetacorePackage  {
     }
 
     //call cbr
-    async getPlan(id_student, id_course){
+    async getPlan(id_student, id_course, lessons){
 
-        let cbrService = new CbrService();
+        let cbrService = new CbrService(this);
         
-        cbrService.performance(id_student, id_course);
+        cbrService.performance(id_student, id_course, lessons);
 
         console.log("here start");
         //conditional to active cbr (if)

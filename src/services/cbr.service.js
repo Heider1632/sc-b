@@ -1,5 +1,14 @@
 const db = require("../models");
+const axios = require('axios');
 class CbrService {
+
+    constructor(metacore){
+        this.metacoreIntance(metacore);
+    }
+
+    metacoreIntance(metacore){
+        return metacore;
+    }
     
     performance(id_student, id_course, lessons){
         db.cases.find({ "context.id_student" : id_student }).lean().exec( (err, res) => {
@@ -22,7 +31,7 @@ class CbrService {
         //mongodb query avanced
         //do it how agreggation to get max use cases and success case;
         //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
-        db.cases.find({ "context.lessons" : { $in: id_lesson }  }).lean().exec( (err, res) => {
+        db.cases.find({ "context.lessons" : { $in: lessons }  }).lean().exec( (err, res) => {
             if (err) throw err;
             if(res.lenght > 0) return res[0]._id;
         });
@@ -112,11 +121,15 @@ class CbrService {
 
     async storage(c, profile, trace){
         //call metacore services save case, profile, trace student
-        this.metacore.setProfile(profile)
-        this.metacore.setTrace(trace)
-        this.metacore.setCases(c)
+        this.metacoreInstance.setProfile(profile)
+        this.metacoreInstance.setTrace(trace)
+        this.metacoreInstance.setCases(c)
     }
 
 }
 
-module.exports = CbrService;
+let cbrInstance;
+module.exports = function(metacore) {
+    cbrInstance = cbrInstance || new CbrService(metacore);
+    return cbrInstance;
+};
