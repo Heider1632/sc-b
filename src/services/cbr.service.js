@@ -1,32 +1,24 @@
 const db = require("../models");
 class CbrService {
-    constructor(id_student, id_lesson, metacore){
-        this.id_student = id_student;
-        this.id_lesson = id_lesson;
-
-        this.metacore = metacore;
-        
-        this.performance(id_student, id_lesson);
-    }
     
-    performance(id_student, id_lesson){
+    performance(id_student, id_course, lessons){
         db.cases.find({ "context.id_student" : id_student }).lean().exec( (err, res) => {
             if (err) throw err;
             if(res.lenght > 0) {
                 this.recovery(res);
             } else {
-                let coincident = this.coincident(id_student);
+                let coincident = this.coincident(id_student, id_course, lessons);
     
                 if(coincident){
                     this.recovery(coincident);
                 } else {
-                    this.create(id_student, id_lesson)
+                    this.create(id_student, id_course, lessons)
                 }
             }
         });
     }
 
-    coincident(id_student, id_lesson, id_course){
+    coincident(id_student, lessons){
         //mongodb query avanced
         //do it how agreggation to get max use cases and success case;
         //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
@@ -47,7 +39,7 @@ class CbrService {
         this.adapt(result);
     }
 
-    create(id_student, lessons, id_course){
+    create(id_student, id_course, lessons){
 
         let newCase = {};
         
@@ -72,7 +64,7 @@ class CbrService {
 
         //get resources
         lessons.map(async lesson => {
-            let knowledgePS = db.KnowlegdePedagogicStrategy.find({ learningStyle: lesson.learningStyle });
+            let knowledgePS = await db.KnowlegdePedagogicStrategy.find({ learningStyle: lesson.learningStyle });
             if(knowledgePS){
                 let resource = await db.KnowlegdeResource.find({ pedagogicStrategy: knowledgePS.pedagogicStrategy });
 
@@ -127,4 +119,4 @@ class CbrService {
 
 }
 
-exports.module = CbrService();
+module.exports = CbrService;

@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const CaseSchema = new mongoose.Schema({
     context: {
-        id_student: { type: mongoose.Schema.Types.ObjectId, index: true },
-        id_course: mongoose.Schema.Types.ObjectId,
+        id_student: { type: mongoose.Schema.Types.ObjectId, ref: "Student", index: true },
+        id_course: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
         lessons: [
             {
                 id_lesson: mongoose.Schema.Types.ObjectId

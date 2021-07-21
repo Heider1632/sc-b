@@ -6,7 +6,8 @@ const bcrypt = require("bcryptjs");
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
@@ -97,12 +98,31 @@ async function generateFakeCourse(){
 
 async function generateFakeResources(){
   try {
-    // generate 75 random resources
+
+    let formats = ["image", "video", "document", "url"];
+    let strategyPedagoies = await db.strategyPedagogic.find({}); 
+    let lessons = await db.lesson.find({});
+    // generate 1000 random resources
+    for (let index = 0; index < 1000; index++) {
+
+      let randomSp = strategyPedagoies[Math.floor(Math.random()*strategyPedagoies.length)];
+      let randomL = lessons[Math.floor(Math.random()*lessons.length)];
+      let randomF = formats[Math.floor(Math.random()*formats.length)];
+      await db.resources.create({
+        description: faker.lorem.sentence(),
+        format: randomF,
+        url: faker.internet.url(),
+        strategyPedagogic: randomSp._id,
+        lesson: randomL._id
+      })
+      
+    }
   } catch (error){
     console.log(error.message)
     process.exit();
   }
 }
+
 
 async function generateFakeCases(){
   try{
@@ -110,6 +130,7 @@ async function generateFakeCases(){
       let randomUser = await (await db.student.findOne().limit(-1)
       .populate({ path: 'learningStyle', select: 'name' }).skip(Math.floor(Math.random()*10)))
   
+      
       
       
     }
@@ -124,6 +145,8 @@ if (process.argv.includes('--students')) {
   generateFakeCases();
 } else if (process.argv.includes('--course')){
   generateFakeCourse();
+} else if(process.argv.includes('--resources')){
+  generateFakeResources();
 }
   
 

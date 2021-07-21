@@ -3,14 +3,28 @@ const mongoose = require("mongoose");
 const Resource = mongoose.model(
   "Resource",
   new mongoose.Schema({
-    name: String,
-    description: String, 
-    type: String,
+    description: String,
+    format: {
+      type: String,
+      enum: ["image", "video", "document", "url"]
+    },
     url: String,
-    rating: Number,
-    estimatedTime: Date,
-    strategyPedagogic: mongoose.Schema.Types.ObjectId,
-    id_lesson: mongoose.Schema.Types.ObjectId
+    rating: {
+      type: Number,
+      default: 3
+    },
+    estimatedTime: {
+      type: Date,
+      default: Date.now()
+    },
+    strategyPedagogic: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "StrategyPedagogic"
+    },
+    lesson: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Lesson"
+    }
   })
 );
 

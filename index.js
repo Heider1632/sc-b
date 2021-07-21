@@ -21,7 +21,8 @@ const Role = db.role;
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
@@ -79,6 +80,7 @@ require('./src/routes/user.routes')(app);
 require('./src/routes/course.routes')(app);
 require('./src/routes/lesson.routes')(app);
 require('./src/routes/resource.routes')(app);
+require('./src/routes/metacore.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

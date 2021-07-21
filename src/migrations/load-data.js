@@ -1,11 +1,11 @@
 const db = require("../models");
 const dbConfig = require("../config/db.config");
-const { learningStyleDimension } = require("../models");
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
@@ -19,7 +19,7 @@ let learnings = [
   { name: "perception", dimensions: ["sensiting", "intuitive"] }, 
   { name: "processing", dimensions : ["active", "reflective"] }, 
   { name: "reception", dimensions: ["visual", "verbal"] }, 
-  { name: "undestanding", dimensions: ["sequiential", "global"] }
+  { name: "understanding", dimensions: ["sequiential", "global"] }
 ];
 
 let learningTheories = [
@@ -126,6 +126,30 @@ async function generatePedagogicTacticData(){
   }
 }
 
+async function generateStrategyPedagogicData(){
+  try {
+    
+    let pedagogicTactics = await db.pedagogicTactic.find({});
+    let learningTheories = await db.learningTheory.find({});
+    
+    pedagogicTactics.forEach(async pt => {
+
+      let ramdonLt = learningTheories[Math.floor(Math.random()*learningTheories.length)];
+
+      db.strategyPedagogic.create({
+        learningTheory: ramdonLt._id,
+        pedagogicTactic: pt._id
+      });
+    })
+
+    // console.log("done")
+    // process.exit()
+  } catch (error) {
+    console.error(error.message)
+    process.exit()
+  }
+}
+
 if (process.argv.includes('--learning')) {
   generateLearningData();
 } else if (process.argv.includes('--dimensions')){
@@ -134,5 +158,7 @@ if (process.argv.includes('--learning')) {
   generateLearningTheoryData();
 } else if (process.argv.includes('--pedagogictatics')){
   generatePedagogicTacticData();
+} else  if(process.argv.includes('--strategypedagogies')){
+  generateStrategyPedagogicData()
 }
   

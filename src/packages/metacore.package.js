@@ -1,14 +1,22 @@
 const db = require("../models");
+const CbrService = require("../services/cbr.service");
 
 //every time the user has a success login the metacore package is called
+let instance = null;
 class MetacorePackage  {
 
-    constructor(){
-        this.cbr = crb;
+    constructor() {
+        if (instance) return instance;
+        instance = this;
+        return instance;
+    }
+     
+    static getInstance() {
+        return instance || new MetacorePackage();
     }
 
     // BasicElement
-    getTrace(id_student, id_course){
+        getTrace(id_student, id_course){
         db.trace.find({ id_ustuden: id_student, id_course: id_course }).exec( (res, data ) => {
             if(err) throw err;
             return data;
@@ -98,10 +106,17 @@ class MetacorePackage  {
     }
 
     //call cbr
-    getPlan(id_student, id_course){
+    async getPlan(id_student, id_course){
+
+        let cbrService = new CbrService();
+        
+        cbrService.performance(id_student, id_course);
+
+        console.log("here start");
         //conditional to active cbr (if)
         //else false
     }
 }
 
-exports.module = MetacorePackage(crb);
+module.exports = MetacorePackage;
+
