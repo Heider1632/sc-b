@@ -9,16 +9,14 @@ const Student = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Perfomance"
     },
-    learningStyle: { 
+    learningStyleDimensions: [{ 
       type: mongoose.Schema.Types.ObjectId,
-      ref: "learningStyle"
-    },
-    course: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Course"
-      }
-    ],
+      ref: "learningStyleDimension"
+    }],
+    course: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course"
+    }],
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"

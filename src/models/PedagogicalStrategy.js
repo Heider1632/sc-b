@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const StrategyPedagogic = mongoose.model(
-  "strategyPedagogic",
+const PedagogicalStrategy = mongoose.model(
+  "PedagogicalStrategy",
   new mongoose.Schema({
     learningTheory: {
         type: mongoose.Schema.Types.ObjectId,
@@ -14,4 +14,4 @@ const StrategyPedagogic = mongoose.model(
   })
 );
 
-module.exports = StrategyPedagogic;
+module.exports = PedagogicalStrategy;

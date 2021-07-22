@@ -107,14 +107,12 @@ class MetacorePackage  {
 
     //call cbr
     async getPlan(id_student, id_course, lessons){
-
-        let cbrService = new CbrService(this);
-        
-        cbrService.performance(id_student, id_course, lessons);
-
-        console.log("here start");
         //conditional to active cbr (if)
         //else false
+        console.log("here start cbr");
+        let cbrService = new CbrService(this);
+        let plan = cbrService.performance(id_student, id_course, lessons);
+        return plan;
     }
 }
 

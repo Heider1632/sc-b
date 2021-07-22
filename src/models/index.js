@@ -20,7 +20,12 @@ db.learningStyleDimension = require("./LearningStyleDimension");
 db.resources = require("./Resource");
 db.pedagogicTactic = require("./PedagogicTactic");
 db.learningTheory = require("./LearningTheory");
-db.strategyPedagogic = require("./StrategyPedagogic");
+db.pedagogicalStrategy = require("./PedagogicalStrategy");
+
+//knowledge
+db.knowledgePedagogicalStrategies = require("./KnowledgePedagogicalStrategies");
+db.knowledgeResource = require("./KnowledgeResource");
+
 
 //METCACORE
 db.session = require("./Session");

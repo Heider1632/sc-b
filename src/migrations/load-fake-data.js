@@ -17,13 +17,12 @@ db.mongoose
     process.exit();
   });
 
-  let learnings = ["perception","processing","reception","understanding"];
+// let learnings = ["perception","processing","reception","understanding"];
 
 async function generateFakeUserStudent(){
   try {
 
     for (let index = 0; index < 10; index++) {
-      console.log(index);
       
       let userRole = await db.role.findOne({ name: "user" });
       let newUser = await db.user.create({
@@ -32,13 +31,20 @@ async function generateFakeUserStudent(){
         roles: [userRole._id]
       });
       
-      let randomLearningStyle = await db.learningStyle.findOne({ name: learnings[Math.floor(Math.random()*learnings.length)] })
+      let learningStyles = await db.learningStyle.find({})
+      let learningStyleDimensions = [];
+      learningStyles.map((ls, index) => {
+        if(index < 3){
+          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
+          learningStyleDimensions.push(lsd);
+        }
+      })
 
       if(newUser){
         db.student.create({
           name: faker.name.firstName(),
           lastname: faker.name.lastName(),
-          learningStyle: randomLearningStyle._id,
+          learningStyleDimensions: learningStyleDimensions,
           user: newUser._id
         });
       }
@@ -81,7 +87,7 @@ async function generateFakeCourse(){
     ];
 
     typeLessons.map(async structure => {
-      let lessons = await db.lesson.create({
+      await db.lesson.create({
         title: structure.title,
         type: structure.type,
         course: course._id
@@ -104,7 +110,6 @@ async function generateFakeResources(){
     let lessons = await db.lesson.find({});
     // generate 1000 random resources
     for (let index = 0; index < 1000; index++) {
-
       let randomSp = strategyPedagoies[Math.floor(Math.random()*strategyPedagoies.length)];
       let randomL = lessons[Math.floor(Math.random()*lessons.length)];
       let randomF = formats[Math.floor(Math.random()*formats.length)];
@@ -128,12 +133,60 @@ async function generateFakeCases(){
   try{
     for (let index = 0; index < 50; index++) {
       let randomUser = await (await db.student.findOne().limit(-1)
-      .populate({ path: 'learningStyle', select: 'name' }).skip(Math.floor(Math.random()*10)))
-  
-      
-      
+      .populate({ path: 'learningStyleDimensions', select: 'name' }).skip(Math.floor(Math.random()*10)))
+            
       
     }
+  } catch(error){
+    console.error(error.message);
+  }
+}
+
+async function generateKnowledgePedagogicStrategies() {
+  try{
+    for (let index = 0; index < 1000; index++) {
+
+      let pedagogicTactics = await db.pedagogicTactic.find({});
+      let randomPT = pedagogicTactics[Math.floor(Math.random()*pedagogicTactics.length)];
+
+      let learningStyles = await db.learningStyle.find({})
+      let learningStyleDimensions = [];
+      learningStyles.map((ls, index) => {
+        if(index < 3){
+          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
+          learningStyleDimensions.push(lsd);
+        }
+      })
+
+      await db.KnowledgePedagogicStrategy({
+        pedagogicTactic: randomPT._id,
+        learningStyleDimensions: learningStyleDimensions
+      })
+      
+    }
+    
+  } catch(error){
+    console.error(error.message);
+  }
+}
+
+async function generateKnowledgeResource() {
+  try{
+    for (let index = 0; index < 1000; index++) {
+
+      let pedagogicTactics = await db.pedagogicTactic.find({});
+      let randomPT = pedagogicTactics[Math.floor(Math.random()*pedagogicTactics.length)]; 
+      
+      let resources = await db.resource.find({});
+      let randomR = resources[Math.floor(Math.random()*resources.length)];
+
+      await db.KnowledgePedagogicStrategy({
+        pedagogicTactic: randomPT._id,
+        resource: randomR._id
+      })
+      
+    }
+    
   } catch(error){
     console.error(error.message);
   }
@@ -147,6 +200,10 @@ if (process.argv.includes('--students')) {
   generateFakeCourse();
 } else if(process.argv.includes('--resources')){
   generateFakeResources();
+} else if(process.argv.includes('--kpedagogicstrategies')){
+  generateKnowledgePedagogicStrategies();
+} else if(process.argv.includes('--kresource')){
+  generateKnowledgeResource();
 }
   
 

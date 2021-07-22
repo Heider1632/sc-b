@@ -37,17 +37,39 @@ class CbrService {
         });
     }
 
-    recovery(cases){
+    async recovery(cases){
         //call api python to k-nearest neighbours
-
         //1. cases tranform to dataset 2.call api python 3. filter the results
-        // db.cases.findById(_id).exec((err, res) => {
-        //     if (err) throw err;
-        //     if(res) 
-        // });
-        this.adapt(result);
+        let dataset = [];
+        cases.map((c) => {
+            dataset.push(
+                [ c_id, c.euclideanWeight ]
+            )
+        })
+        let response = await axios.post('http://localhost:5000/api/knn',  {
+            query: 33,
+            dataset: dataset
+        })
+
+        if(response.status == 200){
+            console.log(response.body);
+            let selectedCase = null;
+            if(response.body.lenght > 1){
+                selectedCase = this.filter(response.body, cases);
+            } else {
+                selectedCase = cases.filter(c => c._id == response.body[0]._id);
+            }
+            this.adapt(selectedCase);
+        } else {
+            throw response.errors
+        }
+        
     }
 
+    filter(response){
+        //reduce
+        return response.reduce( (c, r) => r.euclideanWeight > c.euclideanWeight);
+    }
     create(id_student, id_course, lessons){
 
         let newCase = {};
@@ -70,7 +92,6 @@ class CbrService {
             errors : 0,
         };
         
-
         //get resources
         lessons.map(async lesson => {
             let knowledgePS = await db.KnowlegdePedagogicStrategy.find({ learningStyle: lesson.learningStyle });
@@ -84,20 +105,17 @@ class CbrService {
         })
 
         this.adapt(newCase);
-
     }
 
     //return to view like plan
     adapt(c){
         let plan = [];
+        plan[0].case = { _id : c._id };
         c.solution.map(async e => {
-
-            let resource = await db.resources.find({ id_lesson: e.id_lesson });
-
+            let resource = await db.resources.find({ lesson: e.lesson });
             //call assesment package to generate a new evaluation lesson
             if(resource.type == "assessment"){}
             //id for the case
-            plan[0].case = { _id : e._id };
             plan.push({
                 resource
             });
@@ -111,6 +129,7 @@ class CbrService {
             db.cases.findByIdAndUpdate(id_case, 
                 { $set: { "results.sucess" : "results.sucess" + 1, "results.use" : "results.use" + 1 }
             });
+            // this.storage();
         } else if(error){
             db.cases.findByIdAndUpdate(id_case, 
                 { $set: { "results.sucess" : "results.errors" + 1, "results.use" : "results.use" + 1 }

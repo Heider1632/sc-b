@@ -46,7 +46,6 @@ let pedagogicTactics = [
   "Analogies and Relationship",
   "Table",
   "Experiment"
-
 ]
 
 function generateLearningData(){
@@ -133,9 +132,7 @@ async function generateStrategyPedagogicData(){
     let learningTheories = await db.learningTheory.find({});
     
     pedagogicTactics.forEach(async pt => {
-
       let ramdonLt = learningTheories[Math.floor(Math.random()*learningTheories.length)];
-
       db.strategyPedagogic.create({
         learningTheory: ramdonLt._id,
         pedagogicTactic: pt._id
