@@ -106,11 +106,11 @@ async function generateFakeResources(){
   try {
 
     let formats = ["image", "video", "document", "url"];
-    let strategyPedagoies = await db.strategyPedagogic.find({}); 
+    let pedagogicalStrategies = await db.pedagogicalStrategy.find({}); 
     let lessons = await db.lesson.find({});
     // generate 1000 random resources
     for (let index = 0; index < 1000; index++) {
-      let randomSp = strategyPedagoies[Math.floor(Math.random()*strategyPedagoies.length)];
+      let randomSp = pedagogicalStrategies[Math.floor(Math.random()*pedagogicalStrategies.length)];
       let randomL = lessons[Math.floor(Math.random()*lessons.length)];
       let randomF = formats[Math.floor(Math.random()*formats.length)];
       await db.resources.create({
@@ -134,6 +134,8 @@ async function generateFakeCases(){
     for (let index = 0; index < 50; index++) {
       let randomUser = await (await db.student.findOne().limit(-1)
       .populate({ path: 'learningStyleDimensions', select: 'name' }).skip(Math.floor(Math.random()*10)))
+
+      console.log(randomUser);
             
       
     }
@@ -142,7 +144,7 @@ async function generateFakeCases(){
   }
 }
 
-async function generateKnowledgePedagogicStrategies() {
+async function generateKnowledgePedagogicalStrategies() {
   try{
     for (let index = 0; index < 1000; index++) {
 
@@ -158,7 +160,7 @@ async function generateKnowledgePedagogicStrategies() {
         }
       })
 
-      await db.KnowledgePedagogicStrategy({
+      await db.knowledgePedagogicalStrategy.create({
         pedagogicTactic: randomPT._id,
         learningStyleDimensions: learningStyleDimensions
       })
@@ -170,7 +172,7 @@ async function generateKnowledgePedagogicStrategies() {
   }
 }
 
-async function generateKnowledgeResource() {
+async function generateKnowledgeResources() {
   try{
     for (let index = 0; index < 1000; index++) {
 
@@ -180,7 +182,7 @@ async function generateKnowledgeResource() {
       let resources = await db.resource.find({});
       let randomR = resources[Math.floor(Math.random()*resources.length)];
 
-      await db.KnowledgePedagogicStrategy({
+      await db.knowledgeResource.create({
         pedagogicTactic: randomPT._id,
         resource: randomR._id
       })
@@ -200,10 +202,10 @@ if (process.argv.includes('--students')) {
   generateFakeCourse();
 } else if(process.argv.includes('--resources')){
   generateFakeResources();
-} else if(process.argv.includes('--kpedagogicstrategies')){
-  generateKnowledgePedagogicStrategies();
-} else if(process.argv.includes('--kresource')){
-  generateKnowledgeResource();
+} else if(process.argv.includes('--knowledgepedagogicalstrategies')){
+  generateKnowledgePedagogicalStrategies();
+} else if(process.argv.includes('--knowledgeresources')){
+  generateKnowledgeResources();
 }
   
 

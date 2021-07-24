@@ -17,13 +17,13 @@ db.course = require("./Course");
 db.lesson = require("./Lesson");
 db.learningStyle = require("./LearningStyle");
 db.learningStyleDimension = require("./LearningStyleDimension");
-db.resources = require("./Resource");
+db.resource = require("./Resource");
 db.pedagogicTactic = require("./PedagogicTactic");
 db.learningTheory = require("./LearningTheory");
 db.pedagogicalStrategy = require("./PedagogicalStrategy");
 
 //knowledge
-db.knowledgePedagogicalStrategies = require("./KnowledgePedagogicalStrategies");
+db.knowledgePedagogicalStrategy = require("./KnowledgePedagogicalStrategy");
 db.knowledgeResource = require("./KnowledgeResource");
 
 

@@ -125,7 +125,7 @@ async function generatePedagogicTacticData(){
   }
 }
 
-async function generateStrategyPedagogicData(){
+async function generatePedagogicalStrategyData(){
   try {
     
     let pedagogicTactics = await db.pedagogicTactic.find({});
@@ -133,7 +133,7 @@ async function generateStrategyPedagogicData(){
     
     pedagogicTactics.forEach(async pt => {
       let ramdonLt = learningTheories[Math.floor(Math.random()*learningTheories.length)];
-      db.strategyPedagogic.create({
+      db.pedagogicalStrategy.create({
         learningTheory: ramdonLt._id,
         pedagogicTactic: pt._id
       });
@@ -155,7 +155,7 @@ if (process.argv.includes('--learning')) {
   generateLearningTheoryData();
 } else if (process.argv.includes('--pedagogictatics')){
   generatePedagogicTacticData();
-} else  if(process.argv.includes('--strategypedagogies')){
-  generateStrategyPedagogicData()
+} else  if(process.argv.includes('--pedagogicalstrategy')){
+  generatePedagogicalStrategyData()
 }
   

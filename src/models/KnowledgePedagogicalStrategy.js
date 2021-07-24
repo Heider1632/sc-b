@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const KnowledgePedagogicalStrategies = mongoose.model(
-  "KnowledgePedagogicalStrategies",
+const KnowledgePedagogicalStrategy = mongoose.model(
+  "KnowledgePedagogicalStrategy",
   new mongoose.Schema({
       pedagogicTactic: {
         type: mongoose.Schema.Types.ObjectId,
@@ -14,4 +14,4 @@ const KnowledgePedagogicalStrategies = mongoose.model(
   })
 );
 
-module.exports = KnowledgePedagogicalStrategies;
+module.exports = KnowledgePedagogicalStrategy;
