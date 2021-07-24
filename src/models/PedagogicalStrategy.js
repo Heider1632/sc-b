@@ -4,12 +4,12 @@ const PedagogicalStrategy = mongoose.model(
   "PedagogicalStrategy",
   new mongoose.Schema({
     learningTheory: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "learningTheory"
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "learningTheory"
     },
     pedagogicTactic: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "pedagogicTactic"
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "pedagogicTactic"
     }
   })
 );

@@ -17,9 +17,9 @@ const Resource = mongoose.model(
       type: Date,
       default: Date.now()
     },
-    strategyPedagogic: {
+    pedagogicalStrategy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "StrategyPedagogic"
+      ref: "PedagogicalStrategy"
     },
     lesson: {
       type: mongoose.Schema.Types.ObjectId,

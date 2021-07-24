@@ -5,12 +5,10 @@ const User = mongoose.model(
   new mongoose.Schema({
     email: String,
     password: String,
-    roles: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
-      }
-    ]
+    roles: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Role"
+    }]
   }, { timestamps: true })
 );
 
