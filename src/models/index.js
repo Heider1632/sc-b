@@ -11,7 +11,6 @@ db.role = require("./Role");
 db.ROLES = ["user", "admin", "moderator"];
 
 //import models
-db.user = require("./User");
 db.student = require("./Student");
 db.course = require("./Course");
 db.lesson = require("./Lesson");

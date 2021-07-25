@@ -1,5 +1,6 @@
 const db = require("../models");
 const Course = db.Course;
+const mongoose = require('mongoose');
 
 exports.all = (req, res) => {
     const courses = Course.findAll();
@@ -7,14 +8,30 @@ exports.all = (req, res) => {
 }
 
 exports.one = (req, res) => {
-    const course = Course.findOne(req.query.id);
+    const course = Course.findOne({ student:  { $in :  req.query.id }});
 
     if(!course){
         res.status(500).send({ message: "Course not found" });
-    } 
+    }
 
     res.send({ course })
-} 
+}
+
+exports.studentCourses = async (req, res) => {
+    let student = await db.student.findOne({ user: mongoose.Types.ObjectId(req.params.id) })
+    .populate({
+        path: 'course',			
+        populate: { 
+            path:  'lessons',   
+            model: 'Lesson',
+            select: 'title'
+        }
+    });
+    if(!student){
+        res.status(500).send({ message: "Student not found" })
+    }
+    res.send(student.course);
+}
 
 exports.create = (req, res) => {
     const course = new Course({

@@ -28,8 +28,10 @@ const CaseSchema = new mongoose.Schema({
     
 }, { timestamp: true });
 
-CaseSchema.statics.getStundentCases = function (){
-    return this.aggregate([])
+CaseSchema.statics.getStundentCases = async (id_student, lesson) => {
+    return await this.aggregate([
+
+    ])
 }
   
 

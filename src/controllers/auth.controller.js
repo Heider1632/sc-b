@@ -96,7 +96,14 @@ exports.signin = (req, res) => {
       var token = jwt.sign({ id: user.id, email: user.email, roles: authorities }, config.secret, {
         expiresIn: 86400 // 24 hours
       });
-      //initializate metacore package
+
+      //saver user session
+      db.session.create({
+        token: token,
+        user_id: user._id,
+        device: req.body.device,
+        user_agent: req.body.userAgent
+      })
       
       res.status(200).send({
         id: user._id,

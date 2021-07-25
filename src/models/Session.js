@@ -3,10 +3,14 @@ const mongoose = require("mongoose");
 const Session = mongoose.model(
   "Session",
   new mongoose.Schema({
-    id_student: mongoose.Schema.Types.ObjectId,
-    last_login: Date,
-    online: Boolean,
-  })
+    token: String,
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    device: String,
+    user_agent: String
+  }, { timestamps: true })
 );
 
 module.exports = Session;
