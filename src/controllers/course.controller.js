@@ -2,19 +2,26 @@ const db = require("../models");
 const Course = db.Course;
 const mongoose = require('mongoose');
 
-exports.all = (req, res) => {
-    const courses = Course.findAll();
+exports.all = async (req, res) => {
+    const courses = await Course.findAll();
     res.send({ courses });
 }
 
-exports.one = (req, res) => {
-    const course = Course.findOne({ student:  { $in :  req.query.id }});
+exports.one = async (req, res) => {
+    const course = await db.course.findOne({ _id: req.query.id })
+    .populate({
+        path: 'lessons',
+        // populate: {
+        //     path: 'resource',
+        //     model: 'Resource'
+        // }
+    }).select('_id name lessons');
 
     if(!course){
         res.status(500).send({ message: "Course not found" });
     }
 
-    res.send({ course })
+    res.send(course);
 }
 
 exports.studentCourses = async (req, res) => {
