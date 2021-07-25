@@ -1,4 +1,11 @@
+
+const { ObjectID } = require("mongodb");
+
 const mongoose = require("mongoose");
+
+ObjectID.prototype.valueOf = function() {
+  return this.toString();
+};
 
 const Lesson = mongoose.model(
   "Lesson",
@@ -10,6 +17,10 @@ const Lesson = mongoose.model(
       default: "introduction"
     },
     hasObjectiveLesson: String,
+    learningStyleDimensions: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "learningStyleDimension" 
+    }],
     resource: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Resource"
@@ -18,6 +29,9 @@ const Lesson = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course"
     }
+  }, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
   })
 );
 

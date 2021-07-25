@@ -6,5 +6,5 @@ exports.initial = async (req, res)  => {
     let lessons = req.body.lessons;
     const metacore = new MetacorePackage();
     let plan = await metacore.getPlan(student, id_course, lessons);
-    res.send('done');
+    res.send(plan);
 }

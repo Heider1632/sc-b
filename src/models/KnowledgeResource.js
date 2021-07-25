@@ -9,7 +9,7 @@ const KnowledgeResource = mongoose.model(
     },
     resource: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "resource"
+      ref: "Resource"
     }
   })
 );

@@ -1,5 +1,6 @@
 const db = require("../models");
 const axios = require('axios');
+const mongoose = require("mongoose");
 class CbrService {
 
     constructor(metacore){
@@ -10,31 +11,16 @@ class CbrService {
         return metacore;
     }
     
-    performance(id_student, id_course, lessons){
-        db.cases.find({ "context.id_student" : id_student }).lean().exec( (err, res) => {
-            if (err) throw err;
-            if(res.lenght > 0) {
-                this.recovery(res);
-            } else {
-                let coincident = this.coincident(id_student, id_course, lessons);
-    
-                if(coincident){
-                    this.recovery(coincident);
-                } else {
-                    this.create(id_student, id_course, lessons)
-                }
-            }
-        });
+    async performance(id_student){
+        return await db.cases.find({ "context.id_student" : id_student })
     }
 
-    coincident(id_student, lessons){
+    async coincident(id_student, lessons){
+        lessons = lessons.map(l => l = mongoose.Types.ObjectId(l));
         //mongodb query avanced
         //do it how agreggation to get max use cases and success case;
         //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
-        db.cases.find({ "context.lessons" : { $in: lessons }  }).lean().exec( (err, res) => {
-            if (err) throw err;
-            if(res.lenght > 0) return res[0]._id;
-        });
+        return await db.cases.find({ "context.lessons" : { $in: lessons }  });
     }
 
     async recovery(cases){
@@ -70,7 +56,8 @@ class CbrService {
         //reduce
         return response.reduce( (c, r) => r.euclideanWeight > c.euclideanWeight);
     }
-    create(id_student, id_course, lessons){
+
+    async create(id_student, id_course, lessons){
 
         let newCase = {};
         
@@ -93,26 +80,25 @@ class CbrService {
         };
         
         //get resources
-        lessons.map(async lesson => {
-            let knowledgePS = await db.KnowlegdePedagogicStrategy.find({ learningStyle: lesson.learningStyle });
+        return Promise.all(lessons.map(async l => {
+            let selectedLesson = await db.lesson.findById(mongoose.Types.ObjectId(l));
+            let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
             if(knowledgePS){
-                let resource = await db.KnowlegdeResource.find({ pedagogicStrategy: knowledgePS.pedagogicStrategy });
-
-                if(resource){
-                    newCase.lessons.push(resource.id_lesson);
+                let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic }).populate('resource');
+                if(kResource){
+                    return kResource.resource;
                 }
             }
+        })).then(r => {
+            newCase.solution.lessons = r;
+            return newCase;
         })
-
-        this.adapt(newCase);
     }
 
     //return to view like plan
-    adapt(c){
+    async adapt(c){
         let plan = [];
-        plan[0].case = { _id : c._id };
-        c.solution.map(async e => {
-            let resource = await db.resources.find({ lesson: e.lesson });
+        c.solution.lessons.map(resource => {
             //call assesment package to generate a new evaluation lesson
             if(resource.type == "assessment"){}
             //id for the case

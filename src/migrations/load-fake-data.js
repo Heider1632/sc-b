@@ -87,10 +87,21 @@ async function generateFakeCourse(){
     ];
 
     typeLessons.map(async structure => {
+
+      let learningStyles = await db.learningStyle.find({})
+      let learningStyleDimensions = [];
+      learningStyles.map((ls, index) => {
+        if(index < 3){
+          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
+          learningStyleDimensions.push(lsd);
+        }
+      })
+
       await db.lesson.create({
         title: structure.title,
         type: structure.type,
-        course: course._id
+        course: course._id,
+        learningStyleDimensions: learningStyleDimensions
       })
     })
     

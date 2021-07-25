@@ -109,10 +109,25 @@ class MetacorePackage  {
     async getPlan(id_student, id_course, lessons){
         //conditional to active cbr (if)
         //else false
-        console.log("here start cbr");
+        let selectedCase;
         let cbrService = new CbrService(this);
-        let plan = cbrService.performance(id_student, id_course, lessons);
-        return plan;
+        let selectedPerformance = cbrService.performance(id_student);
+        if(selectedPerformance.lenght > 0) {
+            selectedCase = await cbrService.recovery(selectePerfomance);
+        } else {
+            let coincident = await cbrService.coincident(id_student, lessons);
+            if(coincident.lenght > 0){
+                selectedCase = await cbrService.recovery(coincident);
+            } else {
+                selectedCase = await cbrService.create(id_student, id_course, lessons)
+            }
+        }
+        if(selectedCase){
+            let plan = await cbrService.adapt(selectedCase);
+            return plan;
+        } else {
+            //do somthing to validate
+        }
     }
 }
 
