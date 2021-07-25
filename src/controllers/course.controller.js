@@ -11,10 +11,10 @@ exports.one = async (req, res) => {
     const course = await db.course.findOne({ _id: req.query.id })
     .populate({
         path: 'lessons',
-        // populate: {
-        //     path: 'resource',
-        //     model: 'Resource'
-        // }
+        populate: {
+            path: 'resource',
+            model: 'Resource'
+        }
     }).select('_id name lessons');
 
     if(!course){
