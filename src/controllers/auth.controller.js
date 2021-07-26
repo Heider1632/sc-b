@@ -65,7 +65,7 @@ exports.signin = (req, res) => {
 
   User.findOne({ email: req.body.email })
     .populate("roles", "-__v")
-    .exec((err, user) => {
+    .exec(async (err, user) => {
       if (err) {
         res.status(500).send({ message: err });
         return;
@@ -74,6 +74,8 @@ exports.signin = (req, res) => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
       }
+
+      let student = await db.student.findOne({ user: user._id });
 
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
@@ -93,7 +95,7 @@ exports.signin = (req, res) => {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
       
-      var token = jwt.sign({ id: user.id, email: user.email, roles: authorities }, config.secret, {
+      var token = jwt.sign({ id: user.id, name: student.name, lastname: student.lastname, email: user.email, roles: authorities }, config.secret, {
         expiresIn: 86400 // 24 hours
       });
 
@@ -107,6 +109,8 @@ exports.signin = (req, res) => {
       
       res.status(200).send({
         id: user._id,
+        name: student.name, 
+        lastname: student.lastname,
         email: user.email,
         roles: authorities,
         accessToken: token
