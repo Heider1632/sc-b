@@ -12,7 +12,7 @@ class CbrService {
     }
     
     async performance(id_student){
-        return await db.cases.find({ "context.id_student" : id_student })
+        return await db.case.find({ "context.id_student" : id_student })
     }
 
     async coincident(id_student, lessons){
@@ -20,7 +20,10 @@ class CbrService {
         //mongodb query avanced
         //do it how agreggation to get max use cases and success case;
         //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
-        return await db.cases.find({ "context.lessons" : { $in: lessons }  });
+        return await db.case.aggregate([
+            { $match: { "context.lessons" : { $in : lessons } } },
+            { $match: { "context.id_student" : id_student } },
+        ]);
     }
 
     async recovery(cases){
@@ -32,8 +35,9 @@ class CbrService {
                 [ c_id, c.euclideanWeight ]
             )
         })
+
         let response = await axios.post('http://localhost:5000/api/knn',  {
-            query: 33,
+            query: 80,
             dataset: dataset
         })
 
@@ -45,7 +49,7 @@ class CbrService {
             } else {
                 selectedCase = cases.filter(c => c._id == response.body[0]._id);
             }
-            this.adapt(selectedCase);
+            return selectedCase;
         } else {
             throw response.errors
         }

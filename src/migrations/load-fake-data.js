@@ -142,11 +142,33 @@ async function generateFakeResources(){
 
 async function generateFakeCases(){
   try{
-    for (let index = 0; index < 50; index++) {
-      let randomUser = await (await db.student.findOne().limit(-1)
+    for (let index = 0; index < 500; index++) {
+
+      let randomUser = await (await db.student.findOne().distinct({ _id: mongoose.Types.ObjectId("60f8ae574c5e030ad8493d68") }).limit(-1)
       .populate({ path: 'learningStyleDimensions', select: 'name' }).skip(Math.floor(Math.random()*10)))
 
-      console.log(randomUser);
+      
+
+      let newCase = {};
+        
+      newCase.context = {
+          id_student: randomUser._id,
+          id_course: mongoose.Types.ObjectId("60fcab1c2ab4be39406b398d"), 
+          lessons: lessons
+      }
+
+      newCase.solution = {
+          id_student: randomUser._id,
+          lessons: []
+      }
+
+      newCase.euclideanWight = 0;
+      newCase.results = {
+          uses : Math.floor(Math.random()*500),
+          success : Math.floor(Math.random()*250),
+          errors : Math.floor(Math.random()*250),
+      };
+      
             
       
     }

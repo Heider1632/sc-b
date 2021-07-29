@@ -28,9 +28,10 @@ const CaseSchema = new mongoose.Schema({
     
 }, { timestamp: true });
 
-CaseSchema.statics.getStundentCases = async (id_student, lesson) => {
-    return await this.aggregate([
-
+CaseSchema.statics.getStudentCases = (id_student, lessons) => {
+    return this.aggregate([
+        { $match: { "context.lessons" : { $in : lessons } } },
+        { $match: { "context.id_student" : id_student } },
     ])
 }
   

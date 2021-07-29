@@ -32,6 +32,6 @@ db.trace = require("./Trace");
 db.profile = require("./Profile");
 
 //CBR
-db.cases = require("./Case");
+db.case = require("./Case");
 
 module.exports = db;
