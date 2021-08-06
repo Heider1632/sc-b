@@ -19,6 +19,27 @@ db.mongoose
 
 // let learnings = ["perception","processing","reception","understanding"];
 
+function randomizeValue() {
+	var value = (1 + 10E-16) * Math.random();
+  if (value > 1.0) {
+    return 1.0;
+  }
+  return value;
+}
+
+function randomizeFloat(min, max) {
+  	if(max == null) {
+    	max = (min == null ? Number.MAX_VALUE : min);
+      min = 0.0;
+    }
+
+  	if(min >= max) {
+    	throw new Error("Incorrect arguments.");
+    }
+
+    return min + (max - min) * randomizeValue();
+}
+
 async function generateFakeUserStudent(){
   try {
 
@@ -142,35 +163,53 @@ async function generateFakeResources(){
 
 async function generateFakeCases(){
   try{
+    let resources = await db.resource.find({});
+
     for (let index = 0; index < 500; index++) {
-
-      let randomUser = await (await db.student.findOne().distinct({ _id: mongoose.Types.ObjectId("60f8ae574c5e030ad8493d68") }).limit(-1)
-      .populate({ path: 'learningStyleDimensions', select: 'name' }).skip(Math.floor(Math.random()*10)))
-
       
+      let randomUser = await db.student.findOne().limit(-1)
+      .populate({ path: 'learningStyleDimensions', select: 'name' }).skip(Math.floor(Math.random()*9))
 
-      let newCase = {};
-        
-      newCase.context = {
+      if(randomUser._id != "60f8ae574c5e030ad8493d68"){
+        let newCase = {};
+
+        let lessons = [
+          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b398e"),
+          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b398f"),
+          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b3990"),
+          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b3991"),
+          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b3992")
+        ]
+      
+        newCase.context = {
           id_student: randomUser._id,
-          id_course: mongoose.Types.ObjectId("60fcab1c2ab4be39406b398d"), 
+          id_course: db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b398d"), 
           lessons: lessons
-      }
+        }
 
-      newCase.solution = {
+        let newLessons = [];
+        let ramdonR = resources[Math.floor(Math.random()*resources.length)];
+
+        for (let index = 0; index < 5; index++) {
+          newLessons.push(ramdonR);
+        }
+
+        newCase.solution = {
           id_student: randomUser._id,
-          lessons: []
-      }
+          lessons: newLessons
+        }
 
-      newCase.euclideanWight = 0;
-      newCase.results = {
-          uses : Math.floor(Math.random()*500),
+        let randomEW = randomizeFloat(0,100).toFixed(2);
+
+        newCase.euclideanWeight = randomEW;
+        newCase.results = {
+          use : Math.floor(Math.random()*500),
           success : Math.floor(Math.random()*250),
           errors : Math.floor(Math.random()*250),
-      };
-      
-            
-      
+        }; 
+          
+        db.case.create(newCase);
+      }
     }
   } catch(error){
     console.error(error.message);

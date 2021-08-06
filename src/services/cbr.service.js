@@ -32,32 +32,28 @@ class CbrService {
         let dataset = [];
         cases.map((c) => {
             dataset.push(
-                [ c_id, c.euclideanWeight ]
+                [ c.euclideanWeight, Math.floor(Math.random() * 2) ]
             )
         })
 
         let response = await axios.post('http://localhost:5000/api/knn',  {
-            query: 80,
+            query: 100,
             dataset: dataset
         })
 
         if(response.status == 200){
-            console.log(response.body);
             let selectedCase = null;
-            if(response.body.lenght > 1){
-                selectedCase = this.filter(response.body, cases);
-            } else {
-                selectedCase = cases.filter(c => c._id == response.body[0]._id);
+            if(response.data.length){
+                let item = response.data[0][1]
+                selectedCase = cases[item];
             }
             return selectedCase;
         } else {
             throw response.errors
         }
-        
     }
 
     filter(response){
-        //reduce
         return response.reduce( (c, r) => r.euclideanWeight > c.euclideanWeight);
     }
 

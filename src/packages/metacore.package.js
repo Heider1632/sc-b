@@ -17,7 +17,7 @@ class MetacorePackage  {
 
     // BasicElement
     getTrace(id_student, id_course){
-        db.trace.find({ id_ustuden: id_student, id_course: id_course }).exec( (res, data ) => {
+        db.trace.find({ id_student: id_student, id_course: id_course }).exec( (res, data ) => {
             if(err) throw err;
             return data;
         });
@@ -36,7 +36,7 @@ class MetacorePackage  {
     }
 
     updateTrace(_id, lessonAssements, logs){
-        db.trace.findOneAndUpdate(_id, {  $set : {
+        db.trace.findOneAndUpdate({ _id : _id }, {  $set : {
             lessonAssements: lessonAssements,
             logs: logs
         } }, { new: true }).exec((err, res) => {
@@ -50,26 +50,6 @@ class MetacorePackage  {
             if(erro) throw err;
             return res;
         });
-    }
-
-    setSession(id_student, date, online){
-        db.session.create({
-            id_student: id_student,
-            last_login: date,
-            online: online
-        }).exec((err,res) => {
-            if(err) throw err;
-            return true;
-        })
-    }
-
-    updateSession(_id, online){
-        db.session.findOneAndUpdate(_id, { $set: {
-            online: online
-        }}).exec((err,res) => {
-            if(err) throw err;
-            return true;
-        })
     }
 
     getProfile(id_student){
@@ -111,22 +91,23 @@ class MetacorePackage  {
         //else false
         let selectedCase;
         let cbrService = new CbrService(this);
-        let selectedPerformance = cbrService.performance(id_student);
-        if(selectedPerformance.lenght > 0) {
-            selectedCase = await cbrService.recovery(selectePerfomance);
+        let selectedPerformance = await cbrService.performance(id_student);
+        if(selectedPerformance.length > 0) {
+            console.log("performance")
+            selectedCase = await cbrService.recovery(selectedPerformance);
         } else {
             let coincident = await cbrService.coincident(id_student, lessons);
-            if(coincident.lenght > 0){
+            if(coincident.length > 0){
+                console.log("coincident")
                 selectedCase = await cbrService.recovery(coincident);
             } else {
+                console.log("create")
                 selectedCase = await cbrService.create(id_student, id_course, lessons)
             }
         }
         if(selectedCase){
             let plan = await cbrService.adapt(selectedCase);
             return plan;
-        } else {
-            //do somthing to validate
         }
     }
 }
