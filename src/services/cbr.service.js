@@ -22,13 +22,20 @@ class CbrService {
         //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
         return await db.case.aggregate([
             { $match: { "context.lessons" : { $in : lessons } } },
-            { $match: { "context.id_student" : id_student } },
+            // { $match: { "context.id_student" : id_student } },
         ]);
     }
 
     async recovery(cases){
         //call api python to k-nearest neighbours
         //1. cases tranform to dataset 2.call api python 3. filter the results
+        // eucledean weigth is average time spent by the student when he achieves the success
+        //2. look the eucledean weigth after the user passed success case filter
+
+        //. many case relationed with style learning
+        // 1. select cases most success (major to not success case)
+        // 2. filter the euclidean weigth with knn (select minor)
+        // 
         let dataset = [];
         cases.map((c) => {
             dataset.push(
