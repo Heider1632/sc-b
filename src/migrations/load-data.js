@@ -60,10 +60,10 @@ function generateLearningData(){
       })
       
       console.log("done")
-      process.exit()
+      // process.exit()
     } catch(err){
       console.log(err.message)
-      process.exit()
+      // process.exit()
     } 
 }
 

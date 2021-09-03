@@ -79,7 +79,7 @@ async function generateFakeUserStudent(){
 async function generateFakeCourse(){
   try {
     let course = await db.course.create({
-      name: "Sifilis Gestacionaria",
+      name: "Sifilis Gestacional",
       description: "algo",
       hasObjectiveCourse: "goal"
     });

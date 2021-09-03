@@ -2,6 +2,7 @@ const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Role = db.role;
+const Student = db.student;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -17,6 +18,14 @@ exports.signup = (req, res) => {
       res.status(500).send({ message: err });
       return;
     }
+
+    var student = new Student({
+      name: req.body.name,
+      lastname: req.body.lastname,
+      user: user._id
+    })
+
+    student.save();
 
     if (req.body.roles) {
       Role.find(
