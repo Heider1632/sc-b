@@ -102,7 +102,7 @@ exports.signin = (req, res) => {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
 
-      let singinData = {};
+      var signinData = {};
 
       if(authorities.includes('ROLE_USER')){
         let student = await db.student.findOne({ user: user._id });
@@ -123,8 +123,6 @@ exports.signin = (req, res) => {
         device: req.body.device,
         user_agent: req.body.userAgent
       })
-
-      console.log(signinData);
       
       res.status(200).send({
         id: signinData.id,

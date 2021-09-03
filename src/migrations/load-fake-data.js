@@ -2,6 +2,7 @@ const db = require("../models");
 const dbConfig = require("../config/db.config");
 const faker = require("faker");
 const bcrypt = require("bcryptjs");
+const { resource } = require("../models");
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -166,7 +167,6 @@ async function generateFakeResources(){
 
 async function generateFakeCases(){
   try{
-    let resources = await db.resource.find({});
 
     for (let index = 0; index < 500; index++) {
       
@@ -190,16 +190,20 @@ async function generateFakeCases(){
           lessons: lessons
         }
 
-        let newLessons = [];
-        let ramdonR = resources[Math.floor(Math.random()*resources.length)];
+        let newResources = await Promise.all(lessons.map(async lesson => {
+          let resources = await db.resource.find({ lesson : lesson  });
+          let ramdonR = resources[Math.floor(Math.random()*resources.length)];
 
-        for (let index = 0; index < 5; index++) {
-          newLessons.push(ramdonR);
-        }
+          return {
+            resource: ramdonR.id,
+            rating: Math.floor(Math.random()*5),
+            time_use: Math.floor(Math.random()*24000),
+          };
+        }));
 
         newCase.solution = {
           id_student: randomUser._id,
-          lessons: newLessons
+          resources: newResources
         }
 
         let randomEW = randomizeFloat(0,100).toFixed(2);

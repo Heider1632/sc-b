@@ -16,15 +16,28 @@ class CbrService {
     }
 
     async coincident(id_student, lessons){
+
+        let student = await db.student.findById(id_student);
+
+        if(student.learningStyleDimensions.length === 0){
+            return [];
+        }
+
         lessons = lessons.map(l => l = mongoose.Types.ObjectId(l));
         //mongodb query avanced
         //do it how agreggation to get max use cases and success case;
         //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
         return await db.case.aggregate([
             { 
-                $match: { "context.lessons" : { $in : lessons } }
+                $match: { "context.lessons" : { $eq : lessons } }
             },
-            { $group : { _id: null, max: { $max : "$results.success" } } }
+            // { $group : { _id: "$_id", max: { $max : "$results.success" } } },
+            {
+                $project: {
+                    _id: "$_id",
+                    euclideanWeight: "$euclideanWeight",
+                }
+            }
         ]);
     }
 
@@ -54,7 +67,10 @@ class CbrService {
             let selectedCase = null;
             if(response.data.length){
                 let item = response.data[0][1]
-                selectedCase = cases[item];
+                selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate({
+                   path: 'solution.resources.resource',
+                   model: 'Resource'
+                });
             }
             return selectedCase;
         } else {
@@ -95,28 +111,29 @@ class CbrService {
             if(knowledgePS){
                 let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic }).populate('resource');
                 if(kResource){
-                    return kResource.resource;
+                    return { resource: kResource.resource, rating: 3, time_use: 0 };
                 }
             }
         })).then(r => {
-            newCase.solution.lessons = r;
+            newCase.solution.resources = r;
             return newCase;
         })
     }
 
     //return to view like plan
     async adapt(c){
+        
         let plan = [];
-        c.solution.lessons.map(resource => {
+        c.solution.resources.map(async resource => {
+
             //call assesment package to generate a new evaluation lesson
-            if(resource.type == "assessment"){}
-            //id for the case
-            plan.push({
-                resource
-            });
+            // if(resource.type == "assessment"){}
+
+            plan.push(resource);
         })
 
         return plan;
+
     }
 
     async review(id_case, success, error) {

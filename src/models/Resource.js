@@ -9,10 +9,6 @@ const Resource = mongoose.model(
       enum: ["image", "video", "document", "url"]
     },
     url: String,
-    rating: {
-      type: Number,
-      default: 3
-    },
     estimatedTime: {
       type: Date,
       default: Date.now()

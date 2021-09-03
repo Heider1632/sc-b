@@ -6,16 +6,27 @@ const CaseSchema = new mongoose.Schema({
         id_course: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
         lessons: [
             {
-                id_lesson: mongoose.Schema.Types.ObjectId
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Lesson"
             }
         ]     
     },
     solution: {
         id_student: mongoose.Schema.Types.ObjectId,
-        lessons: [
+        resources: [
             {
-                id_lesson: mongoose.Schema.Types.ObjectId,
-                time_use: Number
+                resource: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Resource"
+                },
+                rating: {
+                    type: Number,
+                    default: 3,
+                },
+                time_use: {
+                    type: Number,
+                    default: 0,
+                }
             }
         ]
     },
