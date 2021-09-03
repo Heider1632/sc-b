@@ -24,6 +24,7 @@
   "devDependencies": {
     "faker": "^5.5.3",
     "nodemon": "^2.0.12",
+    "ora": "^6.0.0",
     "random-float": "^3.0.0"
   },
   "dependencies": {

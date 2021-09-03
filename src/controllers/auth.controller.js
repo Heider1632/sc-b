@@ -19,14 +19,6 @@ exports.signup = (req, res) => {
       return;
     }
 
-    var student = new Student({
-      name: req.body.name,
-      lastname: req.body.lastname,
-      user: user._id
-    })
-
-    student.save();
-
     if (req.body.roles) {
       Role.find(
         {
@@ -56,6 +48,14 @@ exports.signup = (req, res) => {
           return;
         }
 
+        var student = new Student({
+          name: req.body.name,
+          lastname: req.body.lastname,
+          user: user._id
+        })
+    
+        student.save();
+
         user.roles = [role._id];
         user.save(err => {
           if (err) {
@@ -84,8 +84,6 @@ exports.signin = (req, res) => {
         return res.status(404).send({ message: "User Not found." });
       }
 
-      let student = await db.student.findOne({ user: user._id });
-
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
         user.password
@@ -103,8 +101,18 @@ exports.signin = (req, res) => {
       for (let i = 0; i < user.roles.length; i++) {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
+
+      let singinData = {};
+
+      if(authorities.includes('ROLE_USER')){
+        let student = await db.student.findOne({ user: user._id });
+
+        signinData = { id: user.id, name: student.name, lastname: student.lastname, email: user.email, roles: authorities };
+      } else {
+        signinData = { id: user.id, email: user.email, roles: authorities }
+      }
       
-      var token = jwt.sign({ id: user.id, name: student.name, lastname: student.lastname, email: user.email, roles: authorities }, config.secret, {
+      var token = jwt.sign(signinData, config.secret, {
         expiresIn: 86400 // 24 hours
       });
 
@@ -115,13 +123,13 @@ exports.signin = (req, res) => {
         device: req.body.device,
         user_agent: req.body.userAgent
       })
+
+      console.log(signinData);
       
       res.status(200).send({
-        id: user._id,
-        name: student.name, 
-        lastname: student.lastname,
-        email: user.email,
-        roles: authorities,
+        id: signinData.id,
+        email: signinData.email,
+        roles: signinData.roles,
         accessToken: token
       });
     });

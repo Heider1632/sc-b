@@ -1,3 +1,4 @@
+const Ora = require('ora');
 const db = require("../models");
 const dbConfig = require("../config/db.config");
 
@@ -50,6 +51,11 @@ let pedagogicTactics = [
 
 function generateLearningData(){
     try {
+
+      const spinner = Ora('Creating the learning styles');
+
+      spinner.color = 'magenta';
+      spinner.start();
 
       learnings.forEach(learning => {
         db.learningStyle.create({

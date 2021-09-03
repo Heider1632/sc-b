@@ -21,8 +21,10 @@ class CbrService {
         //do it how agreggation to get max use cases and success case;
         //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
         return await db.case.aggregate([
-            { $match: { "context.lessons" : { $in : lessons } } },
-            // { $match: { "context.id_student" : id_student } },
+            { 
+                $match: { "context.lessons" : { $in : lessons } }
+            },
+            { $group : { _id: null, max: { $max : "$results.success" } } }
         ]);
     }
 

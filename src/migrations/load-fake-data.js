@@ -126,7 +126,7 @@ async function generateFakeCourse(){
       })
     })
     
-
+    process.exit();
 
   } catch (error){
     console.log(error.message)
@@ -145,7 +145,7 @@ async function generateFakeResources(){
       let randomSp = pedagogicalStrategies[Math.floor(Math.random()*pedagogicalStrategies.length)];
       let randomL = lessons[Math.floor(Math.random()*lessons.length)];
       let randomF = formats[Math.floor(Math.random()*formats.length)];
-      await db.resources.create({
+      await db.resource.create({
         description: faker.lorem.sentence(),
         format: randomF,
         url: faker.internet.url(),
@@ -154,6 +154,9 @@ async function generateFakeResources(){
       })
       
     }
+
+    console.log("done");
+    process.exit();
   } catch (error){
     console.log(error.message)
     process.exit();
@@ -170,20 +173,20 @@ async function generateFakeCases(){
       let randomUser = await db.student.findOne().limit(-1)
       .populate({ path: 'learningStyleDimensions', select: 'name' }).skip(Math.floor(Math.random()*9))
 
-      if(randomUser._id != "60f8ae574c5e030ad8493d68"){
+      if(randomUser._id != "613162850283d13fe4b4d686"){
         let newCase = {};
 
         let lessons = [
-          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b398e"),
-          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b398f"),
-          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b3990"),
-          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b3991"),
-          db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b3992")
+          db.mongoose.Types.ObjectId("61315fbec810964604617f40"),
+          db.mongoose.Types.ObjectId("61315fbec810964604617f3f"),
+          db.mongoose.Types.ObjectId("61315fbec810964604617f41"),
+          db.mongoose.Types.ObjectId("61315fbec810964604617f42"),
+          db.mongoose.Types.ObjectId("61315fbec810964604617f43")
         ]
       
         newCase.context = {
           id_student: randomUser._id,
-          id_course: db.mongoose.Types.ObjectId("60fcab1c2ab4be39406b398d"), 
+          id_course: db.mongoose.Types.ObjectId("61315fbec810964604617f3e"), 
           lessons: lessons
         }
 
@@ -211,8 +214,12 @@ async function generateFakeCases(){
         db.case.create(newCase);
       }
     }
+
+    console.log("done");
+    process.exit();
   } catch(error){
-    console.error(error.message);
+    console.log(error.message)
+    process.exit();
   }
 }
 
@@ -238,9 +245,13 @@ async function generateKnowledgePedagogicalStrategies() {
       })
       
     }
+
+    console.log("done");
+    process.exit();
     
   } catch(error){
     console.error(error.message);
+    process.exit();
   }
 }
 
@@ -260,20 +271,24 @@ async function generateKnowledgeResources() {
       })
       
     }
+
+    console.log("done");
+    process.exit();
     
   } catch(error){
     console.error(error.message);
+    process.exit();
   }
 }
 
 if (process.argv.includes('--students')) {
   generateFakeUserStudent();
-} else if (process.argv.includes('--cases')){
-  generateFakeCases();
 } else if (process.argv.includes('--course')){
   generateFakeCourse();
 } else if(process.argv.includes('--resources')){
   generateFakeResources();
+} else if (process.argv.includes('--cases')){
+  generateFakeCases();
 } else if(process.argv.includes('--knowledgepedagogicalstrategies')){
   generateKnowledgePedagogicalStrategies();
 } else if(process.argv.includes('--knowledgeresources')){

@@ -1,10 +1,16 @@
 const db = require("../models");
-const Course = db.Course;
 const mongoose = require('mongoose');
 
 exports.all = async (req, res) => {
-    const courses = await Course.findAll();
-    res.send({ courses });
+    const courses = await db.course.find().populate({
+        path: 'lessons',
+        populate: {
+            path: 'resource',
+            model: 'Resource'
+        }
+    }).select('_id name lessons');
+
+    res.send(courses);
 }
 
 exports.one = async (req, res) => {
