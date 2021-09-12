@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "learning": "node ./src/migrations/load-data.js --learning",
     "dimensions": "node ./src/migrations/load-data.js --dimensions",
@@ -12,6 +11,7 @@
     "theories": "node ./src/migrations/load-data.js --theories",
     "pedagogictatics": "node ./src/migrations/load-data.js --pedagogictatics",
     "pedagogicalstrategy": "node ./src/migrations/load-data.js --pedagogicalstrategy",
+    "test": "node ./src/migrations/load-data.js --test",
     "course": "node ./src/migrations/load-fake-data.js --course",
     "resources": "node ./src/migrations/load-fake-data.js --resources",
     "knowledgepedagogicalstrategies": "node ./src/migrations/load-fake-data.js --knowledgepedagogicalstrategies",

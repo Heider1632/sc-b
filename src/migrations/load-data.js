@@ -1,6 +1,6 @@
-const Ora = require('ora');
 const db = require("../models");
 const dbConfig = require("../config/db.config");
+const fs = require('fs');
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -49,14 +49,10 @@ let pedagogicTactics = [
   "Experiment"
 ]
 
+const testFelderSilverman = JSON.parse(fs.readFileSync(__dirname + '/data/test.json', 'utf-8'));
+
 function generateLearningData(){
     try {
-
-      const spinner = Ora('Creating the learning styles');
-
-      spinner.color = 'magenta';
-      spinner.start();
-
       learnings.forEach(learning => {
         db.learningStyle.create({
           name: learning.name
@@ -69,7 +65,7 @@ function generateLearningData(){
       // process.exit()
     } catch(err){
       console.log(err.message)
-      // process.exit()
+      process.exit()
     } 
 }
 
@@ -153,6 +149,18 @@ async function generatePedagogicalStrategyData(){
   }
 }
 
+async function generateTest(){
+  try {
+    await db.test.insertMany(testFelderSilverman);
+
+    console.log("done");
+    process.exit();
+  } catch(error){
+    console.error(erros.message);
+    process.exit();
+  }
+}
+
 if (process.argv.includes('--learning')) {
   generateLearningData();
 } else if (process.argv.includes('--dimensions')){
@@ -163,5 +171,7 @@ if (process.argv.includes('--learning')) {
   generatePedagogicTacticData();
 } else  if(process.argv.includes('--pedagogicalstrategy')){
   generatePedagogicalStrategyData()
+} else if(process.argv.includes('--test')){
+  generateTest()
 }
   

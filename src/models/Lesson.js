@@ -21,10 +21,6 @@ const Lesson = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "learningStyleDimension" 
     }],
-    resource: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Resource"
-    },
     course: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course"

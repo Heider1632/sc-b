@@ -1,0 +1,574 @@
+[
+    {
+        "question" : "Entiendo mejor algo",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "si lo practico."
+            },
+            {
+                "prefix": "b)",
+                "label" :"si pienso en ello."
+            }
+        ]
+    },
+    {
+        "question" : "Me considero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "realista."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "innovador."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando pienso acerca de lo que hice ayer, es más probable que lo haga sobre la base de",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "una imagen."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "palabras."
+            }
+        ]
+    },
+    {
+        "question" : "Tengo tendencia a",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "entender los detalles de un tema pero no ver claramente su estructura completa."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "entender la estructura completa pero no ver claramente los detalles."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando estoy aprendiendo algo nuevo, me ayuda",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "hablar de ello."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "pensar en ello."
+            }
+        ]
+    },
+    {
+        "question" : "Si yo fuera profesor, yo preferiría dar un curso",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "que trate sobre hechos y situaciones reales de la vida."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "que trate con ideas y teorías."
+            }
+        ]
+    },
+    {
+        "question" : "Prefiero obtener información nueva de",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "imágenes, diagramas, gráficas o mapas."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "instrucciones escritas o información verbal."
+            }
+        ]
+    },
+    {
+        "question" : "Una vez que entiendo",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "todas las partes, entiendo el total."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "el total de algo, entiendo como encajan sus partes."
+            }
+        ]
+    },
+    {
+        "question" : "En un grupo de estudio que trabaja con un material difícil, es más probable que",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "participe y contribuya con ideas."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "no participe y solo escuche."
+            }
+        ]
+    },
+    {
+        "question" : "Es más fácil para mí",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "aprender hechos."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "aprender conceptos."
+            }
+        ]
+    },
+    {
+        "question" : "En un libro con muchas imágenes y gráficas es más probable que",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "revise cuidadosamente las imágenes y las gráficas."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "me concentre en el texto escrito."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando resuelvo problemas de matemáticas",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "generalmente trabajo sobre las soluciones con un paso a la vez."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "frecuentemente sé cuales son las soluciones, pero luego tengo dificultad para imaginarme los pasos para llegar a ellas."
+            }
+        ]
+    },
+    {
+        "question" : "En las clases a las que he asistido",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "he llegado a saber como son muchos de los estudiantes."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "raramente he llegado a saber como son muchos estudiantes."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando leo temas que no son de ficción, prefiero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "algo que me enseñe nuevos hechos o me diga como hacer algo."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "algo que me dé nuevas ideas en que pensar."
+            }
+        ]
+    },
+    {
+        "question" : "Me gustan los maestros",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "que utilizan muchos esquemas en el pizarrón."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "que toman mucho tiempo para explicar."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando estoy analizando un cuento o una novela",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "pienso en los incidentes y trato de acomodarlos para configurar los temas."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "me doy cuenta de cuales son los temas cuando termino de leer y luego tengo que regresar y encontrar los incidentes que los demuestran."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando comienzo a resolver un problema de tarea, es más probable que",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "comience a trabajar en su solución inmediatamente."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "primero trate de entender completamente el problema."
+            }
+        ]
+    },
+    {
+        "question" : "Prefiero la idea de",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "certeza."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "teoría."
+            }
+        ]
+    },
+    {
+        "question" : "Recuerdo mejor",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "lo que veo."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "lo que oigo."
+            }
+        ]
+    },
+    {
+        "question" : "Es más importante para mí que un profesor",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "exponga el material en pasos secuenciales claros."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "me dé un panorama general y relacione el material con otros temas."
+            }
+        ]
+    },
+    {
+        "question" : "Prefiero estudiar",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "en un grupo de estudio."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "solo."
+            }
+        ]
+    },
+    {
+        "question" : "Me considero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "cuidadoso en los detalles de mi trabajo."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "creativo en la forma en la que hago mi trabajo."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando alguien me da direcciones de nuevos lugares, prefiero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "un mapa."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "instrucciones escritas."
+            }
+        ]
+    },
+    {
+        "question" : "Aprendo",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "a un paso constante. Si estudio con ahínco consigo lo que deseo."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "en inicios y pausas. Me llego a confundir y súbitamente lo entiendo."
+            }
+        ]
+    },
+    {
+        "question" : "Prefiero primero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "hacer algo y ver que sucede."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "pensar como voy a hacer algo."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando leo por diversión, me gustan los escritores que",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "dicen claramente los que desean dar a entender."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "dicen las cosas en forma creativa e interesante."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando veo un esquema o bosquejo en clase, es más probable que recuerde",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "la imagen."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "lo que el profesor dijo acerca de ella."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando me enfrento a un cuerpo de información",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "me concentro en los detalles y pierdo de vista el total de la misma."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "trato de entender el todo antes de ir a los detalles."
+            }
+        ]
+    },
+    {
+        "question" : "Recuerdo más fácilmente",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "algo que he hecho."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "algo en lo que he pensado mucho."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando tengo que hacer un trabajo, prefiero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "dominar una forma de hacerlo."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "intentar nuevas formas de hacerlo."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando alguien me enseña datos, prefiero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "gráficas."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "resúmenes con texto."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando escribo un trabajo, es más probable que",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "lo haga (piense o escriba) desde el principio y avance."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "lo haga (piense o escriba) en diferentes partes y luego las ordene."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando tengo que trabajar en un proyecto de grupo, primero quiero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "realizar una 'tormenta de ideas' donde cada uno contribuye con ideas."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "realizar la 'tormenta de ideas' en forma personal y luego juntarme con el grupo para comparar las ideas."
+            }
+        ]
+    },
+    {
+        "question" : "Considero que es mejor elogio llamar a alguien",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "sensible."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "imaginativo."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando conozco gente en una fiesta, es más probable que recuerde",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "cómo es su apariencia."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "lo que dicen de sí mismos."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando estoy aprendiendo un tema, prefiero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "mantenerme concentrado en ese tema, aprendiendo lo más que pueda de él."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "hacer conexiones entre ese tema y temas relacionados."
+            }
+        ]
+    },
+    {
+        "question" : "Me considero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "abierto."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "reservado."
+            }
+        ]
+    },
+    {
+        "question" : "Prefiero cursos que dan más importancia a",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "material concreto (hechos, datos)."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "material abstracto (conceptos, teorías)."
+            }
+        ]
+    },
+    {
+        "question" : "Para divertirme, prefiero",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "ver televisión."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "leer un libro."
+            }
+        ]
+    },
+    {
+        "question" : "Algunos profesores inician sus clases haciendo un bosquejo de lo que enseñarán. Esos bosquejos son",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "algo útiles para mí."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "muy útiles para mí."
+            }
+        ]
+    },
+    {
+        "question" : "La idea de hacer una tarea en grupo con una sola calificación para todos",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "me parece bien."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "no me parece bien."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando hago grandes cálculos",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "tiendo a repetir todos mis pasos y revisar cuidadosamente mi trabajo."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "me cansa hacer su revisión y tengo que esforzarme para hacerlo."
+            }
+        ]
+    },
+    {
+        "question" : "Tiendo a recordar lugares en los que he estado",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "fácilmente y con bastante exactitud."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "con dificultad y sin mucho detalle."
+            }
+        ]
+    },
+    {
+        "question" : "Cuando resuelvo problemas en grupo, es más probable que yo",
+        "options" : [
+            {
+                "prefix" : "a)",
+                "label": "piense en los pasos para la solución de los problemas."
+            },
+            {
+                "prefix" : "b)",
+                "label" : "piense en las posibles consecuencias o aplicaciones de la solución en un amplio rango de campos."
+            }
+        ]
+    }
+]

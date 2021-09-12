@@ -24,6 +24,7 @@ db.pedagogicalStrategy = require("./PedagogicalStrategy");
 //knowledge
 db.knowledgePedagogicalStrategy = require("./KnowledgePedagogicalStrategy");
 db.knowledgeResource = require("./KnowledgeResource");
+db.test = require("./Test");
 
 
 //METCACORE

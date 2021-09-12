@@ -124,12 +124,11 @@ class CbrService {
     async adapt(c){
         
         let plan = [];
-        c.solution.resources.map(async resource => {
+        c.solution.resources.map(async data => {
 
             //call assesment package to generate a new evaluation lesson
-            // if(resource.type == "assessment"){}
-
-            plan.push(resource);
+            // if(lesson.type == "assessment"){}
+            plan.push(data);
         })
 
         return plan;
@@ -138,12 +137,12 @@ class CbrService {
 
     async review(id_case, success, error) {
         if(success){
-            db.cases.findByIdAndUpdate(id_case, 
+            db.cases.findByIdAndUpdate(id_case,
                 { $set: { "results.sucess" : "results.sucess" + 1, "results.use" : "results.use" + 1 }
             });
             // this.storage();
         } else if(error){
-            db.cases.findByIdAndUpdate(id_case, 
+            db.cases.findByIdAndUpdate(id_case,
                 { $set: { "results.sucess" : "results.errors" + 1, "results.use" : "results.use" + 1 }
             });
         }
