@@ -12,6 +12,22 @@ class AssessmentPackage {
         return instance || new AssessmentPackage();
     }
 
+    setEvaluation(){
+
+    }
+
+    generateAnswers(){
+
+    }
+
+    getEvaluation(){
+
+    }
+
+
+
     
     
 }
+
+module.exports = AssessmentPackage;

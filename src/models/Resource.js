@@ -17,9 +17,9 @@ const Resource = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "PedagogicalStrategy"
     },
-    lesson: {
+    structure: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Lesson"
+      ref: "Structure"
     }
   })
 );

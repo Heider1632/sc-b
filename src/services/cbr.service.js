@@ -19,6 +19,8 @@ class CbrService {
 
         let student = await db.student.findById(id_student);
 
+        console.log(student);
+
         if(student.learningStyleDimensions.length === 0){
             return [];
         }
@@ -31,7 +33,6 @@ class CbrService {
             { 
                 $match: { "context.lessons" : { $eq : lessons } }
             },
-            // { $group : { _id: "$_id", max: { $max : "$results.success" } } },
             {
                 $project: {
                     _id: "$_id",
@@ -52,7 +53,15 @@ class CbrService {
         // 2. filter the euclidean weigth with knn (select minor)
         // 
         let dataset = [];
-        cases.map((c) => {
+
+        const results = Object.values(cases.reduce((r, o) => {
+            r[o.results.success] = (r[o.results] && r[o.results.success].value > o.results.success) ? r[o.results.success] : o
+            
+            return r
+        }, {}))
+        
+
+        results.map((c) => {
             dataset.push(
                 [ c.euclideanWeight, Math.floor(Math.random() * 2) ]
             )
@@ -66,7 +75,8 @@ class CbrService {
         if(response.status == 200){
             let selectedCase = null;
             if(response.data.length){
-                let item = response.data[0][1]
+                let item = response.data[response.data.length-1][1]
+                console.log(item)
                 selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate({
                    path: 'solution.resources.resource',
                    model: 'Resource'
@@ -106,7 +116,9 @@ class CbrService {
         
         //get resources
         return Promise.all(lessons.map(async l => {
+            console.log(l);
             let selectedLesson = await db.lesson.findById(mongoose.Types.ObjectId(l));
+            console.log(selectedLesson);
             let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
             if(knowledgePS){
                 let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic }).populate('resource');
@@ -117,7 +129,7 @@ class CbrService {
         })).then(r => {
             newCase.solution.resources = r;
             return newCase;
-        })
+        });
     }
 
     //return to view like plan
@@ -126,6 +138,10 @@ class CbrService {
         let plan = [];
         c.solution.resources.map(async data => {
 
+            //validate if user is for first time take only the structure that have a type of evaluation
+            //if is more that tree rebuild complety
+    
+        
             //call assesment package to generate a new evaluation lesson
             // if(lesson.type == "assessment"){}
             plan.push(data);

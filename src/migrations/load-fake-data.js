@@ -8,7 +8,8 @@ db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
@@ -17,8 +18,6 @@ db.mongoose
     console.error("Connection error", err);
     process.exit();
   });
-
-// let learnings = ["perception","processing","reception","understanding"];
 
 function randomizeValue() {
 	var value = (1 + 10E-16) * Math.random();
@@ -72,6 +71,8 @@ async function generateFakeUserStudent(){
       }
     }
 
+
+
   } catch(err){
       console.error(err.message)
   } 
@@ -80,38 +81,112 @@ async function generateFakeUserStudent(){
 async function generateFakeCourse(){
   try {
     let course = await db.course.create({
-      name: "Sifilis Gestacional",
+      name: "Protocolos de atención de sífilis gestacional y congénita",
       description: "algo",
       hasObjectiveCourse: "goal"
     });
 
     let typeLessons = [
       {
-        title: "¿Qué es la sifilis gestasionaria?",
-        type: "introduction"
+        title: "Unidad 1. Historia y origen de la sífilis",
+        structure: [
+          {
+            type: "introduction"
+          },
+          {
+            type: "definition"
+          },
+          {
+            type: "description"
+          },
+          {
+            type: "example"
+          },
+          {
+            type:  "activity"
+          },
+          {
+            type: "evaluation"
+          }
+        ]
       }, 
       { 
-        title: "¿Para que sirve?",
-        type: "definition" 
+        title: "Unidad 2. Políticas públicas y normatividad de la Sífilis gestacional y congénita",
+        structure: [
+          {
+            type: "introduction"
+          },
+          {
+            type: "definition"
+          },
+          {
+            type: "description"
+          },
+          {
+            type: "example"
+          },
+          {
+            type:  "activity"
+          },
+          {
+            type: "evaluation"
+          }
+        ]
       },
       { 
-        title: "Mira algunos casos de la sifilis gestacionaria...",
-        type: "example" 
+        title: "Unidad 3. Tamizaje y vigilancia epidemiológica para la Sífilis gestacional y congénita",
+        structure: [
+          {
+            type: "introduction"
+          },
+          {
+            type: "definition"
+          },
+          {
+            type: "description"
+          },
+          {
+            type: "example"
+          },
+          {
+            type:  "activity"
+          },
+          {
+            type: "evaluation"
+          }
+        ]
       },
       { 
-        title: "Aprendamos como prevenir la sifilis gestacionaria!",
-        type: "activity" 
+        title: "Unidad 4. Tratamiento de la sífilis gestacional y prevención de la sífilis congénita",
+        structure: [
+          {
+            type: "introduction"
+          },
+          {
+            type: "definition"
+          },
+          {
+            type: "description"
+          },
+          {
+            type: "example"
+          },
+          {
+            type:  "activity"
+          },
+          {
+            type: "evaluation"
+          }
+        ]
       },
-      { 
-        title: "¿Qué aprendimos?",
-        type: "evaluation" 
-      }
     ];
 
-    typeLessons.map(async structure => {
+    let promises = typeLessons.map(async lesson => {
 
       let learningStyles = await db.learningStyle.find({})
+
       let learningStyleDimensions = [];
+      
       learningStyles.map((ls, index) => {
         if(index < 3){
           let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
@@ -119,15 +194,31 @@ async function generateFakeCourse(){
         }
       })
 
-      await db.lesson.create({
-        title: structure.title,
-        type: structure.type,
+      let lessonSaved = await db.lesson.create({
+        title: lesson.title,
         course: course._id,
         learningStyleDimensions: learningStyleDimensions
       })
+
+      lesson.structure.map(s => s.lesson = lessonSaved._id);
+
+      let structuresSaved = await db.structure.insertMany(lesson.structure);
+
+      var lessonStructurePromises = structuresSaved.map(s => s._id);
+
+      Promise.all(lessonStructurePromises)
+      .then(async response => {
+        await db.lesson.findByIdAndUpdate(lessonSaved._id, { $set: { "structure" : response } });
+      });
+
     })
+
+    Promise.all(promises)
+    .then(response => {
+      console.log("done");
+      process.exit();
+    });
     
-    process.exit();
 
   } catch (error){
     console.log(error.message)

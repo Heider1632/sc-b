@@ -11,20 +11,19 @@ const Lesson = mongoose.model(
   "Lesson",
   new mongoose.Schema({
     title: String,
-    type: {
-      type: String,
-      enum: ["introduction", "definition", "example", "activity", "evaluation"],
-      default: "introduction"
-    },
     hasObjectiveLesson: String,
+    course: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course"
+    },
     learningStyleDimensions: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "learningStyleDimension" 
     }],
-    course: {
+    structure: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Course"
-    }
+      ref: "Structure" 
+    }]
   }, {
     toObject: { virtuals: true },
     toJSON: { virtuals: true }

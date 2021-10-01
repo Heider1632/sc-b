@@ -58,11 +58,11 @@ function generateLearningData(){
           name: learning.name
         }).then((err, res) => {
           if(err) throw err;
+          console.log("done")
+          process.exit()
         })
       })
       
-      console.log("done")
-      // process.exit()
     } catch(err){
       console.log(err.message)
       process.exit()
@@ -83,15 +83,17 @@ async function generateDimensionData(){
       Promise.all(promises)
       .then(result => {
         if(result.length > 0){
-          db.learningStyle.findOneAndUpdate({ name: learning.name }, { $set: { learningStyleDimensions: result } })
+          db.learningStyle.findByIdAndUpdate({ name: learning.name }, { $set: { learningStyleDimensions: result } })
           .exec((err, res) => { if(err) throw err })
         }
+
+        console.log("done");
+        process.exit();
       })
       .catch(error => console.error(error.message))
     })
     
-    // console.log("done");
-    // process.exit();
+   
   } catch(err){
     console.log(err.message)
     process.exit()
@@ -100,12 +102,15 @@ async function generateDimensionData(){
 
 async function generateLearningTheoryData(){
   try {
-    learningTheories.forEach(async lt => {
+    let promises = learningTheories.map(async lt => {
       await db.learningTheory.create({ name: lt })
     })
 
-    // console.log("done")
-    // process.exit()
+    Promise.all(promises)
+    .then(response => {
+      console.log("done")
+      process.exit()
+    })
 
   } catch (error) {
     console.error(error.message)
@@ -115,12 +120,16 @@ async function generateLearningTheoryData(){
 
 async function generatePedagogicTacticData(){
   try {
-    pedagogicTactics.forEach(async pt => {
+    
+    let promises = pedagogicTactics.map(async pt => {
       await db.pedagogicTactic.create({ name: pt })
     })
 
-    // console.log("done")
-    // process.exit()
+    Promise.all(promises)
+    .then(response => {
+      console.log("done")
+      process.exit()
+    })
   } catch (error) {
     console.error(error.message)
     process.exit()
@@ -133,16 +142,20 @@ async function generatePedagogicalStrategyData(){
     let pedagogicTactics = await db.pedagogicTactic.find({});
     let learningTheories = await db.learningTheory.find({});
     
-    pedagogicTactics.forEach(async pt => {
+    let promises = pedagogicTactics.map(async pt => {
       let ramdonLt = learningTheories[Math.floor(Math.random()*learningTheories.length)];
       db.pedagogicalStrategy.create({
         learningTheory: ramdonLt._id,
         pedagogicTactic: pt._id
       });
-    })
+    });
 
-    // console.log("done")
-    // process.exit()
+    Promise.all(promises)
+    .then(response => {
+      console.log("done")
+      process.exit()
+    });
+
   } catch (error) {
     console.error(error.message)
     process.exit()

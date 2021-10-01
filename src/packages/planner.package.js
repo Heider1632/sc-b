@@ -11,3 +11,6 @@ class PlannerPackage {
         return instance || new PlannerPackage();
     }
 }
+
+
+module.exports = PlannerPackage;

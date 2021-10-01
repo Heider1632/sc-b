@@ -14,6 +14,7 @@ db.ROLES = ["user", "admin", "moderator"];
 db.student = require("./Student");
 db.course = require("./Course");
 db.lesson = require("./Lesson");
+db.structure = require("./Structure");
 db.learningStyle = require("./LearningStyle");
 db.learningStyleDimension = require("./LearningStyleDimension");
 db.resource = require("./Resource");
