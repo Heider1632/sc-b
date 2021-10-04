@@ -107,7 +107,7 @@ exports.signin = (req, res) => {
       if(authorities.includes('ROLE_USER')){
         let student = await db.student.findOne({ user: user._id });
 
-        signinData = { id: user.id, name: student.name, lastname: student.lastname, email: user.email, roles: authorities };
+        signinData = { id: user.id, student_id: student.id, name: student.name, lastname: student.lastname, email: user.email, roles: authorities };
       } else {
         signinData = { id: user.id, email: user.email, roles: authorities }
       }

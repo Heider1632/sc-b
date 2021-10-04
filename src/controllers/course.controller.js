@@ -5,8 +5,8 @@ exports.all = async (req, res) => {
     const courses = await db.course.find().populate({
         path: 'lessons',
         populate: {
-            path: 'resource',
-            model: 'Resource'
+            path: 'structure',
+            model: 'Structure'
         }
     }).select('_id name lessons');
 
@@ -18,8 +18,8 @@ exports.one = async (req, res) => {
     .populate({
         path: 'lessons',
         populate: {
-            path: 'resource',
-            model: 'Resource'
+            path: 'structure',
+            model: 'Structure'
         }
     }).select('_id name lessons');
 
@@ -35,7 +35,7 @@ exports.studentCourses = async (req, res) => {
     .populate({
         path: 'course',			
         populate: { 
-            path:  'lessons',   
+            path:  'lessons',  
             model: 'Lesson',
             select: 'title'
         }

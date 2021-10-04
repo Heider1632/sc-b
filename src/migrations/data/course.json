@@ -1,0 +1,103 @@
+{
+    "name": "Protocolos de atención de sífilis gestacional y congénita",
+    "description": "",
+    "hasObjectiveCoursd" : "",
+    "lessons": [
+        {
+            "title": "Unidad 1. Historia y origen de la sífilis",
+            "order" : 1,
+            "structure": [
+              {
+                "type": "introduction"
+              },
+              {
+                "type": "definition"
+              },
+              {
+                "type": "description"
+              },
+              {
+                "type": "example"
+              },
+              {
+                "type":  "activity"
+              },
+              {
+                "type": "evaluation"
+              }
+            ]
+          }, 
+          { 
+            "title": "Unidad 2. Políticas públicas y normatividad de la Sífilis gestacional y congénita",
+            "order" : 2,
+            "structure": [
+              {
+                "type": "introduction"
+              },
+              {
+                "type": "definition"
+              },
+              {
+                "type": "description"
+              },
+              {
+                "type": "example"
+              },
+              {
+                "type":  "activity"
+              },
+              {
+                "type": "evaluation"
+              }
+            ]
+          },
+          { 
+            "title": "Unidad 3. Tamizaje y vigilancia epidemiológica para la Sífilis gestacional y congénita",
+            "order": 3,
+            "structure": [
+              {
+                "type": "introduction"
+              },
+              {
+                "type": "definition"
+              },
+              {
+                "type": "description"
+              },
+              {
+                "type": "example"
+              },
+              {
+                "type":  "activity"
+              },
+              {
+                "type": "evaluation"
+              }
+            ]
+          },
+          { 
+            "title": "Unidad 4. Tratamiento de la sífilis gestacional y prevención de la sífilis congénita",
+            "order": 4,
+            "structure": [
+              {
+                "type": "introduction"
+              },
+              {
+                "type": "definition"
+              },
+              {
+                "type": "description"
+              },
+              {
+                "type": "example"
+              },
+              {
+                "type":  "activity"
+              },
+              {
+                "type": "evaluation"
+              }
+            ]
+        }
+    ]
+}

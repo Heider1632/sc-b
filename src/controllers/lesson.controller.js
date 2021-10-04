@@ -1,28 +1,27 @@
 const db = require("../models");
-
-const Lesson = db.Lesson;
-const Course = db.Course;
+const mongoose = require("mongoose");
 
 exports.all = (req, res) => {
-    const lessons = Lesson.findAll();
-    res.send({ lessons });
+    const lessons = db.lesson.find({});
+    res.send(lessons);
 }
 
-exports.one = (req, res) => {
-    const lesson = Lesson.findOne(req.query.id);
+exports.one = async (req, res) => {
+
+    const lesson = await db.lesson.findOne({ _id : new mongoose.Types.ObjectId(req.query.id) }).populate('structure');
 
     if(!lesson){
         res.status(500).send({ message: "Lesson not found" });
     }
 
-    res.send({ lesson })
+    res.status(200).send(lesson);
 } 
 
 exports.create = (req, res) => {
-    const lesson = new Lesson({
+    const lesson = new db.lesson({
         cod: str_random(20),
         type: req.body.type,
-        resource: req.body.resource
+        stucture: req.body.structure
     });
 
     lesson.save((err, lesson) => {
@@ -31,7 +30,7 @@ exports.create = (req, res) => {
           return;
         }
 
-        Course.findAndUpdate({ id: req.body.course }, { $push: { lesson: lesson._id } })
+        db.course.findOneAndUpdate({ id: req.body.course }, { $push: { lesson: lesson._id } })
         .exec( (err, course) => {
             if (err) {
                 res.status(500).send({ message: err });
@@ -43,7 +42,7 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    Lesson.findAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
+    db.lesson.findOneAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
     .exec((err, lesson) => {
         if(err){
             res.status(500).send({ messsage: err });
@@ -54,7 +53,7 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    Lesson.findAndDelete({ id: req.body.id })
+    db.lesson.findAndDelete({ id: req.body.id })
     .exec( (err, lesson) => {
         if(err){
             res.status(500).send({ message: err });

@@ -2,7 +2,7 @@ const db = require("../models");
 const dbConfig = require("../config/db.config");
 const faker = require("faker");
 const bcrypt = require("bcryptjs");
-const { resource } = require("../models");
+const fs = require("fs");
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -18,6 +18,8 @@ db.mongoose
     console.error("Connection error", err);
     process.exit();
   });
+
+const course = JSON.parse(fs.readFileSync(__dirname + '/data/course.json', 'utf-8'));
 
 function randomizeValue() {
 	var value = (1 + 10E-16) * Math.random();
@@ -80,108 +82,27 @@ async function generateFakeUserStudent(){
 
 async function generateFakeCourse(){
   try {
-    let course = await db.course.create({
-      name: "Protocolos de atención de sífilis gestacional y congénita",
-      description: "algo",
-      hasObjectiveCourse: "goal"
+    await db.course.create({
+      name: course.name,
+      description: course.description,
+      hasObjectiveCourse: course.hasObjectiveCourse
     });
 
-    let typeLessons = [
-      {
-        title: "Unidad 1. Historia y origen de la sífilis",
-        structure: [
-          {
-            type: "introduction"
-          },
-          {
-            type: "definition"
-          },
-          {
-            type: "description"
-          },
-          {
-            type: "example"
-          },
-          {
-            type:  "activity"
-          },
-          {
-            type: "evaluation"
-          }
-        ]
-      }, 
-      { 
-        title: "Unidad 2. Políticas públicas y normatividad de la Sífilis gestacional y congénita",
-        structure: [
-          {
-            type: "introduction"
-          },
-          {
-            type: "definition"
-          },
-          {
-            type: "description"
-          },
-          {
-            type: "example"
-          },
-          {
-            type:  "activity"
-          },
-          {
-            type: "evaluation"
-          }
-        ]
-      },
-      { 
-        title: "Unidad 3. Tamizaje y vigilancia epidemiológica para la Sífilis gestacional y congénita",
-        structure: [
-          {
-            type: "introduction"
-          },
-          {
-            type: "definition"
-          },
-          {
-            type: "description"
-          },
-          {
-            type: "example"
-          },
-          {
-            type:  "activity"
-          },
-          {
-            type: "evaluation"
-          }
-        ]
-      },
-      { 
-        title: "Unidad 4. Tratamiento de la sífilis gestacional y prevención de la sífilis congénita",
-        structure: [
-          {
-            type: "introduction"
-          },
-          {
-            type: "definition"
-          },
-          {
-            type: "description"
-          },
-          {
-            type: "example"
-          },
-          {
-            type:  "activity"
-          },
-          {
-            type: "evaluation"
-          }
-        ]
-      },
-    ];
+    console.log("done");
+    process.exit();
 
-    let promises = typeLessons.map(async lesson => {
+  } catch (error){
+    console.log(error.message)
+    process.exit();
+  }
+}
+
+async function generateFakeLessons(){
+  try {
+
+    let courseSaved = await db.course.find({});
+
+    let promises = course.lessons.map(async lesson => {
 
       let learningStyles = await db.learningStyle.find({})
 
@@ -194,23 +115,16 @@ async function generateFakeCourse(){
         }
       })
 
-      let lessonSaved = await db.lesson.create({
-        title: lesson.title,
-        course: course._id,
-        learningStyleDimensions: learningStyleDimensions
-      })
-
-      lesson.structure.map(s => s.lesson = lessonSaved._id);
-
-      let structuresSaved = await db.structure.insertMany(lesson.structure);
+      let structuresSaved = await db.structure.create(lesson.structure);
 
       var lessonStructurePromises = structuresSaved.map(s => s._id);
 
-      Promise.all(lessonStructurePromises)
-      .then(async response => {
-        await db.lesson.findByIdAndUpdate(lessonSaved._id, { $set: { "structure" : response } });
+      await db.lesson.create({
+        title: lesson.title,
+        course: courseSaved[0]._id,
+        learningStyleDimensions: learningStyleDimensions,
+        structure: lessonStructurePromises
       });
-
     })
 
     Promise.all(promises)
@@ -218,13 +132,35 @@ async function generateFakeCourse(){
       console.log("done");
       process.exit();
     });
-    
 
   } catch (error){
     console.log(error.message)
     process.exit();
   }
 }
+
+async function generateFakeSync(){
+  try {
+
+    let courseSaved = await db.course.find({});
+
+    let lessonsSaved = await db.lesson.find({});
+
+    var courseLessons = lessonsSaved.map(l => l._id);
+
+    Promise.all(courseLessons)
+    .then(async response => {
+      await db.course.findOneAndUpdate({ _id: courseSaved[0]._id }, { $set: { "lessons" : courseLessons } });
+      console.log("done");
+      process.exit();
+    })
+
+  } catch(e) {
+    console.error(e.message);
+    process.exit();
+  }
+}
+
 
 async function generateFakeResources(){
   try {
@@ -380,6 +316,10 @@ if (process.argv.includes('--students')) {
   generateFakeUserStudent();
 } else if (process.argv.includes('--course')){
   generateFakeCourse();
+} else if (process.argv.includes('--lesson')){
+  generateFakeLessons();
+} else if (process.argv.includes('--sync')){
+  generateFakeSync();
 } else if(process.argv.includes('--resources')){
   generateFakeResources();
 } else if (process.argv.includes('--cases')){

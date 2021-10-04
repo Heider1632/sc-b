@@ -14,4 +14,8 @@ module.exports = function(app) {
     [authJwt.verifyToken], 
     TestController.all);
 
+    app.post("/api/test/user/update", 
+    [authJwt.verifyToken], 
+    TestController.update);
+
 }

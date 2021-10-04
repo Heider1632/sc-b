@@ -1,6 +1,8 @@
 const db = require("../models");
 const dbConfig = require("../config/db.config");
 const fs = require('fs');
+const bcrypt = require('bcryptjs');
+const mongoose = require("mongoose");
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -50,6 +52,42 @@ let pedagogicTactics = [
 ]
 
 const testFelderSilverman = JSON.parse(fs.readFileSync(__dirname + '/data/test.json', 'utf-8'));
+
+async function generateUser(){
+  try {
+    let user = await db.user.create({
+      email: "heiderzapa78@gmail.com",
+      password: bcrypt.hashSync("Shinobu2021@", 8),
+      roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb19") ]
+    })
+
+    let user = await db.student.create({
+      name: "Heider",
+      lastname: "Zapa",
+      user: user._id,
+      course: [ new mongoose.Types.ObjectId("61578aa571a3453ddcf5b617") ]
+    })
+
+    await db.user.create({
+      email: "teacher-sti@gmail.com",
+      password: bcrypt.hashSync("teacher-sti", 8),
+      roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb1a") ]
+    })
+
+    await db.user.create({
+      email: "admin-sti@gmail.com",
+      password: bcrypt.hashSync("admin-sti", 8),
+      roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb1b") ]
+    })
+
+    console.log("done");
+    process.exit();
+    
+  } catch(err){
+    console.log(err.message)
+    process.exit()
+  } 
+}
 
 function generateLearningData(){
     try {
@@ -173,8 +211,9 @@ async function generateTest(){
     process.exit();
   }
 }
-
-if (process.argv.includes('--learning')) {
+if (process.argv.includes('--user')){
+  generateUser();
+} else if (process.argv.includes('--learning')) {
   generateLearningData();
 } else if (process.argv.includes('--dimensions')){
   generateDimensionData();

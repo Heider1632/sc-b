@@ -1,13 +1,17 @@
 const db = require("../models");
-const Student = db.Student;
+const mongoose = require("mongoose");
 
 exports.all = (req, res) => {
     const students = Students.findAll();
     res.send({ students });
 }
 
-exports.one = (req, res) => {
-    const student = Student.findOne(req.query.id);
+exports.one = async (req, res) => {
+
+    console.log(req.query);
+
+    const student = await db.student.findOne({ _id: new mongoose.Types.ObjectId(req.query.id) })
+    .populate('learningStyleDimensions');
 
     if(!student){
         res.status(500).send({ message: "Student not found" });
@@ -17,7 +21,7 @@ exports.one = (req, res) => {
 } 
 
 exports.create = (req, res) => {
-    const student = new Student({
+    const student = new db.student({
         performance: req.body.performance,
         learningStyle: req.body.learningStyle,
     });
@@ -29,7 +33,7 @@ exports.create = (req, res) => {
         }
 
         if(req.body.course){
-            Student.findAndUpdate({ id: student._id }, { $push: { course: req.body.course } })
+            db.student.findAndUpdate({ id: student._id }, { $push: { course: req.body.course } })
             .exec( (err, student) => {
                 if (err) {
                     res.status(500).send({ message: err });
@@ -44,7 +48,7 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    Student.findAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
+    db.student.findAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
     .exec((err, student) => {
         if(err){
             res.status(500).send({ messsage: err });
@@ -55,7 +59,7 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    Student.findAndDelete({ id: req.body.id })
+    db.student.findAndDelete({ id: req.body.id })
     .exec( (err, student) => {
         if(err){
             res.status(500).send({ message: err });

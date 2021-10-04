@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "user": "node ./src/migrations/load-data.js --user",
     "learning": "node ./src/migrations/load-data.js --learning",
     "dimensions": "node ./src/migrations/load-data.js --dimensions",
     "students": "node ./src/migrations/load-fake-data.js --students",
@@ -13,6 +14,8 @@
     "pedagogicalstrategy": "node ./src/migrations/load-data.js --pedagogicalstrategy",
     "test": "node ./src/migrations/load-data.js --test",
     "course": "node ./src/migrations/load-fake-data.js --course",
+    "lesson": "node ./src/migrations/load-fake-data.js --lesson",
+    "sync": "node ./src/migrations/load-fake-data.js --sync",
     "resources": "node ./src/migrations/load-fake-data.js --resources",
     "knowledgepedagogicalstrategies": "node ./src/migrations/load-fake-data.js --knowledgepedagogicalstrategies",
     "knowledgeresources": "node ./src/migrations/load-fake-data.js --knowledgeresources",

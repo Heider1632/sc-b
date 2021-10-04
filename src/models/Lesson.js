@@ -16,6 +16,10 @@ const Lesson = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course"
     },
+    order: {
+      type: Number,
+      default: 0
+    },
     learningStyleDimensions: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "learningStyleDimension" 
