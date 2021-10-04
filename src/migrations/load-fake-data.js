@@ -122,6 +122,7 @@ async function generateFakeLessons(){
       await db.lesson.create({
         title: lesson.title,
         course: courseSaved[0]._id,
+        order: lesson.order,
         learningStyleDimensions: learningStyleDimensions,
         structure: lessonStructurePromises
       });

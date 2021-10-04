@@ -12,9 +12,9 @@ module.exports = function(app) {
 
   app.post(
     "/api/metacore/initial",
-    // [
-    //   authJwt.verifyToken,
-    // ],
+    [
+      authJwt.verifyToken,
+    ],
     controller.initial
   );
 };
