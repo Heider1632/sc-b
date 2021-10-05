@@ -1,6 +1,7 @@
 const db = require("../models");
 const axios = require('axios');
 const mongoose = require("mongoose");
+const { structure } = require("../models");
 class CbrService {
 
     constructor(metacore){
@@ -15,23 +16,24 @@ class CbrService {
         return await db.case.find({ "context.id_student" : id_student })
     }
 
-    async coincident(id_student, lessons){
+    async coincident(id_student, id_lesson, structure){
 
         let student = await db.student.findById(id_student);
-
-        console.log(student);
 
         if(student.learningStyleDimensions.length === 0){
             return [];
         }
 
-        lessons = lessons.map(l => l = mongoose.Types.ObjectId(l));
+        structure = structure.map(l => l = mongoose.Types.ObjectId(l));
         //mongodb query avanced
         //do it how agreggation to get max use cases and success case;
         //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
         return await db.case.aggregate([
+            {
+                $match: { "context.lesson" : {  $eq : id_lesson } }
+            },
             { 
-                $match: { "context.lessons" : { $eq : lessons } }
+                $match: { "context.structure" : { $eq : structure } }
             },
             {
                 $project: {
@@ -92,19 +94,20 @@ class CbrService {
         return response.reduce( (c, r) => r.euclideanWeight > c.euclideanWeight);
     }
 
-    async create(id_student, id_course, lessons){
+    async create(id_student, id_course, id_lesson, structure){
 
         let newCase = {};
         
         newCase.context = {
             id_student: id_student,
-            id_course: id_course, 
-            lessons: lessons
+            id_course: id_course,
+            id_lesson: id_lesson,
+            structure: structure
         }
 
         newCase.solution = {
             id_student: id_student,
-            lessons: []
+            resources: []
         }
 
         newCase.euclideanWight = 0;
@@ -115,10 +118,10 @@ class CbrService {
         };
         
         //get resources
-        return Promise.all(lessons.map(async l => {
-            console.log(l);
-            let selectedLesson = await db.lesson.findById(mongoose.Types.ObjectId(l));
-            console.log(selectedLesson);
+        //TODO: replantear
+        let selectedLesson = await db.lesson.findById(mongoose.Types.ObjectId(id_lesson));
+        return Promise.all(structure.map(async l => {
+            let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
             let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
             if(knowledgePS){
                 let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic }).populate('resource');

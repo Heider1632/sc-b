@@ -2,10 +2,11 @@ const MetacorePackage = require('../packages/metacore.package');
 const metacore = new MetacorePackage();
 
 exports.initial = async (req, res)  => {
-    let student = req.body.student;
+    let id_student = req.body.id_student;
     let id_course = req.body.id_course;
-    let lessons = req.body.lessons;
-    let plan = await metacore.getPlan(student, id_course, lessons);
+    let id_lesson = req.body.id_lesson;
+    let structure = req.body.structure;
+    let plan = await metacore.getPlan(id_student, id_course, id_lesson, structure);
     res.send(plan);
 }
 
