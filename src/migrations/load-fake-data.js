@@ -168,19 +168,34 @@ async function generateFakeResources(){
 
     let formats = ["image", "video", "document", "url"];
     let pedagogicalStrategies = await db.pedagogicalStrategy.find({}); 
-    let lessons = await db.lesson.find({});
+    let structure = await db.structure.find({});
+    let learningStyles = await db.learningStyle.find({})
+
+    
+
     // generate 1000 random resources
     for (let index = 0; index < 1000; index++) {
       let randomSp = pedagogicalStrategies[Math.floor(Math.random()*pedagogicalStrategies.length)];
-      let randomL = lessons[Math.floor(Math.random()*lessons.length)];
+      let randomS = structure[Math.floor(Math.random()*structure.length)];
       let randomF = formats[Math.floor(Math.random()*formats.length)];
+
+      let learningStyleDimensions = [];
+      
+      learningStyles.map((ls, index) => {
+        if(index < 3){
+          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
+          learningStyleDimensions.push(lsd);
+        }
+      });
+      
       await db.resource.create({
         description: faker.lorem.sentence(),
         format: randomF,
         url: faker.internet.url(),
+        learningStyleDimensions: learningStyleDimensions,
         strategyPedagogic: randomSp._id,
-        lesson: randomL._id
-      })
+        structure: randomS._id
+      });
       
     }
 

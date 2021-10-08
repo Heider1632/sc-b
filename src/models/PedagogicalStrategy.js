@@ -7,9 +7,9 @@ const PedagogicalStrategy = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "learningTheory"
     },
-    pedagogicTactic: {
+    pedagogicalTactic: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "pedagogicTactic"
+      ref: "pedagogicalTactic"
     }
   })
 );

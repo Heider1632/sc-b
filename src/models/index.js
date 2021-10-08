@@ -18,7 +18,7 @@ db.structure = require("./Structure");
 db.learningStyle = require("./LearningStyle");
 db.learningStyleDimension = require("./LearningStyleDimension");
 db.resource = require("./Resource");
-db.pedagogicTactic = require("./PedagogicTactic");
+db.pedagogicalTactic = require("./PedagogicalTactic");
 db.learningTheory = require("./LearningTheory");
 db.pedagogicalStrategy = require("./PedagogicalStrategy");
 

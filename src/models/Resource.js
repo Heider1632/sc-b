@@ -13,6 +13,10 @@ const Resource = mongoose.model(
       type: Date,
       default: Date.now()
     },
+    learningStyleDimensions: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "learningStyleDimension"
+    }],
     pedagogicalStrategy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "PedagogicalStrategy"

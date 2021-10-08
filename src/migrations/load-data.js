@@ -29,7 +29,7 @@ let learningTheories = [
   'behaviorist', 'constructivist' 
 ]
 
-let pedagogicTactics = [
+let pedagogicalTactics = [
   "Objective",
   "Abstract",
   "Advance Organizer",
@@ -61,7 +61,7 @@ async function generateUser(){
       roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb19") ]
     })
 
-    let user = await db.student.create({
+    await db.student.create({
       name: "Heider",
       lastname: "Zapa",
       user: user._id,
@@ -89,7 +89,7 @@ async function generateUser(){
   } 
 }
 
-function generateLearningData(){
+function generateLearningStyles(){
     try {
       learnings.forEach(learning => {
         db.learningStyle.create({
@@ -107,7 +107,7 @@ function generateLearningData(){
     } 
 }
 
-async function generateDimensionData(){
+async function generateDimension(){
   try {
     learnings.forEach(learning => {
 
@@ -138,7 +138,7 @@ async function generateDimensionData(){
   }
 }
 
-async function generateLearningTheoryData(){
+async function generateLearningTheories(){
   try {
     let promises = learningTheories.map(async lt => {
       await db.learningTheory.create({ name: lt })
@@ -156,11 +156,11 @@ async function generateLearningTheoryData(){
   }
 }
 
-async function generatePedagogicTacticData(){
+async function generatePedagogicalTactics(){
   try {
     
-    let promises = pedagogicTactics.map(async pt => {
-      await db.pedagogicTactic.create({ name: pt })
+    let promises = pedagogicalTactics.map(async pt => {
+      await db.pedagogicalTactic.create({ name: pt })
     })
 
     Promise.all(promises)
@@ -174,22 +174,25 @@ async function generatePedagogicTacticData(){
   }
 }
 
-async function generatePedagogicalStrategyData(){
+async function generatePedagogicalStrategies(){
   try {
     
-    let pedagogicTactics = await db.pedagogicTactic.find({});
+    let pedagogicTactics = await db.pedagogicalTactic.find({});
     let learningTheories = await db.learningTheory.find({});
     
     let promises = pedagogicTactics.map(async pt => {
       let ramdonLt = learningTheories[Math.floor(Math.random()*learningTheories.length)];
-      db.pedagogicalStrategy.create({
+      let n = db.pedagogicalStrategy.create({
         learningTheory: ramdonLt._id,
-        pedagogicTactic: pt._id
+        pedagogicalTactic: pt._id
       });
+
+      return n;
     });
 
     Promise.all(promises)
     .then(response => {
+      console.log(response);
       console.log("done")
       process.exit()
     });
@@ -214,15 +217,15 @@ async function generateTest(){
 if (process.argv.includes('--user')){
   generateUser();
 } else if (process.argv.includes('--learning')) {
-  generateLearningData();
+  generateLearningStyles();
 } else if (process.argv.includes('--dimensions')){
-  generateDimensionData();
+  generateDimension();
 } else if (process.argv.includes('--theories')){
-  generateLearningTheoryData();
-} else if (process.argv.includes('--pedagogictatics')){
-  generatePedagogicTacticData();
-} else  if(process.argv.includes('--pedagogicalstrategy')){
-  generatePedagogicalStrategyData()
+  generateLearningTheories();
+} else if (process.argv.includes('--pedagogicaltatics')){
+  generatePedagogicalTactics();
+} else  if(process.argv.includes('--pedagogicalstrategies')){
+  generatePedagogicalStrategies()
 } else if(process.argv.includes('--test')){
   generateTest()
 }
