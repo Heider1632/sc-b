@@ -7,6 +7,10 @@ const KnowledgeResource = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "pedagogicTactic"
     },
+    structure: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Structure"
+    },
     resource: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Resource"

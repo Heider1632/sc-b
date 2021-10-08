@@ -171,11 +171,9 @@ async function generateFakeResources(){
     let structure = await db.structure.find({});
     let learningStyles = await db.learningStyle.find({})
 
-    
-
     // generate 1000 random resources
     for (let index = 0; index < 1000; index++) {
-      let randomSp = pedagogicalStrategies[Math.floor(Math.random()*pedagogicalStrategies.length)];
+      let randomPS = pedagogicalStrategies[Math.floor(Math.random()*pedagogicalStrategies.length)];
       let randomS = structure[Math.floor(Math.random()*structure.length)];
       let randomF = formats[Math.floor(Math.random()*formats.length)];
 
@@ -193,10 +191,10 @@ async function generateFakeResources(){
         format: randomF,
         url: faker.internet.url(),
         learningStyleDimensions: learningStyleDimensions,
-        strategyPedagogic: randomSp._id,
+        strategyPedagogic: randomPS._id,
         structure: randomS._id
       });
-      
+
     }
 
     console.log("done");
@@ -274,8 +272,8 @@ async function generateKnowledgePedagogicalStrategies() {
   try{
     for (let index = 0; index < 1000; index++) {
 
-      let pedagogicTactics = await db.pedagogicTactic.find({});
-      let randomPT = pedagogicTactics[Math.floor(Math.random()*pedagogicTactics.length)];
+      let pedagogicalTactics = await db.pedagogicalTactic.find({});
+      let randomPT = pedagogicalTactics[Math.floor(Math.random()*pedagogicalTactics.length)];
 
       let learningStyles = await db.learningStyle.find({})
       let learningStyleDimensions = [];
@@ -306,14 +304,17 @@ async function generateKnowledgeResources() {
   try{
     for (let index = 0; index < 1000; index++) {
 
-      let pedagogicTactics = await db.pedagogicTactic.find({});
-      let randomPT = pedagogicTactics[Math.floor(Math.random()*pedagogicTactics.length)]; 
-      
+      let pedagogicalTactics = await db.pedagogicalTactic.find({});
       let resources = await db.resource.find({});
+      let structure = await db.structure.find({});
+
+      let randomPT = pedagogicalTactics[Math.floor(Math.random()*pedagogicalTactics.length)]; 
+      let randomS = structure[Math.floor(Math.random()*structure.length)];
       let randomR = resources[Math.floor(Math.random()*resources.length)];
 
       await db.knowledgeResource.create({
         pedagogicTactic: randomPT._id,
+        structure: randomS._id,
         resource: randomR._id
       })
       

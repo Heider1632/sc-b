@@ -124,7 +124,7 @@ class CbrService {
             let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
             let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
             if(knowledgePS){
-                let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic }).populate('resource');
+                let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic, structure: selectedStructure._id }).populate('resource');
                 if(kResource){
                     return { resource: kResource.resource, rating: 3, time_use: 0 };
                 }
