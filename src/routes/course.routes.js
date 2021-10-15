@@ -15,7 +15,7 @@ module.exports = function(app) {
     app.get("/api/course/student/:id", [authJwt.verifyToken], CourseController.studentCourses);
 
     app.post("/api/course/create", [authJwt.verifyToken, authJwt.isAdmin, authJwt.isModerator], CourseController.create);
-    app.post("api/course/update", [authJwt.verifyToken, authJwt.isAdmin, authJwt.isModerator], CourseController.update);
-    app.post("api/course/delete", [authJwt.verifyToken, authJwt.isAdmin], CourseController.delete);
+    app.post("/api/course/update", [authJwt.verifyToken, authJwt.isAdmin, authJwt.isModerator], CourseController.update);
+    app.post("/api/course/delete", [authJwt.verifyToken, authJwt.isAdmin], CourseController.delete);
 
 }

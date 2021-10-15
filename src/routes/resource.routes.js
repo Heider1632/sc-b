@@ -14,7 +14,7 @@ module.exports = function(app) {
     app.get("/api/resource/one?id", [authJwt.verifyToken], ResourceController.one);
 
     app.post("/api/resource/create", [authJwt.verifyToken], ResourceController.create);
-    app.post("api/resource/update", [authJwt.verifyToken], ResourceController.update);
-    app.post("api/resource/delete",  [authJwt.verifyToken], ResourceController.delete);
+    app.post("/api/resource/update", [authJwt.verifyToken], ResourceController.update);
+    app.post("/api/resource/delete",  [authJwt.verifyToken], ResourceController.delete);
 
 }

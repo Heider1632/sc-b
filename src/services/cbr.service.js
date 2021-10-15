@@ -94,7 +94,7 @@ class CbrService {
         return response.reduce( (c, r) => r.euclideanWeight > c.euclideanWeight);
     }
 
-    async create(id_student, id_course, id_lesson, structure){
+    async create(id_student, id_course, id_lesson, structure, resources){
 
         let newCase = {};
         
@@ -117,22 +117,42 @@ class CbrService {
             errors : 0,
         };
         
-        //get resources
-        //TODO: replantear
         let selectedLesson = await db.lesson.findById(mongoose.Types.ObjectId(id_lesson));
-        return Promise.all(structure.map(async l => {
-            let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
-            let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
-            if(knowledgePS){
-                let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic, structure: selectedStructure._id }).populate('resource');
-                if(kResource){
-                    return { resource: kResource.resource, rating: 3, time_use: 0 };
+
+        if(resources && resources.length > 0){
+            return Promise.all(structure.map(async (l, index) => {
+                let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
+                let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
+                if(knowledgePS){
+                    let kResources = await db.knowledgeResource.find({ pedagogicTactic: knowledgePS.pedagogicTactic, structure: selectedStructure._id }).populate('resource');
+                    let kResource = kResources.filter(kR => kR.resource._id != resources[index])[0];a
+                    if(kResource){
+                        return { resource: kResource.resource, rating: 3, time_use: 0 };
+                    } else {
+                        return { resource: kResources[0].resource, rating: 3, time_use: 0 };
+                    }
                 }
-            }
-        })).then(r => {
-            newCase.solution.resources = r;
-            return newCase;
-        });
+            })).then(r => {
+                newCase.solution.resources = r;
+                return newCase;
+            });
+        } else {
+            return Promise.all(structure.map(async l => {
+                let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
+                let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
+                if(knowledgePS){
+                    let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic, structure: selectedStructure._id }).populate('resource');
+                    if(kResource){
+                        return { resource: kResource.resource, rating: 3, time_use: 0 };
+                    }
+                }
+            })).then(r => {
+                newCase.solution.resources = r;
+                return newCase;
+            });
+        }
+            
+        
     }
 
     //return to view like plan

@@ -14,7 +14,6 @@ module.exports = function(app) {
     app.get("/api/lesson/one", [authJwt.verifyToken], LessonController.one);
 
     app.post("/api/lesson/create", [authJwt.verifyToken], LessonController.create);
-    app.post("api/lesson/update", [authJwt.verifyToken], LessonController.update);
-    app.post("api/lesson/delete", [authJwt.verifyToken], LessonController.delete);
-
+    app.post("/api/lesson/update", [authJwt.verifyToken], LessonController.update);
+    app.post("/api/lesson/delete", [authJwt.verifyToken], LessonController.delete);
 }

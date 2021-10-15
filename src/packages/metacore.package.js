@@ -86,7 +86,7 @@ class MetacorePackage  {
     }
 
     //call cbr
-    async getPlan(id_student, id_course, id_lesson, structure){
+    async getPlan(id_student, id_course, id_lesson, structure, resources){
         //conditional to active cbr (if)
         //else false
         let selectedCase;
@@ -102,7 +102,7 @@ class MetacorePackage  {
                 selectedCase = await cbrService.recovery(coincident);
             } else {
                 console.log("create")
-                selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure)
+                selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure, resources)
             }
         }
         if(selectedCase){

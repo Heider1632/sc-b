@@ -5,11 +5,11 @@ const Trace = mongoose.model(
   new mongoose.Schema({
     student: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
     course: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
-    lessonAssements: [{
-      lesson: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson" },
+    lesson: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson" },
+    assessments: [{
       assessment: Number,
       time_use: Number,
-      like: Boolean,
+      like: Number,
     }],
     logs: [{
       name: String

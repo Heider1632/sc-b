@@ -6,7 +6,8 @@ exports.initial = async (req, res)  => {
     let id_course = req.body.id_course;
     let id_lesson = req.body.id_lesson;
     let structure = req.body.structure;
-    let plan = await metacore.getPlan(id_student, id_course, id_lesson, structure);
+    let resources = req.body.resources;
+    let plan = await metacore.getPlan(id_student, id_course, id_lesson, structure, resources);
     res.send(plan);
 }
 

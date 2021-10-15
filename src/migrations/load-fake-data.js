@@ -44,7 +44,6 @@ function randomizeFloat(min, max) {
 
 async function generateFakeUserStudent(){
   try {
-
     for (let index = 0; index < 10; index++) {
       
       let userRole = await db.role.findOne({ name: "user" });
@@ -72,9 +71,6 @@ async function generateFakeUserStudent(){
         });
       }
     }
-
-
-
   } catch(err){
       console.error(err.message)
   } 
@@ -99,7 +95,6 @@ async function generateFakeCourse(){
 
 async function generateFakeLessons(){
   try {
-
     let courseSaved = await db.course.find({});
 
     let promises = course.lessons.map(async lesson => {
@@ -133,7 +128,6 @@ async function generateFakeLessons(){
       console.log("done");
       process.exit();
     });
-
   } catch (error){
     console.log(error.message)
     process.exit();
@@ -142,7 +136,6 @@ async function generateFakeLessons(){
 
 async function generateFakeSync(){
   try {
-
     let courseSaved = await db.course.find({});
 
     let lessonsSaved = await db.lesson.find({});
@@ -155,7 +148,6 @@ async function generateFakeSync(){
       console.log("done");
       process.exit();
     })
-
   } catch(e) {
     console.error(e.message);
     process.exit();
@@ -165,13 +157,11 @@ async function generateFakeSync(){
 
 async function generateFakeResources(){
   try {
-
     let formats = ["image", "video", "document", "url"];
     let pedagogicalStrategies = await db.pedagogicalStrategy.find({}); 
     let structure = await db.structure.find({});
     let learningStyles = await db.learningStyle.find({})
 
-    // generate 1000 random resources
     for (let index = 0; index < 1000; index++) {
       let randomPS = pedagogicalStrategies[Math.floor(Math.random()*pedagogicalStrategies.length)];
       let randomS = structure[Math.floor(Math.random()*structure.length)];
@@ -194,7 +184,6 @@ async function generateFakeResources(){
         strategyPedagogic: randomPS._id,
         structure: randomS._id
       });
-
     }
 
     console.log("done");
@@ -208,7 +197,6 @@ async function generateFakeResources(){
 
 async function generateFakeCases(){
   try{
-
     for (let index = 0; index < 500; index++) {
       
       let randomUser = await db.student.findOne().limit(-1)
@@ -293,7 +281,6 @@ async function generateKnowledgePedagogicalStrategies() {
 
     console.log("done");
     process.exit();
-    
   } catch(error){
     console.error(error.message);
     process.exit();
@@ -322,7 +309,6 @@ async function generateKnowledgeResources() {
 
     console.log("done");
     process.exit();
-    
   } catch(error){
     console.error(error.message);
     process.exit();
