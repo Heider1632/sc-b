@@ -79,6 +79,7 @@ app.get("/", (req, res) => {
 require('./src/routes/auth.routes')(app);
 require('./src/routes/user.routes')(app);
 require('./src/routes/student.routes')(app);
+require('./src/routes/progress.routes')(app);
 require('./src/routes/course.routes')(app);
 require('./src/routes/lesson.routes')(app);
 require('./src/routes/resource.routes')(app);

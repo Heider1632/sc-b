@@ -12,10 +12,23 @@ exports.one = async (req, res) => {
 
     if(!lesson){
         res.status(500).send({ message: "Lesson not found" });
+    } else {
+        res.status(200).send(lesson);
     }
 
-    res.status(200).send(lesson);
-} 
+}
+
+exports.course = async (req, res) => {
+
+    const lessons = await db.lesson.find({ course : new mongoose.Types.ObjectId(req.query.id) }).populate('structure').sort('order');
+
+    if(!lessons){
+        res.status(500).send({ message: "Lessons not found" });
+    } else {
+        res.status(200).send(lessons);
+    }
+
+}
 
 exports.create = (req, res) => {
     const lesson = new db.lesson({

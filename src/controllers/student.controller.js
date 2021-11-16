@@ -1,23 +1,26 @@
 const db = require("../models");
 const mongoose = require("mongoose");
 
-exports.all = (req, res) => {
-    const students = Students.findAll();
-    res.send({ students });
+exports.all = async (req, res) => {
+    const students = await db.student.find({});
+    res.send(students);
 }
 
 exports.one = async (req, res) => {
-
-    console.log(req.query);
 
     const student = await db.student.findOne({ _id: new mongoose.Types.ObjectId(req.query.id) })
     .populate('learningStyleDimensions');
 
     if(!student){
         res.status(500).send({ message: "Student not found" });
+    } else {
+        res.send(student);
     }
+}
 
-    res.send({ student })
+exports.course = async (req, res) => {
+    const students = await db.student.find({ course: new mongoose.Types.ObjectId(req.query.course) })
+    res.send(students);
 } 
 
 exports.create = (req, res) => {

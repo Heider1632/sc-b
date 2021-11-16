@@ -1,7 +1,6 @@
 const db = require("../models");
 const axios = require('axios');
 const mongoose = require("mongoose");
-const { structure } = require("../models");
 class CbrService {
 
     constructor(metacore){
@@ -125,7 +124,7 @@ class CbrService {
                 let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
                 if(knowledgePS){
                     let kResources = await db.knowledgeResource.find({ pedagogicTactic: knowledgePS.pedagogicTactic, structure: selectedStructure._id }).populate('resource');
-                    let kResource = kResources.filter(kR => kR.resource._id != resources[index])[0];a
+                    let kResource = kResources.filter(kR => kR.resource._id != resources[index])[0];
                     if(kResource){
                         return { resource: kResource.resource, rating: 3, time_use: 0 };
                     } else {

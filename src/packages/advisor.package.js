@@ -26,5 +26,7 @@ class AdvisorPakage {
 
 }
 
+const advisorPackage = new AdvisorPakage();
 
-module.exports = AdvisorPackage;
+
+module.exports = advisorPackage;

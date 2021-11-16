@@ -12,7 +12,7 @@ const CaseSchema = new mongoose.Schema({
         ]     
     },
     solution: {
-        id_student: mongoose.Schema.Types.ObjectId,
+        id_student: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
         resources: [
             {
                 resource: {

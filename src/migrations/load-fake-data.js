@@ -81,7 +81,8 @@ async function generateFakeCourse(){
     await db.course.create({
       name: course.name,
       description: course.description,
-      hasObjectiveCourse: course.hasObjectiveCourse
+      hasObjectiveCourse: course.hasObjectiveCourse,
+      teacher: course.teacher,
     });
 
     console.log("done");

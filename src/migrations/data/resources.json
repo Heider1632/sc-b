@@ -1,5 +1,39 @@
 [
     {
-         
+        "description": "Recurso 1",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "learningStyleDimensions": [
+            "61577fb9777fe74e14c2df80",
+            "61577fb9777fe74e14c2df7d",
+            "61577fb9777fe74e14c2df82"
+        ],
+        "strategyPedagogic": "",
+        "structure": "introduction"
+    },
+    {
+        "description": "Recurso 2",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "learningStyleDimensions": [
+            "61577fb9777fe74e14c2df80",
+            "61577fb9777fe74e14c2df7d",
+            "61577fb9777fe74e14c2df82"
+        ],
+        "strategyPedagogic": "",
+        "structure": "introduction"
+    },
+    {
+        "description": "Recurso 3",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "learningStyleDimensions": [
+            "61577fb9777fe74e14c2df80",
+            "61577fb9777fe74e14c2df7d",
+            "61577fb9777fe74e14c2df82"
+        ],
+        "strategyPedagogic": "",
+        "structure": "introduction"
     }
+    
 ]

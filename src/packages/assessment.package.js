@@ -22,12 +22,10 @@ class AssessmentPackage {
 
     getEvaluation(){
 
-    }
-
-
-
-    
+    }    
     
 }
 
-module.exports = AssessmentPackage;
+const assessmentPackage = new AssessmentPackage();
+ 
+module.exports = assessmentPackage;

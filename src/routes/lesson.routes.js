@@ -12,6 +12,7 @@ module.exports = function(app) {
 
     app.get("/api/lesson/all", [authJwt.verifyToken], LessonController.all);
     app.get("/api/lesson/one", [authJwt.verifyToken], LessonController.one);
+    app.get("/api/lesson/course", [authJwt.verifyToken, authJwt.isModerator], LessonController.course);
 
     app.post("/api/lesson/create", [authJwt.verifyToken], LessonController.create);
     app.post("/api/lesson/update", [authJwt.verifyToken], LessonController.update);

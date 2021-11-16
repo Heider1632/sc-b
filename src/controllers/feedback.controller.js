@@ -2,15 +2,9 @@ const db = require("../models");
 const mongoose = require('mongoose');
 
 exports.all = async (req, res) => {
-    const courses = await db.course.find().populate({
-        path: 'lessons',
-        populate: {
-            path: 'structure',
-            model: 'Structure'
-        }
-    }).select('_id name lessons');
+    const feedbacks = await db.course.find();
 
-    res.send(courses);
+    res.send(feedbacks);
 }
 
 exports.one = async (req, res) => {
@@ -25,31 +19,9 @@ exports.one = async (req, res) => {
 
     if(!course){
         res.status(500).send({ message: "Course not found" });
-    } else {
-        res.send(course);
     }
 
-}
-
-exports.teacher = async (req, res) => {
-
-    const courses = await db.course.find({ teacher: mongoose.Types.ObjectId(req.params.id) })
-    .populate({
-        path: 'lessons',
-        populate: {
-            path: 'structure',
-            model: 'Structure'
-        }
-    }).select('_id name lessons');
-
-    console.log(courses);
-
-    if(!courses){
-        res.status(500).send({ message: "Course not found" });
-    } else {
-        res.send(courses);
-    }
-
+    res.send(course);
 }
 
 exports.studentCourses = async (req, res) => {
@@ -69,7 +41,7 @@ exports.studentCourses = async (req, res) => {
 }
 
 exports.create = (req, res) => {
-    const course = new db.course({
+    const course = new Course({
         name: req.body.name,
         description: req.body.description,
         hasObjetiveCouse: req.body.hasObjetiveCouse
@@ -87,7 +59,7 @@ exports.create = (req, res) => {
 
 
 exports.update = (req, res) => {
-    db.course.findOneAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
+    Course.findAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
     .exec((err, course) => {
         if(err){
             res.status(500).send({ messsage: err });
@@ -97,34 +69,8 @@ exports.update = (req, res) => {
     });
 }
 
-exports.enroll = (req, res) => {
-
-    try {
-
-        db.course.findOneAndUpdate({ _id: req.body.id }, { $set : { "students" : req.body.students }})
-        .exec((err, course) => {
-
-            Promise.all(req.body.students.map(async s => {
-                let student = await db.student.findOne({ _id: s, course: { $in : req.body.id }});
-
-                if(!student){
-                    await db.student.findByIdAndUpdate(s, { $push: { "course": req.body.id } })
-                }
-            }))
-            .then(response => {
-                res.send({ message: "Students enroll successful" });
-            })
-
-        });
-    } catch(error) {
-        res.status(500).send({ messsage: error });
-    }
-
-    
-}
-
 exports.delete = (req, res) => {
-    db.course.findOneAndDelete({ id: req.body.id })
+    Course.findAndDelete({ id: req.body.id })
     .exec( (err, course) => {
         if(err){
             res.status(500).send({ message: err });

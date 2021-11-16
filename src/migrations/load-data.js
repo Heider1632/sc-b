@@ -95,7 +95,6 @@ function generateLearningStyles(){
         db.learningStyle.create({
           name: learning.name
         }).then((err, res) => {
-          if(err) throw err;
           console.log("done")
           process.exit()
         })
@@ -158,6 +157,8 @@ async function generateLearningTheories(){
 
 async function generatePedagogicalTactics(){
   try {
+
+    console.log("start");
     
     let promises = pedagogicalTactics.map(async pt => {
       await db.pedagogicalTactic.create({ name: pt })
@@ -222,7 +223,7 @@ if (process.argv.includes('--user')){
   generateDimension();
 } else if (process.argv.includes('--theories')){
   generateLearningTheories();
-} else if (process.argv.includes('--pedagogicaltatics')){
+} else if (process.argv.includes('--pedagogicaltactics')){
   generatePedagogicalTactics();
 } else  if(process.argv.includes('--pedagogicalstrategies')){
   generatePedagogicalStrategies()

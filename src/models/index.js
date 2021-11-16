@@ -12,6 +12,7 @@ db.ROLES = ["user", "admin", "moderator"];
 
 //import models
 db.student = require("./Student");
+db.progress = require("./Progress");
 db.course = require("./Course");
 db.lesson = require("./Lesson");
 db.structure = require("./Structure");
@@ -21,6 +22,10 @@ db.resource = require("./Resource");
 db.pedagogicalTactic = require("./PedagogicalTactic");
 db.learningTheory = require("./LearningTheory");
 db.pedagogicalStrategy = require("./PedagogicalStrategy");
+
+db.feedback = require('./Feedback');
+db.question = require('./Question');
+db.interview = require('./Interview');
 
 //knowledge
 db.knowledgePedagogicalStrategy = require("./KnowledgePedagogicalStrategy");

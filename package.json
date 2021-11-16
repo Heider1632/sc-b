@@ -10,7 +10,7 @@
     "dimensions": "node ./src/migrations/load-data.js --dimensions",
     "students": "node ./src/migrations/load-fake-data.js --students",
     "theories": "node ./src/migrations/load-data.js --theories",
-    "pedagogicaltatics": "node ./src/migrations/load-data.js --pedagogicaltatics",
+    "pedagogicaltactics": "node ./src/migrations/load-data.js --pedagogicaltactics",
     "pedagogicalstrategies": "node ./src/migrations/load-data.js --pedagogicalstrategies",
     "test": "node ./src/migrations/load-data.js --test",
     "course": "node ./src/migrations/load-fake-data.js --course",
