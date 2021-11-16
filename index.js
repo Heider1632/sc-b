@@ -82,6 +82,7 @@ require('./src/routes/student.routes')(app);
 require('./src/routes/progress.routes')(app);
 require('./src/routes/course.routes')(app);
 require('./src/routes/lesson.routes')(app);
+require('./src/routes/structure.routes')(app);
 require('./src/routes/resource.routes')(app);
 require('./src/routes/metacore.routes')(app);
 require('./src/routes/test.routes')(app);
