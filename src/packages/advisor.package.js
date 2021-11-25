@@ -21,7 +21,7 @@ class AdvisorPakage {
     }
 
     getFeedback(answer_id){
-        
+        return db.feedback.findById(answer_id);   
     }
 
 }

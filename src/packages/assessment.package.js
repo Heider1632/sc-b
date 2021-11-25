@@ -1,5 +1,6 @@
 
 //every time the user has a success login the metacore package is called
+const db  = require('../models');
 let instance = null;
 class AssessmentPackage {
     constructor() {
@@ -12,16 +13,12 @@ class AssessmentPackage {
         return instance || new AssessmentPackage();
     }
 
-    setEvaluation(){
-
+    async setEvaluation(id){
+        return await db.assessment.findById(id);
     }
 
-    generateAnswers(){
-
-    }
-
-    getEvaluation(){
-
+    async getEvaluation(){
+        return await db.assessment.create(assessments);
     }    
     
 }
