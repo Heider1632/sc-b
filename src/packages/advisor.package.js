@@ -20,8 +20,8 @@ class AdvisorPakage {
         return await db.course.findById(course_id).lessons;
     }
 
-    getFeedback(answer_id){
-        return db.feedback.findById(answer_id);   
+    getFeedback(assessment_id){
+        return db.feedback.findById(assessment_id);   
     }
 
 }

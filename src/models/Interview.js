@@ -2,11 +2,15 @@ const mongoose = require("mongoose");
 
 const InterviewSchema = new mongoose.Schema({
     title: String,
+    lesson: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Lesson"
+    },
     questions: [{
         type: mongoose.Schema.ObjectId,
         ref: "Question"
     }],
-    feedback: [{
+    feedbacks: [{
         type: mongoose.Schema.ObjectId,
         ref: "Feedback" 
     }]

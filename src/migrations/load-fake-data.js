@@ -3,6 +3,7 @@ const dbConfig = require("../config/db.config");
 const faker = require("faker");
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
+const { pedagogicalStrategy } = require("../models");
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -20,6 +21,9 @@ db.mongoose
   });
 
 const course = JSON.parse(fs.readFileSync(__dirname + '/data/course.json', 'utf-8'));
+const resources = JSON.parse(fs.readFileSync(__dirname + '/data/resources.json', 'utf-8'));
+const interview = JSON.parse(fs.readFileSync(__dirname + '/data/interview.json', 'utf-8'));
+const pedagogicalStrategies = JSON.parse(fs.readFileSync(__dirname + '/data/pedagogicalstrategies.json', 'utf-8'));
 
 function randomizeValue() {
 	var value = (1 + 10E-16) * Math.random();
@@ -158,34 +162,8 @@ async function generateFakeSync(){
 
 async function generateFakeResources(){
   try {
-    let formats = ["image", "video", "document", "url"];
-    let pedagogicalStrategies = await db.pedagogicalStrategy.find({}); 
-    let structure = await db.structure.find({});
-    let learningStyles = await db.learningStyle.find({})
 
-    for (let index = 0; index < 1000; index++) {
-      let randomPS = pedagogicalStrategies[Math.floor(Math.random()*pedagogicalStrategies.length)];
-      let randomS = structure[Math.floor(Math.random()*structure.length)];
-      let randomF = formats[Math.floor(Math.random()*formats.length)];
-
-      let learningStyleDimensions = [];
-      
-      learningStyles.map((ls, index) => {
-        if(index < 3){
-          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
-          learningStyleDimensions.push(lsd);
-        }
-      });
-      
-      await db.resource.create({
-        description: faker.lorem.sentence(),
-        format: randomF,
-        url: faker.internet.url(),
-        learningStyleDimensions: learningStyleDimensions,
-        strategyPedagogic: randomPS._id,
-        structure: randomS._id
-      });
-    }
+    await db.resource.insertMany(resources);
 
     console.log("done");
     process.exit();
@@ -257,28 +235,18 @@ async function generateFakeCases(){
   }
 }
 
-async function generateKnowledgePedagogicalStrategies() {
+async function generateFakeInterview() {
   try{
-    for (let index = 0; index < 1000; index++) {
 
-      let pedagogicalTactics = await db.pedagogicalTactic.find({});
-      let randomPT = pedagogicalTactics[Math.floor(Math.random()*pedagogicalTactics.length)];
+    let feedbacks = await db.feedback.insertMany(interview.feedbacks);
+    let questions = await db.question.insertMany(interview.questions);
 
-      let learningStyles = await db.learningStyle.find({})
-      let learningStyleDimensions = [];
-      learningStyles.map((ls, index) => {
-        if(index < 3){
-          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
-          learningStyleDimensions.push(lsd);
-        }
-      })
-
-      await db.knowledgePedagogicalStrategy.create({
-        pedagogicTactic: randomPT._id,
-        learningStyleDimensions: learningStyleDimensions
-      })
-      
-    }
+    await db.interview.create({
+      title: interview.title,
+      lesson: interview.lesson,
+      questions: questions,
+      feedbacks: feedbacks
+    })
 
     console.log("done");
     process.exit();
@@ -288,25 +256,12 @@ async function generateKnowledgePedagogicalStrategies() {
   }
 }
 
-async function generateKnowledgeResources() {
+async function generateFakePedagogicalStrategies() {
   try{
-    for (let index = 0; index < 1000; index++) {
 
-      let pedagogicalTactics = await db.pedagogicalTactic.find({});
-      let resources = await db.resource.find({});
-      let structure = await db.structure.find({});
+    console.log(pedagogicalStrategies);
 
-      let randomPT = pedagogicalTactics[Math.floor(Math.random()*pedagogicalTactics.length)]; 
-      let randomS = structure[Math.floor(Math.random()*structure.length)];
-      let randomR = resources[Math.floor(Math.random()*resources.length)];
-
-      await db.knowledgeResource.create({
-        pedagogicTactic: randomPT._id,
-        structure: randomS._id,
-        resource: randomR._id
-      })
-      
-    }
+    await db.pedagogicalStrategy.insertMany(pedagogicalStrategies);
 
     console.log("done");
     process.exit();
@@ -328,10 +283,10 @@ if (process.argv.includes('--students')) {
   generateFakeResources();
 } else if (process.argv.includes('--cases')){
   generateFakeCases();
-} else if(process.argv.includes('--knowledgepedagogicalstrategies')){
-  generateKnowledgePedagogicalStrategies();
-} else if(process.argv.includes('--knowledgeresources')){
-  generateKnowledgeResources();
+} else if(process.argv.includes('--pedagogicalstrategies')){
+  generateFakePedagogicalStrategies();
+} else if(process.argv.includes('--interview')){
+  generateFakeInterview();
 }
   
 

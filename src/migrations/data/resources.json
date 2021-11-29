@@ -1,39 +1,528 @@
 [
     {
-        "description": "Recurso 1",
+        "description": "Recurso 1 A",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
-        "learningStyleDimensions": [
-            "61577fb9777fe74e14c2df80",
-            "61577fb9777fe74e14c2df7d",
-            "61577fb9777fe74e14c2df82"
-        ],
-        "strategyPedagogic": "",
-        "structure": "introduction"
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d80"
     },
     {
-        "description": "Recurso 2",
+        "description": "Recurso 1 B",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
-        "learningStyleDimensions": [
-            "61577fb9777fe74e14c2df80",
-            "61577fb9777fe74e14c2df7d",
-            "61577fb9777fe74e14c2df82"
-        ],
-        "strategyPedagogic": "",
-        "structure": "introduction"
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d80"
     },
     {
-        "description": "Recurso 3",
+        "description": "Recurso 1 C",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
-        "learningStyleDimensions": [
-            "61577fb9777fe74e14c2df80",
-            "61577fb9777fe74e14c2df7d",
-            "61577fb9777fe74e14c2df82"
-        ],
-        "strategyPedagogic": "",
-        "structure": "introduction"
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 2 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 2 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 2 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 3 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 3 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 3 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 4 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 4 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 4 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 5 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 5 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 5 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d80"
+    },
+    {
+        "description": "Recurso 1 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 1 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 1 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 2 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 2 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 2 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 3 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 3 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 3 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 4 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 4 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 4 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 5 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 5 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 5 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d81"
+    },
+    {
+        "description": "Recurso 1 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 1 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 1 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 2 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 2 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 2 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 3 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 3 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 3 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 4 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 4 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 4 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 5 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 5 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 5 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d82"
+    },
+    {
+        "description": "Recurso 1 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 1 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 1 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 2 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 2 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 2 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 3 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 3 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 3 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 4 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 4 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 4 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 5 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 5 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 5 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d83"
+    },
+    {
+        "description": "Recurso 1 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 1 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 1 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 2 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 2 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 2 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 3 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 3 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 3 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 4 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 4 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 4 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 5 A",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 5 B",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d84"
+    },
+    {
+        "description": "Recurso 5 C",
+        "format": "video",
+        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
+        "structure": "6192bd31d74567228c796d84"
     }
     
 ]

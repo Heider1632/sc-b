@@ -28,8 +28,6 @@ db.question = require('./Question');
 db.interview = require('./Interview');
 
 //knowledge
-db.knowledgePedagogicalStrategy = require("./KnowledgePedagogicalStrategy");
-db.knowledgeResource = require("./KnowledgeResource");
 db.test = require("./Test");
 
 

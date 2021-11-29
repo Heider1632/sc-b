@@ -8,7 +8,6 @@ const QuestionSchema = new mongoose.Schema({
             label: { type: String },
         }
     ]
-    
 }, { timestamp: true });
   
 

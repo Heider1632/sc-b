@@ -157,8 +157,6 @@ async function generateLearningTheories(){
 
 async function generatePedagogicalTactics(){
   try {
-
-    console.log("start");
     
     let promises = pedagogicalTactics.map(async pt => {
       await db.pedagogicalTactic.create({ name: pt })
@@ -169,35 +167,6 @@ async function generatePedagogicalTactics(){
       console.log("done")
       process.exit()
     })
-  } catch (error) {
-    console.error(error.message)
-    process.exit()
-  }
-}
-
-async function generatePedagogicalStrategies(){
-  try {
-    
-    let pedagogicTactics = await db.pedagogicalTactic.find({});
-    let learningTheories = await db.learningTheory.find({});
-    
-    let promises = pedagogicTactics.map(async pt => {
-      let ramdonLt = learningTheories[Math.floor(Math.random()*learningTheories.length)];
-      let n = db.pedagogicalStrategy.create({
-        learningTheory: ramdonLt._id,
-        pedagogicalTactic: pt._id
-      });
-
-      return n;
-    });
-
-    Promise.all(promises)
-    .then(response => {
-      console.log(response);
-      console.log("done")
-      process.exit()
-    });
-
   } catch (error) {
     console.error(error.message)
     process.exit()
@@ -225,8 +194,6 @@ if (process.argv.includes('--user')){
   generateLearningTheories();
 } else if (process.argv.includes('--pedagogicaltactics')){
   generatePedagogicalTactics();
-} else  if(process.argv.includes('--pedagogicalstrategies')){
-  generatePedagogicalStrategies()
 } else if(process.argv.includes('--test')){
   generateTest()
 }

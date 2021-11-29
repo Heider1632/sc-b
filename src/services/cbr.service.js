@@ -118,17 +118,29 @@ class CbrService {
         
         let selectedLesson = await db.lesson.findById(mongoose.Types.ObjectId(id_lesson));
 
+        //restructure
         if(resources && resources.length > 0){
             return Promise.all(structure.map(async (l, index) => {
                 let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
-                let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
-                if(knowledgePS){
-                    let kResources = await db.knowledgeResource.find({ pedagogicTactic: knowledgePS.pedagogicTactic, structure: selectedStructure._id }).populate('resource');
-                    let kResource = kResources.filter(kR => kR.resource._id != resources[index])[0];
-                    if(kResource){
-                        return { resource: kResource.resource, rating: 3, time_use: 0 };
+                let student = await db.student.findById(id_student).populate('learningStyleDimensions', '_id');
+                let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({ learningStyleDimensions: { $in: student.learningStyleDimensions } });
+                if(pedagogicalStrategy){
+
+                    let resource = null;
+
+                    let traces = await db.trace.find({ student : id_student });
+
+                    if(traces){
+
+                        console.log(traces);
+
+                        resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
                     } else {
-                        return { resource: kResources[0].resource, rating: 3, time_use: 0 };
+                        resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                    }
+
+                    if(resource){
+                        return { resource: resource, rating: 0, time_use: 0 };
                     }
                 }
             })).then(r => {
@@ -138,11 +150,13 @@ class CbrService {
         } else {
             return Promise.all(structure.map(async l => {
                 let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
-                let knowledgePS = await db.knowledgePedagogicalStrategy.findOne({ learningStyleDimensions: { $eq: selectedLesson.learningStyleDimensions } });
-                if(knowledgePS){
-                    let kResource = await db.knowledgeResource.findOne({ pedagogicTactic: knowledgePS.pedagogicTactic, structure: selectedStructure._id }).populate('resource');
-                    if(kResource){
-                        return { resource: kResource.resource, rating: 3, time_use: 0 };
+                let student = await db.student.findById(id_student).populate('learningStyleDimensions', '_id');
+                let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({ learningStyleDimensions: { $in: student.learningStyleDimensions } });
+                if(pedagogicalStrategy){
+                    let resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                    //TODO: get student trace and select under conditions
+                    if(resource){
+                        return { resource: resource, rating: 0, time_use: 0 };
                     }
                 }
             })).then(r => {
@@ -150,8 +164,6 @@ class CbrService {
                 return newCase;
             });
         }
-            
-        
     }
 
     //return to view like plan

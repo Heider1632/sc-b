@@ -10,7 +10,11 @@ const PedagogicalStrategy = mongoose.model(
     pedagogicalTactic: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "pedagogicalTactic"
-    }
+    },
+    learningStyleDimensions: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "learningStyleDimension"
+    }],
   })
 );
 
