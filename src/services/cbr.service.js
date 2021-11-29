@@ -77,7 +77,6 @@ class CbrService {
             let selectedCase = null;
             if(response.data.length){
                 let item = response.data[response.data.length-1][1]
-                console.log(item)
                 selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate({
                    path: 'solution.resources.resource',
                    model: 'Resource'
@@ -128,13 +127,37 @@ class CbrService {
 
                     let resource = null;
 
-                    let traces = await db.trace.find({ student : id_student });
+                    let traces = await db.trace.find({ student : id_student, lesson: selectedLesson._id });
 
                     if(traces){
 
-                        console.log(traces);
+                        if(traces.length == 3){
+                            await db.trace.deleteMany({ id_student: id_student, lesson: selectedLesson._id });
 
-                        resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                            resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+
+                        } else {
+
+                            let _ids = [];
+
+                            //TODO: fix resources when has a rating or time 
+                            traces.map(async trace => {
+                                
+                                if(trace.assessments[index] && trace.assessments[index].rating > 3){
+                                    let sr = await db.resource.findById(trace.resources[index]._id);
+                                    console.log(sr);
+                                    return resource = { resource: sr, rating: 0, time_use: 0 }
+                                } else {
+                                    if(trace.resources[index]){
+                                        _ids.push(trace.resources[index]._id);
+                                    }
+                                }
+                            })
+
+                            resource = await db.resource.findOne({ _id: { $nin: _ids }, pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                        } 
+
+                        
                     } else {
                         resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
                     }
@@ -154,7 +177,6 @@ class CbrService {
                 let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({ learningStyleDimensions: { $in: student.learningStyleDimensions } });
                 if(pedagogicalStrategy){
                     let resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
-                    //TODO: get student trace and select under conditions
                     if(resource){
                         return { resource: resource, rating: 0, time_use: 0 };
                     }
@@ -172,30 +194,35 @@ class CbrService {
         let plan = [];
         c.solution.resources.map(async data => {
 
-            //validate if user is for first time take only the structure that have a type of evaluation
-            //if is more that tree rebuild complety
-    
-        
-            //call assesment package to generate a new evaluation lesson
-            // if(lesson.type == "assessment"){}
             plan.push(data);
         })
 
-        return plan;
+        return { id_case : c._id, plan : plan };
 
     }
 
-    async review(id_case, success, error) {
-        if(success){
-            db.cases.findByIdAndUpdate(id_case,
-                { $set: { "results.sucess" : "results.sucess" + 1, "results.use" : "results.use" + 1 }
-            });
-            // this.storage();
-        } else if(error){
-            db.cases.findByIdAndUpdate(id_case,
-                { $set: { "results.sucess" : "results.errors" + 1, "results.use" : "results.use" + 1 }
-            });
+    async reviewCase(id_case, success, error) {
+
+        let caseS = await db.case.findById(id_case);
+
+        if(caseS){
+
+            let uses = caseS.results.uses + 1;
+            if(success){
+                let success = caseS.results.success + 1;
+                console.log(success);
+
+                await db.case.findByIdAndUpdate(id_case,
+                    { $set: { "results.sucess" : success, "results.use" : uses }
+                });
+            } else if(error){
+                let errors = caseS.results.errors + 1;
+                await db.case.findByIdAndUpdate(id_case,
+                    { $set: { "results.errors" : errors, "results.use" : uses }
+                });
+            }
         }
+        
 
     }
 

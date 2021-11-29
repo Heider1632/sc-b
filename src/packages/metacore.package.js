@@ -1,4 +1,5 @@
 const db = require("../models");
+const cbrService = require("../services/cbr.service");
 const CbrService = require("../services/cbr.service");
 
 //every time the user has a success login the metacore package is called
@@ -85,10 +86,8 @@ class MetacorePackage  {
         });
     }
 
-    //call cbr
+    //call planner
     async getPlan(id_student, id_course, id_lesson, structure, resources){
-        //conditional to active cbr (if)
-        //else false
         let selectedCase;
         let cbrService = new CbrService(this);
         let selectedPerformance = await cbrService.performance(id_student);
@@ -102,13 +101,47 @@ class MetacorePackage  {
                 selectedCase = await cbrService.recovery(coincident);
             } else {
                 console.log("create")
-                selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure, resources)
+                selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure, resources);
             }
         }
         if(selectedCase){
             let plan = await cbrService.adapt(selectedCase);
             return plan;
         }
+    }
+
+    async review(id_case, success, error){
+        let cbrService = new CbrService(this);
+        let reviewCase = await cbrService.reviewCase(id_case, success, error);
+        return reviewCase;
+    }
+
+    async saveCase(id_student, id_course, id_lesson, structure, resources){
+
+        let newCase = {};
+        
+        newCase.context = {
+            id_student: id_student,
+            id_course: id_course,
+            id_lesson: id_lesson,
+            structure: structure
+        };
+
+        newCase.solution = {
+            id_student: id_student,
+            resources: resources
+        };
+
+        newCase.euclideanWight = 0;
+        newCase.results = {
+            uses : 0,
+            success : 0,
+            errors : 0,
+        };
+
+        const caseUser = await db.case.create(newCase);
+        return caseUser;
+
     }
 }
 

@@ -32,7 +32,7 @@ const CaseSchema = new mongoose.Schema({
     },
     euclideanWeight: Number,
     results: {
-        use: Number,
+        uses: Number,
         success: Number,
         errors: Number
     }

@@ -22,6 +22,7 @@ exports.create = (req, res) => {
         student: req.body.student,
         course: req.body.student,
         lesson: req.body.lesson,
+        resources: req.body.resources,
         assessments: req.body.assessments,
         logs: req.body.logs
     });
@@ -38,7 +39,7 @@ exports.create = (req, res) => {
 
 exports.update = (req, res) => {
     
-    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { "assessments" : req.body.assessments, "logs" : req.body.logs }})
+    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { "resources": req.body.resources, "assessments" : req.body.assessments, "logs" : req.body.logs }})
     .exec((err, trace) => {
         if(err){
             res.status(500).send({ messsage: err });

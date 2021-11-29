@@ -6,6 +6,7 @@ const Trace = mongoose.model(
     student: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
     course: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
     lesson: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson" },
+    resources: [{ type: mongoose.Schema.Types.ObjectId, ref: "Resource" }],
     assessments: [{
       assessment: Number,
       time_use: Number,
