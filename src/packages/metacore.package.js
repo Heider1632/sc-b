@@ -92,20 +92,21 @@ class MetacorePackage  {
         let cbrService = new CbrService(this);
         let selectedPerformance = await cbrService.performance(id_student);
         if(selectedPerformance.length > 0) {
-            console.log("performance")
+            console.log("se encontro un caso del estudiante")
             selectedCase = await cbrService.recovery(selectedPerformance);
         } else {
             let coincident = await cbrService.coincident(id_student, id_lesson, structure);
             if(coincident.length > 0){
-                console.log("coincident")
+                console.log("se encontro un caso de otro estudiante con aprendizaje similar")
                 selectedCase = await cbrService.recovery(coincident);
             } else {
-                console.log("create")
+                console.log("se creo el caso debido a que en el sistema no hay informacion de casos relacionados")
                 selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure, resources);
             }
         }
         if(selectedCase){
             let plan = await cbrService.adapt(selectedCase);
+            
             return plan;
         }
     }

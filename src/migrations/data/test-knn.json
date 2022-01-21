@@ -1,0 +1,132 @@
+[
+    {
+        "email" : "juan@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Juan",
+        "lastname" : "Perez",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "maria@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Maria",
+        "lastname" : "Peña",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "carlos@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Carlos",
+        "lastname" : "Barrios",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "jose@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Jose",
+        "lastname" : "Otelo",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "juana@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Juana",
+        "lastname" : "Ensuncho",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "katerine@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Katerine",
+        "lastname" : "Estrada",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "andrea@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Andrea",
+        "lastname" : "Morata",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "andres@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Andres",
+        "lastname" : "Escobar",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "rafael@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Rafael",
+        "lastname" : "Vergara",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    },
+    {
+        "email" : "lidia@gmail.com",
+        "password" : "12345667890",
+        "roles" : ["61577249b0925706f4adcb19"],
+        "name" : "Lidia",
+        "lastname" : "Cabrales",
+        "course": [ "61578aa571a3453ddcf5b617" ],
+        "learningStyleDimensions": [
+            "6192936107448c473c1d779e",
+            "6192936107448c473c1d779b",
+            "6192936107448c473c1d77a0"
+        ]
+    }
+]

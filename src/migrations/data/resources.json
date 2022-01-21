@@ -1,528 +1,603 @@
 [
     {
-        "description": "Recurso 1 A",
+        "description": "Recurso 1 A Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 B",
+        "description": "Recurso 1 B Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 C",
+        "description": "Recurso 1 C Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 A",
+        "description": "Recurso 2 A Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 B",
+        "description": "Recurso 2 B Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 C",
+        "description": "Recurso 2 C Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 A",
+        "description": "Recurso 3 A Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 B",
+        "description": "Recurso 3 B Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 C",
+        "description": "Recurso 3 C Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 A",
+        "description": "Recurso 4 A Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 B",
+        "description": "Recurso 4 B Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 C",
+        "description": "Recurso 4 C Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 A",
+        "description": "Recurso 5 A Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 B",
+        "description": "Recurso 5 B Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 C",
+        "description": "Recurso 5 C Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d80"
+        "structure": "6192bd31d74567228c796d80",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 A",
+        "description": "Recurso 1 A Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 B",
+        "description": "Recurso 1 B Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 C",
+        "description": "Recurso 1 C Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 A",
+        "description": "Recurso 2 A Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 B",
+        "description": "Recurso 2 B Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 C",
+        "description": "Recurso 2 C Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 A",
+        "description": "Recurso 3 A Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 B",
+        "description": "Recurso 3 B Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 C",
+        "description": "Recurso 3 C Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 A",
+        "description": "Recurso 4 A Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 B",
+        "description": "Recurso 4 B Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 C",
+        "description": "Recurso 4 C Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 A",
+        "description": "Recurso 5 A Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 B",
+        "description": "Recurso 5 B Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 C",
+        "description": "Recurso 5 C Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d81"
+        "structure": "6192bd31d74567228c796d81",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 A",
+        "description": "Recurso 1 A Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 B",
+        "description": "Recurso 1 B Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 C",
+        "description": "Recurso 1 C Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 A",
+        "description": "Recurso 2 A Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 B",
+        "description": "Recurso 2 B Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 C",
+        "description": "Recurso 2 C Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 A",
+        "description": "Recurso 3 A Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 B",
+        "description": "Recurso 3 B Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 C",
+        "description": "Recurso 3 C Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 A",
+        "description": "Recurso 4 A Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 B",
+        "description": "Recurso 4 B Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 C",
+        "description": "Recurso 4 C Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 A",
+        "description": "Recurso 5 A Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 B",
+        "description": "Recurso 5 B Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 C",
+        "description": "Recurso 5 C Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d82"
+        "structure": "6192bd31d74567228c796d82",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 A",
+        "description": "Recurso 1 A Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 B",
+        "description": "Recurso 1 B Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 C",
+        "description": "Recurso 1 C Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 A",
+        "description": "Recurso 2 A Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 B",
+        "description": "Recurso 2 B Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 C",
+        "description": "Recurso 2 C Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 A",
+        "description": "Recurso 3 A Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 B",
+        "description": "Recurso 3 B Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 C",
+        "description": "Recurso 3 C Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 A",
+        "description": "Recurso 4 A Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 B",
+        "description": "Recurso 4 B Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 C",
+        "description": "Recurso 4 C Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 A",
+        "description": "Recurso 5 A Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 B",
+        "description": "Recurso 5 B Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 C",
+        "description": "Recurso 5 C Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d83"
+        "structure": "6192bd31d74567228c796d83",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 A",
+        "description": "Recurso 1 A Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 B",
+        "description": "Recurso 1 B Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 1 C",
+        "description": "Recurso 1 C Reflectivo - Sensitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3507",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 A",
+        "description": "Recurso 2 A Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 B",
+        "description": "Recurso 2 B Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 2 C",
+        "description": "Recurso 2 C Intuitivo - Visual",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3508",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 A",
+        "description": "Recurso 3 A Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 B",
+        "description": "Recurso 3 B Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 3 C",
+        "description": "Recurso 3 C Sequential - Sentitivo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a3509",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 A",
+        "description": "Recurso 4 A Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 B",
+        "description": "Recurso 4 B Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 4 C",
+        "description": "Recurso 4 C Global - Activo",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350a",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 A",
+        "description": "Recurso 5 A Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 B",
+        "description": "Recurso 5 B Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     },
     {
-        "description": "Recurso 5 C",
+        "description": "Recurso 5 C Intuitivo - Verbal",
         "format": "video",
         "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
         "pedagogicalStrategy": "61a3b9201bd78435d07a350b",
-        "structure": "6192bd31d74567228c796d84"
+        "structure": "6192bd31d74567228c796d84",
+        "estimatedTime" : 60
     }
     
 ]

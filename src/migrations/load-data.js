@@ -55,30 +55,43 @@ const testFelderSilverman = JSON.parse(fs.readFileSync(__dirname + '/data/test.j
 
 async function generateUser(){
   try {
-    let user = await db.user.create({
-      email: "heiderzapa78@gmail.com",
-      password: bcrypt.hashSync("Shinobu2021@", 8),
+    // let user = await db.user.create({
+    //   email: "heiderzapa78@gmail.com",
+    //   password: bcrypt.hashSync("Shinobu2021@", 8),
+    //   roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb19") ]
+    // })
+
+    let laura = await db.user.create({
+      email: "lauramarquez@gmail.com",
+      password: bcrypt.hashSync("12345678", 8),
       roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb19") ]
     })
 
+    // await db.student.create({
+    //   name: "Heider",
+    //   lastname: "Zapa",
+    //   user: user._id,
+    //   course: [ new mongoose.Types.ObjectId("61578aa571a3453ddcf5b617") ]
+    // })
+
     await db.student.create({
-      name: "Heider",
-      lastname: "Zapa",
-      user: user._id,
+      name: "Laura",
+      lastname: "Marquez",
+      user: laura._id,
       course: [ new mongoose.Types.ObjectId("61578aa571a3453ddcf5b617") ]
     })
 
-    await db.user.create({
-      email: "teacher-sti@gmail.com",
-      password: bcrypt.hashSync("teacher-sti", 8),
-      roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb1a") ]
-    })
+    // await db.user.create({
+    //   email: "teacher-sti@gmail.com",
+    //   password: bcrypt.hashSync("teacher-sti", 8),
+    //   roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb1a") ]
+    // })
 
-    await db.user.create({
-      email: "admin-sti@gmail.com",
-      password: bcrypt.hashSync("admin-sti", 8),
-      roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb1b") ]
-    })
+    // await db.user.create({
+    //   email: "admin-sti@gmail.com",
+    //   password: bcrypt.hashSync("admin-sti", 8),
+    //   roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb1b") ]
+    // })
 
     console.log("done");
     process.exit();

@@ -12,7 +12,10 @@ class CbrService {
     }
     
     async performance(id_student){
-        return await db.case.find({ "context.id_student" : id_student })
+        return await db.case.find({ "context.id_student" : id_student }).populate({
+            path: 'solution.resources.resource',
+            model: 'Resource'
+         });
     }
 
     async coincident(id_student, id_lesson, structure){
@@ -73,8 +76,11 @@ class CbrService {
             dataset: dataset
         })
 
+        console.log("knn encontro el caso mas adecuado segun el peso euclidiano");
+
         if(response.status == 200){
             let selectedCase = null;
+
             if(response.data.length){
                 let item = response.data[response.data.length-1][1]
                 selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate({
@@ -82,6 +88,10 @@ class CbrService {
                    model: 'Resource'
                 });
             }
+
+            console.log(selectedCase);
+
+
             return selectedCase;
         } else {
             throw response.errors
@@ -105,48 +115,89 @@ class CbrService {
 
         newCase.solution = {
             id_student: id_student,
-            resources: []
+            resources: resources
         }
-
-        newCase.euclideanWight = 0;
+        //default euclidean weight is 100% because the selecion  in than minus of 100%
+        newCase.euclideanWeight = 100;
         newCase.results = {
             uses : 0,
             success : 0,
             errors : 0,
         };
+
+        let savedCase = await db.case.create(newCase);
+
+        console.log("caso guardado exitosamente");
         
-        let selectedLesson = await db.lesson.findById(mongoose.Types.ObjectId(id_lesson));
+        return savedCase; 
+    }
+
+    //return to view like plan
+    async adapt(c){
+
+        console.log("paso a adapatar el caso segun tiempo y gusto");
+
+        //select resources
+        let selectedLesson = await db.lesson.findById(mongoose.Types.ObjectId(c.context.id_lesson));
+
+        //select traces
+        let traces = await db.trace.find({ student : c.context.id_student, lesson: selectedLesson._id }).populate('resources');
 
         //restructure
-        if(resources && resources.length > 0){
-            return Promise.all(structure.map(async (l, index) => {
+        if(c.solution.resources && c.solution.resources.length > 0){
+            return Promise.all(c.context.structure.map(async (l, index) => {
                 let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
-                let student = await db.student.findById(id_student).populate('learningStyleDimensions', '_id');
+                let student = await db.student.findById(c.context.id_student).populate('learningStyleDimensions', '_id');
                 let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({ learningStyleDimensions: { $in: student.learningStyleDimensions } });
                 if(pedagogicalStrategy){
 
-                    let resource = null;
+                    var foundR = false;
 
-                    let traces = await db.trace.find({ student : id_student, lesson: selectedLesson._id });
+                    let resource = null;
 
                     if(traces){
 
-                        if(traces.length == 3){
-                            await db.trace.deleteMany({ id_student: id_student, lesson: selectedLesson._id });
+                        console.log(traces.length);
 
+                        if(traces.length == 3){
+
+                            //TODO: validate trace to get the best resources do it in in base to (assessment, like, time_use)
+
+                            //TODO: 10 estudiantes del mismo estilo de aprendizaje, excel (estudiante por evaluacion)
+                            // inventar trazar por estudiantes para validar la seleccion de recursos 
+                            await db.trace.deleteMany({ student: c.context.id_student, lesson: selectedLesson._id });
+                            foundR = false;
                             resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
 
                         } else {
 
                             let _ids = [];
 
-                            //TODO: fix resources when has a rating or time 
+                            //TODO: fix resources when has a rating or time
                             traces.map(async trace => {
-                                
-                                if(trace.assessments[index] && trace.assessments[index].rating > 3){
-                                    let sr = await db.resource.findById(trace.resources[index]._id);
-                                    console.log(sr);
-                                    return resource = { resource: sr, rating: 0, time_use: 0 }
+                                if(trace.assessments[index]){
+
+                                    console.log("trace encontrada exitosamente");
+
+                                    console.log("like" + trace.assessments[index].like);
+                                    console.log("tiempo usado" + trace.assessments[index].time_use);
+                                    console.log("tiempo esperado" + trace.resources[index].estimatedTime);
+
+                                    if(trace.assessments[index].like > 3 && trace.assessments[index].time_use >= trace.resources[index].estimatedTime){
+                                        console.log("resource recovery");
+                                        
+                                        let sr = await db.resource.findById(trace.resources[index]._id);
+                                        foundR = true;
+                                        resource = { resource: sr, rating: 0, time_use: 0 };
+                                        
+                                    } else {
+
+                                        foundR = false;
+                                        if(trace.resources[index]){
+                                            _ids.push(trace.resources[index]._id);
+                                        }
+                                    }
+                                    
                                 } else {
                                     if(trace.resources[index]){
                                         _ids.push(trace.resources[index]._id);
@@ -154,11 +205,20 @@ class CbrService {
                                 }
                             })
 
-                            resource = await db.resource.findOne({ _id: { $nin: _ids }, pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                            console.log(foundR);
+                            
+                            if(foundR == false){
+                                console.log("no encontro recurso que cumpliera las condiciones de gusto y tiempo: paso a buscar uno de los existentes")
+                                resource = await db.resource.findOne({ _id: { $nin: _ids }, pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                            }
+
                         } 
 
                         
                     } else {
+
+                        console.log("traces not found");
+
                         resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
                     }
 
@@ -166,38 +226,94 @@ class CbrService {
                         return { resource: resource, rating: 0, time_use: 0 };
                     }
                 }
-            })).then(r => {
-                newCase.solution.resources = r;
-                return newCase;
+            })).then(async plan => {
+                let resources = [];
+                plan.map(async (data, index) => {
+                    if(data && data.resource){
+                        resources.push(data.resource._id);
+                    }
+                })
+                await db.case.updateOne({ _id: c._id },  { $set: { "solution.resources" : resources } });
+                return { id_case : c._id, plan : plan };
             });
         } else {
-            return Promise.all(structure.map(async l => {
+            return Promise.all(c.context.structure.map(async (l, index) => {
                 let selectedStructure = await db.structure.findById(mongoose.Types.ObjectId(l));
-                let student = await db.student.findById(id_student).populate('learningStyleDimensions', '_id');
+                let student = await db.student.findById(c.context.id_student).populate('learningStyleDimensions', '_id');
                 let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({ learningStyleDimensions: { $in: student.learningStyleDimensions } });
                 if(pedagogicalStrategy){
-                    let resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+
+                    var foundR = false;
+
+                    let resource = null;
+
+                    if(traces){
+
+                        //TODO: conditions under time, 
+                        if(traces.length == 3){
+                            await db.trace.deleteMany({ id_student: c.context.id_student, lesson: selectedLesson._id });
+
+                            resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+
+                        } else {
+
+                            let _ids = [];
+
+                            //TODO: fix resources when has a rating or time
+                            traces.map(async trace => {
+                                if(trace.assessments[index]){
+                                    if(trace.assessments[index].rating > 3 && trace.assessments[index].time_use >= trace.resources[index].estimatedTime){
+                                        console.log("resource recovery");
+                                        
+                                        let sr = await db.resource.findById(trace.resources[index]._id);
+                                        foundR = true;
+                                        resource = { resource: sr, rating: 0, time_use: 0 };
+                                        
+                                    } else {
+
+                                        foundR = false;
+                                        if(trace.resources[index]){
+                                            _ids.push(trace.resources[index]._id);
+                                        }
+                                    }
+                                    
+                                } else {
+                                    if(trace.resources[index]){
+                                        _ids.push(trace.resources[index]._id);
+                                    }
+                                }
+                            })
+                            
+                            if(foundR == false){
+                                resource = await db.resource.findOne({ _id: { $nin: _ids }, pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                            }
+
+                        } 
+
+                        
+                    } else {
+
+                        console.log("traces not found");
+
+                        resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                    }
+
                     if(resource){
                         return { resource: resource, rating: 0, time_use: 0 };
                     }
                 }
-            })).then(r => {
-                newCase.solution.resources = r;
-                return newCase;
+            })).then(async plan => {
+                let resources = [];
+                plan.map(async (data, index) => {
+                    if(data && data.resource){
+                        resources.push(data.resource._id);
+                    }
+                })
+                await db.case.updateOne({ _id: c._id },  { $set: { "solution.resources" : resources } });
+                return { id_case : c._id, plan : plan };
             });
         }
-    }
-
-    //return to view like plan
-    async adapt(c){
-        
-        let plan = [];
-        c.solution.resources.map(async data => {
-
-            plan.push(data);
-        })
-
-        return { id_case : c._id, plan : plan };
+       
 
     }
 
@@ -208,6 +324,7 @@ class CbrService {
         if(caseS){
 
             let uses = caseS.results.uses + 1;
+
             if(success){
                 let success = caseS.results.success + 1;
                 console.log(success);

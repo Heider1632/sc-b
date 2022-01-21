@@ -104,10 +104,11 @@ exports.signin = (req, res) => {
 
       var signinData = {};
 
-      if(authorities.includes('ROLE_USER')){
-        let student = await db.student.findOne({ user: user._id });
+      if(authorities.includes('ROLE_USER')) {
 
-        signinData = { id: user.id, student_id: student.id, name: student.name, lastname: student.lastname, email: user.email, roles: authorities };
+        let student = await db.student.findOne({ user: user._id }).populate('learningStyleDimensions');
+
+        signinData = { id: user.id, student_id: student.id, name: student.name, lastname: student.lastname, email: user.email, roles: authorities, learningStyleDimensions: student.learningStyleDimensions };
       } else {
         signinData = { id: user.id, email: user.email, roles: authorities }
       }
