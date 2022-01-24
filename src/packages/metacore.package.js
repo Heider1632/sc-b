@@ -91,6 +91,8 @@ class MetacorePackage  {
         let selectedCase;
         let cbrService = new CbrService(this);
         let selectedPerformance = await cbrService.performance(id_student);
+
+        //marcar los casos si son exitosos
         if(selectedPerformance.length > 0) {
             console.log("se encontro un caso del estudiante")
             selectedCase = await cbrService.recovery(selectedPerformance);

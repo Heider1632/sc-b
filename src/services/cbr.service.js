@@ -11,7 +11,7 @@ class CbrService {
         return metacore;
     }
     
-    async performance(id_student){
+    async performance(id_student) {
         return await db.case.find({ "context.id_student" : id_student }).populate({
             path: 'solution.resources.resource',
             model: 'Resource'
@@ -55,14 +55,16 @@ class CbrService {
         //. many case relationed with style learning
         // 1. select cases most success (major to not success case)
         // 2. filter the euclidean weigth with knn (select minor)
-        // 
+        
         let dataset = [];
 
         const results = Object.values(cases.reduce((r, o) => {
             r[o.results.success] = (r[o.results] && r[o.results.success].value > o.results.success) ? r[o.results.success] : o
-            
             return r
         }, {}))
+
+
+        console.log(results);
         
 
         results.map((c) => {
@@ -118,6 +120,9 @@ class CbrService {
             resources: resources
         }
         //default euclidean weight is 100% because the selecion  in than minus of 100%
+
+        //tiempo promedio por los estudiantes en usar determinado caso
+        //creo un nuevo caso si no funciona
         newCase.euclideanWeight = 100;
         newCase.results = {
             uses : 0,
@@ -157,17 +162,51 @@ class CbrService {
 
                     if(traces){
 
-                        console.log(traces.length);
-
                         if(traces.length == 3){
-
                             //TODO: validate trace to get the best resources do it in in base to (assessment, like, time_use)
+
+                            let _ids = [];
+
+                            //TODO: fix resources when has a rating or time
+                            traces.map(async trace => {
+                                if(trace.assessments[index]){
+
+                                    console.log("trace encontrada exitosamente");
+
+                                    console.log("like" + trace.assessments[index].like);
+                                    console.log("tiempo usado" + trace.assessments[index].time_use);
+                                    console.log("tiempo esperado" + trace.resources[index].estimatedTime);
+
+                                    if(trace.assessments[index].like > 3 && trace.assessments[index].time_use >= trace.resources[index].estimatedTime){
+                                        console.log("resource recovery");
+                                        
+                                        let sr = await db.resource.findById(trace.resources[index]._id);
+                                        foundR = true;
+                                        resource = { resource: sr, rating: 0, time_use: 0 };
+                                        
+                                    } else {
+
+                                        foundR = false;
+                                        if(trace.resources[index]){
+                                            _ids.push(trace.resources[index]._id);
+                                        }
+                                    }
+                                    
+                                } else {
+                                    if(trace.resources[index]){
+                                        _ids.push(trace.resources[index]._id);
+                                    }
+                                }
+                            })
+                            
+                            if(foundR == false){
+                                console.log("no encontro recurso que cumpliera las condiciones de gusto y tiempo: paso a buscar uno de los existentes")
+                                resource = await db.resource.findOne({ _id: { $nin: _ids }, pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
+                            }
 
                             //TODO: 10 estudiantes del mismo estilo de aprendizaje, excel (estudiante por evaluacion)
                             // inventar trazar por estudiantes para validar la seleccion de recursos 
                             await db.trace.deleteMany({ student: c.context.id_student, lesson: selectedLesson._id });
-                            foundR = false;
-                            resource = await db.resource.findOne({ pedagogicalStrategy: pedagogicalStrategy._id, structure: selectedStructure._id });
 
                         } else {
 
@@ -204,8 +243,6 @@ class CbrService {
                                     }
                                 }
                             })
-
-                            console.log(foundR);
                             
                             if(foundR == false){
                                 console.log("no encontro recurso que cumpliera las condiciones de gusto y tiempo: paso a buscar uno de los existentes")
@@ -317,11 +354,13 @@ class CbrService {
 
     }
 
-    async reviewCase(id_case, success, error) {
+    async reviewCase(id_case, success, error, time) {
 
         let caseS = await db.case.findById(id_case);
 
         if(caseS){
+
+            let euclideanWeight = time / uses;
 
             let uses = caseS.results.uses + 1;
 
@@ -330,12 +369,12 @@ class CbrService {
                 console.log(success);
 
                 await db.case.findByIdAndUpdate(id_case,
-                    { $set: { "results.sucess" : success, "results.use" : uses }
+                    { $set: { "results.sucess" : success, "results.use" : uses, "euclideanWeight": euclideanWeight }
                 });
             } else if(error){
                 let errors = caseS.results.errors + 1;
                 await db.case.findByIdAndUpdate(id_case,
-                    { $set: { "results.errors" : errors, "results.use" : uses }
+                    { $set: { "results.errors" : errors, "results.use" : uses, "euclideanWeight": euclideanWeight }
                 });
             }
         }

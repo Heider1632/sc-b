@@ -24,6 +24,7 @@ const course = JSON.parse(fs.readFileSync(__dirname + '/data/course.json', 'utf-
 const resources = JSON.parse(fs.readFileSync(__dirname + '/data/resources.json', 'utf-8'));
 const interview = JSON.parse(fs.readFileSync(__dirname + '/data/interview.json', 'utf-8'));
 const pedagogicalStrategies = JSON.parse(fs.readFileSync(__dirname + '/data/pedagogicalstrategies.json', 'utf-8'));
+const users = JSON.parse(fs.readFileSync(__dirname + '/data/test-knn.json', 'utf-8'));
 
 function randomizeValue() {
 	var value = (1 + 10E-16) * Math.random();
@@ -48,33 +49,51 @@ function randomizeFloat(min, max) {
 
 async function generateFakeUserStudent(){
   try {
-    for (let index = 0; index < 10; index++) {
-      
-      let userRole = await db.role.findOne({ name: "user" });
-      let newUser = await db.user.create({
-        email: faker.internet.email(),
-        password: bcrypt.hashSync(faker.internet.password(), 8),
-        roles: [userRole._id]
-      });
-      
-      let learningStyles = await db.learningStyle.find({})
-      let learningStyleDimensions = [];
-      learningStyles.map((ls, index) => {
-        if(index < 3){
-          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
-          learningStyleDimensions.push(lsd);
-        }
-      })
 
-      if(newUser){
-        db.student.create({
-          name: faker.name.firstName(),
-          lastname: faker.name.lastName(),
-          learningStyleDimensions: learningStyleDimensions,
-          user: newUser._id
-        });
-      }
-    }
+    users.forEach(async user => {
+          let newUser = await db.user.create({
+            email: user.email,
+            password: bcrypt.hashSync(user.password, 8),
+            roles: user.roles
+          });
+
+          if(newUser){
+            db.student.create({
+              name: user.name,
+              lastname: user.lastname,
+              learningStyleDimensions: user.learningStyleDimensions,
+              course: user.course,
+              user: newUser._id
+            });
+        }
+    });
+    // for (let index = 0; index < 10; index++) {
+      
+    //   let userRole = await db.role.findOne({ name: "user" });
+    //   let newUser = await db.user.create({
+    //     email: faker.internet.email(),
+    //     password: bcrypt.hashSync(faker.internet.password(), 8),
+    //     roles: [userRole._id]
+    //   });
+      
+    //   let learningStyles = await db.learningStyle.find({})
+    //   let learningStyleDimensions = [];
+    //   learningStyles.map((ls, index) => {
+    //     if(index < 3){
+    //       let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
+    //       learningStyleDimensions.push(lsd);
+    //     }
+    //   })
+
+    //   if(newUser){
+    //     db.student.create({
+    //       name: faker.name.firstName(),
+    //       lastname: faker.name.lastName(),
+    //       learningStyleDimensions: learningStyleDimensions,
+    //       user: newUser._id
+    //     });
+    //   }
+    // }
   } catch(err){
       console.error(err.message)
   } 
