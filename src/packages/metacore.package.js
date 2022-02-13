@@ -1,5 +1,4 @@
 const db = require("../models");
-const cbrService = require("../services/cbr.service");
 const CbrService = require("../services/cbr.service");
 
 //every time the user has a success login the metacore package is called
@@ -86,36 +85,44 @@ class MetacorePackage  {
         });
     }
 
+    async validate(id_student, id_course, id_lesson){
+        let cbrService = new CbrService(this);
+        return await cbrService.validate(id_student, id_course, id_lesson);
+    }
+
     //call planner
-    async getPlan(id_student, id_course, id_lesson, structure, resources){
+    async getPlan(id_student, id_course, id_lesson, structure, resources, c){
         let selectedCase;
         let cbrService = new CbrService(this);
-        let selectedPerformance = await cbrService.performance(id_student);
+        // let selectedPerformance = await cbrService.performance(id_student);
 
         //marcar los casos si son exitosos
-        if(selectedPerformance.length > 0) {
-            console.log("se encontro un caso del estudiante")
-            selectedCase = await cbrService.recovery(selectedPerformance);
+        // if(selectedPerformance.length > 0) {
+        //     console.log("se encontro un caso del estudiante")
+        //     selectedCase = await cbrService.recovery(selectedPerformance);
+        // } else {
+           
+        // }
+
+        let coincident = await cbrService.coincident(id_student, id_course, id_lesson, structure);
+
+        if(c != null){
+            selectedCase = c;
+        } else if(coincident.length > 0){
+            selectedCase = await cbrService.recovery(coincident);
         } else {
-            let coincident = await cbrService.coincident(id_student, id_lesson, structure);
-            if(coincident.length > 0){
-                console.log("se encontro un caso de otro estudiante con aprendizaje similar")
-                selectedCase = await cbrService.recovery(coincident);
-            } else {
-                console.log("se creo el caso debido a que en el sistema no hay informacion de casos relacionados")
-                selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure, resources);
-            }
+            selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure, resources);
         }
+
         if(selectedCase){
             let plan = await cbrService.adapt(selectedCase);
-            
             return plan;
         }
     }
 
-    async review(id_case, success, error){
+    async review(id_case, success, error, time){
         let cbrService = new CbrService(this);
-        let reviewCase = await cbrService.reviewCase(id_case, success, error);
+        let reviewCase = await cbrService.reviewCase(id_case, success, error, time);
         return reviewCase;
     }
 
@@ -135,7 +142,7 @@ class MetacorePackage  {
             resources: resources
         };
 
-        newCase.euclideanWight = 0;
+        newCase.euclideanWeight = 0;
         newCase.results = {
             uses : 0,
             success : 0,
@@ -146,6 +153,23 @@ class MetacorePackage  {
         return caseUser;
 
     }
+
+    async updateCase(id_case,  resources){
+        const caseUser = await db.case.findByIdAndUpdate(id_case, {
+            $set: { "solution.resources" : resources }
+        });
+        
+        return caseUser;
+    }
+
+    async history(c, student){
+        return await db.historyCase.create({
+            student: student,
+            case: c,
+        });
+    }
+
+
 }
 
 module.exports = MetacorePackage;

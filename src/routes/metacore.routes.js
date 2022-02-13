@@ -12,5 +12,7 @@ module.exports = function(app) {
 
   app.post("/api/metacore/initial", [ authJwt.verifyToken ], controller.initial);
   app.post("/api/metacore/save", [ authJwt.verifyToken ], controller.save);
+  app.post("/api/metacore/update", [ authJwt.verifyToken ], controller.update);
   app.post("/api/metacore/review", [ authJwt.verifyToken ], controller.review);
+  app.post("/api/metacore/history", [ authJwt.verifyToken ], controller.history);
 };

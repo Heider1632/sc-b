@@ -1,9 +1,7 @@
 const db = require("../models");
 const dbConfig = require("../config/db.config");
-const faker = require("faker");
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
-const { pedagogicalStrategy } = require("../models");
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -22,7 +20,7 @@ db.mongoose
 
 const course = JSON.parse(fs.readFileSync(__dirname + '/data/course.json', 'utf-8'));
 const resources = JSON.parse(fs.readFileSync(__dirname + '/data/resources.json', 'utf-8'));
-const interview = JSON.parse(fs.readFileSync(__dirname + '/data/interview.json', 'utf-8'));
+const interviews = JSON.parse(fs.readFileSync(__dirname + '/data/interviews.json', 'utf-8'));
 const pedagogicalStrategies = JSON.parse(fs.readFileSync(__dirname + '/data/pedagogicalstrategies.json', 'utf-8'));
 const users = JSON.parse(fs.readFileSync(__dirname + '/data/test-knn.json', 'utf-8'));
 
@@ -257,18 +255,21 @@ async function generateFakeCases(){
 async function generateFakeInterview() {
   try{
 
-    let feedbacks = await db.feedback.insertMany(interview.feedbacks);
-    let questions = await db.question.insertMany(interview.questions);
+    interviews.forEach(async (interview)  => {
+      let feedbacks = await db.feedback.insertMany(interview.feedbacks);
+      let questions = await db.question.insertMany(interview.questions);
 
-    await db.interview.create({
-      title: interview.title,
-      lesson: interview.lesson,
-      questions: questions,
-      feedbacks: feedbacks
+      await db.interview.create({
+        title: interview.title,
+        lesson: interview.lesson,
+        questions: questions,
+        feedbacks: feedbacks
+      })
+
     })
-
-    console.log("done");
-    process.exit();
+    
+    
+    
   } catch(error){
     console.error(error.message);
     process.exit();

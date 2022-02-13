@@ -30,7 +30,6 @@ db.interview = require('./Interview');
 //knowledge
 db.test = require("./Test");
 
-
 //METCACORE
 db.session = require("./Session");
 db.trace = require("./Trace");
@@ -38,5 +37,6 @@ db.profile = require("./Profile");
 
 //CBR
 db.case = require("./Case");
+db.historyCase = require("./HistoryCase")
 
 module.exports = db;
