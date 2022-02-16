@@ -24,7 +24,7 @@ exports.save = async (req, res) => {
     if(validate != null){
        selectedCase = validate;
     } else {
-        selectedCase = await metacore.saveCase(id_student, id_course, id_lesson, structure, resources);
+        // selectedCase = await metacore.saveCase(id_student, id_course, id_lesson, structure, resources);
     }
 
     let plan = await metacore.getPlan(id_student, id_course, id_lesson, structure, resources, selectedCase);

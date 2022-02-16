@@ -125,6 +125,8 @@ class CbrService {
         let item = response.data[response.data.length - 1][1];
 
         selectedCase = await db.case.findOne({ _id: cases[item]._id });
+
+        console.log(selectedCase)
       }
 
       return selectedCase;
