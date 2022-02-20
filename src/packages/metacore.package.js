@@ -162,10 +162,11 @@ class MetacorePackage  {
         return caseUser;
     }
 
-    async history(c, student){
+    async history(c, student, was){
         return await db.historyCase.create({
             student: student,
             case: c,
+            was: was
         });
     }
 

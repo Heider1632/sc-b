@@ -43,21 +43,31 @@ class CbrService {
       {
         $match: { "context.id_lesson": mongoose.Types.ObjectId(id_lesson) },
       },
-      // {
-        //     $lookup:
-        //       {
-          //         from: <collection to join>,
-          //         localField: <field from the input documents>,
-      //         foreignField: <field from the documents of the "from" collection>,
-      //         as: <output array field>
-      //       }
-      //  },
+      {
+        $lookup: {
+            from: "Student",
+            localField: "context.id_student",
+            foreignField: "_id",
+            as: "student"
+          }
+      },
+      {
+        $lookup: {
+          from: "historycases",
+          localField: "_id",
+          foreignField: "case",
+          as: "historycase"
+        }
+      },
+      {
+        $match: { "student.learningStyleDimensions": student.learningStyleDimensions }
+      },
       {
         $match: { "context.structure": { $eq: structure } },
       },
     ]);
 
-    let historyCases = await db.historyCase.find({ student:  student._id })
+    let historyCases = await db.historyCase.find({ student:  student._id });
 
     if(historyCases.length > 0){
       cases = cases.map((c) => {
@@ -112,21 +122,11 @@ class CbrService {
       if (response.data.length) {
         //TODO: verify if value has a 0.5 range and get mode
 
-        // if(response.data.length > 1){
-        //   //TODO: filter 
-        //   let item = response.data[response.data.length - 1][1];
 
-        //   selectedCase = await db.case.findOne({ _id: cases[item]._id });
-
-        // } else {
-          
-        // }
 
         let item = response.data[response.data.length - 1][1];
 
         selectedCase = await db.case.findOne({ _id: cases[item]._id });
-
-        console.log(selectedCase)
       }
 
       return selectedCase;

@@ -24,7 +24,7 @@ exports.save = async (req, res) => {
     if(validate != null){
        selectedCase = validate;
     } else {
-        // selectedCase = await metacore.saveCase(id_student, id_course, id_lesson, structure, resources);
+        selectedCase = await metacore.saveCase(id_student, id_course, id_lesson, structure, resources);
     }
 
     let plan = await metacore.getPlan(id_student, id_course, id_lesson, structure, resources, selectedCase);
@@ -70,7 +70,8 @@ exports.trace = async (req, res) => {
 exports.history = async (req, res) => {
     let id_student = req.body.id_student;
     let id_case = req.body.id_case;
+    let was = req.body.was;
 
-    return await metacore.history(id_case, id_student);
+    return await metacore.history(id_case, id_student, was);
 }
 
