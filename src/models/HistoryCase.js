@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const historyCaseSchema = new mongoose.Schema({
+const HistoryCaseSchema = new mongoose.Schema({
     student: {
         type: mongoose.Types.ObjectId,
         ref: "Student"
@@ -12,7 +12,10 @@ const historyCaseSchema = new mongoose.Schema({
     was: {
         type: String,
         default: "success"
+    },
+    note: {
+        type: Number
     }
 }, { timestamp: true });
 
-module.exports = mongoose.model("historyCase", historyCaseSchema);
+module.exports = mongoose.model("historyCase", HistoryCaseSchema);

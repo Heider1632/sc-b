@@ -88,6 +88,7 @@ require('./src/routes/resource.routes')(app);
 require('./src/routes/metacore.routes')(app);
 require('./src/routes/test.routes')(app);
 require('./src/routes/trace.routes')(app);
+require('./src/routes/history.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

@@ -41,6 +41,7 @@ exports.update = async (req, res) => {
 }
 
 exports.review = async (req, res) => {
+
     let id_case = req.body.id_case;
     let success = req.body.success;
     let error = req.body.error;
@@ -71,7 +72,8 @@ exports.history = async (req, res) => {
     let id_student = req.body.id_student;
     let id_case = req.body.id_case;
     let was = req.body.was;
+    let note = req.body.note;
 
-    return await metacore.history(id_case, id_student, was);
+    return await metacore.history(id_case, id_student, was, note);
 }
 

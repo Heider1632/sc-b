@@ -8,7 +8,7 @@ exports.all = (req, res) => {
 
 exports.one = async (req, res) => {
 
-    const lesson = await db.lesson.findOne({ _id : new mongoose.Types.ObjectId(req.query.id) }).populate('structure').sort('order');
+    const lesson = await db.lesson.findOne({ _id : new mongoose.Types.ObjectId(req.query.id) }).populate('structure', '_id type', null, { sort: { 'order': 1 }}).sort('order');
 
     if(!lesson){
         res.status(500).send({ message: "Lesson not found" });

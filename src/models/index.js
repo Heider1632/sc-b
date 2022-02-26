@@ -23,9 +23,9 @@ db.pedagogicalTactic = require("./PedagogicalTactic");
 db.learningTheory = require("./LearningTheory");
 db.pedagogicalStrategy = require("./PedagogicalStrategy");
 
-db.feedback = require('./Feedback');
-db.question = require('./Question');
-db.interview = require('./Interview');
+db.feedback = require("./Feedback");
+db.question = require("./Question");
+db.interview = require("./Interview");
 
 //knowledge
 db.test = require("./Test");
@@ -37,6 +37,7 @@ db.profile = require("./Profile");
 
 //CBR
 db.case = require("./Case");
-db.historyCase = require("./HistoryCase")
+db.historyCase = require("./HistoryCase");
+db.historyLesson = require("./HistoryLesson");
 
 module.exports = db;

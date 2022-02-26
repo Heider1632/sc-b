@@ -9,22 +9,28 @@
             "order" : 1,
             "structure": [
               {
-                "type": "introduction"
+                "type": "introduction",
+                "order": 1
               },
               {
-                "type": "definition"
+                "type": "definition",
+                "order": 2
               },
               {
-                "type": "description"
+                "type": "description",
+                "order": 3
               },
               {
-                "type": "example"
+                "type": "example",
+                "order": 4
               },
               {
-                "type":  "activity"
+                "type":  "activity",
+                "order": 5
               },
               {
-                "type": "evaluation"
+                "type": "evaluation",
+                "order": 6
               }
             ]
           }, 
@@ -33,22 +39,28 @@
             "order" : 2,
             "structure": [
               {
-                "type": "introduction"
+                "type": "introduction",
+                "order": 1
               },
               {
-                "type": "definition"
+                "type": "definition",
+                "order": 2
               },
               {
-                "type": "description"
+                "type": "description",
+                "order": 3
               },
               {
-                "type": "example"
+                "type": "example",
+                "order": 4
               },
               {
-                "type":  "activity"
+                "type":  "activity",
+                "order": 5
               },
               {
-                "type": "evaluation"
+                "type": "evaluation",
+                "order": 6
               }
             ]
           },
@@ -57,22 +69,28 @@
             "order": 3,
             "structure": [
               {
-                "type": "introduction"
+                "type": "introduction",
+                "order": 1
               },
               {
-                "type": "definition"
+                "type": "definition",
+                "order": 2
               },
               {
-                "type": "description"
+                "type": "description",
+                "order": 3
               },
               {
-                "type": "example"
+                "type": "example",
+                "order": 4
               },
               {
-                "type":  "activity"
+                "type":  "activity",
+                "order": 5
               },
               {
-                "type": "evaluation"
+                "type": "evaluation",
+                "order": 6
               }
             ]
           },
@@ -81,22 +99,28 @@
             "order": 4,
             "structure": [
               {
-                "type": "introduction"
+                "type": "introduction",
+                "order": 1
               },
               {
-                "type": "definition"
+                "type": "definition",
+                "order": 2
               },
               {
-                "type": "description"
+                "type": "description",
+                "order": 3
               },
               {
-                "type": "example"
+                "type": "example",
+                "order": 4
               },
               {
-                "type":  "activity"
+                "type":  "activity",
+                "order": 5
               },
               {
-                "type": "evaluation"
+                "type": "evaluation",
+                "order": 6
               }
             ]
         }

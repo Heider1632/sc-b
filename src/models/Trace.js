@@ -8,7 +8,6 @@ const Trace = mongoose.model(
     lesson: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson" },
     resources: [{ type: mongoose.Schema.Types.ObjectId, ref: "Resource" }],
     assessments: [{
-      assessment: Number,
       time_use: Number,
       like: Number,
     }],

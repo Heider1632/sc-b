@@ -53,6 +53,6 @@ exports.delete = (req, res) => {
             res.status(500).send({ message: err });
         }
 
-        res.send({ message: "Lesson deleted successful "});
+        res.send({ message: "Progress deleted successful "});
     })
 }

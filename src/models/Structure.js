@@ -18,7 +18,8 @@ const Structure = mongoose.model(
     lesson: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Lesson"
-    }
+    },
+    order: { type: Number }
   }, {
     toObject: { virtuals: true },
     toJSON: { virtuals: true }

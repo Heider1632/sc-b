@@ -488,6 +488,7 @@ class CbrService {
   }
 
   async reviewCase(id_case, success, error, time) {
+
     let caseS = await db.case.findById(id_case);
 
     if (caseS) {
@@ -497,21 +498,33 @@ class CbrService {
 
       if (success) {
         let success = caseS.results.success + 1;
+        let errors = caseS.results.errors;
 
-        await db.case.findByIdAndUpdate(id_case, {
+        if(errors > 0){
+          errors = errors - 1;
+        }
+
+        await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.success": success,
+            "results.errors": errors,
             "results.uses": uses,
             euclideanWeight: euclideanWeight,
           },
         });
       } else if (error) {
         let errors = caseS.results.errors + 1;
-        await db.case.findByIdAndUpdate(id_case, {
+        let success = caseS.results.success;
+
+        if(success > 0){
+          success = success - 1;
+        }
+
+        await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.errors": errors,
+            "results.success": success,
             "results.uses": uses,
-            euclideanWeight: euclideanWeight,
           },
         });
       }
