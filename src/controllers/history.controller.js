@@ -40,8 +40,6 @@ exports.create = (req, res) => {
 
 exports.update = (req, res) => {
 
-    console.log(req.body);
-
     db.historyLesson.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.id) }, { $set: { "isBlock": req.body.isBlock }})
     .exec((err, history) => {
         if(err){

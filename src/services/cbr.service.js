@@ -30,6 +30,7 @@ class CbrService {
     let student = await db.student.findById(id_student);
 
     if (student.learningStyleDimensions.length === 0) {
+      console.log('no tiene estilo de aprendizaje');
       return [];
     }
 
@@ -39,13 +40,15 @@ class CbrService {
     //do it how agreggation to get max use cases and success case;
     //1. equal learning style 2. equal lesson course  optionals 3. max use cases 4. success cases (true, false);
 
-    let cases = await db.case.aggregate([
+    let cases = [];
+
+    let casesSuccess = await db.case.aggregate([
       {
         $match: { "context.id_lesson": mongoose.Types.ObjectId(id_lesson) },
       },
       {
         $lookup: {
-            from: "Student",
+            from: "students",
             localField: "context.id_student",
             foreignField: "_id",
             as: "student"
@@ -65,23 +68,97 @@ class CbrService {
       {
         $match: { "context.structure": { $eq: structure } },
       },
+      {
+        $sort: { "results.errors" : 1 }
+      },
     ]);
+
+    // //TODO: create 
+    // let casesErrors = await db.case.aggregate([
+    //   {
+    //     $match: { "context.id_lesson": mongoose.Types.ObjectId(id_lesson) },
+    //   },
+    //   {
+    //     $lookup: {
+    //         from: "students",
+    //         localField: "context.id_student",
+    //         foreignField: "_id",
+    //         as: "student"
+    //       }
+    //   },
+    //   {
+    //     $lookup: {
+    //       from: "historycases",
+    //       localField: "_id",
+    //       foreignField: "case",
+    //       as: "historycase"
+    //     }
+    //   },
+    //   {
+    //     $match: { "student.learningStyleDimensions": student.learningStyleDimensions }
+    //   },
+    //   {
+    //     $match: { "context.structure": { $eq: structure } },
+    //   },
+    //   {
+    //     $match: { "euclideanWeight": { "$eq" : 0 } }
+    //   },
+    //   {
+    //     $sort: {  "results.errors": -1, "results.uses": -1 }
+    //   },
+    //   {
+    //     $limit: 5
+    //   }
+    // ]);
+
+    // console.log(casesErrors);
 
     let historyCases = await db.historyCase.find({ student:  student._id });
 
     if(historyCases.length > 0){
-      cases = cases.map((c) => {
+
+      console.log('el estudiante tiene historial');
+
+      casesSuccess = casesSuccess.map((c) => {
         let filter = historyCases.filter(hc => hc.case.equals(c._id));
+        console.log(filter);
         if(filter.length == 0) return c;
       });
 
-      cases = cases.filter(function(x) {
+      console.log(casesSuccess);
+
+      casesSuccess = casesSuccess.filter(function(x) {
         return x !== undefined;
       });
 
-      if(cases.length == 0){
-        this.create(id_student, id_course, id_lesson, structure, []);
+      console.log(casesSuccess);
+
+      if(casesSuccess.length == 0){
+
+        // casesErrors = casesErrors.map((c) => {
+        //   let filter = historyCases.filter(hc => hc.case.equals(c._id));
+        //   if(filter.length == 0) return c;
+        // });
+  
+        // casesErrors = casesErrors.filter(function(x) {
+        //   return x !== undefined;
+        // });
+
+        // console.log('casos errados filtrados por el historial del estudiante')
+
+        // if(casesErrors.length == 0){
+        //   let newCase = this.create(id_student, id_course, id_lesson, structure, []);
+        //   cases.push(newCase);
+        // }
+
+      } else {
+        console.log('el estudiante no tiene historial');
+        cases = casesSuccess;
       }
+
+    } else {
+      console.log('el estudiante no tiene historial');
+      cases = casesSuccess;
     }
 
     return cases;
@@ -120,11 +197,9 @@ class CbrService {
       let selectedCase = null;
 
       if (response.data.length) {
+
         //TODO: verify if value has a 0.5 range and get mode
-
-
-
-        let item = response.data[response.data.length - 1][1];
+        let item = response.data[0][1];
 
         selectedCase = await db.case.findOne({ _id: cases[item]._id });
       }
@@ -493,38 +568,35 @@ class CbrService {
 
     if (caseS) {
       let uses = caseS.results.uses + 1;
-      let timeSpend = caseS.euclideanWeight + time;
+
+      let timeSpend = caseS.solution.resources.reduce(function (accumulator, curValue) {
+          if(curValue != null){
+            return  accumulator + curValue.time_use;
+          } else {
+            return accumulator + 0;
+          }
+      }, caseS.euclideanWeight)
+      
       let euclideanWeight = timeSpend / uses;
 
       if (success) {
         let success = caseS.results.success + 1;
-        let errors = caseS.results.errors;
-
-        if(errors > 0){
-          errors = errors - 1;
-        }
 
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.success": success,
-            "results.errors": errors,
             "results.uses": uses,
-            euclideanWeight: euclideanWeight,
+            "euclideanWeight": euclideanWeight
           },
         });
       } else if (error) {
         let errors = caseS.results.errors + 1;
-        let success = caseS.results.success;
-
-        if(success > 0){
-          success = success - 1;
-        }
 
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.errors": errors,
-            "results.success": success,
             "results.uses": uses,
+            "euclideanWeight": euclideanWeight
           },
         });
       }
