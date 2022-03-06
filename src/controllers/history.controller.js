@@ -16,7 +16,7 @@ exports.one = async (req, res) => {
         res.status(200).send(history);
     }
 
-} 
+}
 
 exports.create = (req, res) => {
     const history = new db.historyLesson({

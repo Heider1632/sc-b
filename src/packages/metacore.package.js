@@ -15,6 +15,8 @@ class MetacorePackage  {
         return instance || new MetacorePackage();
     }
 
+
+
     // BasicElement
     getTrace(id_student, id_course){
         db.trace.find({ id_student: id_student, id_course: id_course }).exec( (res, data ) => {
@@ -88,6 +90,20 @@ class MetacorePackage  {
     async validate(id_student, id_course, id_lesson){
         let cbrService = new CbrService(this);
         return await cbrService.validate(id_student, id_course, id_lesson);
+    }
+
+    async getCase(id){
+        let cbrService = new CbrService(this);
+
+        let caseSelected = await db.case.findOne(id);
+
+        console.log(caseSelected);
+        
+        if(caseSelected){
+            let plan = await cbrService.adapt(caseSelected);
+            return plan;
+        }
+
     }
 
     //call planner

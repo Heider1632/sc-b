@@ -10,6 +10,8 @@ module.exports = function(app) {
     next();
   });
 
+  app.get("/api/metacore/one", [ authJwt.verifyToken ], controller.one);
+
   app.post("/api/metacore/initial", [ authJwt.verifyToken ], controller.initial);
   app.post("/api/metacore/save", [ authJwt.verifyToken ], controller.save);
   app.post("/api/metacore/update", [ authJwt.verifyToken ], controller.update);
