@@ -96,8 +96,6 @@ class MetacorePackage  {
         let cbrService = new CbrService(this);
 
         let caseSelected = await db.case.findOne(id);
-
-        console.log(caseSelected);
         
         if(caseSelected){
             let plan = await cbrService.adapt(caseSelected);

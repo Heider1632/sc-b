@@ -42,7 +42,7 @@ class CbrService {
 
     let cases = [];
 
-    let casesSuccess = await db.case.aggregate([
+    let maxUses = await db.case.aggregate([
       {
         $match: { "context.id_lesson": mongoose.Types.ObjectId(id_lesson) },
       },
@@ -69,96 +69,69 @@ class CbrService {
         $match: { "context.structure": { $eq: structure } },
       },
       {
-        $sort: { "results.errors" : 1 }
+        $sort: { "results.uses": -1 }
       },
     ]);
 
-    // //TODO: create 
-    // let casesErrors = await db.case.aggregate([
-    //   {
-    //     $match: { "context.id_lesson": mongoose.Types.ObjectId(id_lesson) },
-    //   },
-    //   {
-    //     $lookup: {
-    //         from: "students",
-    //         localField: "context.id_student",
-    //         foreignField: "_id",
-    //         as: "student"
-    //       }
-    //   },
-    //   {
-    //     $lookup: {
-    //       from: "historycases",
-    //       localField: "_id",
-    //       foreignField: "case",
-    //       as: "historycase"
-    //     }
-    //   },
-    //   {
-    //     $match: { "student.learningStyleDimensions": student.learningStyleDimensions }
-    //   },
-    //   {
-    //     $match: { "context.structure": { $eq: structure } },
-    //   },
-    //   {
-    //     $match: { "euclideanWeight": { "$eq" : 0 } }
-    //   },
-    //   {
-    //     $sort: {  "results.errors": -1, "results.uses": -1 }
-    //   },
-    //   {
-    //     $limit: 5
-    //   }
-    // ]);
+    
+    if(maxUses.length > 0){
 
-    // console.log(casesErrors);
+      let mostSuccessFiltered = maxUses.sort((a, b) => {
+        if (a.results.success > b.results.success) {
+          return -1;
+        }
+        if (a.results.success < b.results.success) {
+          return 1;
+        }
+        // a debe ser igual b
+        return 0;
+      });
+
+      let mostSuccess = maxUses.slice(0, parseInt(maxUses.length / 2));
+
+      const busqueda = mostSuccess.reduce((acc, c) => {
+        acc[c.results.success] = ++acc[c.results.success] || 0;
+        return acc;
+      }, {});
+      
+      const duplicados = mostSuccess.filter( (c) => {
+        return busqueda[c.results.success];
+      });
+
+      if(duplicados.length > 0){
+
+        let lessErrors =  mostSuccess.sort((a, b) => {
+          if (a.results.errors < b.results.errors) {
+            return -1;
+          }
+          if (a.results.errors > b.results.errors) {
+            return 1;
+          }
+          return 0;
+        })[0];
+
+        cases = [lessErrors];
+      } else {
+        cases = [mostSuccess[0]];
+      }
+      
+    }
 
     let historyCases = await db.historyCase.find({ student:  student._id });
 
     if(historyCases.length > 0){
 
-      console.log('el estudiante tiene historial');
-
-      casesSuccess = casesSuccess.map((c) => {
+      cases = cases.map((c) => {
         let filter = historyCases.filter(hc => hc.case.equals(c._id));
         console.log(filter);
         if(filter.length == 0) return c;
       });
 
-      console.log(casesSuccess);
 
-      casesSuccess = casesSuccess.filter(function(x) {
+      cases = cases.filter(function(x) {
         return x !== undefined;
       });
 
-      console.log(casesSuccess);
-
-      if(casesSuccess.length == 0){
-
-        // casesErrors = casesErrors.map((c) => {
-        //   let filter = historyCases.filter(hc => hc.case.equals(c._id));
-        //   if(filter.length == 0) return c;
-        // });
-  
-        // casesErrors = casesErrors.filter(function(x) {
-        //   return x !== undefined;
-        // });
-
-        // console.log('casos errados filtrados por el historial del estudiante')
-
-        // if(casesErrors.length == 0){
-        //   let newCase = this.create(id_student, id_course, id_lesson, structure, []);
-        //   cases.push(newCase);
-        // }
-
-      } else {
-        console.log('el estudiante no tiene historial');
-        cases = casesSuccess;
-      }
-
-    } else {
-      console.log('el estudiante no tiene historial');
-      cases = casesSuccess;
     }
 
     return cases;
@@ -201,7 +174,9 @@ class CbrService {
         //TODO: verify if value has a 0.5 range and get mode
         let item = response.data[0][1];
 
-        selectedCase = await db.case.findOne({ _id: cases[item]._id });
+        selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate('solution.resources.resource');
+
+        console.log(selectedCase);
       }
 
       return selectedCase;
@@ -247,6 +222,8 @@ class CbrService {
   //return to view like plan
   async adapt(c) {
 
+    console.log('paso a adaptar')
+
     //select resources
     let selectedLesson = await db.lesson.findById(
       mongoose.Types.ObjectId(c.context.id_lesson)
@@ -259,17 +236,19 @@ class CbrService {
 
     //restructure
     if (c.solution.resources && c.solution.resources.length > 0) {
+
       return Promise.all(
         c.context.structure.map(async (l, index) => {
-          //return resource if case count with them
+
           if (
             c.solution.resources[index] &&
             c.solution.resources[index].resource != null &&
             c.solution.resources[index].rating > 3 &&
-            traces.length > 1
-              ? c.solution.resources[index].time_use >
+            c.solution.resources[index].time_use >
                 traces[traces.length - 1].resources[index].estimatedTime
-              : false
+            // traces.length > 1
+              // ? 
+              // : false
           ) {
             return {
               resource: c.solution.resources[index].resource,
@@ -277,12 +256,15 @@ class CbrService {
               like: 0,
             };
           } else {
+
             let selectedStructure = await db.structure.findById(
               mongoose.Types.ObjectId(l)
             );
+
             let student = await db.student
               .findById(c.context.id_student)
               .populate("learningStyleDimensions", "_id");
+
             let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({
               learningStyleDimensions: { $in: student.learningStyleDimensions },
             });
@@ -337,10 +319,10 @@ class CbrService {
 
                   //TODO: 10 estudiantes del mismo estilo de aprendizaje, excel (estudiante por evaluacion)
                   // inventar trazar por estudiantes para validar la seleccion de recursos
-                  await db.trace.deleteMany({
-                    student: c.context.id_student,
-                    lesson: selectedLesson._id,
-                  });
+                  // await db.trace.deleteMany({
+                  //   student: c.context.id_student,
+                  //   lesson: selectedLesson._id,
+                  // });
                 } else {
                   let _ids = [];
 
@@ -402,10 +384,7 @@ class CbrService {
             resources.push(data.resource._id);
           }
         });
-        await db.case.updateOne(
-          { _id: c._id },
-          { $set: { "solution.resources": resources } }
-        );
+
         return { id_case: c._id, plan: plan };
       });
     } else {
@@ -427,12 +406,15 @@ class CbrService {
               like: 0,
             };
           } else {
+
             let selectedStructure = await db.structure.findById(
               mongoose.Types.ObjectId(l)
             );
+
             let student = await db.student
               .findById(c.context.id_student)
               .populate("learningStyleDimensions", "_id");
+
             let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({
               learningStyleDimensions: { $in: student.learningStyleDimensions },
             });
@@ -487,10 +469,10 @@ class CbrService {
 
                   //TODO: 10 estudiantes del mismo estilo de aprendizaje, excel (estudiante por evaluacion)
                   // inventar trazar por estudiantes para validar la seleccion de recursos
-                  await db.trace.deleteMany({
-                    student: c.context.id_student,
-                    lesson: selectedLesson._id,
-                  });
+                  // await db.trace.deleteMany({
+                  //   student: c.context.id_student,
+                  //   lesson: selectedLesson._id,
+                  // });
                 } else {
                   let _ids = [];
 
@@ -532,7 +514,6 @@ class CbrService {
                   }
                 }
               } else {
-                console.log("traces not found");
 
                 resource = await db.resource.findOne({
                   pedagogicalStrategy: pedagogicalStrategy._id,
@@ -547,16 +528,15 @@ class CbrService {
           }
         })
       ).then(async (plan) => {
+
         let resources = [];
+
         plan.map(async (data, index) => {
           if (data && data.resource) {
             resources.push(data.resource._id);
           }
         });
-        await db.case.updateOne(
-          { _id: c._id },
-          { $set: { "solution.resources": resources } }
-        );
+        
         return { id_case: c._id, plan: plan };
       });
     }

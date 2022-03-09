@@ -18,6 +18,23 @@ exports.one = async (req, res) => {
 
 }
 
+exports.all = async (req, res) => {
+
+    console.log(req.query);
+
+    const histories = await db.historyLesson.find({
+        student: new mongoose.Types.ObjectId(req.query.student),
+        course: new mongoose.Types.ObjectId(req.query.course),
+        lesson: new mongoose.Types.ObjectId(req.query.lesson),
+    });
+
+    if(!histories){
+        res.status(404).send({ message: "History not found" });
+    } else {
+        res.status(200).send(histories);
+    }
+}
+
 exports.create = (req, res) => {
     const history = new db.historyLesson({
         student: req.body.student,

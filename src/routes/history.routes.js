@@ -11,6 +11,7 @@ module.exports = function(app) {
     // });
 
     app.get("/api/history/one", [authJwt.verifyToken], HistoryController.one);
+    app.get("/api/history/all", [authJwt.verifyToken], HistoryController.all);
 
     app.post("/api/history/create", [authJwt.verifyToken], HistoryController.create);
     app.post("/api/history/update", [authJwt.verifyToken], HistoryController.update);

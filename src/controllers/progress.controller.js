@@ -17,6 +17,20 @@ exports.one = async (req, res) => {
 
 } 
 
+exports.all = async (req, res) => {
+    const progress = await db.progress.find({
+        student: new mongoose.Types.ObjectId(req.query.student),
+        course: new mongoose.Types.ObjectId(req.query.course),
+    });
+
+    if(!progress){
+        res.status(404).send({ message: "Progress not found" });
+    } else {
+        res.status(200).send(progress);
+    }
+
+} 
+
 exports.create = (req, res) => {
     const progress = new db.progress({
         student: req.body.student,
