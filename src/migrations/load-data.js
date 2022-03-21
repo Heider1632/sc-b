@@ -55,11 +55,11 @@ const testFelderSilverman = JSON.parse(fs.readFileSync(__dirname + '/data/test.j
 
 async function generateUser(){
   try {
-    let user = await db.user.create({
-      email: "prueba@gmail.com",
-      password: bcrypt.hashSync("Shinobu2021@", 8),
-      roles: [ new mongoose.Types.ObjectId("618b24d0c6d2d91fc8b19972") ]
-    })
+    // let user = await db.user.create({
+    //   email: "prueba@gmail.com",
+    //   password: bcrypt.hashSync("Shinobu2021@", 8),
+    //   roles: [ new mongoose.Types.ObjectId("618b24d0c6d2d91fc8b19972") ]
+    // })
 
     // let laura = await db.user.create({
     //   email: "lauramarquez@gmail.com",
@@ -67,17 +67,17 @@ async function generateUser(){
     //   roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb19") ]
     // })
 
-    await db.student.create({
-      name: "Prueba",
-      lastname: "Sifilis",
-      user: user._id,
-      course: [ new mongoose.Types.ObjectId("6192bcdfcd2b462470c51142") ],
-      learningStyleDimensions: [
-        "6192936107448c473c1d779e",
-        "6192936107448c473c1d779b",
-        "6192936107448c473c1d77a0"
-      ]
-    })
+    // await db.student.create({
+    //   name: "Prueba",
+    //   lastname: "Sifilis",
+    //   user: user._id,
+    //   course: [ new mongoose.Types.ObjectId("") ],
+    //   learningStyleDimensions: [
+    //     "6192936107448c473c1d779e",
+    //     "6192936107448c473c1d779b",
+    //     "6192936107448c473c1d77a0"
+    //   ]
+    // })
 
     // await db.student.create({
     //   name: "Laura",

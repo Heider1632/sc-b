@@ -44,6 +44,9 @@ class CbrService {
 
     let maxUses = await db.case.aggregate([
       {
+        $match: { "context.id_course": mongoose.Types.ObjectId(id_course) },
+      },
+      {
         $match: { "context.id_lesson": mongoose.Types.ObjectId(id_lesson) },
       },
       {
@@ -73,7 +76,8 @@ class CbrService {
       },
     ]);
 
-    
+    console.log(maxUses);
+
     if(maxUses.length > 0){
 
       let mostSuccessFiltered = maxUses.sort((a, b) => {
@@ -83,36 +87,39 @@ class CbrService {
         if (a.results.success < b.results.success) {
           return 1;
         }
-        // a debe ser igual b
         return 0;
       });
 
-      let mostSuccess = maxUses.slice(0, parseInt(maxUses.length / 2));
+      if(mostSuccessFiltered.lenght >= 4){
+        let mostSuccess = mostSuccessFiltered.slice(0, parseInt(maxUses.length / 2));
 
-      const busqueda = mostSuccess.reduce((acc, c) => {
-        acc[c.results.success] = ++acc[c.results.success] || 0;
-        return acc;
-      }, {});
-      
-      const duplicados = mostSuccess.filter( (c) => {
-        return busqueda[c.results.success];
-      });
+        const busqueda = mostSuccess.reduce((acc, c) => {
+          acc[c.results.success] = ++acc[c.results.success] || 0;
+          return acc;
+        }, {});
+        
+        const duplicados = mostSuccess.filter( (c) => {
+          return busqueda[c.results.success];
+        });
 
-      if(duplicados.length > 0){
+        if(duplicados.length > 0){
 
-        let lessErrors =  mostSuccess.sort((a, b) => {
-          if (a.results.errors < b.results.errors) {
-            return -1;
-          }
-          if (a.results.errors > b.results.errors) {
-            return 1;
-          }
-          return 0;
-        })[0];
+          let lessErrors =  mostSuccess.sort((a, b) => {
+            if (a.results.errors < b.results.errors) {
+              return -1;
+            }
+            if (a.results.errors > b.results.errors) {
+              return 1;
+            }
+            return 0;
+          })[0];
 
-        cases = [lessErrors];
+          cases = [lessErrors];
+        } else {
+          cases = [mostSuccess[0]];
+        }
       } else {
-        cases = [mostSuccess[0]];
+        cases = mostSuccessFiltered;
       }
       
     }
@@ -126,7 +133,6 @@ class CbrService {
         console.log(filter);
         if(filter.length == 0) return c;
       });
-
 
       cases = cases.filter(function(x) {
         return x !== undefined;
@@ -175,8 +181,6 @@ class CbrService {
         let item = response.data[0][1];
 
         selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate('solution.resources.resource');
-
-        console.log(selectedCase);
       }
 
       return selectedCase;
@@ -246,16 +250,16 @@ class CbrService {
             c.solution.resources[index].rating > 3 &&
             c.solution.resources[index].time_use >
                 traces[traces.length - 1].resources[index].estimatedTime
-            // traces.length > 1
-              // ? 
-              // : false
           ) {
+            console.log('selecciono el recurso del caso');
             return {
               resource: c.solution.resources[index].resource,
               time_use: 0,
               like: 0,
             };
           } else {
+
+            console.log('selecciono paso a buscar un recurso');
 
             let selectedStructure = await db.structure.findById(
               mongoose.Types.ObjectId(l)
@@ -265,21 +269,31 @@ class CbrService {
               .findById(c.context.id_student)
               .populate("learningStyleDimensions", "_id");
 
-            let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({
-              learningStyleDimensions: { $in: student.learningStyleDimensions },
+            let learningStyleDimensions = student.learningStyleDimensions.map(ls => ls._id);
+          
+            let pedagogicalStrategies = await db.pedagogicalStrategy.find({});
+
+            let counts = pedagogicalStrategies.map((ps, indice) => {
+              let count = 0;
+              ps.learningStyleDimensions.forEach((val) => {
+                if(learningStyleDimensions.includes(val)){
+                  count++
+                } 
+              });
+              return { index : indice, count: count };
             });
+
+            var index = counts.sort((a,b)=>b.count-a.count)[0].index
+            let pedagogicalStrategy = pedagogicalStrategies[index];
+
             if (pedagogicalStrategy) {
               var foundR = false;
 
               let resource = null;
 
-              if (traces) {
-                if (traces.length == 3) {
-                  //TODO: validate trace to get the best resources do it in in base to (assessment, like, time_use)
-
+              if (traces.length > 0) {
                   let _ids = [];
 
-                  //TODO: fix resources when has a rating or time
                   traces.map(async (trace) => {
 
                     if (trace.assessments[index]) {
@@ -309,60 +323,49 @@ class CbrService {
                   });
 
                   if (foundR == false) {
-
                     resource = await db.resource.findOne({
                       _id: { $nin: _ids },
                       pedagogicalStrategy: pedagogicalStrategy._id,
                       structure: selectedStructure._id,
                     });
-                  }
+                  } else {
+                    let _ids = [];
+                    traces.map(async (trace) => {
+                      if (trace.assessments[index]) {
 
-                  //TODO: 10 estudiantes del mismo estilo de aprendizaje, excel (estudiante por evaluacion)
-                  // inventar trazar por estudiantes para validar la seleccion de recursos
-                  // await db.trace.deleteMany({
-                  //   student: c.context.id_student,
-                  //   lesson: selectedLesson._id,
-                  // });
-                } else {
-                  let _ids = [];
+                        if (
+                          trace.assessments[index].like > 3 &&
+                          trace.assessments[index].time_use >=
+                            trace.resources[index].estimatedTime
+                        ) {
 
-                  //TODO: fix resources when has a rating or time
-                  traces.map(async (trace) => {
-                    if (trace.assessments[index]) {
-
-                      if (
-                        trace.assessments[index].like > 3 &&
-                        trace.assessments[index].time_use >=
-                          trace.resources[index].estimatedTime
-                      ) {
-
-                        let sr = await db.resource.findById(
-                          trace.resources[index]._id
-                        );
-                        foundR = true;
-                        resource = { resource: sr, rating: 0, time_use: 0 };
+                          let sr = await db.resource.findById(
+                            trace.resources[index]._id
+                          );
+                          foundR = true;
+                          resource = { resource: sr, rating: 0, time_use: 0 };
+                        } else {
+                          foundR = false;
+                          if (trace.resources[index]) {
+                            _ids.push(trace.resources[index]._id);
+                          }
+                        }
                       } else {
-                        foundR = false;
                         if (trace.resources[index]) {
                           _ids.push(trace.resources[index]._id);
                         }
                       }
-                    } else {
-                      if (trace.resources[index]) {
-                        _ids.push(trace.resources[index]._id);
-                      }
-                    }
-                  });
-
-                  if (foundR == false) {
-
-                    resource = await db.resource.findOne({
-                      _id: { $nin: _ids },
-                      pedagogicalStrategy: pedagogicalStrategy._id,
-                      structure: selectedStructure._id,
                     });
+
+                    if (foundR == false) {
+
+                      resource = await db.resource.findOne({
+                        _id: { $nin: _ids },
+                        pedagogicalStrategy: pedagogicalStrategy._id,
+                        structure: selectedStructure._id,
+                      });
+                    }
                   }
-                }
               } else {
 
                 resource = await db.resource.findOne({
@@ -388,9 +391,9 @@ class CbrService {
         return { id_case: c._id, plan: plan };
       });
     } else {
+
       return Promise.all(
         c.context.structure.map(async (l, index) => {
-          //return resource if case count with them
           if (
             c.solution.resources[index] &&
             c.solution.resources[index].resource != null &&
@@ -409,27 +412,44 @@ class CbrService {
 
             let selectedStructure = await db.structure.findById(
               mongoose.Types.ObjectId(l)
-            );
+            );            
 
             let student = await db.student
               .findById(c.context.id_student)
               .populate("learningStyleDimensions", "_id");
+            
+            let learningStyleDimensions = student.learningStyleDimensions.map(ls => ls._id);
+            
+            let pedagogicalStrategies = await db.pedagogicalStrategy.find({});
 
-            let pedagogicalStrategy = await db.pedagogicalStrategy.findOne({
-              learningStyleDimensions: { $in: student.learningStyleDimensions },
+            let counts = pedagogicalStrategies.map((ps, indice) => {
+              let count = 0;
+              ps.learningStyleDimensions.forEach((val) => {
+                if(learningStyleDimensions.includes(val)){
+                  count++
+                } 
+              });
+              return { index : indice, count: count };
             });
+
+            var index = counts.sort((a,b)=>b.count-a.count)[0].index
+            
+            let pedagogicalStrategy = pedagogicalStrategies[index];
+
+            console.log(pedagogicalStrategy);
+
             if (pedagogicalStrategy) {
+
               var foundR = false;
 
               let resource = null;
 
-              if (traces) {
+              if (traces.length >0) {
+
+                console.log("tiene traces");
                 if (traces.length == 3) {
-                  //TODO: validate trace to get the best resources do it in in base to (assessment, like, time_use)
 
                   let _ids = [];
-
-                  //TODO: fix resources when has a rating or time
                   traces.map(async (trace) => {
 
                     if (trace.assessments[index]) {
@@ -458,6 +478,8 @@ class CbrService {
                     }
                   });
 
+                  console.log(_ids);
+
                   if (foundR == false) {
 
                     resource = await db.resource.findOne({
@@ -466,13 +488,6 @@ class CbrService {
                       structure: selectedStructure._id,
                     });
                   }
-
-                  //TODO: 10 estudiantes del mismo estilo de aprendizaje, excel (estudiante por evaluacion)
-                  // inventar trazar por estudiantes para validar la seleccion de recursos
-                  // await db.trace.deleteMany({
-                  //   student: c.context.id_student,
-                  //   lesson: selectedLesson._id,
-                  // });
                 } else {
                   let _ids = [];
 
@@ -528,7 +543,7 @@ class CbrService {
           }
         })
       ).then(async (plan) => {
-
+        
         let resources = [];
 
         plan.map(async (data, index) => {

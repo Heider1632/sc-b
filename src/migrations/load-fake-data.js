@@ -65,33 +65,7 @@ async function generateFakeUserStudent(){
             });
         }
     });
-    // for (let index = 0; index < 10; index++) {
-      
-    //   let userRole = await db.role.findOne({ name: "user" });
-    //   let newUser = await db.user.create({
-    //     email: faker.internet.email(),
-    //     password: bcrypt.hashSync(faker.internet.password(), 8),
-    //     roles: [userRole._id]
-    //   });
-      
-    //   let learningStyles = await db.learningStyle.find({})
-    //   let learningStyleDimensions = [];
-    //   learningStyles.map((ls, index) => {
-    //     if(index < 3){
-    //       let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
-    //       learningStyleDimensions.push(lsd);
-    //     }
-    //   })
 
-    //   if(newUser){
-    //     db.student.create({
-    //       name: faker.name.firstName(),
-    //       lastname: faker.name.lastName(),
-    //       learningStyleDimensions: learningStyleDimensions,
-    //       user: newUser._id
-    //     });
-    //   }
-    // }
   } catch(err){
       console.error(err.message)
   } 
@@ -256,14 +230,13 @@ async function generateFakeInterview() {
   try{
 
     interviews.forEach(async (interview)  => {
-      let feedbacks = await db.feedback.insertMany(interview.feedbacks);
       let questions = await db.question.insertMany(interview.questions);
 
       await db.interview.create({
         title: interview.title,
         lesson: interview.lesson,
         questions: questions,
-        feedbacks: feedbacks
+        feedback: interview.feedback
       })
 
     })

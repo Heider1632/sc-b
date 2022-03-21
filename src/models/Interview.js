@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const InterviewSchema = new mongoose.Schema({
-    title: String,
     lesson: {
         type: mongoose.Schema.ObjectId,
         ref: "Lesson"
@@ -10,11 +9,7 @@ const InterviewSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "Question"
     }],
-    feedbacks: [{
-        type: mongoose.Schema.ObjectId,
-        ref: "Feedback" 
-    }]
-    
+    feedback: String
 }, { timestamp: true });
   
 

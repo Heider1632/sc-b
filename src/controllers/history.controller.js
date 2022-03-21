@@ -20,8 +20,6 @@ exports.one = async (req, res) => {
 
 exports.all = async (req, res) => {
 
-    console.log(req.query);
-
     const histories = await db.historyLesson.find({
         student: new mongoose.Types.ObjectId(req.query.student),
         course: new mongoose.Types.ObjectId(req.query.course),
@@ -62,8 +60,6 @@ exports.update = (req, res) => {
         if(err){
             res.status(500).send({ messsage: err });
         }
-
-        console.log(history);
 
         res.send(history);
     });

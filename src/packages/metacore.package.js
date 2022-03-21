@@ -133,6 +133,8 @@ class MetacorePackage  {
         if(selectedCase){
             console.log('caso seleccionado fue' + selectedCase);
             let plan = await cbrService.adapt(selectedCase);
+
+            console.log(plan);
             return plan;
         }
     }

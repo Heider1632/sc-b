@@ -22,7 +22,7 @@ const Resource = mongoose.model(
     date: { type: Date, default: Date.now },
     format: {
       type: String,
-      enum: ["image", "video", "document", "url"]
+      enum: ["image", "video", "document", "url", "embed"]
     },
     size: String,
     location: {

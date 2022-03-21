@@ -7,6 +7,11 @@ const QuestionSchema = new mongoose.Schema({
         {
             label: { type: String },
         }
+    ],
+    feedbacks: [
+        {
+            name: { type: String },
+        }
     ]
 }, { timestamp: true });
   

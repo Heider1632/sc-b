@@ -1,42 +1,34 @@
 [
     {
-        "learningTheory" : "619293cbcdffb6215409df4b",
-        "pedagogicalTactic": "6192946261331e2674b7dac0",
+        "learningTheory" : "6237e43d4624181ba8af7c8b",
+        "pedagogicalTactic": "6237e4487c9b49311405e1b2",
         "learningStyleDimensions": [
-            "6192936107448c473c1d779b",
-            "6192936107448c473c1d779b"
+            "6237e428e194c73e84815a10",
+            "6237e428e194c73e84815a14"
         ]
     },
     {
-        "learningTheory" : "619293cbcdffb6215409df4b",
-        "pedagogicalTactic": "6192946261331e2674b7dabe",
+        "learningTheory" : "6237e43d4624181ba8af7c8b",
+        "pedagogicalTactic": "6237e4487c9b49311405e1a8",
         "learningStyleDimensions": [
-            "6192936107448c473c1d779c",
-            "6192936107448c473c1d779f"
+            "6237e428e194c73e84815a14",
+            "6237e428e194c73e84815a15"
         ]
     },
     {
-        "learningTheory" : "619293cbcdffb6215409df4b",
-        "pedagogicalTactic": "6192946261331e2674b7dabe",
+        "learningTheory" : "6237e43d4624181ba8af7c8b",
+        "pedagogicalTactic": "6237e4487c9b49311405e1a8",
         "learningStyleDimensions": [
-            "6192936107448c473c1d77a1",
-            "6192936107448c473c1d779b"
+            "6237e428e194c73e84815a13",
+            "6237e428e194c73e84815a15"
         ]
     },
     {
-        "learningTheory" : "619293cbcdffb6215409df4b",
-        "pedagogicalTactic": "6192946261331e2674b7dabd",
+        "learningTheory" : "6237e43d4624181ba8af7c8b",
+        "pedagogicalTactic": "6237e4487c9b49311405e1b3",
         "learningStyleDimensions": [
-            "6192936107448c473c1d77a2",
-            "6192936107448c473c1d779d"
-        ]
-    },
-    {
-        "learningTheory" : "619293cbcdffb6215409df4b",
-        "pedagogicalTactic": "6192946261331e2674b7dabc",
-        "learningStyleDimensions": [
-            "6192936107448c473c1d779c",
-            "6192936107448c473c1d779f"
+            "6237e428e194c73e84815a17",
+            "6237e428e194c73e84815a12"
         ]
     }
 ]

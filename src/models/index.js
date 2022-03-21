@@ -23,7 +23,6 @@ db.pedagogicalTactic = require("./PedagogicalTactic");
 db.learningTheory = require("./LearningTheory");
 db.pedagogicalStrategy = require("./PedagogicalStrategy");
 
-db.feedback = require("./Feedback");
 db.question = require("./Question");
 db.interview = require("./Interview");
 
