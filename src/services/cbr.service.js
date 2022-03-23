@@ -436,8 +436,6 @@ class CbrService {
             
             let pedagogicalStrategy = pedagogicalStrategies[index];
 
-            console.log(pedagogicalStrategy);
-
             if (pedagogicalStrategy) {
 
               var foundR = false;
@@ -534,6 +532,8 @@ class CbrService {
                   pedagogicalStrategy: pedagogicalStrategy._id,
                   structure: selectedStructure._id,
                 });
+
+                console.log(resource);
               }
 
               if (resource) {

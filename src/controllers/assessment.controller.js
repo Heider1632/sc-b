@@ -8,7 +8,7 @@ exports.all = async (req, res) => {
 
 exports.one = async (req, res) => {
 
-    const assessment = await db.interview.findOne({ lesson: req.query.lesson }).populate('questions').populate('feedbacks');
+    const assessment = await db.interview.findOne({ lesson: req.query.lesson }).populate('questions');
 
     if(!assessment){
         res.status(500).send({ message: "Assessment not found" });
