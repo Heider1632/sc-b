@@ -1,5 +1,5 @@
 const { authJwt } = require("../middlewares");
-const ResourceController = require("../controllers/Resource.controller");
+const ResourceController = require("../controllers/resource.controller");
 
 module.exports = function(app) {
     app.use(function(req, res, next) {
