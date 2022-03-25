@@ -149,7 +149,7 @@ class CbrService {
       dataset.push([c.euclideanWeight, c.results.uses]);
     });
 
-    let response = await axios.post("http://localhost:5000/api/knn", {
+    let response = await axios.post("https://stip.proyectosifilisgestasionaria.com/api/knn", {
       query: 10000,
       dataset: dataset,
     });
