@@ -50,7 +50,7 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    db.progress.findOneAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
+    db.progress.findOneAndUpdate({ lesson: req.body.id }, { $set: { ...req.body }})
     .exec((err, lesson) => {
         if(err){
             res.status(500).send({ messsage: err });

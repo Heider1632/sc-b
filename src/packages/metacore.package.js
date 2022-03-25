@@ -101,22 +101,12 @@ class MetacorePackage  {
             let plan = await cbrService.adapt(caseSelected);
             return plan;
         }
-
     }
 
     //call planner
     async getPlan(id_student, id_course, id_lesson, structure, resources, c){
         let selectedCase;
         let cbrService = new CbrService(this);
-        // let selectedPerformance = await cbrService.performance(id_student);
-
-        //marcar los casos si son exitosos
-        // if(selectedPerformance.length > 0) {
-        //     console.log("se encontro un caso del estudiante")
-        //     selectedCase = await cbrService.recovery(selectedPerformance);
-        // } else {
-           
-        // }
 
         let coincident = await cbrService.coincident(id_student, id_course, id_lesson, structure);
 
@@ -173,7 +163,8 @@ class MetacorePackage  {
 
     }
 
-    async updateCase(id_case,  resources){
+    async updateCase(id_case, resources){
+
         const caseUser = await db.case.findByIdAndUpdate(id_case, {
             $set: { "solution.resources" : resources }
         });

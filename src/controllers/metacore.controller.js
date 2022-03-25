@@ -80,6 +80,8 @@ exports.history = async (req, res) => {
     let was = req.body.was;
     let note = req.body.note;
 
-    return await metacore.history(id_case, id_student, was, note);
+    await metacore.history(id_case, id_student, was, note);
+
+    res.send({ message : 'History created' });
 }
 
