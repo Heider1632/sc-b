@@ -55,11 +55,11 @@ const testFelderSilverman = JSON.parse(fs.readFileSync(__dirname + '/data/test.j
 
 async function generateUser(){
   try {
-    // let user = await db.user.create({
-    //   email: "prueba@gmail.com",
-    //   password: bcrypt.hashSync("Shinobu2021@", 8),
-    //   roles: [ new mongoose.Types.ObjectId("618b24d0c6d2d91fc8b19972") ]
-    // })
+    let user = await db.user.create({
+      email: "prueba@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      roles: [ new mongoose.Types.ObjectId("623ab75682f3734093c578b0") ]
+    })
 
     // let laura = await db.user.create({
     //   email: "lauramarquez@gmail.com",
