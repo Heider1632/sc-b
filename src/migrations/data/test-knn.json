@@ -1,132 +1,122 @@
 [
     {
-        "email" : "juan@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Juan",
-        "lastname" : "Perez",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user1@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "1",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "maria@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Maria",
-        "lastname" : "Peña",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user2@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "2",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "carlos@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Carlos",
-        "lastname" : "Barrios",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user3@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "3",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "jose@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Jose",
-        "lastname" : "Otelo",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user4@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "4",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "juana@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Juana",
-        "lastname" : "Ensuncho",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user5@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "5",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "katerine@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Katerine",
-        "lastname" : "Estrada",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user6@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "6",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "andrea@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Andrea",
-        "lastname" : "Morata",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user7@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "7",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "andres@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Andres",
-        "lastname" : "Escobar",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user8@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "8",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "rafael@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Rafael",
-        "lastname" : "Vergara",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user9@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "9",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     },
     {
-        "email" : "lidia@gmail.com",
-        "password" : "12345667890",
-        "roles" : ["623784a3b9443732701c9f5b"],
-        "name" : "Lidia",
-        "lastname" : "Cabrales",
-        "course": [ "6237e4724ba5d81ba8cde875" ],
-        "learningStyleDimensions": [
-            "6237e428e194c73e84815a13",
-            "6237e428e194c73e84815a10",
-            "6237e428e194c73e84815a14"
-        ]
+        "email" : "user10@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "10",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
+    },
+    {
+        "email" : "user11@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "11",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
+    },
+    {
+        "email" : "user12@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "12",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
+    },
+    {
+        "email" : "user13@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "13",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
+    },
+    {
+        "email" : "user14@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "14",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
+    },
+    {
+        "email" : "user15@gmail.com",
+        "password" : "12345",
+        "roles" : ["623ab75682f3734093c578af"],
+        "name" : "User",
+        "lastname" : "15",
+        "course": [ "6237e4724ba5d81ba8cde875" ]
     }
 ]
