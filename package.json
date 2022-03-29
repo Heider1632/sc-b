@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prod" : "NODE_ENV=production node index.js",
     "start": "nodemon index.js",
     "user": "node ./src/migrations/load-data.js --user",
     "learning": "node ./src/migrations/load-data.js --learning",

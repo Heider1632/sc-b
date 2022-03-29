@@ -115,7 +115,8 @@ async function generateFakeLessons(){
         course: courseSaved[0]._id,
         order: lesson.order,
         learningStyleDimensions: learningStyleDimensions,
-        structure: lessonStructurePromises
+        structure: lessonStructurePromises,
+        hasObjectiveLesson: lesson.hasObjectiveLesson
       });
     })
 

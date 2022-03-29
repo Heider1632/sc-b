@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 var corsOptions = {
-  origin: "https://proyectosifilisgestasionaria.com"
+  origin: "*"
 };
 
 app.use(cors(corsOptions));

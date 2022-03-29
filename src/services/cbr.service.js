@@ -140,16 +140,19 @@ class CbrService {
 
     let dataset = [];
 
-    // const results = Object.values(cases.reduce((r, o) => {
-    //     r[o.results.success] = (r[o.results] && r[o.results.success].value > o.results.success) ? r[o.results.success] : o
-    //     return r
-    // }, {}))
-
     cases.map((c) => {
       dataset.push([c.euclideanWeight, c.results.uses]);
     });
 
-    let response = await axios.post("https://stip.proyectosifilisgestasionaria.com/api/knn", {
+    if (process.env.NODE_ENV === "development") {
+      var url = "http://localhost:5000/api/knn"
+    }
+    
+    if (process.env.NODE_ENV === "production") {
+     var url = "https://stip.proyectosifilisgestasionaria.com/api/knn"
+    }
+
+    let response = await axios.post("", {
       query: 10000,
       dataset: dataset,
     });
