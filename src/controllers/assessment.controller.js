@@ -6,10 +6,45 @@ exports.all = async (req, res) => {
     res.send(assessments);
 }
 
+exports.student = async (req, res) => {
+    const assessments = await db.trace.find({
+        student: new mongoose.Types.ObjectId(req.query.student),
+        course: new mongoose.Types.ObjectId(req.query.course),
+        lesson: new mongoose.Types.ObjectId(req.query.lesson),
+    });
+
+    if(!assessments){
+        res.status(404).send({ message: "Assessment not found" });
+    } else {
+        res.send(assessments);
+    }
+}
+
+function checkNotRepeat(questions, current) {
+    let isValid = questions.find((q) => q.name == current.name);
+    return isValid.length > 0;
+}
+
+function getRandom(NUMBERS_LENGTH) {
+    return Math.floor(Math.random() * NUMBERS_LENGTH);
+}
+
 exports.one = async (req, res) => {
 
-    const assessment = await db.interview.findOne({ lesson: req.query.lesson }).populate('questions');
+    var assessment = await db.interview.findOne({ lesson: req.query.lesson }).populate('questions')
 
+    var questions = [];
+
+    while (questions.length < 5) {
+        const randomIndex = getRandom(assessment.questions.length);
+
+        if (!checkNotRepeat(assessment.questions, assessment.questions[randomIndex])) {
+            questions.push(assessment.questions[randomIndex]);
+        }
+    }
+
+    assessment.questions = questions;
+    
     if(!assessment){
         res.status(500).send({ message: "Assessment not found" });
     } else {

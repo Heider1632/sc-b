@@ -144,15 +144,19 @@ class CbrService {
       dataset.push([c.euclideanWeight, c.results.uses]);
     });
 
+    var url = '';
+
     if (process.env.NODE_ENV === "development") {
-      var url = "http://localhost:5000/api/knn"
+      url = "http://localhost:5000/api/knn"
     }
     
     if (process.env.NODE_ENV === "production") {
-     var url = "https://stip.proyectosifilisgestasionaria.com/api/knn"
+     url = "https://stip.proyectosifilisgestasionaria.com/api/knn"
     }
 
-    let response = await axios.post("", {
+    console.log(url);
+
+    let response = await axios.post(url, {
       query: 10000,
       dataset: dataset,
     });
@@ -408,44 +412,31 @@ class CbrService {
 
               if (traces.length >= 3) {
 
-                let _ids = [];
-                traces.map(async (trace) => {
-
+                let assessments_academics = traces.map((trace) => {
                   if (trace.assessments[index]) {
-
-                    if (
-                      trace.assessments[index].like > 3 &&
-                      trace.assessments[index].time_use >=
-                        trace.resources[index].estimatedTime
-                    ) {
-
-                      let sr = await db.resource.findById(
-                        trace.resources[index]._id
-                      );
-                      foundR = true;
-                      resource = { resource: sr, rating: 0, time_use: 0 };
-                    } else {
-                      foundR = false;
-                      if (trace.resources[index]) {
-                        _ids.push(trace.resources[index]._id);
-                      }
-                    }
-                  } else {
-                    if (trace.resources[index]) {
-                      _ids.push(trace.resources[index]._id);
-                    }
+                    return trace.assessments[index]
                   }
                 });
 
-                if (foundR == false) {
+                let resources_academics = traces.map((trace) => {
+                  if (trace.resources[index]) {
+                    return trace.resources[index]
+                  }
+                });
 
-                  resource = await db.resource.findOne({
-                    _id: { $nin: _ids },
-                    pedagogicalStrategy: pedagogicalStrategy._id,
-                    structure: selectedStructure._id,
-                  });
+                assessments_academics = assessments_academics.filter((a_a) => a_a);
+                resources_academics = resources_academics.filter((r_a) => r_a);
 
-                }
+                let ra = assessments_academics.reduce((prev, current) => 
+                  (prev.like > current.like) ? prev : current 
+                )
+
+                let indexF = assessments_academics.indexOf(ra);
+
+                resource = await db.resource.findOne({
+                  _id: resources_academics[indexF]
+                });
+
               } else {
 
                 let _ids = [];
@@ -473,7 +464,6 @@ class CbrService {
                       console.log('anexo un recurso visto al arreglo');
                       
                       if (trace.resources[index]) {
-                        console.log('paso a anexa el recurso');
                         _ids.push(trace.resources[index]._id);
                       }
                     }
@@ -483,9 +473,6 @@ class CbrService {
                     }
                   }
                 });
-
-                console.log('----ids-----');
-                console.log(_ids);
 
                 if (foundR == false) {
 
@@ -567,7 +554,6 @@ class CbrService {
   }
 
   async storage(c, profile, trace) {
-    //call metacore services save case, profile, trace student
     this.metacoreInstance.setProfile(profile);
     this.metacoreInstance.setTrace(trace);
     this.metacoreInstance.setCases(c);

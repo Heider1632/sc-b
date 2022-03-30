@@ -12,6 +12,7 @@ module.exports = function(app) {
 
     app.get("/api/assessment/all", [authJwt.verifyToken], AssessmentController.all);
     app.get("/api/assessment/one", [authJwt.verifyToken], AssessmentController.one);
+    app.get("/api/assessment/student", [authJwt.verifyToken], AssessmentController.student);
 
     app.post("/api/assessment/create", [authJwt.verifyToken, authJwt.isAdmin, authJwt.isModerator], AssessmentController.create);
     app.post("/api/assessment/update", [authJwt.verifyToken, authJwt.isAdmin, authJwt.isModerator], AssessmentController.update);
