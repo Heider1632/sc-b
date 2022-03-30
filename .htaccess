@@ -1,9 +1,18 @@
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /sti-f/dist/
-RewriteRule ^sti-f/dist/index\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} ^/sti-f/dist/. [NC]
-RewriteRule . /sti-f/dist/index.html [L]
+    RewriteEngine On
+    RewriteBase /sti-f/dist/
+    RewriteRule ^sti-f/dist/index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} ^/sti-f/dist/. [NC]
+    RewriteRule . /sti-f/dist/index.html [L]
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
 </IfModule>
