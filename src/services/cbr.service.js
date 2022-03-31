@@ -426,16 +426,21 @@ class CbrService {
 
                 assessments_academics = assessments_academics.filter((a_a) => a_a);
                 resources_academics = resources_academics.filter((r_a) => r_a);
+                
+                if(assessments_academics.length > 0){
 
-                let ra = assessments_academics.reduce((prev, current) => 
-                  (prev.like > current.like) ? prev : current 
-                )
+                  let ra = assessments_academics.reduce((prev, current) => 
+                    (prev.like > current.like) ? prev : current 
+                  )
 
-                let indexF = assessments_academics.indexOf(ra);
+                  let indexF = assessments_academics.indexOf(ra);
 
-                resource = await db.resource.findOne({
-                  _id: resources_academics[indexF]
-                });
+                  resource = await db.resource.findOne({
+                    _id: resources_academics[indexF]
+                  });
+                } 
+
+                
 
               } else {
 
