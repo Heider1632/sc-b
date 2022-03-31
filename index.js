@@ -4,8 +4,19 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+
+var o = null;
+
+if (process.env.NODE_ENV === "development") {
+  o = "http://localhost:8080"
+}
+
+if (process.env.NODE_ENV === "production") {
+ o = "https://proyectosifilisgestasionaria.com"
+}
+
 var corsOptions = {
-  origin: "*"
+  origin: o
 };
 
 app.use(cors(corsOptions));
