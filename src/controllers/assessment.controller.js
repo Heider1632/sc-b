@@ -1,5 +1,6 @@
 const db = require("../models");
 const mongoose = require('mongoose');
+const _ = require("lodash");
 
 exports.all = async (req, res) => {
     const interviews = await db.interview.find();
@@ -21,29 +22,20 @@ exports.student = async (req, res) => {
 }
 
 function checkNotRepeat(questions, current) {
-    let isValid = questions.find((q) => q.name == current.name);
-    return isValid.length > 0;
-}
-
-function getRandom(NUMBERS_LENGTH) {
-    return Math.floor(Math.random() * NUMBERS_LENGTH);
+    let isValid = questions.indexOf(current);
+    return isValid !== -1;
 }
 
 exports.one = async (req, res) => {
 
     var assessment = await db.interview.findOne({ lesson: req.query.lesson }).populate('questions')
+    assessment.questions = _.shuffle(assessment.questions);
 
-    var questions = [];
-
-    while (questions.length < 5) {
-        const randomIndex = getRandom(assessment.questions.length);
-
-        if (!checkNotRepeat(assessment.questions, assessment.questions[randomIndex])) {
-            questions.push(assessment.questions[randomIndex]);
+    assessment.questions = assessment.questions.filter((q, index) => {
+        if(index < 5){
+            return q;
         }
-    }
-
-    assessment.questions = questions;
+    })
     
     if(!assessment){
         res.status(500).send({ message: "Assessment not found" });

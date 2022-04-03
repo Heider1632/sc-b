@@ -30,7 +30,6 @@ class CbrService {
     let student = await db.student.findById(id_student);
 
     if (student.learningStyleDimensions.length === 0) {
-      console.log('no tiene estilo de aprendizaje');
       return [];
     }
 
@@ -229,7 +228,6 @@ class CbrService {
             c.solution.resources[index].time_use >
                 traces[traces.length - 1].resources[index].estimatedTime
           ) {
-            console.log('selecciono el recurso del caso');
             return {
               resource: c.solution.resources[index].resource,
               time_use: 0,
@@ -367,8 +365,6 @@ class CbrService {
         return { id_case: c._id, plan: plan };
       });
     } else {
-
-      console.log('paso a seleccionar recursos para un caso nuevo');
       return Promise.all(
         c.context.structure.map(async (l, index) => {
 
@@ -452,8 +448,6 @@ class CbrService {
                         trace.resources[index].estimatedTime
                     ) {
 
-                      console.log('encontro un recurso ideal');
-
                       let sr = await db.resource.findById(
                         trace.resources[index]._id
                       );
@@ -461,8 +455,6 @@ class CbrService {
                       resource = { resource: sr, rating: 0, time_use: 0 };
                     } else {
                       foundR = false;
-
-                      console.log('anexo un recurso visto al arreglo');
                       
                       if (trace.resources[index]) {
                         _ids.push(trace.resources[index]._id);

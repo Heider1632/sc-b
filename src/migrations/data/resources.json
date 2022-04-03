@@ -1,8 +1,8 @@
 [
     {
         "description": "R1_E1_L4_Intro",
-        "format": "video",
-        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "format": "embed",
+        "url": "<iframe width='560' height='315' src='https://www.youtube.com/embed/9nFXywMurjs' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
         "pedagogicalStrategy": "623e2cc482ea932972419601",
         "structure": "623e2ca8bee89b2930c68443",
         "estimatedTime" : 60
@@ -25,8 +25,8 @@
     },
     {
         "description": "R1_E2_L4_Intro",
-        "format": "video",
-        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "format": "embed",
+        "url": "<iframe width='560' height='315' src='https://www.youtube.com/embed/wOQaIJCphXM' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
         "pedagogicalStrategy": "623e2cc482ea932972419602",
         "structure": "623e2ca8bee89b2930c68443",
         "estimatedTime" : 60
@@ -97,8 +97,8 @@
     },
     {
         "description": "R1_E1_L4_Def",
-        "format": "video",
-        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "format": "embed",
+        "url": "<iframe width='560' height='315' src='https://www.youtube.com/embed/hzn-BOBGqyg' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
         "pedagogicalStrategy": "623e2cc482ea932972419601",
         "structure": "623e2ca8bee89b2930c68444",
         "estimatedTime" : 60
@@ -121,16 +121,16 @@
     },
     {
         "description": "R1_E2_L4_Def",
-        "format": "video",
-        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=",
+        "format": "embed",
+        "url": "<iframe width='560' height='315' src='https://www.youtube.com/embed/o695KHxgFgQ' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
         "pedagogicalStrategy": "623e2cc482ea932972419602",
         "structure": "623e2ca8bee89b2930c68444",
         "estimatedTime" : 60
     },
     {
         "description": "R2_E2_L4_Def",
-        "format": "video",
-        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=",
+        "format": "embed",
+        "url": "<iframe src='https://anchor.fm/proyecto-sifilis-enfermeria-universidad-de-cordoba/embed/episodes/Podcast-Tratamiento-de-la-sfilis-gestacional-y-prevencin-de-la-sfilis-congnita---Unidad-4-STI---Descripcin-e1f8gg1/a-a7hn1bn' height='102px' width='400px' frameborder='0' scrolling='no'></iframe>",
         "pedagogicalStrategy": "623e2cc482ea932972419602",
         "structure": "623e2ca8bee89b2930c68444",
         "estimatedTime" : 60
@@ -465,8 +465,8 @@
     },
     {
         "description": "R2_E4_L4_Act",
-        "format": "video",
-        "url": "https://www.youtube.com/watch?v=tIjN5swZXCA&list=RDMM&index=2",
+        "format": "embed",
+        "url": "<div style='width: 100%;'><div style='position: relative; padding-bottom: 56.25%; padding-top: 0; height: 0;'><iframe frameborder='0' width='1200' height='675' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' src='https://view.genial.ly/622eadf07b610c0018d94023' type='text/html' allowscriptaccess='always' allowfullscreen='true' scrolling='yes' allownetworking='all'></iframe> </div> </div>",
         "pedagogicalStrategy": "623e2cc482ea932972419604",
         "structure": "623e2ca8bee89b2930c68447",
         "estimatedTime" : 60
