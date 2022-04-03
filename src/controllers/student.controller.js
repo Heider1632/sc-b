@@ -18,6 +18,21 @@ exports.one = async (req, res) => {
     }
 }
 
+exports.attempts = async (req, res) => {
+
+    console.log(req.query);
+    
+    const attempts = await db.trace.countDocuments({ 
+        student: new mongoose.Types.ObjectId(req.query.student), 
+        course: new mongoose.Types.ObjectId(req.query.course), 
+        lesson: new mongoose.Types.ObjectId(req.query.lesson)
+    });
+
+    console.log(attempts);
+
+    res.status(200).send({ count: attempts });
+}
+
 exports.course = async (req, res) => {
     const students = await db.student.find({ course: new mongoose.Types.ObjectId(req.query.course) })
     res.send(students);

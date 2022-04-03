@@ -15,8 +15,6 @@ class MetacorePackage  {
         return instance || new MetacorePackage();
     }
 
-
-
     // BasicElement
     getTrace(id_student, id_course){
         db.trace.find({ id_student: id_student, id_course: id_course }).exec( (res, data ) => {
@@ -113,18 +111,13 @@ class MetacorePackage  {
         if(c != null){
             selectedCase = c;
         } else if(coincident.length > 0){
-            console.log('seleccion un caso paso a recuperarlo');
             selectedCase = await cbrService.recovery(coincident);
         } else {
-            console.log('creo un caso nuevo caso');
             selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure, resources);
         }
 
         if(selectedCase){
-            console.log('caso seleccionado fue' + selectedCase);
             let plan = await cbrService.adapt(selectedCase);
-
-            console.log(plan);
             return plan;
         }
     }
@@ -180,7 +173,6 @@ class MetacorePackage  {
             note: note
         });
     }
-
 
 }
 

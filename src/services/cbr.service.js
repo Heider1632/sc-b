@@ -154,8 +154,6 @@ class CbrService {
      url = "https://stip.proyectosifilisgestasionaria.com/api/knn"
     }
 
-    console.log(url);
-
     let response = await axios.post(url, {
       query: 10000,
       dataset: dataset,
@@ -218,8 +216,6 @@ class CbrService {
     let traces = await db.trace
       .find({ student: c.context.id_student, lesson: selectedLesson._id })
       .populate("resources", 'estimatedTime');
-
-    console.log(traces);
 
     if (c.solution.resources && c.solution.resources.length > 0) {
 

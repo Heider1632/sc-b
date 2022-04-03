@@ -13,6 +13,7 @@ module.exports = function(app) {
     app.get("/api/student/all", [authJwt.verifyToken], StudentController.all);
     app.get("/api/student/one", [authJwt.verifyToken], StudentController.one);
     app.get("/api/student/course", [authJwt.verifyToken, authJwt.isModerator], StudentController.course);
+    app.get("/api/student/attempts", [authJwt.verifyToken], StudentController.attempts);
 
     app.post("/api/student/create", [authJwt.verifyToken, authJwt.isAdmin, authJwt.isModerator], StudentController.create);
     app.post("api/student/update", [authJwt.verifyToken, authJwt.isAdmin, authJwt.isModerator], StudentController.update);

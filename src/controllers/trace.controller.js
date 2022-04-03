@@ -20,7 +20,7 @@ exports.one = async (req, res) => {
 exports.create = (req, res) => {
     const trace = new db.trace({
         student: req.body.student,
-        course: req.body.student,
+        course: req.body.course,
         lesson: req.body.lesson,
         resources: req.body.resources,
         assessments: req.body.assessments,
