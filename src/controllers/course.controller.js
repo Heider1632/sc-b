@@ -42,8 +42,6 @@ exports.teacher = async (req, res) => {
         }
     }).select('_id name lessons');
 
-    console.log(courses);
-
     if(!courses){
         res.status(500).send({ message: "Course not found" });
     } else {

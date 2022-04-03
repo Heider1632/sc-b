@@ -12,7 +12,6 @@ exports.update = async (req, res) => {
 
         let promises = req.body.learningStyle.map(async (ls, index) => {
             let lsd = await db.learningStyleDimension.findOne({ name: ls });
-            console.log(lsd);
             return lsd.id;
         });
 
@@ -24,7 +23,6 @@ exports.update = async (req, res) => {
             res.status(200).send({ message: "Información actualizada" });
         })
         .catch(e => {
-            console.log(e.message);
             res.status(400).send({ message: "error" });
         })
     

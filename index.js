@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-
 var o = null;
 
 if (process.env.NODE_ENV === "development") {
@@ -16,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 var corsOptions = {
-  origin: o
+  origin: "*"
 };
 
 app.use(cors(corsOptions));
