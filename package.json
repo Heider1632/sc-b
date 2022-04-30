@@ -20,7 +20,9 @@
     "resources": "node ./src/migrations/load-fake-data.js --resources",
     "cases": "node ./src/migrations/load-fake-data.js --cases",
     "pedagogicalstrategies": "node ./src/migrations/load-fake-data.js --pedagogicalstrategies",
-    "interview": "node ./src/migrations/load-fake-data.js --interview"
+    "interview": "node ./src/migrations/load-fake-data.js --interview",
+    "kc": "node ./src/migrations/load-data.js --kc",
+    "syncquestions": "node ./src/migrations/load-data.js --syncquestions"
   },
   "keywords": [],
   "author": "",

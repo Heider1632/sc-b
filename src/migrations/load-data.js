@@ -202,6 +202,80 @@ async function generateTest(){
     process.exit();
   }
 }
+
+async function generateKnowledgeComponent(){
+  try {
+
+    Promise.all(_kc.map(async kc => {
+      let kcDoc = await db.knowledgeComponent.create({
+        name: kc.name,
+      })
+      
+      if(kc.lesson == "1"){
+        await db.lesson.findOneAndUpdate({ order: 1 }, { $push: { knowledgeComponent: kcDoc._id } })
+        .exec((err, res) => { if(err) throw err })
+      } else if(kc.lesson == "2"){
+        await db.lesson.findOneAndUpdate({ order: 2 }, { $push: { knowledgeComponent: kcDoc._id } })
+        .exec((err, res) => { if(err) throw err })
+      } else if(kc.lesson == "3"){
+        await db.lesson.findOneAndUpdate({ order: 3 }, { $push: { knowledgeComponent: kcDoc._id } })
+        .exec((err, res) => { if(err) throw err })
+      } else if(kc.lesson == "4"){
+        await db.lesson.findOneAndUpdate({ order: 4 }, { $push: { knowledgeComponent: kcDoc._id } })
+        .exec((err, res) => { if(err) throw err })
+      }
+    })).then( (_) => {
+      console.log("done");
+      process.exit();
+    });
+
+
+  } catch(error){
+    console.error(erros.message);
+    process.exit();
+  }
+}
+
+async function syncQuestions(){
+  try {
+
+    // let questions = await db.question.find({});
+    let _kc = await db.knowledgeComponent.find({});
+
+    interviews.forEach(i => {
+      i.questions.forEach(async q => {
+
+        let _id = null;
+
+        if(q.knowledgeComponent == "KC1"){
+          _id =  _kc[0]._id;
+        } else if(q.knowledgeComponent == "KC2"){
+          _id = _kc[1]._id;
+        } else if(q.knowledgeComponent == "KC3"){
+          _id = _kc[2]._id;
+        } else if(q.knowledgeComponent == "KC4"){
+          _id = _kc[3]._id;
+        } else if(q.knowledgeComponent == "KC5"){
+          _id = _kc[4]._id;
+        } else if(q.knowledgeComponent == "KC6"){
+          _id = _kc[5]._id;
+        } else if(q.knowledgeComponent == "KC7"){
+          _id = _kc[6]._id;
+        } else if(q.knowledgeComponent == "KC8"){
+          _id = _kc[7]._id;
+        }
+
+        await db.question.findOneAndUpdate({ name: q.name }, { $set: { knowledgeComponent : _id } });
+      })
+    })
+     
+  } catch(error){
+    console.error(error.message);
+    process.exit();
+  }
+}
+
+
 if (process.argv.includes('--user')){
   generateUser();
 } else if (process.argv.includes('--learning')) {
@@ -214,5 +288,9 @@ if (process.argv.includes('--user')){
   generatePedagogicalTactics();
 } else if(process.argv.includes('--test')){
   generateTest()
-}
+} else if(process.argv.includes('--kc')){
+  generateKnowledgeComponent()
+} else if(process.argv.includes('--syncquestions')){
+  syncQuestions()
+} 
   
