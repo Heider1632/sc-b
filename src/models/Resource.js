@@ -53,6 +53,10 @@ const Resource = mongoose.model(
     structure: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Structure"
+    },
+    key: {
+      type: Number,
+      default: 0
     }
   })
 );

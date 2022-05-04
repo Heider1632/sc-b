@@ -21,21 +21,24 @@ exports.student = async (req, res) => {
     }
 }
 
-function checkNotRepeat(questions, current) {
-    let isValid = questions.indexOf(current);
-    return isValid !== -1;
-}
-
 exports.one = async (req, res) => {
 
     var assessment = await db.interview.findOne({ lesson: req.query.lesson }).populate('questions')
-    assessment.questions = _.shuffle(assessment.questions);
+    var grouped = _.groupBy(assessment.questions, 'knowledgeComponent');
 
-    assessment.questions = assessment.questions.filter((q, index) => {
-        if(index < 5){
-            return q;
-        }
-    })
+    let _q = Object.keys(grouped).map(function(key) {
+
+        let _s = _.shuffle(grouped[key]);
+
+        return _s.filter((q, index) => {
+            if(index < 3){
+                return q;
+            }
+        })
+        
+    });
+   
+    assessment.questions = [..._q[0],..._q[1]];
     
     if(!assessment){
         res.status(500).send({ message: "Assessment not found" });

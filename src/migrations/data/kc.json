@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Identifica signos y síntomas de la sífilis",
+        "lesson": "1",
+        "prefix": "KC1"
+    },
+    {
+        "name": "Reconoce hechos históricos acerca de la sífilis",
+        "lesson": "1",
+        "prefix": "KC2"
+    },
+    {
+        "name": "Diferencia entre la normatividad en salud internacional y los programas nacionales vigentes en Colombia para la atención a pacientes con sífilis gestacional.",
+        "lesson": "2",
+        "prefix": "KC3"
+    },
+    {
+        "name": "Selecciona acciones que permiten el desarrollo de la promoción de la salud y la gestión del riesgo en el área de salud pública en determinados contextos y poblaciones.",
+        "lesson": "2",
+        "prefix": "KC4"
+    },
+    {
+        "name": "Reconoce los aspectos que involucran la vigilancia epidemiológica de la sífilis gestacional probables y confirmados de la sífilis gestacional.",
+        "lesson": "3",
+        "prefix": "KC5"
+    },
+    {
+        "name": "Analiza las características de los casos sospechosos, nuevos, probables y confirmados de la sífilis gestacional.",
+        "lesson": "3",
+        "prefix": "KC6"
+    },
+    {
+        "name": "Resuelve casos de tratamiento de sífilis gestacional de acuerdo a los esquemas terapéuticos para el tratamiento de la enfermedad.",
+        "lesson": "4",
+        "prefix": "KC7"
+    },
+    {
+        "name": "Reconoce las características específicas de un paciente y el estado de la enfermedad para la implementación de tratamiento y cuidado del paciente.",
+        "lesson": "4",
+        "prefix": "KC8"
+    }
+]

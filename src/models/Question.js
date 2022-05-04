@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const QuestionSchema = new mongoose.Schema({
     name: String,
     response: String,
+    knowledgeComponent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "KnowledgeComponent"
+    },
     options: [
         {
             label: { type: String },
