@@ -52,6 +52,10 @@ let pedagogicalTactics = [
 ]
 
 const testFelderSilverman = JSON.parse(fs.readFileSync(__dirname + '/data/test.json', 'utf-8'));
+const _kc = JSON.parse(fs.readFileSync(__dirname + '/data/kc.json', 'utf-8'));
+const interviews = JSON.parse(fs.readFileSync(__dirname + '/data/interviews.json', 'utf-8'));
+
+const _resources = JSON.parse(fs.readFileSync(__dirname + '/data/depured.json', 'utf-8'));
 
 async function generateUser(){
   try {
@@ -231,7 +235,7 @@ async function generateKnowledgeComponent(){
 
 
   } catch(error){
-    console.error(erros.message);
+    console.error(error.message);
     process.exit();
   }
 }
@@ -275,6 +279,104 @@ async function syncQuestions(){
   }
 }
 
+async function syncResourcesByLesson(){
+  try {
+
+    new Promise(async (resolve, reject) => {
+
+      var i = 0;
+
+      Object.keys(_resources).map(async (key) => {
+
+        let order = parseInt(key);
+
+        console.log(order);
+
+        var lesson = await db.lesson.findOne({ order: order });
+
+        console.log(lesson);
+        var ps = await db.pedagogicalStrategy.find({});
+
+
+        _resources[key].map(async (r, index) => {
+
+          r.key = i + index;
+
+          let prefix = r.description.split('_')[3];
+          let _prefix = r.description.split('_')[0];
+
+          if(prefix == "Intro"){
+            r.structure = lesson.structure[0];
+            
+            if(_prefix == "R1"){
+              r.pedagogicalStrategy = ps[0]._id;
+            } else if(_prefix == "R2"){
+              r.pedagogicalStrategy = ps[1]._id;
+            } else if(_prefix == "R3"){
+              r.pedagogicalStrategy = ps[2]._id;
+            }
+
+          } else if(prefix == "Def"){
+            r.structure = lesson.structure[1];
+
+            if(_prefix == "R1"){
+              r.pedagogicalStrategy = ps[0]._id;
+            } else if(_prefix == "R2"){
+              r.pedagogicalStrategy = ps[1]._id;
+            } else if(_prefix == "R3"){
+              r.pedagogicalStrategy = ps[2]._id;
+            }
+          } else if(prefix == "Desc"){
+            r.structure = lesson.structure[2];
+
+            if(_prefix == "R1"){
+              r.pedagogicalStrategy = ps[0]._id;
+            } else if(_prefix == "R2"){
+              r.pedagogicalStrategy = ps[1]._id;
+            } else if(_prefix == "R3"){
+              r.pedagogicalStrategy = ps[2]._id;
+            }
+          } else if(prefix == "Act"){
+            r.structure = lesson.structure[3];
+
+            if(_prefix == "R1"){
+              r.pedagogicalStrategy = ps[0]._id;
+            } else if(_prefix == "R2"){
+              r.pedagogicalStrategy = ps[1]._id;
+            } else if(_prefix == "R3"){
+              r.pedagogicalStrategy = ps[2]._id;
+            }
+          } else if(prefix == "Ejem"){
+            r.structure = lesson.structure[4];
+
+            if(_prefix == "R1"){
+              r.pedagogicalStrategy = ps[0]._id;
+            } else if(_prefix == "R2"){
+              r.pedagogicalStrategy = ps[1]._id;
+            } else if(_prefix == "R3"){
+              r.pedagogicalStrategy = ps[2]._id;
+            }
+          }
+
+          await db.resource.create(r);
+
+
+        });
+      });
+
+      resolve(true);
+    })
+    .then(_ => {
+      // console.log("done");
+      // process.exit();
+    });
+
+  } catch(error){
+    console.error(erros.message);
+    process.exit();
+  }
+}
+
 
 if (process.argv.includes('--user')){
   generateUser();
@@ -292,5 +394,9 @@ if (process.argv.includes('--user')){
   generateKnowledgeComponent()
 } else if(process.argv.includes('--syncquestions')){
   syncQuestions()
-} 
+} else if(process.argv.includes('--syncresourcesbylesson')){
+  syncResourcesByLesson()
+} else if(process.argv.includes('--syncstudents')){
+  syncStudents()
+}
   

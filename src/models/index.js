@@ -28,6 +28,7 @@ db.interview = require("./Interview");
 
 //knowledge
 db.test = require("./Test");
+db.knowledgeComponent = require("./KnowledgeComponent");
 
 //METCACORE
 db.session = require("./Session");

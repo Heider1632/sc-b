@@ -5,6 +5,7 @@
             {
                 "name" : "Según Sheldon Morris, menciona que la sífilis es caracterizada por 3 estadios o fases clínicas sintomáticas secuenciales separados por períodos de infección asintomática latente. Las manifestaciones más frecuentes son las úlceras genitales, las lesiones cutáneas, la meningitis, la enfermedad aórtica y los síndromes neurológicos. Para su diagnóstico se realizan pruebas serológicas y estudios auxiliares seleccionados sobre la base del estadio de la enfermedad. Estos estadios son:",
                 "response": "Sífilis primaria, sífilis secundaria y sífilis terciaria",
+                "knowledgeComponent": "KC2",
                 "options": [
                     {
                         "label": "Sífilis primaria, sífilis secundaria y sífilis gestacional"
@@ -24,6 +25,7 @@
             {
                 "name" : "Este estadio de la sífilis se caracteriza por una erosión o exulceración en el lugar de inoculación (pene, vulva, vagina, cuello uterino, ano, boca). Se denomina “chancro” y es generalmente único, indoloro, con base endurecida, siendo rico en treponemas. Generalmente se acompaña de linfadenopatía local o regional. Esta etapa puede durar entre dos y ocho semanas y desaparecer de forma espontánea, independientemente del tratamiento. Este estadio recibe el nombre de:",
                 "response": "Sífilis primaria",
+                "knowledgeComponent": "KC1",
                 "options": [
                     {
                         "label": "Sífilis gestacional"
@@ -43,6 +45,7 @@
             {
                 "name" : "En la ciudad alemana de Nuremberg desde 1496 se les advertía a los habitantes los peligros de adquirir enfermedades venéreas como la sífilis y la gonorrea, puesto que eran muy comunes ciertas prácticas que los ponían en riesgo de adquirir la enfermedad ¿Cuál de las siguientes era una de esas prácticas?",
                 "response": "Tener relaciones sexuales con personas desconocidas",
+                "knowledgeComponent": "KC2",
                 "options": [
                     {
                         "label": "Entrar en contacto con sangre de animal infectado"
@@ -62,6 +65,7 @@
             {
                 "name" : "Para administrar penicilina benzatínica en tratamiento de la sífilis se establecieron algunos estadíos de clasificación para establecer las dosis a administrar y el tiempo de duración del tratamiento. Teniendo en cuenta lo anterior, ¿cuáles son estos estadíos de clasificación?",
                 "response": "Sífilis temprana, tardía y de duración desconocida",
+                "knowledgeComponent": "KC2",
                 "options": [
                     {
                         "label": "Sífilis primaria, secundaria y terciaria"
@@ -81,6 +85,7 @@
             {
                 "name" : "La Sífilis gestacional es una infección que ocurre cuando la madre con sífilis transmite la infección al fruto durante la gestación, ya sea por vía hematógeno-transparentaría o durante el parto por el contacto del neonato con lesiones en los genitales de la madre, por lo cual la bacteria que produce la sífilis afecta al bebé, este proceso se puede dar a partir de",
                 "response": "la novena semana de gestación",
+                "knowledgeComponent": "KC1",
                 "options": [
                     {
                         "label": "la tercera semana de gestación"
@@ -100,6 +105,7 @@
             {
                 "name" : "El 15 de septiembre de 1928 el científico bitanico Alexander Fleming anunció el descubrimiento de la penicilina, antibiótico que años más tarde se convertiría en uno de los más efectivos para tratar enfermedades infecciosas como la sífilis. Teniendo en cuenta lo anterior ¿En qué año se estableció que la penicilina era efectiva para el tratamiento de la sífilis?",
                 "response": "1943",
+                "knowledgeComponent": "KC2",
                 "options": [
                     {
                         "label": "1999"
@@ -119,6 +125,7 @@
             {
                 "name" : "La sífilis secundaria se presenta cuando la bacteria se disemina por todo el cuerpo desde el sitio original de la infección, es aquí donde comienzan a aparecer los síntomas, tales como: fiebre, malestar general, onicofagia, cefalea, dolores músculo-esqueléticos y pérdida de peso. partiendo de lo anterior. ¿En qué momento se presenta la sífilis secundaria?",
                 "response": "Entre 3-6 semana",
+                "knowledgeComponent": "KC1",
                 "options": [
                     {
                         "label": "Ente 9-10 semana"
@@ -138,6 +145,7 @@
             {
                 "name" : "Es una fase que se caracteriza por la afectación cardiovascular, del sistema nervioso central o del sistema músculo esquelético. Los aneurismas aórticos y la insuficiencia aórtica, son características de lesiones cardiovasculares, mientras que la paresia generalizada, la mielopatía sifilítica y la atrofia óptica con pupila de Argyll Robertson con reflejo de acomodación positivo pero sin reflejo locomotor son características de neurosífilis.",
                 "response": "Sífilis terciaria",
+                "knowledgeComponent": "KC1",
                 "options": [
                     {
                         "label": "Sifilis gestacional"
@@ -157,6 +165,7 @@
             {
                 "name" : "Es un gran problema de salud pública. Ocurre en cualquier momento en el que se presenta un comportamiento sexual de riesgo, el cual puede definirse como el antecedente de por lo menos un contacto sexual sin protección (sin uso de condón u otro método protector). Existen infecciones que varían en su sintomatología.",
                 "response": "Enfermedades de transmisión sexual",
+                "knowledgeComponent": "KC1",
                 "options": [
                     {
                         "label": "Sífilis terciaria"
@@ -179,6 +188,7 @@
             {
                 "name" : "Debido al gran impacto social que estas las enfermedades venéreas generaban, se empezaron a idear métodos para su prevención y tratamiento, utilizando  desde prospectos de condones elaborados con membranas animales, hasta ungüentos de uso tópico; con respecto a esto:",
                 "response": "Estos métodos eran poco ortodoxos para la ciencia actual. Muchos hombres preferían enfermar antes que usar estos métodos de prevención",
+                "knowledgeComponent": "KC2",
                 "options": [
                     {
                         "label": "Estos métodos eran poco ortodoxos para la ciencia actual. Muchos hombres preferían enfermar antes que usar estos métodos de prevención"
@@ -201,6 +211,7 @@
             {
                 "name": "Antes de la llegada de los españoles, la viruela, el sarampión, la malaria, el tifus y la varicela eran enfermedades totalmente desconocidas en América. Al carecer de inmunidad contra dichas enfermedades, un gran número de indígenas falleció al entrar en contacto con ellas.Según el estudio científico realizado por la universidad de Bradford entre los años 1999-2000, la sífilis",
                 "response": "Ya estaba en Europa antes de que Colón regresa de su primer viaje",
+                "knowledgeComponent": "KC2",
                 "options": [
                     {
                         "label": "Fue llevada por Cristóbal Colón y su tripulación a Europa al regresar de su primer viaje"
@@ -223,6 +234,7 @@
             {
                 "name": "Los síntomas de la sífilis varían en las diferentes etapas. Generalmente empiezan 21 días después de la infección, pero pueden aparecer en un plazo de entre 9 y 90 días. La sífilis primaria se manifiesta generalmente por un/una:",
                 "response": "Ulceración primaria o chancro",
+                "knowledgeComponent": "KC1",
                 "options": [
                     {
                         "label": "Tumoración primaria"
@@ -245,6 +257,7 @@
             {
                 "name": "La sífilis terciaria es la etapa tardía de la enfermedad, que puede aparecer  años después de la infección inicial o la sífilis primaria. Las cavidades de las lesiones llamadas gomas, las cuales son muy destructivas, se acumulan en varios tejidos y generan problemas a largo plazo. según lo anterior podemos decir que la sífilis terciaria se caracteriza por:",
                 "response": "Un compromiso cardiovascular, del SNC y músculo-esquelético",
+                "knowledgeComponent": "KC1",
                 "options": [
                     {
                         "label": "Un dolor insoportable en el sitio de infección"
@@ -266,6 +279,7 @@
             {
                 "name": "La sífilis congénita suele manifestarse durante los primeros 3 meses de vida. Las manifestaciones consisten en erupciones vesiculoampollosas características o exantema maculosos de color cobre en las palmas y plantas, y lesiones papulares alrededor de la nariz y la boca y en la zona del pañal, así como lesiones petequiales. En este orden de ideas, ¿cuál de los siguientes no es un  signo o síntoma de sífilis congénita en el neonato? ",
                 "response": "Labio leporino",
+                "knowledgeComponent": "KC1",
                 "options": [
                     {
                         "label": "Labio leporino"
@@ -287,6 +301,7 @@
             {
                 "name": "A lo largo de la historia se han ido creando distintos métodos anticonceptivos que de alguna manera evitan el contagio de muchas de las enfermedades de transmisión sexual, aunque también es cierto que no todos los métodos anticonceptivos son completamente seguros a la hora de no contagiarse. Teniendo en cuenta lo anterior, ¿cuál de los siguientes métodos anticonceptivos es el más seguro si se quiere evitar el contagio de sífilis.",
                 "response": "Condón",
+                "knowledgeComponent": "KC2",
                 "options": [
                     {
                         "label": "Dispositivo intrauterino."
@@ -314,6 +329,7 @@
             {
                 "name" : "Se propone la sexualidad como una dimensión indispensable para los procedimientos en salud pública, dado su reconocimiento como una condición esencialmente humana que compromete a la mujer a lo largo de todos los momentos del ciclo vital, lo que permite sustraerla de la mirada exclusivamente biológica o médica, para también abordarla desde lo social, con todos sus determinantes dentro de un marco de sus derechos.",
                 "response": "Ninguna de las anteriores",
+                "knowledgeComponent": "KC3",
                 "options": [
                     {
                         "label": "Política de salud sexual y reproductiva"
@@ -336,6 +352,7 @@
             {
                 "name" : "Es un documento privado, obligatorio y sometido a reserva, en el cual se registran cronológicamente las condiciones de salud del paciente, los actos médicos y los demás procedimientos ejecutados por el equipo de salud que interviene en su atención.",
                 "response": "Historia clínica",
+                "knowledgeComponent": "KC3",
                 "options": [
                     {
                         "label": "Historia clínica"
@@ -357,6 +374,7 @@
             {
                 "name" : "¿Qué normativa reglamenta el Sistema de Vigilancia en Salud Pública?",
                 "response": "Decreto 3518 de 2006",
+                "knowledgeComponent": "KC3",
                 "options": [
                     {
                         "label": "Decreto 3518 de 2006"
@@ -376,6 +394,7 @@
             {
                 "name" : "Todas las pruebas serológicas que se aplican, pueden dar resultados negativos, por lo que en caso de sospecha clínica, hay que hacer seguimiento serológico del paciente",
                 "response": "Sífilis primaria",
+                "knowledgeComponent": "KC4",
                 "options": [
                     {
                         "label": "Sífilis primaria"
@@ -395,6 +414,7 @@
             {
                 "name" : "Las pruebas no treponémicas pueden dar resultados negativos",
                 "response": "Sífilis primaria y terciaria",
+                "knowledgeComponent": "KC4",
                 "options": [
                     {
                         "label": "Sífilis primaria y secundaria"
@@ -417,6 +437,7 @@
             {
                 "name" : "La presencia de IgM en el suero del neonato es diagnóstico de infección por Treponema pallidum, pero su negatividad no descarta la infección por la posibilidad de inmadurez del sistema inmune del neonato. El resto de los marcadores pueden ser anticuerpos de la madre que han atravesado la placenta. ¿Que tipo de sífilis tenemos en el caso anterior?",
                 "response": "Sífilis Congénita",
+                "knowledgeComponent": "KC4",
                 "options": [
                     {
                         "label": "Sifilis Gestacional"
@@ -436,6 +457,7 @@
             {
                 "name" : "Los eventos que, por su comportamiento, se vigilan ya que la frecuencia de presentación de casos es igual o mayor a la esperada, busca entonces reducir la incidencia de los eventos, están en plan de control nacional, en Colombia entre otros se encuentra",
                 "response": "Sífilis gestacional",
+                "knowledgeComponent": "KC3",
                 "options": [
                     {
                         "label": "Fiebre amarilla"
@@ -455,6 +477,7 @@
             {
                 "name" : "Para el seguimiento del tratamiento de la sífilis  se debe repetir la prueba de Reagina plasmática rápida:",
                 "response": "A los 1, 3, 6 y 12 meses",
+                "knowledgeComponent": "KC4",
                 "options": [
                     {
                         "label": "Cada dos meses durante un año"
@@ -474,6 +497,7 @@
             {
                 "name": "Los egresados de enfermería deben conocer los derechos y deberes de los pacientes ante el sistema de salud colombiano con el fin de orientar al cumplimiento de los procedimientos y actividades que permitirán la prevención, promoción y mantenimiento de la salud, el tratamiento y rehabilitación de pacientes con sífilis. Las políticas que hacen parte de esta legislación son:",
                 "response": "Política de salud sexual - reproductiva  y de cero a siempre",
+                "knowledgeComponent": "KC3",
                 "options": [
                     {
                         "label": "Políticas de aseguramiento individual y promoción"
@@ -495,6 +519,7 @@
             {
                 "name": "En el sistema de salud colombiano, la legislación cumple el papel de determinar su estructura y funcionamiento en aras de la garantía de los derechos a la salud y la seguridad social incluidos en la Constitución de 1991. Este sistema crea una normatividad para la atención directa de pacientes con ITS. Inicia con la ley 100 de 1993 y se refuerza con diferentes reformas. En la normativa en salud para la atención de pacientes con sífilis encontramos leyes, decretos y resoluciones, algunas de ellas son:",
                 "response": "Resolución 0412 de 2000, Ley 1438 de 2011, Decreto 2323 de 2006, Resolución 1446 de 2006, Resolución 3280 de 2018",
+                "knowledgeComponent": "KC3",
                 "options": [
                     {
                         "label": "Ley 0412  de 1994, Ley 1449 de 2011, Decreto 2354 de 2006, Resolución 1446 de 2008, Resolución 2410 de 2015"
@@ -516,6 +541,7 @@
             {
                 "name": "Dentro de las reformas que hacen parte de la normatividad en salud sobre sífilis se encuentra una donde se reglamenta el Sistema de Vigilancia en Salud Pública; que tiene como responsabilidad el proceso de observación y análisis objetivo, sistemático y constante de los eventos en salud, el cual sustenta la orientación, planificación, ejecución, seguimiento y evaluación de la práctica de la salud pública, y se dictan otras disposiciones, esta reforma es:",
                 "response": "Decreto 3518 de 2006",
+                "knowledgeComponent": "KC3",
                 "options": [
                     {
                         "label": "Ley 1449 de 2011"
@@ -537,6 +563,7 @@
             {
                 "name": "Las Rutas de atención RIAS (3280) definen las condiciones necesarias para asegurar la integralidad en la atención por parte de los agentes del Sistema de Salud y de otros sectores. Ordenan la gestión intersectorial y sectorial como plataforma para la respuesta que da lugar a las atenciones/intervenciones en salud dirigidas a todas las personas, familias y comunidades, estas intervenciones son:",
                 "response": "Poblacionales, colectivas e individuales.",
+                "knowledgeComponent": "KC4",
                 "options": [
                     {
                         "label": "Poblacionales, colectivas e individuales."
@@ -558,6 +585,7 @@
             {
                 "name": "Las Rutas de Atención Integral (RIAS), describen intervenciones de los   diferentes profesionales de la salud teniendo en cuenta sus competencias, lo cual permite estar acorde con las necesidades del contexto y el ámbito territorial. Lo anterior genera acciones que permite el desarrollo de la promoción de la salud y la gestión del riesgo, este tipo de intervenciones son:",
                 "response": "Colectivas",
+                "knowledgeComponent": "KC3",
                 "options": [
                     {
                         "label": "Poblacionales"
@@ -586,6 +614,7 @@
             {
                 "name" : "La vigilancia epidemiológica de la sífilis, corresponde al grupo de las Infecciones de Transmisión Sexual (ITS); dicho monitoreo y seguimiento se realiza partiendo de las actividades de:",
                 "response": "Consulta médica con la sospecha",
+                "knowledgeComponent": "KC5",
                 "options": [
                     {
                         "label": "Consulta médica con la sospecha"
@@ -608,6 +637,7 @@
             {
                 "name" : "La definición de caso confirmado de sífilis puede aplicar a diversidad de sujetos; en consecuencia la bùsqueda activa de casos debe concentrarse en poblaciones como:",
                 "response": "Todas las anteriores",
+                "knowledgeComponent": "KC6",
                 "options": [
                     {
                         "label": "Mujeres gestantes y no gestantes"
@@ -630,6 +660,7 @@
             {
                 "name" : "La notificación de los casos de sífilis es obligatoria en el Sivigila, sin embargo la periodicidad de la notificaciòn en las fichas depende del grupo poblacional al cual pertenece el sujeto; en tal sentido la notificación para los casos sospechosos en recièn nacidos debe ser:",
                 "response": "Inmediata e individual",
+                "knowledgeComponent": "KC5",
                 "options": [
                     {
                         "label": "Periódica semanal"
@@ -652,6 +683,7 @@
             {
                 "name" : "En el proceso de notificación epidemiológica de la sífilis,  las variantes de reporte de casos, permiten la siguiente clasificación:",
                 "response": "Las opciones “a” y “b” son ciertas",
+                "knowledgeComponent": "KC5",
                 "options": [
                     {
                         "label": "Colectiva periódica"
@@ -674,6 +706,7 @@
             {
                 "name" : "De acuerdo con la normativa nacional de Colombia, toda mujer embarazada se considera clasificada como “sospechosa” de sífilis gestacional; para tales efectos del control epidemiológico, la principal actividad a seguir en el monitoreo de este evento en el control prenatal de las embarazadas es realizar pruebas:",
                 "response": "De tamizaje",
+                "knowledgeComponent": "KC6",
                 "options": [
                     {
                         "label": "Cuadro hemático"
@@ -695,6 +728,7 @@
             {
                 "name" : "De acuerdo con la Ley 112​2 de 2007 la salud pública está constituida por un conjunto de políti​cas que busca garantizar de manera integrada, la salud de la población por medio de acciones dirigidas tanto de manera individual como colecti​va. Una rama de la salud pública que tiene como propósito describir y explicar la dinámica de la salud poblacional, permitiendo intervenir en su curso natural mediante el monitoreo de enfermedades sujetas a vigilancia es:",
                 "response": "Epidemiología de la Sífilis",
+                "knowledgeComponent": "KC5",
                 "options": [
                     {
                         "label": "Epidemiología de la Sífilis"
@@ -717,6 +751,7 @@
             {
                 "name" : "Toda mujer embarazada que presente uno o más de los siguientes signos o síntomas: úlcera indurada no dolorosa en región genital, mucosa perianal con adenopatía/s satélite/s o en cavidad oral; miembros superiores e inferiores (especialmente en palmas y plantas) y/o mucosas, y/o en faneras y/o algún resultado de laboratorio con prueba no treponémica o treponémica positiva.",
                 "response": "Sífilis gestaciona",
+                "knowledgeComponent": "KC6",
                 "options": [
                     {
                         "label": "Sífilis gestacional y congénita"
@@ -738,6 +773,7 @@
             {
                 "name" : "Es aquella que asiste a poblaciones en situaciones de vulnerabilidad incrementada a contraer ITS (trabajadoras sexuales, hombres que tienen sexo con hombres (HSH), usuarios de drogas, y demás.) ",
                 "response": "Vigilancia centinela de las ITS en poblaciones determinadas",
+                "knowledgeComponent": "KC6",
                 "options": [
                     {
                         "label": "Vigilancia centinela de las ITS en poblaciones determinadas"
@@ -757,6 +793,7 @@
             {
                 "name" : "La periodicidad estándar para los registros agrupados del SIVIGILA es:",
                 "response": "Semanal, por semana epidemiológica",
+                "knowledgeComponent": "KC5",
                 "options": [
                     {
                         "label": "Semanal, por semana epidemiológica"
@@ -776,6 +813,7 @@
             {
                 "name" : "Caso cuyo diagnóstico se corrobora por medio de estudios auxiliares, o aquel que no requiere estudios auxiliares, pero presenta signos o síntomas propios del padecimiento o evento bajo vigilancia, o aquel que presente evidencia de asociación epidemiológica con algún caso confirmado por laboratorio.",
                 "response": "Caso confirmado",
+                "knowledgeComponent": "KC6",
                 "options": [
                     {
                         "label": "Caso confirmado"
@@ -802,6 +840,7 @@
             {
                 "name": "Carmen es una mujer que tuvo anteriormente sífilis gestacional, la cuál fue tratada y eliminada. Sin embargo, semanas después en el control se le identificó una reinfección. Por lo tanto, Qué cree usted que sea lo adecuado para realizar en este caso:",
                 "response": "Repetir el tratamiento con esquema de Penicilina Benzatínica 2 '400.000 UI IM, una dosis cada semana hasta completar 3 dosis.",
+                "knowledgeComponent": "KC7",
                 "options": [
                     {
                         "label": "Administrar Penicilina G cristalina 100.000 U/Kg/día intravenosa cada una de 50.000 UI cada 12 horas durante los primeros 7 días"
@@ -821,6 +860,7 @@
             {
                 "name": "Juanita es una madre que ingresó al control de enfermedades prenatal y se halló que tenía sífilis por lo cuál se le comenzó el tratamiento, se considera que su tratamiento fue adecuado. Poco después su bebé nació, se considera que el RN no cumple con los criterios de caso de sífilis congénita. De acuerdo con lo visto en las lecciones se debe seguir el siguiente procedimiento con el recién nacido vivo:",
                 "response": "Administrar una sola dosis de Penicilina Benzatínica 50.000 UI/Kg IM como profilaxis para infección por sífilis",
+                "knowledgeComponent": "KC7",
                 "options": [
                     {
                         "label": "No administrar medicamentos puesto que el bebé no tiene riesgo de infección"
@@ -840,6 +880,7 @@
             {
                 "name": "Andrea es una mujer embarazada que había sido diagnosticada con sífilis, la cuál fue tratada exitosamente, tiempo después Andrea sostuvo relaciones sexuales sin preservativos con un desconocido en una fiesta. Actualmente acudió a una cita de control en la cuál se le realizó el examen de sífilis que dió positivo, por lo cuál el médico diagnostica una reinfección. Según los conocimientos adquiridos en la unidad de “tratamiento” ¿cuál sería el procedimiento adecuado a seguir?",
                 "response": "Repetir el tratamiento con esquema de penicilina benzatínica 2 ́ 400.000 UI/IM, una dosis cada semana hasta completar 3 dosis.",
+                "knowledgeComponent": "KC7",
                 "options": [
                     {
                         "label": "Penicilina G cristalina 100.000 UI/ Kg/IV dividida en dos dosis, cada una de 50.000 UI cada 12 horas por 7 días y luego 150.000 UI/Kg/ IV del día 8 al 10 administrada en tres dosis (1 dosis cada 8 horas) de 50.000 UI/Kg cada una."
@@ -859,6 +900,7 @@
             {
                 "name": "Cristián es un recién nacido que cumplía anteriormente con la definición de caso de “sífilis congénita”, diagnosticado por un médico y quién fue tratado, dado el caso anterior, y según lo estudiado en la guía de tratamiento lo que se procede a hacer es lo siguiente:",
                 "response": "Hacer seguimiento con prueba no treponémica (VDRL, RPR) cada 3 meses hasta el año de edad, hasta la negativización o hasta tener títulos persistentemente bajos en al menos dos medicaciones separadas utilizando la misma técnica",
+                "knowledgeComponent": "KC7",
                 "options": [
                     {
                         "label": "Aplicar una sola dosis de penicilina benzatínica 50,000 UI/Kg/IM como profilaxis para infección por sífilis después de dos semanas pasadas de la última intervención"
@@ -878,6 +920,7 @@
             {
                 "name": "Camila es una paciente embarazada que dió positivo en su prueba rápida de sífilis en el lugar de atención, en la historia clínica de la paciente se descubre que es alérgica a la penicilina. Por lo tanto, ¿Cuál es el procedimiento a seguir?",
                 "response": "Se le realiza la desensibilización con Penicilina V potásica VO",
+                "knowledgeComponent": "KC8",
                 "options": [
                     {
                         "label": "Se le aplica la Penicilina G Cristalina vía intravenosa junto con Fexofenadina para disminuir la reacción alérgica"
@@ -897,6 +940,7 @@
             {
                 "name" : "Rosa es una mujer embarazada de 34 años, la cual ha sido recientemente diagnosticada con sífilis, con un tiempo de infección de alrededor de 3 meses. ¿Cuál es el procedimiento y en qué esquema terapéutico se encuentra Rosa?",
                 "response": "Rosa se encuentra en un esquema terapéutico de sífilis temprana. Se le debe administrar 2´400.000 UI de penicilina benzatínica IM dosis única.",
+                "knowledgeComponent": "KC7",
                 "options": [
                     {
                         "label": "Rosa se encuentra en un esquema terapéutico de sífilis tardía. Se le debe administrar 2´400.000 UI de penicilina benzatínica IM dosis única."
@@ -915,7 +959,8 @@
             },
             {
                 "name" : "Manuel es el esposo de Rosa, una mujer embarazada con 4 meses de gestación. Ha decidido asistir a consulta médica para ser tratado. Sin embargo, desconoce el origen y es asintomático. ¿Requiere una guía de tratamiento? si es así ¿Cuál sería el más indicado?",
-                "response": "",
+                "response": "Si requiere, debe tomar 2´400.000 UI de penicilina benzatínica IM dosis semanal por 3 semanas. En caso de alergia a la penicilina, se recomienda administrar doxiciclina 100 mg cada 12 horas por 14 días.",
+                "knowledgeComponent": "KC8",
                 "options": [
                     {
                         "label": "Si requiere. Se propone Penicilina G cristalina 100.000 UI/ Kg/IV dividida en dos dosis, cada una de 50.000 UI cada 12 horas por 7 días."
@@ -935,6 +980,7 @@
             {
                 "name" : "Samuel es un recién nacido que cumplía anteriormente con la definición de caso de “sífilis congénita”, diagnosticado por un médico. Dado el caso anterior ¿Cuál sería el procedimiento adecuado a seguir?",
                 "response": "Uso de penicilina G cristalina 100.000 UI/ Kg/IV dividida en dos dosis, cada una de 50.000 UI cada 12 horas por 7 días y luego 150.000 UI/Kg/ IV del día 8 al 10 administrada en tres dosis (1 dosis cada 8 horas) de 50.000 UI/Kg cada una.",
+                "knowledgeComponent": "KC7",
                 "options": [
                     {
                         "label": "Uso de penicilina G cristalina 100.000 UI/ Kg/IV dividida en dos dosis, cada una de 50.000 UI cada 12 horas por 7 días y luego 150.000 UI/Kg/ IV del día 8 al 10 administrada en tres dosis (1 dosis cada 8 horas) de 50.000 UI/Kg cada una."
@@ -954,6 +1000,7 @@
             {
                 "name" : "Daniela es una embarazada de 34 semanas que recibió tratamiento adecuado para sífilis de acuerdo al estadio de la enfermedad, presenta durante el seguimiento clínico y serológico, lesiones en genitales y en la piel, con un aumento en los títulos de la prueba no treponémica (VDRL), el valor de ésta prueba presentó dos diluciones más, con respecto a la prueba no treponémica inicial. Según lo descrito en la situación clínica  anterior, nos encontramos ante un:",
                 "response": "Caso de reinfección",
+                "knowledgeComponent": "KC8",
                 "options": [
                     {
                         "label": "Caso probable de Sífilis gestacional."
@@ -975,6 +1022,7 @@
             {
                 "name" : "María es una embarazada de 34 semanas que recibió tratamiento adecuado para sífilis de acuerdo al estadio de la enfermedad, presenta durante el seguimiento clínico y serológico, lesiones en genitales y en la piel, con un aumento en los títulos de la prueba no treponémica (VDRL), el valor de ésta prueba presentó dos diluciones más, con respecto a la prueba no treponémica inicial. ¿Cuál es el tratamiento más indicado para María?",
                 "response": "Penicilina benzatínica 2 ́ 400.000 UI/IM, una dosis cada semana hasta completar 3 dosis",
+                "knowledgeComponent": "KC8",
                 "options": [
                     {
                         "label": "Penicilina Cristalina 4 millones UI, c/4h vía IV. "
@@ -996,6 +1044,7 @@
             {
                 "name" : "Mateo es un neonato de sexo masculino, nacido por parto vaginal con Apgar 7-9, peso de 1,570 g, talla 43 cm y perímetro cefálico 25 cm, a la exploración física se observa dermatosis diseminada a miembros superiores e inferiores, con descamación palmo-plantar, abdomen globoso con presencia de máculas eritematosas. La madre fue diagnosticada con sífilis gestacional y tratada con Penicilina benzatínica 2 ́ 400.000 UI/IM, de la cual recibió solo una dosis;  dado que no fue posible contactarla, sino hasta el parto. \n <br> Según lo descrito en la situación clínica  anterior, nos encontramos ante un:",
                 "response": "Ninguno de los anteriores",
+                "knowledgeComponent": "KC8",
                 "options": [
                     {
                         "label": "Caso probable de Sífilis Congénita."
@@ -1017,6 +1066,7 @@
             {
                 "name" : "El tratamiento para la Sífilis temprana (menor o igual a 1 año de infección, incluye la sífilis primaria, secundaria y latente temprana) es:",
                 "response": "2´400.000 UI de penicilina benzatínica IM dosis única.",
+                "knowledgeComponent": "KC8",
                 "options": [
                     {
                         "label": "2´400.000 UI de penicilina benzatínica IM dosis única."
