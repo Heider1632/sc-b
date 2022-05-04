@@ -22,7 +22,9 @@
     "pedagogicalstrategies": "node ./src/migrations/load-fake-data.js --pedagogicalstrategies",
     "interview": "node ./src/migrations/load-fake-data.js --interview",
     "kc": "node ./src/migrations/load-data.js --kc",
-    "syncquestions": "node ./src/migrations/load-data.js --syncquestions"
+    "syncquestions": "node ./src/migrations/load-data.js --syncquestions",
+    "syncstudents": "node ./src/migrations/load-data.js --syncstudents",
+    "syncresourcesbylesson": "node ./src/migrations/load-data.js --syncresourcesbylesson"
   },
   "keywords": [],
   "author": "",
