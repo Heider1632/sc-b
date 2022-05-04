@@ -150,7 +150,7 @@ class CbrService {
     }
     
     if (process.env.NODE_ENV === "production") {
-     url = "https://stip.proyectosifilisgestasionaria.com/api/knn"
+     url = "https://stip.fichasyprotocolosensalud.com/api/knn"
     }
 
     let response = await axios.post(url, {
