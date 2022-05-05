@@ -1,13 +1,12 @@
 const db = require("../models");
-const Resource = db.Resource;
 
 exports.all = (req, res) => {
-    const resources = Resource.findAll();
+    const resources = db.resource.findAll();
     res.send({ resources });
 }
 
 exports.one = (req, res) => {
-    const resource = Resource.findOne(req.query.id);
+    const resource = db.resource.findOne(req.query.id);
 
     if(!resource){
         res.status(500).send({ message: "Resource not found" });
@@ -17,7 +16,7 @@ exports.one = (req, res) => {
 } 
 
 exports.create = (req, res) => {
-    const resource = new Resource({
+    const resource = new db.resource({
         name: req.body.name,
         description: req.body.description,
         type: req.body.type,
@@ -37,7 +36,7 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    Resource.findAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
+    db.resource.findAndUpdate({ id: req.body.id }, { $set: { ...req.body }})
     .exec((err, resource) => {
         if(err){
             res.status(500).send({ messsage: err });
@@ -48,7 +47,7 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    Resource.findAndDelete({ id: req.body.id })
+    db.resource.findAndDelete({ id: req.body.id })
     .exec( (err, resource) => {
         if(err){
             res.status(500).send({ message: err });

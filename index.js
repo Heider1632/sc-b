@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 if (process.env.NODE_ENV === "production") {
- o = "https://proyectosifilisgestasionaria.com"
+ o = "https://fichasyprotocolosensalud.com"
 }
 
 var corsOptions = {
