@@ -28,8 +28,21 @@ exports.all = async (req, res) => {
     } else {
         res.status(200).send(progress);
     }
+}
 
-} 
+exports.status = async (req, res) => {
+
+    const progress = await db.progress.find({
+        student: new mongoose.Types.ObjectId(req.query.student),
+    }).populate("lesson");
+
+    if(!progress){
+        res.status(404).send({ message: "Progress not found" });
+    } else {
+        res.status(200).send(progress);
+    }
+}
+
 
 exports.create = (req, res) => {
     const progress = new db.progress({

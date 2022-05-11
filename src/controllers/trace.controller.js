@@ -15,7 +15,23 @@ exports.one = async (req, res) => {
     }
 
     res.status(200).send(trace);
-} 
+}
+
+exports.total = async (req, res) => {
+    const traces = await db.trace.find({ student: new mongoose.Types.ObjectId(req.query.student) });
+
+    var sum = 0;
+
+    if(traces.length > 0){
+        for(var i = 0; i < traces.length; i++){
+            for(var j = 0; j < traces[i].resources.length; j++){
+                sum += traces[i].assessments[j].time;
+            }
+        }
+    }
+
+    res.status(200).send({ total: sum });
+}
 
 exports.create = (req, res) => {
     const trace = new db.trace({

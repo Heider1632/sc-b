@@ -12,6 +12,7 @@ module.exports = function(app) {
 
     app.get("/api/progress/one", [authJwt.verifyToken], ProgressController.one);
     app.get("/api/progress/all", [authJwt.verifyToken], ProgressController.all);
+    app.get("/api/progress/status", [authJwt.verifyToken], ProgressController.status);
 
     app.post("/api/progress/create", [authJwt.verifyToken], ProgressController.create);
     app.post("/api/progress/update", [authJwt.verifyToken], ProgressController.update);
