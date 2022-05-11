@@ -12,6 +12,8 @@ module.exports = function(app) {
 
     app.get("/api/trace/all", [authJwt.verifyToken], TraceController.all);
     app.get("/api/trace/one", [authJwt.verifyToken], TraceController.one);
+    app.get("/api/trace/total", [authJwt.verifyToken], TraceController.total);
+
 
     app.post("/api/trace/create", [authJwt.verifyToken], TraceController.create);
     app.post("/api/trace/update", [authJwt.verifyToken], TraceController.update);
