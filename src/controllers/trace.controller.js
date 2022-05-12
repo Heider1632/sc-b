@@ -25,10 +25,12 @@ exports.total = async (req, res) => {
     if(traces.length > 0){
         for(var i = 0; i < traces.length; i++){
             for(var j = 0; j < traces[i].resources.length; j++){
-                sum += traces[i].assessments[j].time;
+                sum += traces[i].assessments[j].time_use;
             }
         }
     }
+
+    console.log(sum);
 
     res.status(200).send({ total: sum });
 }
