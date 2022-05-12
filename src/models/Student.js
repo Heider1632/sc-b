@@ -21,6 +21,15 @@ const Student = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
     },
+    semester: {
+      type: String
+    },
+    program: {
+      type: String
+    },
+    institution: {
+      type: String
+    }
   })
 );
 
