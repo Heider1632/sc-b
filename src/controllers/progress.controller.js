@@ -49,7 +49,8 @@ exports.create = (req, res) => {
         student: req.body.student,
         course: req.body.course,
         lesson: req.body.lesson,
-        isActive: req.body.isActive
+        isActive: req.body.isActive,
+        complete: req.body.complete
     });
 
     progress.save((err, progress) => {
