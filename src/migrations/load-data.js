@@ -1,33 +1,31 @@
 const db = require("../models");
 const dbConfig = require("../config/db.config");
-const fs = require('fs');
-const bcrypt = require('bcryptjs');
+const fs = require("fs");
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Connection error", err);
     process.exit();
   });
 
-let learnings = [ 
-  { name: "perception", dimensions: ["sensiting", "intuitive"] }, 
-  { name: "processing", dimensions : ["active", "reflective"] }, 
-  { name: "reception", dimensions: ["visual", "verbal"] }, 
-  { name: "understanding", dimensions: ["sequiential", "global"] }
+let learnings = [
+  { name: "perception", dimensions: ["sensiting", "intuitive"] },
+  { name: "processing", dimensions: ["active", "reflective"] },
+  { name: "reception", dimensions: ["visual", "verbal"] },
+  { name: "understanding", dimensions: ["sequiential", "global"] },
 ];
 
-let learningTheories = [
-  'behaviorist', 'constructivist' 
-]
+let learningTheories = ["behaviorist", "constructivist"];
 
 let pedagogicalTactics = [
   "Objective",
@@ -48,43 +46,50 @@ let pedagogicalTactics = [
   "Hypertext",
   "Analogies and Relationship",
   "Table",
-  "Experiment"
-]
+  "Experiment",
+];
 
-const testFelderSilverman = JSON.parse(fs.readFileSync(__dirname + '/data/test.json', 'utf-8'));
-const _kc = JSON.parse(fs.readFileSync(__dirname + '/data/kc.json', 'utf-8'));
-const interviews = JSON.parse(fs.readFileSync(__dirname + '/data/interviews.json', 'utf-8'));
-const _students = JSON.parse(fs.readFileSync(__dirname + '/data/students.json', 'utf-8'));
+const testFelderSilverman = JSON.parse(
+  fs.readFileSync(__dirname + "/data/test.json", "utf-8")
+);
+const _kc = JSON.parse(fs.readFileSync(__dirname + "/data/kc.json", "utf-8"));
+const interviews = JSON.parse(
+  fs.readFileSync(__dirname + "/data/interviews.json", "utf-8")
+);
+const _students = JSON.parse(
+  fs.readFileSync(__dirname + "/data/students.json", "utf-8")
+);
 
-const _resources = JSON.parse(fs.readFileSync(__dirname + '/data/depured.json', 'utf-8'));
+const _resources = JSON.parse(
+  fs.readFileSync(__dirname + "/data/depured.json", "utf-8")
+);
 
-async function generateUser(){
+async function generateUser() {
   try {
-
     const ROLE_USER = await db.role.findOne({ name: "user" });
     const course = await db.course.find({});
 
     let laura = await db.user.create({
       email: "lauramarquez@gmail.com",
       password: bcrypt.hashSync("12345", 8),
-      roles: [ ROLE_USER._id ]
-    })
+      roles: [ROLE_USER._id],
+    });
 
     await db.student.create({
       name: "Laura",
       lastname: "Marquez",
       user: laura._id,
-      course: [ course[0]._id ]
-    })
+      course: [course[0]._id],
+    });
 
-    _students.forEach(async student => {
+    _students.forEach(async (student) => {
       let user = await db.user.create({
         email: student.email,
         password: bcrypt.hashSync("12345", 8),
-        roles: [ ROLE_USER._id ]
-      })
+        roles: [ROLE_USER._id],
+      });
 
-      if(student.name.includes(",")){
+      if (student.name.includes(",")) {
         let name = student.name.split(",")[1].replace(" ", "");
         let lastname = student.name.split(",")[0];
 
@@ -96,306 +101,317 @@ async function generateUser(){
         name: student.name,
         lastname: student.lastname,
         user: user._id,
-        course: [ course[0]._id ]
-      })
+        course: [course[0]._id],
+      });
     });
 
     // console.log("done");
     // process.exit();
-    
-  } catch(err){
-    console.log(err.message)
-    process.exit()
-  } 
+  } catch (err) {
+    console.log(err.message);
+    process.exit();
+  }
 }
 
-function generateLearningStyles(){
-    try {
-      learnings.forEach(learning => {
-        db.learningStyle.create({
-          name: learning.name
-        }).then((err, res) => {
-          console.log("done")
-          process.exit()
-        })
-      })
-      
-    } catch(err){
-      console.log(err.message)
-      process.exit()
-    } 
-}
-
-async function generateDimension(){
+function generateLearningStyles() {
   try {
-    learnings.forEach(learning => {
-
-      let promises = learning.dimensions.map(async dimension => {
-        let dimensionDoc = await db.learningStyleDimension.create({
-          name: dimension
+    learnings.forEach((learning) => {
+      db.learningStyle
+        .create({
+          name: learning.name,
         })
-        return dimensionDoc._id;     
-      })
+        .then((err, res) => {
+          console.log("done");
+          process.exit();
+        });
+    });
+  } catch (err) {
+    console.log(err.message);
+    process.exit();
+  }
+}
+
+async function generateDimension() {
+  try {
+    learnings.forEach((learning) => {
+      let promises = learning.dimensions.map(async (dimension) => {
+        let dimensionDoc = await db.learningStyleDimension.create({
+          name: dimension,
+        });
+        return dimensionDoc._id;
+      });
 
       Promise.all(promises)
-      .then(result => {
-        if(result.length > 0){
-          db.learningStyle.findByIdAndUpdate({ name: learning.name }, { $set: { learningStyleDimensions: result } })
-          .exec((err, res) => { if(err) throw err })
-        }
+        .then((result) => {
+          if (result.length > 0) {
+            db.learningStyle
+              .findByIdAndUpdate(
+                { name: learning.name },
+                { $set: { learningStyleDimensions: result } }
+              )
+              .exec((err, res) => {
+                if (err) throw err;
+              });
+          }
 
-        console.log("done");
-        process.exit();
-      })
-      .catch(error => console.error(error.message))
-    })
-    
-   
-  } catch(err){
-    console.log(err.message)
-    process.exit()
+          console.log("done");
+          process.exit();
+        })
+        .catch((error) => console.error(error.message));
+    });
+  } catch (err) {
+    console.log(err.message);
+    process.exit();
   }
 }
 
-async function generateLearningTheories(){
+async function generateLearningTheories() {
   try {
-    let promises = learningTheories.map(async lt => {
-      await db.learningTheory.create({ name: lt })
-    })
+    let promises = learningTheories.map(async (lt) => {
+      await db.learningTheory.create({ name: lt });
+    });
 
-    Promise.all(promises)
-    .then(response => {
-      console.log("done")
-      process.exit()
-    })
-
+    Promise.all(promises).then((response) => {
+      console.log("done");
+      process.exit();
+    });
   } catch (error) {
-    console.error(error.message)
-    process.exit()
+    console.error(error.message);
+    process.exit();
   }
 }
 
-async function generatePedagogicalTactics(){
+async function generatePedagogicalTactics() {
   try {
-    
-    let promises = pedagogicalTactics.map(async pt => {
-      await db.pedagogicalTactic.create({ name: pt })
-    })
+    let promises = pedagogicalTactics.map(async (pt) => {
+      await db.pedagogicalTactic.create({ name: pt });
+    });
 
-    Promise.all(promises)
-    .then(response => {
-      console.log("done")
-      process.exit()
-    })
+    Promise.all(promises).then((response) => {
+      console.log("done");
+      process.exit();
+    });
   } catch (error) {
-    console.error(error.message)
-    process.exit()
+    console.error(error.message);
+    process.exit();
   }
 }
 
-async function generateTest(){
+async function generateTest() {
   try {
     await db.test.insertMany(testFelderSilverman);
 
     console.log("done");
     process.exit();
-  } catch(error){
+  } catch (error) {
     console.error(erros.message);
     process.exit();
   }
 }
 
-async function generateKnowledgeComponent(){
+async function generateKnowledgeComponent() {
   try {
+    Promise.all(
+      _kc.map(async (kc) => {
+        let kcDoc = await db.knowledgeComponent.create({
+          name: kc.name,
+        });
 
-    Promise.all(_kc.map(async kc => {
-      let kcDoc = await db.knowledgeComponent.create({
-        name: kc.name,
+        if (kc.lesson == "1") {
+          await db.lesson
+            .findOneAndUpdate(
+              { order: 1 },
+              { $push: { knowledgeComponent: kcDoc._id } }
+            )
+            .exec((err, res) => {
+              if (err) throw err;
+            });
+        } else if (kc.lesson == "2") {
+          await db.lesson
+            .findOneAndUpdate(
+              { order: 2 },
+              { $push: { knowledgeComponent: kcDoc._id } }
+            )
+            .exec((err, res) => {
+              if (err) throw err;
+            });
+        } else if (kc.lesson == "3") {
+          await db.lesson
+            .findOneAndUpdate(
+              { order: 3 },
+              { $push: { knowledgeComponent: kcDoc._id } }
+            )
+            .exec((err, res) => {
+              if (err) throw err;
+            });
+        } else if (kc.lesson == "4") {
+          await db.lesson
+            .findOneAndUpdate(
+              { order: 4 },
+              { $push: { knowledgeComponent: kcDoc._id } }
+            )
+            .exec((err, res) => {
+              if (err) throw err;
+            });
+        }
       })
-      
-      if(kc.lesson == "1"){
-        await db.lesson.findOneAndUpdate({ order: 1 }, { $push: { knowledgeComponent: kcDoc._id } })
-        .exec((err, res) => { if(err) throw err })
-      } else if(kc.lesson == "2"){
-        await db.lesson.findOneAndUpdate({ order: 2 }, { $push: { knowledgeComponent: kcDoc._id } })
-        .exec((err, res) => { if(err) throw err })
-      } else if(kc.lesson == "3"){
-        await db.lesson.findOneAndUpdate({ order: 3 }, { $push: { knowledgeComponent: kcDoc._id } })
-        .exec((err, res) => { if(err) throw err })
-      } else if(kc.lesson == "4"){
-        await db.lesson.findOneAndUpdate({ order: 4 }, { $push: { knowledgeComponent: kcDoc._id } })
-        .exec((err, res) => { if(err) throw err })
-      }
-    })).then( (_) => {
+    ).then((_) => {
       console.log("done");
       process.exit();
     });
-
-
-  } catch(error){
+  } catch (error) {
     console.error(error.message);
     process.exit();
   }
 }
 
-async function syncQuestions(){
+async function syncQuestions() {
   try {
-
     // let questions = await db.question.find({});
     let _kc = await db.knowledgeComponent.find({});
 
-    interviews.forEach(i => {
-      i.questions.forEach(async q => {
-
+    interviews.forEach((i) => {
+      i.questions.forEach(async (q) => {
         let _id = null;
 
-        if(q.knowledgeComponent == "KC1"){
-          _id =  _kc[0]._id;
-        } else if(q.knowledgeComponent == "KC2"){
+        if (q.knowledgeComponent == "KC1") {
+          _id = _kc[0]._id;
+        } else if (q.knowledgeComponent == "KC2") {
           _id = _kc[1]._id;
-        } else if(q.knowledgeComponent == "KC3"){
+        } else if (q.knowledgeComponent == "KC3") {
           _id = _kc[2]._id;
-        } else if(q.knowledgeComponent == "KC4"){
+        } else if (q.knowledgeComponent == "KC4") {
           _id = _kc[3]._id;
-        } else if(q.knowledgeComponent == "KC5"){
+        } else if (q.knowledgeComponent == "KC5") {
           _id = _kc[4]._id;
-        } else if(q.knowledgeComponent == "KC6"){
+        } else if (q.knowledgeComponent == "KC6") {
           _id = _kc[5]._id;
-        } else if(q.knowledgeComponent == "KC7"){
+        } else if (q.knowledgeComponent == "KC7") {
           _id = _kc[6]._id;
-        } else if(q.knowledgeComponent == "KC8"){
+        } else if (q.knowledgeComponent == "KC8") {
           _id = _kc[7]._id;
         }
 
-        await db.question.findOneAndUpdate({ name: q.name }, { $set: { knowledgeComponent : _id } });
-      })
-    })
-     
-  } catch(error){
+        await db.question.findOneAndUpdate(
+          { name: q.name },
+          { $set: { knowledgeComponent: _id } }
+        );
+      });
+    });
+  } catch (error) {
     console.error(error.message);
     process.exit();
   }
 }
 
-async function syncResourcesByLesson(){
+async function syncResourcesByLesson() {
   try {
-
     new Promise(async (resolve, reject) => {
-
       var i = 0;
 
       Object.keys(_resources).map(async (key) => {
-
         let order = parseInt(key);
 
         var lesson = await db.lesson.findOne({ order: order });
 
-
         var ps = await db.pedagogicalStrategy.find({});
 
         _resources[key].map(async (r, index) => {
+          if (r.url) {
+            r.key = i + index;
 
-          r.key = i + index;
+            let prefix = r.title.split("_")[3];
+            let _prefix = r.title.split("_")[0];
 
-          let prefix = r.title.split('_')[3];
-          let _prefix = r.title.split('_')[0];
+            if (prefix == "Intro") {
+              r.structure = lesson.structure[0];
 
-          if(prefix == "Intro"){
-            r.structure = lesson.structure[0];
-            
-            if(_prefix == "R1"){
-              r.pedagogicalStrategy = ps[0]._id;
-            } else if(_prefix == "R2"){
-              r.pedagogicalStrategy = ps[1]._id;
-            } else if(_prefix == "R3"){
-              r.pedagogicalStrategy = ps[2]._id;
+              if (_prefix == "R1") {
+                r.pedagogicalStrategy = ps[0]._id;
+              } else if (_prefix == "R2") {
+                r.pedagogicalStrategy = ps[1]._id;
+              } else if (_prefix == "R3") {
+                r.pedagogicalStrategy = ps[2]._id;
+              }
+            } else if (prefix == "Def") {
+              r.structure = lesson.structure[1];
+
+              if (_prefix == "R1") {
+                r.pedagogicalStrategy = ps[0]._id;
+              } else if (_prefix == "R2") {
+                r.pedagogicalStrategy = ps[1]._id;
+              } else if (_prefix == "R3") {
+                r.pedagogicalStrategy = ps[2]._id;
+              }
+            } else if (prefix == "Desc") {
+              r.structure = lesson.structure[2];
+
+              if (_prefix == "R1") {
+                r.pedagogicalStrategy = ps[0]._id;
+              } else if (_prefix == "R2") {
+                r.pedagogicalStrategy = ps[1]._id;
+              } else if (_prefix == "R3") {
+                r.pedagogicalStrategy = ps[2]._id;
+              }
+            } else if (prefix == "Ejem") {
+              r.structure = lesson.structure[3];
+
+              if (_prefix == "R1") {
+                r.pedagogicalStrategy = ps[0]._id;
+              } else if (_prefix == "R2") {
+                r.pedagogicalStrategy = ps[1]._id;
+              } else if (_prefix == "R3") {
+                r.pedagogicalStrategy = ps[2]._id;
+              }
+            } else if (prefix == "Act") {
+              r.structure = lesson.structure[4];
+
+              if (_prefix == "R1") {
+                r.pedagogicalStrategy = ps[0]._id;
+              } else if (_prefix == "R2") {
+                r.pedagogicalStrategy = ps[1]._id;
+              } else if (_prefix == "R3") {
+                r.pedagogicalStrategy = ps[2]._id;
+              }
             }
 
-          } else if(prefix == "Def"){
-            r.structure = lesson.structure[1];
+            r.format = "embed";
+            r.estimatedTime = r.estimaredTime ? parseInt(r.estimatedTime) : 60;
 
-            if(_prefix == "R1"){
-              r.pedagogicalStrategy = ps[0]._id;
-            } else if(_prefix == "R2"){
-              r.pedagogicalStrategy = ps[1]._id;
-            } else if(_prefix == "R3"){
-              r.pedagogicalStrategy = ps[2]._id;
-            }
-          } else if(prefix == "Desc"){
-            r.structure = lesson.structure[2];
-
-            if(_prefix == "R1"){
-              r.pedagogicalStrategy = ps[0]._id;
-            } else if(_prefix == "R2"){
-              r.pedagogicalStrategy = ps[1]._id;
-            } else if(_prefix == "R3"){
-              r.pedagogicalStrategy = ps[2]._id;
-            }
-          } else if(prefix == "Ejem"){
-            
-            r.structure = lesson.structure[3];
-
-            if(_prefix == "R1"){
-              r.pedagogicalStrategy = ps[0]._id;
-            } else if(_prefix == "R2"){
-              r.pedagogicalStrategy = ps[1]._id;
-            } else if(_prefix == "R3"){
-              r.pedagogicalStrategy = ps[2]._id;
-            }
-          } else if(prefix == "Act"){
-            r.structure = lesson.structure[4];
-
-            if(_prefix == "R1"){
-              r.pedagogicalStrategy = ps[0]._id;
-            } else if(_prefix == "R2"){
-              r.pedagogicalStrategy = ps[1]._id;
-            } else if(_prefix == "R3"){
-              r.pedagogicalStrategy = ps[2]._id;
-            }
+            await db.resource.create(r);
           }
-
-          r.format = "embed";
-          r.estimatedTime = r.estimaredTime ? parseInt(r.estimatedTime) : 60;
-
-          await db.resource.create(r);
-
-
         });
       });
 
       resolve(true);
-    })
-    .then(_ => {
+    }).then((_) => {
       // console.log("done");
       // process.exit();
     });
-
-  } catch(error){
+  } catch (error) {
     console.error(erros.message);
     process.exit();
   }
 }
 
-
-if (process.argv.includes('--user')){
+if (process.argv.includes("--user")) {
   generateUser();
-} else if (process.argv.includes('--learning')) {
+} else if (process.argv.includes("--learning")) {
   generateLearningStyles();
-} else if (process.argv.includes('--dimensions')){
+} else if (process.argv.includes("--dimensions")) {
   generateDimension();
-} else if (process.argv.includes('--theories')){
+} else if (process.argv.includes("--theories")) {
   generateLearningTheories();
-} else if (process.argv.includes('--pedagogicaltactics')){
+} else if (process.argv.includes("--pedagogicaltactics")) {
   generatePedagogicalTactics();
-} else if(process.argv.includes('--test')){
-  generateTest()
-} else if(process.argv.includes('--kc')){
-  generateKnowledgeComponent()
-} else if(process.argv.includes('--syncquestions')){
-  syncQuestions()
-} else if(process.argv.includes('--syncresourcesbylesson')){
-  syncResourcesByLesson()
-} else if(process.argv.includes('--syncstudents')){
-  syncStudents()
+} else if (process.argv.includes("--test")) {
+  generateTest();
+} else if (process.argv.includes("--kc")) {
+  generateKnowledgeComponent();
+} else if (process.argv.includes("--syncquestions")) {
+  syncQuestions();
+} else if (process.argv.includes("--syncresourcesbylesson")) {
+  syncResourcesByLesson();
+} else if (process.argv.includes("--syncstudents")) {
+  syncStudents();
 }
-  
