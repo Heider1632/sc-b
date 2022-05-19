@@ -167,6 +167,9 @@ class CbrService {
         let item = response.data[0][1];
 
         selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate('solution.resources.resource');
+        
+        console.log("------------------");
+        console.log(selectedCase);
       }
 
       return selectedCase;
@@ -217,6 +220,10 @@ class CbrService {
       .populate("resources", 'estimatedTime');
 
     if (c.solution.resources && c.solution.resources.length > 0) {
+
+      console.log('do anything');
+
+
 
       return Promise.all(
         c.context.structure.map(async (l, index) => {
@@ -365,8 +372,14 @@ class CbrService {
         return { id_case: c._id, plan: plan };
       });
     } else {
+
+      console.log('is rigth');
+
       return Promise.all(
         c.context.structure.map(async (l, index) => {
+          
+          console.log('structure');
+          console.log(l);
 
           let selectedStructure = await db.structure.findById(
             mongoose.Types.ObjectId(l)
@@ -395,6 +408,9 @@ class CbrService {
           let pedagogicalStrategy = pedagogicalStrategies[indice];
 
           if (pedagogicalStrategy) {
+
+            console.log('pedagogicalStrategy');
+            console.log(pedagogicalStrategy._id);
 
             var foundR = false;
 
@@ -432,8 +448,6 @@ class CbrService {
                   });
                 } 
 
-                
-
               } else {
 
                 let _ids = [];
@@ -444,6 +458,7 @@ class CbrService {
 
                     if (
                       trace.assessments[index].like > 3 &&
+                      trace.resources[index] && 
                       trace.assessments[index].time_use >=
                         trace.resources[index].estimatedTime
                     ) {
