@@ -54,56 +54,54 @@ let pedagogicalTactics = [
 const testFelderSilverman = JSON.parse(fs.readFileSync(__dirname + '/data/test.json', 'utf-8'));
 const _kc = JSON.parse(fs.readFileSync(__dirname + '/data/kc.json', 'utf-8'));
 const interviews = JSON.parse(fs.readFileSync(__dirname + '/data/interviews.json', 'utf-8'));
+const _students = JSON.parse(fs.readFileSync(__dirname + '/data/students.json', 'utf-8'));
 
 const _resources = JSON.parse(fs.readFileSync(__dirname + '/data/depured.json', 'utf-8'));
 
 async function generateUser(){
   try {
-    let user = await db.user.create({
-      email: "prueba@gmail.com",
+
+    const ROLE_USER = await db.role.findOne({ name: "user" });
+    const course = await db.course.find({});
+
+    let laura = await db.user.create({
+      email: "lauramarquez@gmail.com",
       password: bcrypt.hashSync("12345", 8),
-      roles: [ new mongoose.Types.ObjectId("623ab75682f3734093c578b0") ]
+      roles: [ ROLE_USER._id ]
     })
 
-    // let laura = await db.user.create({
-    //   email: "lauramarquez@gmail.com",
-    //   password: bcrypt.hashSync("12345678", 8),
-    //   roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb19") ]
-    // })
+    await db.student.create({
+      name: "Laura",
+      lastname: "Marquez",
+      user: laura._id,
+      course: [ course[0]._id ]
+    })
 
-    // await db.student.create({
-    //   name: "Prueba",
-    //   lastname: "Sifilis",
-    //   user: user._id,
-    //   course: [ new mongoose.Types.ObjectId("") ],
-    //   learningStyleDimensions: [
-    //     "6192936107448c473c1d779e",
-    //     "6192936107448c473c1d779b",
-    //     "6192936107448c473c1d77a0"
-    //   ]
-    // })
+    _students.forEach(async student => {
+      let user = await db.user.create({
+        email: student.email,
+        password: bcrypt.hashSync("12345", 8),
+        roles: [ ROLE_USER._id ]
+      })
 
-    // await db.student.create({
-    //   name: "Laura",
-    //   lastname: "Marquez",
-    //   user: laura._id,
-    //   course: [ new mongoose.Types.ObjectId("61578aa571a3453ddcf5b617") ]
-    // })
+      if(student.name.includes(",")){
+        let name = student.name.split(",")[1].replace(" ", "");
+        let lastname = student.name.split(",")[0];
 
-    // await db.user.create({
-    //   email: "teacher-sti@gmail.com",
-    //   password: bcrypt.hashSync("teacher-sti", 8),
-    //   roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb1a") ]
-    // })
+        student.name = name;
+        student.lastname = lastname;
+      }
 
-    // await db.user.create({
-    //   email: "admin-sti@gmail.com",
-    //   password: bcrypt.hashSync("admin-sti", 8),
-    //   roles: [ new mongoose.Types.ObjectId("61577249b0925706f4adcb1b") ]
-    // })
+      await db.student.create({
+        name: student.name,
+        lastname: student.lastname,
+        user: user._id,
+        course: [ course[0]._id ]
+      })
+    });
 
-    console.log("done");
-    process.exit();
+    // console.log("done");
+    // process.exit();
     
   } catch(err){
     console.log(err.message)
@@ -290,20 +288,17 @@ async function syncResourcesByLesson(){
 
         let order = parseInt(key);
 
-        console.log(order);
-
         var lesson = await db.lesson.findOne({ order: order });
 
-        console.log(lesson);
-        var ps = await db.pedagogicalStrategy.find({});
 
+        var ps = await db.pedagogicalStrategy.find({});
 
         _resources[key].map(async (r, index) => {
 
           r.key = i + index;
 
-          let prefix = r.description.split('_')[3];
-          let _prefix = r.description.split('_')[0];
+          let prefix = r.title.split('_')[3];
+          let _prefix = r.title.split('_')[0];
 
           if(prefix == "Intro"){
             r.structure = lesson.structure[0];
@@ -336,7 +331,8 @@ async function syncResourcesByLesson(){
             } else if(_prefix == "R3"){
               r.pedagogicalStrategy = ps[2]._id;
             }
-          } else if(prefix == "Act"){
+          } else if(prefix == "Ejem"){
+            
             r.structure = lesson.structure[3];
 
             if(_prefix == "R1"){
@@ -346,7 +342,7 @@ async function syncResourcesByLesson(){
             } else if(_prefix == "R3"){
               r.pedagogicalStrategy = ps[2]._id;
             }
-          } else if(prefix == "Ejem"){
+          } else if(prefix == "Act"){
             r.structure = lesson.structure[4];
 
             if(_prefix == "R1"){
@@ -357,6 +353,9 @@ async function syncResourcesByLesson(){
               r.pedagogicalStrategy = ps[2]._id;
             }
           }
+
+          r.format = "embed";
+          r.estimatedTime = r.estimaredTime ? parseInt(r.estimatedTime) : 60;
 
           await db.resource.create(r);
 

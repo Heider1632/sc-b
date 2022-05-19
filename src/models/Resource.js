@@ -4,6 +4,7 @@ const Resource = mongoose.model(
   "Resource",
   new mongoose.Schema({
     title: String,
+    type: String,
     language: {
       type: String,
       default: "Español"
@@ -44,7 +45,8 @@ const Resource = mongoose.model(
     },
     url: String,
     estimatedTime: {
-      type: Number
+      type: Number,
+      default: 0
     },
     pedagogicalStrategy: {
       type: mongoose.Schema.Types.ObjectId,

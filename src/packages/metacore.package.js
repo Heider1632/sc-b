@@ -111,13 +111,17 @@ class MetacorePackage  {
         if(c != null){
             selectedCase = c;
         } else if(coincident.length > 0){
+            console.log("recovery");
             selectedCase = await cbrService.recovery(coincident);
         } else {
+            console.log("create");
             selectedCase = await cbrService.create(id_student, id_course, id_lesson, structure, resources);
         }
 
         if(selectedCase){
             let plan = await cbrService.adapt(selectedCase);
+
+            console.log(plan);
             return plan;
         }
     }

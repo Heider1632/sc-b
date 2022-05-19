@@ -1,587 +1,331 @@
-{
-    "V-Sem-SC": [
-        {
-            "NOMBRES": "ACEVEDO ORTEGA MARÍA ALEJANDRA",
-            "CORREO": "macevedoortega04@correo.unicordoba.edu.co macevedoortega@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "ACOSTA JARABA DAYANA",
-            "CORREO": "dacostajaraba@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "ALVARADO CARRASCAL BLANCA CATALINA",
-            "CORREO": "balvaradocarrascal@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "ANACONA PUJIMUY HAIDY LILIANA",
-            "CORREO": "hanaconapujimuy@correo.unicordoba.edu.co hanaconapujimuy90@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "BABILONIA BLANCO DANID YULISA",
-            "CORREO": "dbabiloniablanco65@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "BARRERA MONTIEL YESSICA",
-            "CORREO": "ydbarreramontiel@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "BERNAL MARTÍNEZ NATALY",
-            "CORREO": "nbernalmartinez66@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "BURGOS VASQUEZ JULIETH ANDREA",
-            "CORREO": "jburgosvasquez@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "CERRO RAMIREZ XILENA ESTHER",
-            "CORREO": "xcerroramirez@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "CHARRY CATALÁN MARÍA JOSÉ",
-            "CORREO": "mcharrycatalan@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "CLAROS LÓPEZ VALENTINA",
-            "CORREO": "vclaroslopez15@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "DORIA LAVERDE CAROLINA",
-            "CORREO": "cdorialaverde61@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "DORIA RAMIREZ INGRID PAOLA",
-            "CORREO": "idoriaramirez@correo.unicordoba.edu.co idoriaramirez17@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "ESCOBAR ARRIETA WILMER DAVID",
-            "CORREO": "vescobararrieta20@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "FALÓN MORENO OSCAR DAVID",
-            "CORREO": "ofalonmoreno@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "GUZMÁN OJEDA ANA CAMILA",
-            "CORREO": "aguzmanojeda@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "JIMENEZ HERNANDEZ GUSTAVO EDGARDO",
-            "CORREO": "gustavojimenezh@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "LIÑAN CASTILLO JUAN CARLOS",
-            "CORREO": "jlinancastillo@correo.unicordoba.edu.co jlinancastillo61@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "LOPEZ DÍAZ LUIS MIGUEL",
-            "CORREO": "llopezdiaz@correo.unicordoba.edu.co llopezdiaz44@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MACHADO DE AGUAS DEILIN AMPARO",
-            "CORREO": "dmachadodeaguas@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MARTÍNEZ TEJADA VANESSA IVOM",
-            "CORREO": "vmartineztejada@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MERCADO MARTÍNEZ MARÍA JOSÉ",
-            "CORREO": "mmercadomartinez@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MESTRA LÓPEZ JESUS ALFONSO",
-            "CORREO": "jmestralopez69@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MONTALVO SILGADO ERIKA",
-            "CORREO": "emontalvosilgado@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "NARANJO VALVERDE MARIAN",
-            "CORREO": "mnaranjovalverde41@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "ORTEGA PACHECO ALEX ANDRES",
-            "CORREO": "aortegapacheco39@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "PACHECO TUIRAN DANIELA",
-            "CORREO": "dpachecotuiran@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "PEREZ MESTRA MAIRA PATRICIA",
-            "CORREO": "mperezmestra@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "POLO FARINO KAROL VIVIANA",
-            "CORREO": "kpolofarino@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "RAMOS COGOLLO GINIS SOFÍA",
-            "CORREO": "gramoscogollo@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "RAMOS GUZMÁN NATALIA",
-            "CORREO": "nramosguzman09@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "ROJAS PEREZ RIDINSON",
-            "CORREO": "rrojasperez@correo.unicordoba.edu.co rrojasperez57@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "SAEZ AGUIRRE DIEGO ALBERTO",
-            "CORREO": "dsaezaguirre80@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "SIERRA DE ARCO SANDRITH",
-            "CORREO": "ssierradearco@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "SUESCUN VARGAS SOFÍA",
-            "CORREO": "ssuescunvargas30@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "VASQUEZ MARTÍNEZ NORELIS",
-            "CORREO": "nvasquezmartinez@correo.unicordoba.edu.co",
-            "SEMESTRE": "V",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        }
-    ],
-    "VII-SEM-STI": [
-        {
-            "NOMBRES": "ARGEL BERRIO, LUISA",
-            "CORREO": "asiullegra@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "ARTEAGA LLORENTE, MARIA",
-            "CORREO": "mariacaroarteagallorente@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "AVENDAÑO OLIVA, MARIA",
-            "CORREO": "mariavavend@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "AYAZO CASILLA, PAULA",
-            "CORREO": "ayazo080108@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "AYAZO NOYA, ESTEFANIA",
-            "CORREO": "estefanniia29@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "BAQUERO HUMANEZ, WILMER",
-            "CORREO": "wilmerbaquero3@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "BARRIOS SEPULVEDA, ANDREA",
-            "CORREO": "andreapaolabarrios0613@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "BENÍTEZ VILLARREAL, ANGÉLICA",
-            "CORREO": "angelicabenitezv@outlook.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "CONTRERAS AGUAS, ANGELA",
-            "CORREO": "angela16072001@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "CUADRADO PEÑA, ELKIN",
-            "CORREO": "elkincuadrado1820@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "DIAZ GOEZ, JUAN",
-            "CORREO": "juanpidiaz1497@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "GALVÁN POLO, CLARENA",
-            "CORREO": "clarenapolo96@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "GRANADA MONTES, MARIA",
-            "CORREO": "mariapaulagranadamontes01@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "HERNANDEZ HERNANDEZ, SARA",
-            "CORREO": "saraisahh@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "HERNANDEZ OLASCOAGA, RUBI",
-            "CORREO": "rubiolasco@hotmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "HERRERA RICO, SHIRLEY",
-            "CORREO": "ricosirly@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "HOYOS LAZARO, YULIETH",
-            "CORREO": "yuliethandreah@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "ISSA DORIA, RAQUEL",
-            "CORREO": "raisdo@hotmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "LARA CASTILLO, ISLENY",
-            "CORREO": "islelaracastillo@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "LEON MONTERO, LEONEL",
-            "CORREO": "leoneljuniorleonmontero@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "LÓPEZ MARTÍNEZ, WENDY",
-            "CORREO": "wenlop14@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "LOPEZ RAMOS, LAURA",
-            "CORREO": "lauralizlopez2001@hotmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "LORA RANGEL, ADRIANA",
-            "CORREO": "lorarangeladriana@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "LUNA LOPEZ, JULIE",
-            "CORREO": "jupalulo0890@hotmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MEJIA MORALES, RUBEN",
-            "CORREO": "rmejia_16@hotmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MIRANDA CALDERA, JOHAN",
-            "CORREO": "johan08miranda@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MONTALVO NISPERUZA, CARMEN",
-            "CORREO": "Cmontalvo.n@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "MORENO GALLEGO, FLOR",
-            "CORREO": "morenogallego409@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "NARVAEZ NAVARRO, SARA",
-            "CORREO": "narvaeznavarrosara@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "OSORIO LUNA, HOSTIN",
-            "CORREO": "hostin.osorio.luna@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "PALOMINO RUIZ, JHOSEP",
-            "CORREO": "jhoseppalomino2996@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "PATERNINA OVIEDO, STEPHY",
-            "CORREO": "stephypaternina0@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "PATERNINA VEGA, ELIZABETH",
-            "CORREO": "elizabethpaternina08@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "PÉREZ MÁRQUEZ, KILLIAM",
-            "CORREO": "perezkilliam@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "POMARES GARCIA, LORENA",
-            "CORREO": "loure2000711@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "PORTILLO CORTES, ERICK",
-            "CORREO": "erickyesidportillocortes@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "RANGEL LAMBRAÑO, JAVIER",
-            "CORREO": "franciscorangel001@hotmail.es",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "REYES JULIO, CAMILA",
-            "CORREO": "reyesjulioc28@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "RODRÍGUEZ SOLANO, MARíA",
-            "CORREO": "maria.camila.rs88@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "SALGADO RHENALS, WINDYS",
-            "CORREO": "windyssalgado@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "SANCHEZ MORELO, JANNE",
-            "CORREO": "sanchezmorelojanne@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "SANTANA GOMEZ, STEFFANY",
-            "CORREO": "steffanysantana08@hotmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "SOTO MARCHENA, SANDRA",
-            "CORREO": "sandramilenasotomarchena@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "TORDECILLA YEPEZ, KERLY",
-            "CORREO": "kerlytordecilla02@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "URRIAGO DELAESPRIELLA, AURELIA",
-            "CORREO": "aurriago96@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "VERTEL MACHADO, LERNY",
-            "CORREO": "lerny.stan@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        },
-        {
-            "NOMBRES": "YANEZ MARTINEZ, LORENA",
-            "CORREO": "loleyama@gmail.com",
-            "SEMESTRE": "VII",
-            "PROGRAMA": "Enfermería",
-            "Institución": "Universidad de Córdoba"
-        }
-    ]
-}
+[
+    {
+        "name": "ARGEL BERRIO, LUISA",
+        "email": "asiullegra@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "ARTEAGA LLORENTE, MARIA",
+        "email": "mariacaroarteagallorente@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "AVENDAÑO OLIVA, MARIA",
+        "email": "mariavavend@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "AYAZO CASILLA, PAULA",
+        "email": "ayazo080108@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "AYAZO NOYA, ESTEFANIA",
+        "email": "estefanniia29@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "BAQUERO HUMANEZ, WILMER",
+        "email": "wilmerbaquero3@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "BARRIOS SEPULVEDA, ANDREA",
+        "email": "andreapaolabarrios0613@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "BENÍTEZ VILLARREAL, ANGÉLICA",
+        "email": "angelicabenitezv@outlook.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "CONTRERAS AGUAS, ANGELA",
+        "email": "angela16072001@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "CUADRADO PEÑA, ELKIN",
+        "email": "elkincuadrado1820@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "DIAZ GOEZ, JUAN",
+        "email": "juanpidiaz1497@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "GALVÁN POLO, CLARENA",
+        "email": "clarenapolo96@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "GRANADA MONTES, MARIA",
+        "email": "mariapaulagranadamontes01@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "HERNANDEZ HERNANDEZ, SARA",
+        "email": "saraisahh@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "HERNANDEZ OLASCOAGA, RUBI",
+        "email": "rubiolasco@hotmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "HERRERA RICO, SHIRLEY",
+        "email": "ricosirly@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "HOYOS LAZARO, YULIETH",
+        "email": "yuliethandreah@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "ISSA DORIA, RAQUEL",
+        "email": "raisdo@hotmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "LARA CASTILLO, ISLENY",
+        "email": "islelaracastillo@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "LEON MONTERO, LEONEL",
+        "email": "leoneljuniorleonmontero@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "LÓPEZ MARTÍNEZ, WENDY",
+        "email": "wenlop14@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "LOPEZ RAMOS, LAURA",
+        "email": "lauralizlopez2001@hotmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "LORA RANGEL, ADRIANA",
+        "email": "lorarangeladriana@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "LUNA LOPEZ, JULIE",
+        "email": "jupalulo0890@hotmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "MEJIA MORALES, RUBEN",
+        "email": "rmejia_16@hotmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "MIRANDA CALDERA, JOHAN",
+        "email": "johan08miranda@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "MONTALVO NISPERUZA, CARMEN",
+        "email": "Cmontalvo.n@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "MORENO GALLEGO, FLOR",
+        "email": "morenogallego409@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "NARVAEZ NAVARRO, SARA",
+        "email": "narvaeznavarrosara@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "OSORIO LUNA, HOSTIN",
+        "email": "hostin.osorio.luna@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "PALOMINO RUIZ, JHOSEP",
+        "email": "jhoseppalomino2996@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "PATERNINA OVIEDO, STEPHY",
+        "email": "stephypaternina0@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "PATERNINA VEGA, ELIZABETH",
+        "email": "elizabethpaternina08@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "PÉREZ MÁRQUEZ, KILLIAM",
+        "email": "perezkilliam@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "POMARES GARCIA, LORENA",
+        "email": "loure2000711@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "PORTILLO CORTES, ERICK",
+        "email": "erickyesidportillocortes@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "RANGEL LAMBRAÑO, JAVIER",
+        "email": "franciscorangel001@hotmail.es",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "REYES JULIO, CAMILA",
+        "email": "reyesjulioc28@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "RODRÍGUEZ SOLANO, MARíA",
+        "email": "maria.camila.rs88@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "SALGADO RHENALS, WINDYS",
+        "email": "windyssalgado@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "SANCHEZ MORELO, JANNE",
+        "email": "sanchezmorelojanne@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "SANTANA GOMEZ, STEFFANY",
+        "email": "steffanysantana08@hotmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "SOTO MARCHENA, SANDRA",
+        "email": "sandramilenasotomarchena@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "TORDECILLA YEPEZ, KERLY",
+        "email": "kerlytordecilla02@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "URRIAGO DELAESPRIELLA, AURELIA",
+        "email": "aurriago96@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "VERTEL MACHADO, LERNY",
+        "email": "lerny.stan@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    },
+    {
+        "name": "YANEZ MARTINEZ, LORENA",
+        "email": "loleyama@gmail.com",
+        "semester": "VII",
+        "program": "Enfermería",
+        "institution": "Universidad de Córdoba"
+    }
+]
