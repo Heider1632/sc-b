@@ -113,6 +113,35 @@ async function generateUser() {
   }
 }
 
+async function resetPasswords() {
+  try {
+    
+    let promises = _students.map(async (student) => {
+      
+      let randomPassword = Math.random().toString(16).slice(-8);
+
+      student.password = randomPassword;
+
+      await db.user.findOneAndUpdate({ email: student.email }, { password: bcrypt.hashSync(randomPassword, 8) });
+      
+      return student;
+
+    });
+
+    Promise.all(promises).then((content) => {
+      fs.writeFileSync(__dirname + "/data/students.json", JSON.stringify(content, null, 4), "utf-8");
+
+      console.log("done");
+    process.exit();
+    });
+
+    
+  } catch (err) {
+    console.log(err.message);
+    process.exit();
+  }
+}
+
 function generateLearningStyles() {
   try {
     learnings.forEach((learning) => {
@@ -414,4 +443,6 @@ if (process.argv.includes("--user")) {
   syncResourcesByLesson();
 } else if (process.argv.includes("--syncstudents")) {
   syncStudents();
+} else if (process.argv.includes("--resetpasswords")) {
+  resetPasswords();
 }
