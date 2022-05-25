@@ -168,8 +168,6 @@ class CbrService {
 
         selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate('solution.resources.resource');
         
-        console.log("------------------");
-        console.log(selectedCase);
       }
 
       return selectedCase;
@@ -220,10 +218,6 @@ class CbrService {
       .populate("resources", 'estimatedTime');
 
     if (c.solution.resources && c.solution.resources.length > 0) {
-
-      console.log('do anything');
-
-
 
       return Promise.all(
         c.context.structure.map(async (l, index) => {
@@ -345,6 +339,7 @@ class CbrService {
                         pedagogicalStrategy: pedagogicalStrategy._id,
                         structure: selectedStructure._id,
                       });
+                      
                     }
                   }
               } else {
@@ -373,13 +368,8 @@ class CbrService {
       });
     } else {
 
-      console.log('is rigth');
-
       return Promise.all(
         c.context.structure.map(async (l, index) => {
-          
-          console.log('structure');
-          console.log(l);
 
           let selectedStructure = await db.structure.findById(
             mongoose.Types.ObjectId(l)
@@ -408,9 +398,6 @@ class CbrService {
           let pedagogicalStrategy = pedagogicalStrategies[indice];
 
           if (pedagogicalStrategy) {
-
-            console.log('pedagogicalStrategy');
-            console.log(pedagogicalStrategy._id);
 
             var foundR = false;
 
@@ -452,7 +439,6 @@ class CbrService {
 
                 let _ids = [];
 
-                //TODO: fix resources when has a rating or time
                 traces.map(async (trace) => {
                   if (trace.assessments[index]) {
 
@@ -498,6 +484,7 @@ class CbrService {
                 pedagogicalStrategy: pedagogicalStrategy._id,
                 structure: selectedStructure._id,
               });
+
             }
 
             if (resource) {
