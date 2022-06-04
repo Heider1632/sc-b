@@ -259,6 +259,7 @@ class CbrService {
             });
 
             var indice = counts.sort((a,b)=>b.count-a.count)[0].index
+            
             let pedagogicalStrategy = pedagogicalStrategies[indice];
 
             if (pedagogicalStrategy) {
