@@ -22,10 +22,10 @@ exports.all = async (req, res) => {
         value: t.lesson.name,
         type: "string"
       },
-      { 
+      /*{ 
         value: JSON.stringify(t.assessments),
         type: "string"
-      }
+      }*/
     ]);
   });
 
