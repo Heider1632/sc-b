@@ -7,7 +7,7 @@ exports.all = async (req, res) => {
 
   let cases = await db.case.find({});
 
-  let historycases = await db.historycase.find({})
+  let historycases = await db.historyCase.find({});
 
   let data = traces.map((t, index) => {
     return [
