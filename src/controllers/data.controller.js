@@ -6,7 +6,11 @@ exports.all = async (req, res) => {
 
   let traces = await db.trace.find({}).populate("student course lesson");
 
-  console.log(traces);
+  //let cases = await db.case.find({});
+
+  //let historycases = await db.historycase.find({})
+
+  //console.log(traces);
 
   traces.map((t) => {
     data.push([
@@ -22,10 +26,6 @@ exports.all = async (req, res) => {
         value: t.lesson.name,
         type: "string"
       },
-      /*{ 
-        value: JSON.stringify(t.assessments),
-        type: "string"
-      }*/
     ]);
   });
 
