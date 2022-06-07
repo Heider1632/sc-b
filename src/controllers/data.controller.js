@@ -2,7 +2,6 @@ const db = require("../models");
 const _ = require("lodash");
 
 exports.all = async (req, res) => {
-  let data = [];
 
   let traces = await db.trace.find({}).populate("student course lesson");
 
@@ -12,8 +11,8 @@ exports.all = async (req, res) => {
 
   //console.log(traces);
 
-  traces.map((t) => {
-    data.push([
+  let data = traces.map((t) => {
+    return [
       {
         value: t.student.name,
         type: "string",
@@ -26,7 +25,7 @@ exports.all = async (req, res) => {
         value: t.lesson.name,
         type: "string"
       },
-    ]);
+    ];
   });
 
   return data;
