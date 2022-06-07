@@ -6,6 +6,8 @@ exports.all = async (req, res) => {
 
   let traces = db.trace.find({}).populate("student course lesson");
 
+  console.log(traces);
+
   traces.map((t) => {
     data.push([
       {

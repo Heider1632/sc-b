@@ -10,6 +10,6 @@ module.exports = function(app) {
     //     next();
     // });
 
-    app.get("/api/data/all", [authJwt.verifyToken], DataController.all);
+    app.get("/api/data/all", [], DataController.all);
 
 }
