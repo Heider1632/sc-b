@@ -4,7 +4,7 @@ const _ = require("lodash");
 exports.all = async (req, res) => {
   let data = [];
 
-  let traces = db.trace.find({}).populate("student course lesson");
+  let traces = await db.trace.find({}).populate("student course lesson");
 
   console.log(traces);
 
