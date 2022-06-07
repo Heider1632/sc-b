@@ -7,7 +7,7 @@ exports.all = async (req, res) => {
 
   let cases = await db.case.find({});
 
-  let historycases = await db.historyCase.find({});
+  //let historycases = await db.historyCase.find({});
 
   let data = traces.map((t, index) => {
     return [
@@ -39,14 +39,14 @@ exports.all = async (req, res) => {
         value: cases[index].results.success,
         type: "string"
       },
-      {
+      /*{
         value: historyCases[index].was,
         type: "string"
       },
       {
         value: hisotryCases[index].note,
         type: "string"
-      },
+      },*/
     ];
   });
 
