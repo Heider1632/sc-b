@@ -9,7 +9,7 @@ exports.all = async (req, res) => {
 
   //let historycases = await db.historycase.find({})
 
-  //console.log(traces);
+  console.log(traces);
 
   let data = traces.map((t) => {
     return [
@@ -28,5 +28,5 @@ exports.all = async (req, res) => {
     ];
   });
 
-  return data;
+  res.send(data);
 };
