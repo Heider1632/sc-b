@@ -23,7 +23,7 @@ exports.all = async (req, res) => {
         type: "string"
       },
       { 
-        value: JSON.stringfy(t.assessments),
+        value: JSON.stringify(t.assessments),
         type: "string"
       }
     ]);
