@@ -70,11 +70,11 @@ async function generateUser() {
     const ROLE_MODERATOR = await db.role.findOne({ name: "moderator" });
     const course = await db.course.find({});
 
-    let laura = await db.user.create({
+    /*let laura = await db.user.create({
       email: "lauramarquez@gmail.com",
       password: bcrypt.hashSync("12345", 8),
       roles: [ROLE_USER._id],
-    });
+    });*/
 
     let moderator = await db.user.create({
       email: "moderato@gmail.com",
@@ -82,14 +82,14 @@ async function generateUser() {
       roles: [ROLE_MODERATOR._id],
     });
 
-    await db.student.create({
+    /*await db.student.create({
       name: "Laura",
       lastname: "Marquez",
       user: laura._id,
       course: [course[0]._id],
-    });
+    });*/
 
-    _students.forEach(async (student) => {
+    /*_students.forEach(async (student) => {
       let user = await db.user.create({
         email: student.email,
         password: bcrypt.hashSync("12345", 8),
@@ -110,7 +110,7 @@ async function generateUser() {
         user: user._id,
         course: [course[0]._id],
       });
-    });
+    });*/
 
     // console.log("done");
     // process.exit();
