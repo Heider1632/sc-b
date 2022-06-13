@@ -5,11 +5,24 @@ exports.all = async (req, res) => {
 
   let traces = await db.trace.find({}).populate("student course lesson");
 
+
+
+
   let cases = await db.case.find({});
 
   let historycases = await db.historyCase.find({});
 
   let data = traces.map((t, index) => {
+
+    let sum = 0;
+
+    for(let j = 0; j < traces[i].resources.length; j++){
+        if(traces[i].assessments[j] && traces[i].assessments[j].time_use){
+            sum += traces[i].assessments[j].time_use;
+        }
+    }
+  
+
     return [
       {
         value: t.student.name + " " + t.student.lastname,
@@ -21,6 +34,10 @@ exports.all = async (req, res) => {
       },
       {
         value: t.lesson.title,
+        type: "string"
+      },
+      {
+        value: cases[index].id,
         type: "string"
       },
       {
@@ -46,6 +63,10 @@ exports.all = async (req, res) => {
       {
         value: historycases[index].note,
         type: "string"
+      },
+      {
+        value: sum,
+        type: "number"
       },
     ];
   });
