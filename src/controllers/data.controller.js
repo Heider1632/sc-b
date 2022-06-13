@@ -16,9 +16,9 @@ exports.all = async (req, res) => {
 
     let sum = 0;
 
-    for(let j = 0; j < traces[i].resources.length; j++){
-        if(traces[i].assessments[j] && traces[i].assessments[j].time_use){
-            sum += traces[i].assessments[j].time_use;
+    for(let j = 0; j < traces[index].resources.length; j++){
+        if(traces[index].assessments[j] && traces[index].assessments[j].time_use){
+            sum += traces[index].assessments[j].time_use;
         }
     }
   
