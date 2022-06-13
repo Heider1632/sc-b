@@ -32,8 +32,6 @@ exports.total = async (req, res) => {
         }
     }
 
-    console.log(sum);
-
     res.status(200).send({ total: sum });
 }
 
