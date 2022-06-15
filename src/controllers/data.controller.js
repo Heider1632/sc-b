@@ -54,7 +54,7 @@ exports.all = async (req, res) => {
         type: "string"
       },
       {
-        value: historycases[index] ? histortcases[index].was : "error",
+        value: historycases[index] ? historycases[index].was : "error",
         type: "string"
       },
       {
