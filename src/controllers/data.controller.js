@@ -5,9 +5,6 @@ exports.all = async (req, res) => {
 
   let traces = await db.trace.find({}).populate("student course lesson");
 
-
-
-
   let cases = await db.case.find({});
 
   let historycases = await db.historyCase.find({});
@@ -57,11 +54,11 @@ exports.all = async (req, res) => {
         type: "string"
       },
       {
-        value: historycases[index].was,
+        value: historycases[index] ? histortcases[index].was : "error",
         type: "string"
       },
       {
-        value: historycases[index].note,
+        value: historycases[index] ? historycases[index].note : "0",
         type: "string"
       },
       {
