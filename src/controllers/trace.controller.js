@@ -42,7 +42,8 @@ exports.create = (req, res) => {
         lesson: req.body.lesson,
         resources: req.body.resources,
         assessments: req.body.assessments,
-        logs: req.body.logs
+        logs: req.body.logs,
+        case: req.body.case
     });
 
     trace.save((err, trace) => {

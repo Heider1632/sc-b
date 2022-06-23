@@ -13,7 +13,8 @@ const Trace = mongoose.model(
     }],
     logs: [{
       name: String
-    }]
+    }],
+    case: {  type: mongoose.Schema.Types.ObjectId, ref: "Case" }
   },
   { timestamps: true }
   )
