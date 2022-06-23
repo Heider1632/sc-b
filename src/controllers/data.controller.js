@@ -5,18 +5,18 @@ exports.all = async (req, res) => {
 
   let traces = await db.trace.find({}).populate("student course lesson");
 
-  Promise.all(traces.map(async (t, index)  => {
+  Promise.all(traces.map(async (t, index) => {
 
-    let case  = await db.case.findOne({ 
+    let c = await db.case.findOne({ 
       "context.id_student": t.student._id,
       "context.id_course": t.course._id,
       "context.id_lesson": t.lesson._id
     });
 
-    if(case){
+    if(c){
       let historycase = await db.historyCase.findOne({
         student: t.student._id,
-        case: case._id
+        case: c._id
       });
     }
 
@@ -42,23 +42,23 @@ exports.all = async (req, res) => {
         type: "string"
       },
       {
-        value: case ? case.id : "no-case",
+        value: c ? c.id : "no-case",
         type: "string"
       },
       {
-        value: case ? case.euclideanWeight ? "no-euclidean-weight",
+        value: c ? c.euclideanWeight ? "no-euclidean-weight",
         type: "string"
       },
       {
-        value: case ? case.results.uses : "no-uses",
+        value: c ? c.results.uses : "no-uses",
         type: "string"
       },
       {
-        value: case ? case.results.errors : "no-errors",
+        value: c ? c.results.errors : "no-errors",
         type: "string"
       },
       {
-        value: case ? case.results.success : "no-success",
+        value: c ? c.results.success : "no-success",
         type: "string"
       },
       {
