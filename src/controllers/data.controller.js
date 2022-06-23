@@ -46,7 +46,7 @@ exports.all = async (req, res) => {
         type: "string"
       },
       {
-        value: c ? c.euclideanWeight ? "no-euclidean-weight",
+        value: c ? c.euclideanWeight : "no-euclidean-weight",
         type: "string"
       },
       {
