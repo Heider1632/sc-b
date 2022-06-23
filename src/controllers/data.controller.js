@@ -5,11 +5,20 @@ exports.all = async (req, res) => {
 
   let traces = await db.trace.find({}).populate("student course lesson");
 
-  let cases = await db.case.find({});
+  Promise.all(traces.map(async (t, index)  => {
 
-  let historycases = await db.historyCase.find({});
+    let case  = await db.case.findOne({ 
+      "context.id_student": t.student._id,
+      "context.id_course": t.course._id,
+      "context.id_lesson": t.lesson._id
+    });
 
-  let data = traces.map((t, index) => {
+    if(case){
+      let historycase = await db.historyCase.findOne({
+        student: t.student._id,
+        case: case._id
+      });
+    }
 
     let sum = 0;
 
@@ -19,7 +28,6 @@ exports.all = async (req, res) => {
         }
     }
   
-
     return [
       {
         value: t.student.name + " " + t.student.lastname,
@@ -34,31 +42,31 @@ exports.all = async (req, res) => {
         type: "string"
       },
       {
-        value: cases[index].id,
+        value: case ? case.id : "no-case",
         type: "string"
       },
       {
-        value: cases[index].euclideanWeight,
+        value: case ? case.euclideanWeight ? "no-euclidean-weight",
         type: "string"
       },
       {
-        value: cases[index].results.uses,
+        value: case ? case.results.uses : "no-uses",
         type: "string"
       },
       {
-        value: cases[index].results.errors,
+        value: case ? case.results.errors : "no-errors",
         type: "string"
       },
       {
-        value: cases[index].results.success,
+        value: case ? case.results.success : "no-success",
         type: "string"
       },
       {
-        value: historycases[index] ? historycases[index].was : "error",
+        value: historycase ? historycase.was : "no-history-case-use",
         type: "string"
       },
       {
-        value: historycases[index] ? historycases[index].note : "0",
+        value: historycase ? historycase.note : "no-history-case-note",
         type: "string"
       },
       {
@@ -66,7 +74,9 @@ exports.all = async (req, res) => {
         type: "number"
       },
     ];
+  }))
+  .then(data => {
+    res.send(data);
   });
 
-  res.send(data);
 };
