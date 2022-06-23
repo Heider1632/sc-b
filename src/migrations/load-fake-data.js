@@ -228,23 +228,58 @@ async function generateFakeCases(){
 }
 
 async function generateFakeInterview() {
-  try{
+  try {
+    let _kc = await db.knowledgeComponent.find({});
 
-    interviews.forEach(async (interview)  => {
-      let questions = await db.question.insertMany(interview.questions);
+    Promise.all(
+      interviews.map(async (interview) => {
+        Promise.all(
+          interview.questions.map(async (q) => {
+            let _id = null;
 
-      await db.interview.create({
-        title: interview.title,
-        lesson: interview.lesson,
-        questions: questions,
-        feedback: interview.feedback
+            if (q.knowledgeComponent == "KC1") {
+              _id = _kc[0]._id;
+            } else if (q.knowledgeComponent == "KC2") {
+              _id = _kc[1]._id;
+            } else if (q.knowledgeComponent == "KC3") {
+              _id = _kc[2]._id;
+            } else if (q.knowledgeComponent == "KC4") {
+              _id = _kc[3]._id;
+            } else if (q.knowledgeComponent == "KC5") {
+              _id = _kc[4]._id;
+            } else if (q.knowledgeComponent == "KC6") {
+              _id = _kc[5]._id;
+            } else if (q.knowledgeComponent == "KC7") {
+              _id = _kc[6]._id;
+            } else if (q.knowledgeComponent == "KC8") {
+              _id = _kc[7]._id;
+            }
+
+            q.knowledgeComponent = _id;
+
+            return q;
+          })
+        ).then(async (pushed) => {
+          let questions = await db.question.insertMany(pushed);
+
+          await db.interview.create({
+            title: interview.title,
+            lesson: interview.lesson,
+            questions: questions,
+            feedback: interview.feedback,
+          });
+        });
       })
-
-    })
-    
-    
-    
-  } catch(error){
+    )
+      .then((_) => {
+        // console.log("done");
+        // process.exit();
+      })
+      .catch((e) => {
+        console.log(e.message);
+        process.exit();
+      });
+  } catch (error) {
     console.error(error.message);
     process.exit();
   }
