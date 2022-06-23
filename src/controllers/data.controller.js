@@ -7,6 +7,8 @@ exports.all = async (req, res) => {
 
   Promise.all(traces.map(async (t, index) => {
 
+    let historycase;
+
     let c = await db.case.findOne({ 
       "context.id_student": t.student._id,
       "context.id_course": t.course._id,
@@ -14,7 +16,7 @@ exports.all = async (req, res) => {
     });
 
     if(c){
-      let historycase = await db.historyCase.findOne({
+      historycase = await db.historyCase.findOne({
         student: t.student._id,
         case: c._id
       });
