@@ -345,14 +345,16 @@ async function syncCases(){
     let cases = await db.case.find({});
 
     Promise.all(cases.map(async c => {
-      let trace = await db.trace.find({ resources: { $eq: c.solution.resources } });
 
-      console.log(trace);
+      console.log(c.solution.resources);
+
+      let trace = await db.trace.findOne({ resources: { $eq: c.solution.resources } });
 
       if(trace) {
         console.log(trace._id);
         await db.trace.findOneAndUpdate({ _id: trace._id }, { $set: { case : c._id }});
       }
+      
     }))
     .then(_ => {
       console.log("done");
