@@ -126,9 +126,9 @@ class MetacorePackage  {
         }
     }
 
-    async review(id_case, success, error, time){
+    async review(id_case, id_trace, success, error, time){
         let cbrService = new CbrService(this);
-        let reviewCase = await cbrService.reviewCase(id_case, success, error, time);
+        let reviewCase = await cbrService.reviewCase(id_case, id_trace, success, error, time);
         return reviewCase;
     }
 

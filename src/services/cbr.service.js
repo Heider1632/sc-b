@@ -508,21 +508,34 @@ class CbrService {
     }
   }
 
-  async reviewCase(id_case, success, error, time) {
+  async reviewCase(id_case, id_trace, success, error, time) {
 
     let caseS = await db.case.findById(id_case);
 
     if (caseS) {
       let uses = caseS.results.uses + 1;
+      let timeSpend = 0;
 
-      let timeSpend = caseS.solution.resources.reduce(function (accumulator, curValue) {
+      let trace = await db.trace.findOne({ _id: id_trace });
+
+      if(trace.assessments){
+        timeSpend = trace.assessments.reduce(function (accumulator, curValue) {
           if(curValue != null){
             return  accumulator + curValue.time_use;
           } else {
             return accumulator + 0;
           }
-      }, caseS.euclideanWeight)
-      
+        }, caseS.euclideanWeight)
+      } else {
+        timeSpend = caseS.solution.resources.reduce(function (accumulator, curValue) {
+          if(curValue != null){
+            return  accumulator + curValue.time_use;
+          } else {
+            return accumulator + 0;
+          }
+        }, caseS.euclideanWeight)
+      }
+       
       let euclideanWeight = timeSpend / uses;
 
       if (success) {

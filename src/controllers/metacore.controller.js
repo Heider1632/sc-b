@@ -49,11 +49,12 @@ exports.update = async (req, res) => {
 exports.review = async (req, res) => {
 
     let id_case = req.body.id_case;
+    let id_trace = req.body.id_trace;
     let success = req.body.success;
     let error = req.body.error;
     let time = req.body.time;
 
-    await metacore.review(id_case, success, error, time);
+    await metacore.review(id_case, id_trace, success, error, time);
     
     res.send({ message: 'Case reviewed' });
 }
