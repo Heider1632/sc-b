@@ -340,6 +340,27 @@ async function syncQuestions() {
   }
 }
 
+async function syncCases(){
+  try {
+    let cases = await db.case.find({});
+
+    Promise.all(cases.map(async c => {
+      let trace = await db.trace.find({ resources: { $eq: c.solution.resources } });
+
+      if(trace) {
+        await db.trace.findByAIndUpdate({ _id: trace._id }, { $set: { case : c._id }});
+      }
+    }))
+    .then(_ => {
+      console.log("done");
+      process.exit();
+    })
+  } catch (error) {
+    console.error(error.message);
+    process.exit();
+  }
+}
+
 async function syncResourcesByLesson() {
   try {
     new Promise(async (resolve, reject) => {
@@ -452,4 +473,6 @@ if (process.argv.includes("--user")) {
   syncStudents();
 } else if (process.argv.includes("--resetpasswords")) {
   resetPasswords();
+} else if (process.argv.includes("--synccases")) {
+  syncCases();
 }

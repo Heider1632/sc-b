@@ -25,7 +25,8 @@
     "syncquestions": "node ./src/migrations/load-data.js --syncquestions",
     "syncstudents": "node ./src/migrations/load-data.js --syncstudents",
     "syncresourcesbylesson": "node ./src/migrations/load-data.js --syncresourcesbylesson",
-    "resetpasswords": "node ./src/migrations/load-data.js --resetpasswords"
+    "resetpasswords": "node ./src/migrations/load-data.js --resetpasswords",
+    "synccases": "node ./src/migrations/load-data.js --synccases"
   },
   "keywords": [],
   "author": "",
