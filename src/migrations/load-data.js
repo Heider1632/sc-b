@@ -347,6 +347,8 @@ async function syncCases(){
     Promise.all(cases.map(async c => {
       let trace = await db.trace.find({ resources: { $eq: c.solution.resources } });
 
+      console.log(trace);
+
       if(trace) {
         console.log(trace._id);
         await db.trace.findOneAndUpdate({ _id: trace._id }, { $set: { case : c._id }});
