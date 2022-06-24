@@ -9,11 +9,7 @@ exports.all = async (req, res) => {
 
     let historycase;
 
-    let c = await db.case.findOne({ 
-      "context.id_student": t.student._id,
-      "context.id_course": t.course._id,
-      "context.id_lesson": t.lesson._id
-    });
+    let c = await db.case.findOne({ _id: t.case });
 
     if(c){
       historycase = await db.historyCase.findOne({
