@@ -346,11 +346,11 @@ async function syncCases(){
 
     Promise.all(cases.map(async c => {
 
-      console.log(c.solution.resources);
-
       let resources = c.solution.resources.map(d => d.resource);
 
-      let trace = await db.trace.findOne({ resources: { $eq: c.solution.resources } });
+      console.log(resources);
+
+      let trace = await db.trace.findOne({ resources: { $eq: resources } });
 
       if(trace) {
         console.log(trace._id);
