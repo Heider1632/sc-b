@@ -348,7 +348,7 @@ async function syncCases(){
       let trace = await db.trace.find({ resources: { $eq: c.solution.resources } });
 
       if(trace) {
-        await db.trace.findByAIndUpdate({ _id: trace._id }, { $set: { case : c._id }});
+        await db.trace.findOneAndUpdate({ _id: trace._id }, { $set: { case : c._id }});
       }
     }))
     .then(_ => {
