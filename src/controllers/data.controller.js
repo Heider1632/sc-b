@@ -52,11 +52,11 @@ exports.all = async (req, res) => {
         type: "string"
       },
       {
-        value: c ? c.results.errors : "no-errors",
+        value: c ? c.results.success : "no-success",
         type: "string"
       },
       {
-        value: c ? c.results.success : "no-success",
+        value: c ? c.results.errors : "no-errors",
         type: "string"
       },
       {
