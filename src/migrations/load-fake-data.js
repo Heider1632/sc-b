@@ -52,13 +52,7 @@ async function generateFakeUserStudent() {
 
       let name = null;
 
-      if(index <= 33){
-        name = "adan-".concat(index);
-      } else if(index <= 66){
-        name = "laura-".concat(index);
-      } else {
-        name = "heider-".concat(index)
-      }
+      name = "user".concat(index);
 
       let userRole = await db.role.findOne({ name: "user" });
 
