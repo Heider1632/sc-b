@@ -45,30 +45,52 @@ function randomizeFloat(min, max) {
     return min + (max - min) * randomizeValue();
 }
 
-async function generateFakeUserStudent(){
+async function generateFakeUserStudent() {
   try {
+    
+    for (let index = 0; index < 100; index++) {
 
-    users.forEach(async user => {
-          let newUser = await db.user.create({
-            email: user.email,
-            password: bcrypt.hashSync(user.password, 8),
-            roles: user.roles
-          });
+      let name = null;
 
-          if(newUser){
-            db.student.create({
-              name: user.name,
-              lastname: user.lastname,
-              learningStyleDimensions: user.learningStyleDimensions,
-              course: user.course,
-              user: newUser._id
-            });
+      if(index <= 33){
+        name = "adan-".concat(index);
+      } else if(index <= 66){
+        name = "laura-".concat(index);
+      } else {
+        name = "heider-".concat(index)
+      }
+
+      let userRole = await db.role.findOne({ name: "user" });
+
+      let newUser = await db.user.create({
+        email: name.concat('@gmail.com'),
+        password: bcrypt.hashSync(name, 8),
+        roles: [userRole._id]
+      });
+
+      let learningStyles = await db.learningStyle.find({})
+
+      let learningStyleDimensions = [];
+
+      learningStyles.map((ls, index) => {
+        if(index < 3){
+          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
+          learningStyleDimensions.push(lsd);
         }
-    });
+      })
 
-  } catch(err){
-      console.error(err.message)
-  } 
+      if(newUser){
+        db.student.create({
+          name: name,
+          lastname: "test",
+          learningStyleDimensions: learningStyleDimensions,
+          user: newUser._id
+        });
+      }
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
 }
 
 async function generateFakeCourse(){

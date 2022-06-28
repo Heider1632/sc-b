@@ -30,7 +30,7 @@ exports.all = async (req, res) => {
 
     if(c.solution.resources && c.solution.resources.length > 0){
 
-      c.solution.resources.forEach(data => { 
+      c.solution.resources.forEach(data => {
 
         resources.push({
           value: data.resource.title, 
