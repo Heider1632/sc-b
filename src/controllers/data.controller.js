@@ -9,7 +9,7 @@ exports.all = async (req, res) => {
 
     let historycase;
 
-    let c = await db.case.findOne({ _id: t.case });
+    let c = await db.case.findOne({ _id: t.case }).populate("solution.resources.resource");
 
     if(c){
       historycase = await db.historyCase.findOne({
@@ -24,6 +24,19 @@ exports.all = async (req, res) => {
         if(traces[index].assessments[j] && traces[index].assessments[j].time_use){
             sum += traces[index].assessments[j].time_use;
         }
+    }
+
+    let resources = [];
+
+    if(c.solution.resources && c.solution.resources.length > 0){
+
+      c.solution.resources.forEach(data => { 
+
+        resources.push({
+          value: data.resource.title, 
+          type: "string" 
+        })
+      });
     }
   
     return [
@@ -71,6 +84,7 @@ exports.all = async (req, res) => {
         value: sum,
         type: "number"
       },
+      ...resources
     ];
   }))
   .then(data => {
