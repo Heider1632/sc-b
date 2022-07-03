@@ -58,7 +58,7 @@ exports.create = (req, res) => {
 
 exports.update = (req, res) => {
     
-    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { "resources": req.body.resources, "assessments" : req.body.assessments, "logs" : req.body.logs }})
+    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { "resources": req.body.resources, "assessments" : req.body.assessments, "logs" : req.body.logs, evaluation: req.body.evaluation }})
     .exec((err, trace) => {
         if(err){
             res.status(500).send({ messsage: err });
@@ -67,6 +67,19 @@ exports.update = (req, res) => {
         res.send({ message: "Trace update successful" });
     });
 }
+
+exports.updateEvaluation = (req, res) => {
+    
+    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { evaluation: req.body.evaluation }})
+    .exec((err, trace) => {
+        if(err){
+            res.status(500).send({ messsage: err });
+        }
+
+        res.send({ message: "Trace update successful" });
+    });
+}
+
 
 exports.delete = (req, res) => {
     db.trace.findAndDelete({ id: req.body.id })

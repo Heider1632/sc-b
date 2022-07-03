@@ -14,7 +14,12 @@ const Trace = mongoose.model(
     logs: [{
       name: String
     }],
-    case: {  type: mongoose.Schema.Types.ObjectId, ref: "Case" }
+    case: {  type: mongoose.Schema.Types.ObjectId, ref: "Case" },
+    evaluation: {
+      type: Boolean,
+      default: false
+
+    }
   },
   { timestamps: true }
   )
