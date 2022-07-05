@@ -23,7 +23,7 @@ exports.all = async (req, res) => {
     for(let j = 0; j < traces[index].resources.length; j++){
 
         resources.push({
-          value: traces[index].resources[j].resource.title, 
+          value: traces[index].resources[j].title, 
           type: "string" 
         })
 
