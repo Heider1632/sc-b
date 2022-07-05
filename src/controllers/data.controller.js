@@ -9,6 +9,12 @@ exports.all = async (req, res) => {
 
   Promise.all(traces.map(async (t, index) => {
 
+    let historycase;
+   
+    let sum = 0;
+    
+    let resources = [];
+
     if(t.case){
       historycase = await db.historyCase.findOne({
         student: t.student._id,
@@ -16,9 +22,6 @@ exports.all = async (req, res) => {
       });
     }
 
-    let sum = 0;
-    
-    let resources = [];
 
     for(let j = 0; j < traces[index].resources.length; j++){
 
