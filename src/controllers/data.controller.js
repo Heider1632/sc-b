@@ -5,6 +5,8 @@ exports.all = async (req, res) => {
 
   let traces = await db.trace.find({}).populate("student course lesson resources case");
 
+  console.log(traces);
+
   Promise.all(traces.map(async (t, index) => {
 
     if(t.case){
