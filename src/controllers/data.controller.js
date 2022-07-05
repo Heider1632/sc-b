@@ -3,40 +3,31 @@ const _ = require("lodash");
 
 exports.all = async (req, res) => {
 
-  let traces = await db.trace.find({}).populate("student course lesson");
+  let traces = await db.trace.find({}).populate("student course lesson resources case");
 
   Promise.all(traces.map(async (t, index) => {
 
-    let historycase;
-
-    let c = await db.case.findOne({ _id: t.case }).populate("solution.resources.resource");
-
-    if(c){
+    if(t.case){
       historycase = await db.historyCase.findOne({
         student: t.student._id,
-        case: c._id
+        case: t.case._id
       });
     }
 
     let sum = 0;
-
-    for(let j = 0; j < traces[index].resources.length; j++){
-        if(traces[index].assessments[j] && traces[index].assessments[j].time_use){
-            sum += traces[index].assessments[j].time_use;
-        }
-    }
-
+    
     let resources = [];
 
-    if(c.solution.resources && c.solution.resources.length > 0){
-
-      c.solution.resources.forEach(data => {
+    for(let j = 0; j < traces[index].resources.length; j++){
 
         resources.push({
           value: data.resource.title, 
           type: "string" 
         })
-      });
+
+        if(traces[index].assessments[j] && traces[index].assessments[j].time_use){
+            sum += traces[index].assessments[j].time_use;
+        }
     }
   
     return [
@@ -53,23 +44,23 @@ exports.all = async (req, res) => {
         type: "string"
       },
       {
-        value: c ? c.id : "no-case",
+        value: t.case ? t.case.id : "no-case",
         type: "string"
       },
       {
-        value: c ? c.euclideanWeight : "no-euclidean-weight",
+        value: t.case ? t.case.euclideanWeight : "no-euclidean-weight",
         type: "string"
       },
       {
-        value: c ? c.results.uses : "no-uses",
+        value: t.case ? t.case.results.uses : "no-uses",
         type: "string"
       },
       {
-        value: c ? c.results.success : "no-success",
+        value: t.case ? t.case.results.success : "no-success",
         type: "string"
       },
       {
-        value: c ? c.results.errors : "no-errors",
+        value: t.case ? t.case.results.errors : "no-errors",
         type: "string"
       },
       {

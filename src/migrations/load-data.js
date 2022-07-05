@@ -70,17 +70,17 @@ async function generateUser() {
     const ROLE_MODERATOR = await db.role.findOne({ name: "moderator" });
     const course = await db.course.find({});
 
-    /*let laura = await db.user.create({
-      email: "lauramarquez@gmail.com",
-      password: bcrypt.hashSync("12345", 8),
-      roles: [ROLE_USER._id],
-    });*/
-
     let moderator = await db.user.create({
       email: "moderato@gmail.com",
       password: bcrypt.hashSync("12345", 8),
       roles: [ROLE_MODERATOR._id],
     });
+
+    /*let laura = await db.user.create({
+      email: "lauramarquez@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      roles: [ROLE_USER._id],
+    });*/
 
     /*await db.student.create({
       name: "Laura",
