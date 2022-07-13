@@ -310,6 +310,13 @@ class CbrService {
                       structure: selectedStructure._id,
                     });
 
+                    if(resource == null){
+                      resource = await db.resource.findOne({
+                        pedagogicalStrategy: pedagogicalStrategy._id,
+                        structure: selectedStructure._id,
+                      });
+                    }
+
                   } else {
                     let _ids = [];
                     traces.map(async (trace) => {
