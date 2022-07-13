@@ -304,16 +304,11 @@ class CbrService {
 
                   if (foundR == false) {
 
-                    console.log(selectedStructure._id);
-                    console.log(_ids);
-
                     resource = await db.resource.findOne({
                       _id: { $nin: _ids },
                       pedagogicalStrategy: pedagogicalStrategy._id,
                       structure: selectedStructure._id,
                     });
-
-                    console.log(resource);
 
                   } else {
                     let _ids = [];
@@ -344,7 +339,7 @@ class CbrService {
                       }
                     });
 
-                    if (foundR == false) {
+                    if (foundR == false || resource == null) {
 
                       resource = await db.resource.findOne({
                         _id: { $nin: _ids },
