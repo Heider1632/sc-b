@@ -303,11 +303,16 @@ class CbrService {
                   });
 
                   if (foundR == false) {
+
+
                     resource = await db.resource.findOne({
                       _id: { $nin: _ids },
                       pedagogicalStrategy: pedagogicalStrategy._id,
                       structure: selectedStructure._id,
                     });
+
+                    console.log(resource);
+                    
                   } else {
                     let _ids = [];
                     traces.map(async (trace) => {
@@ -348,6 +353,8 @@ class CbrService {
                     }
                   }
               } else {
+
+                console.log("paso aqui");
 
                 resource = await db.resource.findOne({
                   pedagogicalStrategy: pedagogicalStrategy._id,
