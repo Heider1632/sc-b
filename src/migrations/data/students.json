@@ -13,7 +13,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "a2d24141"
+        "password": "a2d24141",
+        "resuelto": true
     },
     {
         "name": "AVENDAÑO OLIVA, MARIA",
@@ -21,7 +22,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "6f595833"
+        "password": "6f595833",
+        "resuelto": true
     },
     {
         "name": "AYAZO CASILLA, PAULA",

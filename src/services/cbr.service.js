@@ -226,6 +226,8 @@ class CbrService {
             c.solution.resources[index] &&
             c.solution.resources[index].resource != null &&
             c.solution.resources[index].rating > 3 &&
+            traces.length > 0 && 
+            traces[traces.length - 1].resources[index] && 
             c.solution.resources[index].time_use >
                 traces[traces.length - 1].resources[index].estimatedTime
           ) {
