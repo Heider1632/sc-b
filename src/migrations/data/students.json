@@ -31,7 +31,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "e14ed387"
+        "password": "e14ed387",
+        "resuelto": true
     },
     {
         "name": "AYAZO NOYA, ESTEFANIA",
@@ -39,7 +40,9 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "855baaab"
+        "password": "855baaab",
+        "resuelto": "nada que resolver"
+
     },
     {
         "name": "BAQUERO HUMANEZ, WILMER",
@@ -47,7 +50,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "6d3adf7a"
+        "password": "6d3adf7a",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "BARRIOS SEPULVEDA, ANDREA",
@@ -55,7 +59,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "30dbec57"
+        "password": "30dbec57",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "BENÍTEZ VILLARREAL, ANGÉLICA",
@@ -63,7 +68,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "f5a2952a"
+        "password": "f5a2952a",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "CONTRERAS AGUAS, ANGELA",
@@ -71,7 +77,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "38be62de"
+        "password": "38be62de",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "CUADRADO PEÑA, ELKIN",
@@ -79,7 +86,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "fa602fb9"
+        "password": "fa602fb9",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "DIAZ GOEZ, JUAN",
@@ -87,7 +95,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "b44d6d76"
+        "password": "b44d6d76",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "GALVÁN POLO, CLARENA",
@@ -95,7 +104,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "4b818b54"
+        "password": "4b818b54",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "GRANADA MONTES, MARIA",
@@ -103,7 +113,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "86e73fd2"
+        "password": "86e73fd2",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "HERNANDEZ HERNANDEZ, SARA",
@@ -111,7 +122,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "4f6a41c9"
+        "password": "4f6a41c9",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "HERNANDEZ OLASCOAGA, RUBI",
@@ -119,7 +131,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "da75df0f"
+        "password": "da75df0f",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "HERRERA RICO, SHIRLEY",
@@ -127,7 +140,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "38092a36"
+        "password": "38092a36",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "HOYOS LAZARO, YULIETH",
@@ -135,7 +149,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "d3a2b51f"
+        "password": "d3a2b51f",
+        "resuelto": true
     },
     {
         "name": "ISSA DORIA, RAQUEL",
@@ -143,7 +158,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "a4eb875f"
+        "password": "a4eb875f",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "LARA CASTILLO, ISLENY",
@@ -151,7 +167,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "2904d5a4"
+        "password": "2904d5a4",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "LEON MONTERO, LEONEL",
@@ -159,7 +176,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "9a739a03"
+        "password": "9a739a03",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "LÓPEZ MARTÍNEZ, WENDY",
@@ -167,7 +185,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "1bc8d9d8"
+        "password": "1bc8d9d8",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "LOPEZ RAMOS, LAURA",
@@ -175,7 +194,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "679b1fb2"
+        "password": "679b1fb2",
+        "resuelto": true
     },
     {
         "name": "LORA RANGEL, ADRIANA",
@@ -183,7 +203,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "f631d3cb"
+        "password": "f631d3cb",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "LUNA LOPEZ, JULIE",
@@ -191,7 +212,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "6d7a6588"
+        "password": "6d7a6588",
+        "resuelto": true
     },
     {
         "name": "MEJIA MORALES, RUBEN",
@@ -199,7 +221,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "15f2dc15"
+        "password": "15f2dc15",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "MIRANDA CALDERA, JOHAN",
@@ -207,7 +230,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "56478965"
+        "password": "56478965",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "MONTALVO NISPERUZA, CARMEN",
@@ -215,7 +239,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "04fbf161"
+        "password": "04fbf161",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "MORENO GALLEGO, FLOR",
@@ -223,7 +248,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "88a6803c"
+        "password": "88a6803c",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "NARVAEZ NAVARRO, SARA",
@@ -231,7 +257,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "8f4e784d"
+        "password": "8f4e784d",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "OSORIO LUNA, HOSTIN",
@@ -239,7 +266,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "466a36b7"
+        "password": "466a36b7",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "PALOMINO RUIZ, JHOSEP",
@@ -247,7 +275,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "32e84b1b"
+        "password": "32e84b1b",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "PATERNINA OVIEDO, STEPHY",
@@ -255,7 +284,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "c3a983f3"
+        "password": "c3a983f3",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "PATERNINA VEGA, ELIZABETH",
@@ -263,7 +293,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "1cd37d0a"
+        "password": "1cd37d0a",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "PÉREZ MÁRQUEZ, KILLIAM",
@@ -271,7 +302,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "3cfb7831"
+        "password": "3cfb7831",
+        "resuelto": true
     },
     {
         "name": "POMARES GARCIA, LORENA",
@@ -279,7 +311,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "8d2daa6e"
+        "password": "8d2daa6e",
+        "resuelto": true
     },
     {
         "name": "PORTILLO CORTES, ERICK",
@@ -287,7 +320,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "9534fa63"
+        "password": "9534fa63",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "RANGEL LAMBRAÑO, JAVIER",
@@ -295,7 +329,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "c03b3ea7"
+        "password": "c03b3ea7",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "REYES JULIO, CAMILA",
@@ -303,7 +338,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "9740d23e"
+        "password": "9740d23e",
+        "resuelto": true
     },
     {
         "name": "RODRÍGUEZ SOLANO, MARíA",
@@ -311,7 +347,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "be80c4c6"
+        "password": "be80c4c6",
+        "resuelto": true
     },
     {
         "name": "SALGADO RHENALS, WINDYS",
@@ -319,7 +356,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "66e134d6"
+        "password": "66e134d6",
+        "resuelto": true
     },
     {
         "name": "SANCHEZ MORELO, JANNE",
@@ -327,7 +365,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "6985a20f"
+        "password": "6985a20f",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "SANTANA GOMEZ, STEFFANY",
@@ -335,7 +374,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "93e299ad"
+        "password": "93e299ad",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "SOTO MARCHENA, SANDRA",
@@ -343,7 +383,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "7e994fc6"
+        "password": "7e994fc6",
+        "resuelto": true
     },
     {
         "name": "TORDECILLA YEPEZ, KERLY",
@@ -351,7 +392,9 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "c7ffa6b4"
+        "password": "c7ffa6b4",
+        "resuelto": "nada que resolver"
+
     },
     {
         "name": "URRIAGO DELAESPRIELLA, AURELIA",
@@ -359,7 +402,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "391c739c"
+        "password": "391c739c",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "VERTEL MACHADO, LERNY",
@@ -367,7 +411,8 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "8d23c9ed"
+        "password": "8d23c9ed",
+        "resuelto": "nada que resolver"
     },
     {
         "name": "YANEZ MARTINEZ, LORENA",
@@ -375,6 +420,7 @@
         "semester": "VII",
         "program": "Enfermería",
         "institution": "Universidad de Córdoba",
-        "password": "ced81b7f"
+        "password": "ced81b7f",
+        "resuelto": "nada que resolver"
     }
 ]

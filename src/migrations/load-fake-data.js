@@ -47,6 +47,9 @@ function randomizeFloat(min, max) {
 
 async function generateFakeUserStudent() {
   try {
+
+    const course = await db.course.find({});
+    const ROLE_USER = await db.role.findOne({ name: "user" });
     
     for (let index = 0; index < 100; index++) {
 
@@ -54,13 +57,12 @@ async function generateFakeUserStudent() {
 
       name = "user".concat(index);
 
-      let userRole = await db.role.findOne({ name: "user" });
-
       let newUser = await db.user.create({
         email: name.concat('@gmail.com'),
         password: bcrypt.hashSync(name, 8),
-        roles: [userRole._id]
+        roles: [ROLE_USER._id],
       });
+
 
       let learningStyles = await db.learningStyle.find({})
 
@@ -78,7 +80,8 @@ async function generateFakeUserStudent() {
           name: name,
           lastname: "test",
           learningStyleDimensions: learningStyleDimensions,
-          user: newUser._id
+          user: newUser._id,
+          course: [course[0]._id]
         });
       }
     }
