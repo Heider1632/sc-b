@@ -229,6 +229,8 @@ class CbrService {
             c.solution.resources[index].time_use >
                 traces[traces.length - 1].resources[index].estimatedTime
           ) {
+
+            console.log('paso aqui');
             return {
               resource: c.solution.resources[index].resource,
               time_use: 0,
