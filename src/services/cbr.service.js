@@ -304,6 +304,8 @@ class CbrService {
 
                   if (foundR == false) {
 
+                    console.log(selectedStructure._id);
+                    console.log(_ids);
 
                     resource = await db.resource.findOne({
                       _id: { $nin: _ids },
@@ -312,7 +314,7 @@ class CbrService {
                     });
 
                     console.log(resource);
-                    
+
                   } else {
                     let _ids = [];
                     traces.map(async (trace) => {
