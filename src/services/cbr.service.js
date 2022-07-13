@@ -264,6 +264,8 @@ class CbrService {
             
             let pedagogicalStrategy = pedagogicalStrategies[indice];
 
+            console.log(pedagogicalStrategy);
+
             if (pedagogicalStrategy) {
               var foundR = false;
 
