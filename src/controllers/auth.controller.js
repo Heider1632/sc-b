@@ -108,6 +108,8 @@ exports.signin = (req, res) => {
 
         let student = await db.student.findOne({ user: user._id }).populate('learningStyleDimensions');
 
+        console.log(student);
+
         signinData = { id: user.id, student_id: student.id, name: student.name, lastname: student.lastname, email: user.email, roles: authorities, learningStyleDimensions: student.learningStyleDimensions };
       } else {
         signinData = { id: user.id, email: user.email, roles: authorities }

@@ -217,6 +217,30 @@ class CbrService {
       .find({ student: c.context.id_student, lesson: selectedLesson._id })
       .populate("resources", 'estimatedTime');
 
+    let student = await db.student
+      .findById(c.context.id_student)
+      .populate("learningStyleDimensions", "_id");
+
+    let learningStyleDimensions = student.learningStyleDimensions.map(ls => ls._id);
+  
+    let pedagogicalStrategies = await db.pedagogicalStrategy.find({});
+
+    let counts = pedagogicalStrategies.map((ps, indice) => {
+      let count = 0;
+      ps.learningStyleDimensions.forEach((val) => {
+        if(learningStyleDimensions.includes(val)){
+          count++
+        } 
+      });
+      return { index : indice, count: count };
+    });
+
+    var indice = counts.sort((a,b)=>b.count-a.count)[0].index
+    
+    let pedagogicalStrategy = pedagogicalStrategies[indice];
+
+    console.log(pedagogicalStrategy);
+
     if (c.solution.resources && c.solution.resources.length > 0) {
 
       return Promise.all(
@@ -232,7 +256,6 @@ class CbrService {
                 traces[traces.length - 1].resources[index].estimatedTime
           ) {
 
-            console.log('paso aqui');
             return {
               resource: c.solution.resources[index].resource,
               time_use: 0,
@@ -243,30 +266,6 @@ class CbrService {
             let selectedStructure = await db.structure.findById(
               mongoose.Types.ObjectId(l)
             );
-
-            let student = await db.student
-              .findById(c.context.id_student)
-              .populate("learningStyleDimensions", "_id");
-
-            let learningStyleDimensions = student.learningStyleDimensions.map(ls => ls._id);
-          
-            let pedagogicalStrategies = await db.pedagogicalStrategy.find({});
-
-            let counts = pedagogicalStrategies.map((ps, indice) => {
-              let count = 0;
-              ps.learningStyleDimensions.forEach((val) => {
-                if(learningStyleDimensions.includes(val)){
-                  count++
-                } 
-              });
-              return { index : indice, count: count };
-            });
-
-            var indice = counts.sort((a,b)=>b.count-a.count)[0].index
-            
-            let pedagogicalStrategy = pedagogicalStrategies[indice];
-
-            console.log(pedagogicalStrategy);
 
             if (pedagogicalStrategy) {
               var foundR = false;
@@ -360,8 +359,6 @@ class CbrService {
                   }
               } else {
 
-                console.log("paso aqui");
-
                 resource = await db.resource.findOne({
                   pedagogicalStrategy: pedagogicalStrategy._id,
                   structure: selectedStructure._id,
@@ -391,29 +388,7 @@ class CbrService {
 
           let selectedStructure = await db.structure.findById(
             mongoose.Types.ObjectId(l)
-          );        
-
-          let student = await db.student
-            .findById(c.context.id_student)
-            .populate("learningStyleDimensions", "_id");
-          
-          let learningStyleDimensions = student.learningStyleDimensions.map(ls => ls._id);
-          
-          let pedagogicalStrategies = await db.pedagogicalStrategy.find({});
-
-          let counts = pedagogicalStrategies.map((ps, indice) => {
-            let count = 0;
-            ps.learningStyleDimensions.forEach((val) => {
-              if(learningStyleDimensions.includes(val)){
-                count++
-              } 
-            });
-            return { index : indice, count: count };
-          });
-
-          var indice = counts.sort((a,b) => b.count - a.count)[0].index
-          
-          let pedagogicalStrategy = pedagogicalStrategies[indice];
+          );
 
           if (pedagogicalStrategy) {
 
@@ -451,7 +426,14 @@ class CbrService {
                   resource = await db.resource.findOne({
                     _id: resources_academics[indexF]
                   });
-                } 
+
+                  if(resource == null){
+                    resource = await db.resource.findOne({
+                      pedagogicalStrategy: pedagogicalStrategy._id,
+                      structure: selectedStructure._id,
+                    });
+                  }
+                }
 
               } else {
 
@@ -486,13 +468,20 @@ class CbrService {
                   }
                 });
 
-                if (foundR == false) {
+                if (foundR == false || resource == null) {
 
                   resource = await db.resource.findOne({
                     _id: { $nin: _ids },
                     pedagogicalStrategy: pedagogicalStrategy._id,
                     structure: selectedStructure._id,
                   });
+
+                  if(resource == null){
+                    resource = await db.resource.findOne({
+                      pedagogicalStrategy: pedagogicalStrategy._id,
+                      structure: selectedStructure._id,
+                    });
+                  }
 
                 }
               }

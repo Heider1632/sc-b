@@ -76,18 +76,18 @@ async function generateUser() {
       roles: [ROLE_MODERATOR._id],
     });
 
-    /*let laura = await db.user.create({
-      email: "lauramarquez@gmail.com",
+    let heider = await db.user.create({
+      email: "heiderzapa@gmail.com",
       password: bcrypt.hashSync("12345", 8),
       roles: [ROLE_USER._id],
-    });*/
+    });
 
-    /*await db.student.create({
-      name: "Laura",
-      lastname: "Marquez",
-      user: laura._id,
+    await db.student.create({
+      name: "Heider",
+      lastname: "Zapa",
+      user: heider._id,
       course: [course[0]._id],
-    });*/
+    });
 
     /*_students.forEach(async (student) => {
       let user = await db.user.create({
@@ -380,62 +380,74 @@ async function syncResourcesByLesson() {
 
         var ps = await db.pedagogicalStrategy.find({});
 
+        //TODO:: relacionar la estrategia pedagogica bien
+
         _resources[key].map(async (r, index) => {
           if (r.url) {
             r.key = i + index;
 
             let prefix = r.title.split("_")[3];
-            let _prefix = r.title.split("_")[0];
+            let _prefix = r.title.split("_")[1];
 
             if (prefix == "Intro") {
               r.structure = lesson.structure[0];
 
-              if (_prefix == "R1") {
+              if (_prefix == "E1") {
                 r.pedagogicalStrategy = ps[0]._id;
-              } else if (_prefix == "R2") {
+              } else if (_prefix == "E2") {
                 r.pedagogicalStrategy = ps[1]._id;
-              } else if (_prefix == "R3") {
+              } else if (_prefix == "E3") {
                 r.pedagogicalStrategy = ps[2]._id;
+              } else if(_prefix == "E4"){
+                r.pedagogicalStrategy = ps[3]._id;
               }
             } else if (prefix == "Def") {
               r.structure = lesson.structure[1];
 
-              if (_prefix == "R1") {
+              if (_prefix == "E1") {
                 r.pedagogicalStrategy = ps[0]._id;
-              } else if (_prefix == "R2") {
+              } else if (_prefix == "E2") {
                 r.pedagogicalStrategy = ps[1]._id;
-              } else if (_prefix == "R3") {
+              } else if (_prefix == "E3") {
                 r.pedagogicalStrategy = ps[2]._id;
+              } else if(_prefix == "E4"){
+                r.pedagogicalStrategy = ps[3]._id;
               }
             } else if (prefix == "Desc") {
               r.structure = lesson.structure[2];
 
-              if (_prefix == "R1") {
+              if (_prefix == "E1") {
                 r.pedagogicalStrategy = ps[0]._id;
-              } else if (_prefix == "R2") {
+              } else if (_prefix == "E2") {
                 r.pedagogicalStrategy = ps[1]._id;
-              } else if (_prefix == "R3") {
+              } else if (_prefix == "E3") {
                 r.pedagogicalStrategy = ps[2]._id;
+              } else if(_prefix == "E4"){
+                r.pedagogicalStrategy = ps[3]._id;
               }
             } else if (prefix == "Ejem") {
               r.structure = lesson.structure[3];
 
-              if (_prefix == "R1") {
+              if (_prefix == "E1") {
                 r.pedagogicalStrategy = ps[0]._id;
-              } else if (_prefix == "R2") {
+              } else if (_prefix == "E2") {
                 r.pedagogicalStrategy = ps[1]._id;
-              } else if (_prefix == "R3") {
+              } else if (_prefix == "E3") {
                 r.pedagogicalStrategy = ps[2]._id;
+              } else if(_prefix == "E4"){
+                r.pedagogicalStrategy = ps[3]._id;
               }
             } else if (prefix == "Act") {
               r.structure = lesson.structure[4];
 
-              if (_prefix == "R1") {
+              if (_prefix == "E1") {
                 r.pedagogicalStrategy = ps[0]._id;
-              } else if (_prefix == "R2") {
+              } else if (_prefix == "E2") {
                 r.pedagogicalStrategy = ps[1]._id;
-              } else if (_prefix == "R3") {
+              } else if (_prefix == "E3") {
                 r.pedagogicalStrategy = ps[2]._id;
+              } else if(_prefix == "E4"){
+                r.pedagogicalStrategy = ps[3]._id;
               }
             }
 
