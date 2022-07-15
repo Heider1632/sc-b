@@ -209,6 +209,8 @@ class CbrService {
 
   async adapt(c) {
 
+    console.log(c._id);
+
     let selectedLesson = await db.lesson.findById(
       mongoose.Types.ObjectId(c.context.id_lesson)
     );
@@ -372,7 +374,9 @@ class CbrService {
           }
         })
       ).then(async (plan) => {
+
         let resources = [];
+
         plan.map(async (data, index) => {
           if (data && data.resource) {
             resources.push(data.resource._id);
@@ -508,6 +512,8 @@ class CbrService {
             resources.push(data.resource._id);
           }
         });
+
+        console.log(plan);
         
         return { id_case: c._id, plan: plan };
       });
