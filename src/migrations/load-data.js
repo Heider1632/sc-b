@@ -451,12 +451,101 @@ async function syncResourcesByLesson() {
               }
             }
 
-            r.format = "embed";
-            r.estimatedTime = r.estimaredTime ? parseInt(r.estimatedTime) : 60;
+            // r.format = "embed";
+            // r.estimatedTime = r.estimaredTime ? parseInt(r.estimatedTime) : 60;
 
             await db.resource.create(r);
           }
         });
+      });
+
+      resolve(true);
+    }).then((_) => {
+      // console.log("done");
+      // process.exit();
+    });
+  } catch (error) {
+    console.error(erros.message);
+    process.exit();
+  }
+}
+
+async function updateResources(){
+  try {
+    new Promise(async (resolve, reject) => {
+
+      let database_resources = await db.resources.find({});
+
+      var ps = await db.pedagogicalStrategy.find({});
+
+      database_resources.map(async (r) => {
+        let prefix = r.title.split("_")[3];
+        let _prefix = r.title.split("_")[1];
+
+        if (prefix == "Intro") {
+          r.structure = lesson.structure[0];
+
+          if (_prefix == "E1") {
+            r.pedagogicalStrategy = ps[0]._id;
+          } else if (_prefix == "E2") {
+            r.pedagogicalStrategy = ps[1]._id;
+          } else if (_prefix == "E3") {
+            r.pedagogicalStrategy = ps[2]._id;
+          } else if(_prefix == "E4"){
+            r.pedagogicalStrategy = ps[3]._id;
+          }
+        } else if (prefix == "Def") {
+          r.structure = lesson.structure[1];
+
+          if (_prefix == "E1") {
+            r.pedagogicalStrategy = ps[0]._id;
+          } else if (_prefix == "E2") {
+            r.pedagogicalStrategy = ps[1]._id;
+          } else if (_prefix == "E3") {
+            r.pedagogicalStrategy = ps[2]._id;
+          } else if(_prefix == "E4"){
+            r.pedagogicalStrategy = ps[3]._id;
+          }
+        } else if (prefix == "Desc") {
+          r.structure = lesson.structure[2];
+
+          if (_prefix == "E1") {
+            r.pedagogicalStrategy = ps[0]._id;
+          } else if (_prefix == "E2") {
+            r.pedagogicalStrategy = ps[1]._id;
+          } else if (_prefix == "E3") {
+            r.pedagogicalStrategy = ps[2]._id;
+          } else if(_prefix == "E4"){
+            r.pedagogicalStrategy = ps[3]._id;
+          }
+        } else if (prefix == "Ejem") {
+          r.structure = lesson.structure[3];
+
+          if (_prefix == "E1") {
+            r.pedagogicalStrategy = ps[0]._id;
+          } else if (_prefix == "E2") {
+            r.pedagogicalStrategy = ps[1]._id;
+          } else if (_prefix == "E3") {
+            r.pedagogicalStrategy = ps[2]._id;
+          } else if(_prefix == "E4"){
+            r.pedagogicalStrategy = ps[3]._id;
+          }
+        } else if (prefix == "Act") {
+          r.structure = lesson.structure[4];
+
+          if (_prefix == "E1") {
+            r.pedagogicalStrategy = ps[0]._id;
+          } else if (_prefix == "E2") {
+            r.pedagogicalStrategy = ps[1]._id;
+          } else if (_prefix == "E3") {
+            r.pedagogicalStrategy = ps[2]._id;
+          } else if(_prefix == "E4"){
+            r.pedagogicalStrategy = ps[3]._id;
+          }
+        }
+
+        await db.resources.updateOneById(r._id, { $set: { pedagogicalStrategy: r.pedagogicalStrategy }});
+
       });
 
       resolve(true);
@@ -494,4 +583,6 @@ if (process.argv.includes("--user")) {
   resetPasswords();
 } else if (process.argv.includes("--synccases")) {
   syncCases();
+} else if(process.argv.includes("--updateresources")){
+
 }
