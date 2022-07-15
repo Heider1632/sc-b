@@ -474,7 +474,7 @@ async function updateResources(){
   try {
     new Promise(async (resolve, reject) => {
 
-      let database_resources = await db.resources.find({});
+      let database_resources = await db.resource.find({});
 
       var ps = await db.pedagogicalStrategy.find({});
 
@@ -483,7 +483,6 @@ async function updateResources(){
         let _prefix = r.title.split("_")[1];
 
         if (prefix == "Intro") {
-          r.structure = lesson.structure[0];
 
           if (_prefix == "E1") {
             r.pedagogicalStrategy = ps[0]._id;
@@ -495,7 +494,6 @@ async function updateResources(){
             r.pedagogicalStrategy = ps[3]._id;
           }
         } else if (prefix == "Def") {
-          r.structure = lesson.structure[1];
 
           if (_prefix == "E1") {
             r.pedagogicalStrategy = ps[0]._id;
@@ -507,7 +505,6 @@ async function updateResources(){
             r.pedagogicalStrategy = ps[3]._id;
           }
         } else if (prefix == "Desc") {
-          r.structure = lesson.structure[2];
 
           if (_prefix == "E1") {
             r.pedagogicalStrategy = ps[0]._id;
@@ -519,7 +516,6 @@ async function updateResources(){
             r.pedagogicalStrategy = ps[3]._id;
           }
         } else if (prefix == "Ejem") {
-          r.structure = lesson.structure[3];
 
           if (_prefix == "E1") {
             r.pedagogicalStrategy = ps[0]._id;
@@ -531,7 +527,6 @@ async function updateResources(){
             r.pedagogicalStrategy = ps[3]._id;
           }
         } else if (prefix == "Act") {
-          r.structure = lesson.structure[4];
 
           if (_prefix == "E1") {
             r.pedagogicalStrategy = ps[0]._id;
@@ -544,7 +539,7 @@ async function updateResources(){
           }
         }
 
-        await db.resources.updateOneById(r._id, { $set: { pedagogicalStrategy: r.pedagogicalStrategy }});
+        await db.resource.findOneAndUpdate({ _id : r._id }, { $set: { pedagogicalStrategy: r.pedagogicalStrategy }});
 
       });
 
@@ -584,5 +579,5 @@ if (process.argv.includes("--user")) {
 } else if (process.argv.includes("--synccases")) {
   syncCases();
 } else if(process.argv.includes("--updateresources")){
-
+  updateResources();
 }
