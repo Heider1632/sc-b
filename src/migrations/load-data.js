@@ -76,6 +76,19 @@ async function generateUser() {
       roles: [ROLE_MODERATOR._id],
     });
 
+    let laura = await db.user.create({
+      email: "lauramarquez@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      roles: [ROLE_USER._id],
+    });
+
+    await db.student.create({
+      name: "Laura",
+      lastname: "Marquez",
+      user: laura._id,
+      course: [course[0]._id],
+    });
+
     let heider = await db.user.create({
       email: "heiderzapa@gmail.com",
       password: bcrypt.hashSync("12345", 8),
@@ -89,7 +102,7 @@ async function generateUser() {
       course: [course[0]._id],
     });
 
-    /*_students.forEach(async (student) => {
+    _students.forEach(async (student) => {
       let user = await db.user.create({
         email: student.email,
         password: bcrypt.hashSync("12345", 8),
@@ -110,7 +123,7 @@ async function generateUser() {
         user: user._id,
         course: [course[0]._id],
       });
-    });*/
+    });
 
     // console.log("done");
     // process.exit();

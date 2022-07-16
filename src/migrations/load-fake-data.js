@@ -307,12 +307,55 @@ async function generateFakeInterview() {
 async function generateFakePedagogicalStrategies() {
   try{
 
-    console.log(pedagogicalStrategies);
+    let pedagogicalTactics = await db.pedagogicalTactic.find({});
+    let learningTheory = await db.learningTheory.find({ name: 'constructivist' });
+    let learningStyleDimensions = await db.learningStyleDimension.find({});
 
-    await db.pedagogicalStrategy.insertMany(pedagogicalStrategies);
+    let promises = pedagogicalStrategies.map(async (ps, index) => {
 
-    console.log("done");
-    process.exit();
+      let ls = [];
+
+      let pt = pedagogicalTactics[Math.floor(Math.random()*pedagogicalTactics.length)];
+      
+      if(index == 0){
+        ls = learningStyleDimensions.filter(ls => {
+          if(ls.name == "sensiting" || ls.name == "visual"){
+            return ls._id
+          }
+        })
+      } else if(index == 1) {
+        ls = learningStyleDimensions.filter(ls => {
+          if(ls.name == "visual" || ls.name == "verbal"){
+            return ls._id
+          }
+        })
+      } else if(index == 2){
+        ls = learningStyleDimensions.filter(ls => {
+          if(ls.name == "reflective" || ls.name == "sequiential"){
+            return ls._id
+          }
+        })
+      } else if(index == 3){
+        ls = learningStyleDimensions.filter(ls => {
+          if(ls.name == "global" || ls.name == "active"){
+            return ls._id
+          }
+        })
+      }
+      
+      await db.pedagogicalStrategy.create({
+        learningTheory: learningTheory._id,
+        pedagogicalTactic: pt._id,
+        learningStyleDimenions: ls
+      });
+    })
+
+    Promise.all(promises)
+    .then(response => {
+      console.log("done");
+      process.exit();
+    });
+
   } catch(error){
     console.error(error.message);
     process.exit();

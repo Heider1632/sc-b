@@ -64,13 +64,13 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    db.progress.findOneAndUpdate({ lesson: req.body.id }, { $set: { ...req.body }})
+    db.progress.findOneAndUpdate({ lesson: new mongoose.Types.ObjectId(req.body.id), student: new mongoose.Types.ObjectId(req.body.student)  }, { $set: { ...req.body }})
     .exec((err, lesson) => {
         if(err){
             res.status(500).send({ messsage: err });
         }
 
-        res.send({ message: "Progress update successful" });
+        res.send({ message: lesson });
     });
 }
 

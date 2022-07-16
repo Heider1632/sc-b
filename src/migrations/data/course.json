@@ -7,7 +7,7 @@
         {
             "title": "Unidad 1. Historia y origen de la sífilis",
             "order" : 1,
-            "hasObjectiveLesson": "Identifica los fundamentos teóricos e históricos sobre la sífilis gestacional y congénita a nivel de signos, síntomas,tratamiento, educación de enfermería y plan de cuidados para una aplicación futura en la profesión de Enfermería.",
+            "hasObjectiveLesson": "1.jpg",
             "structure": [
               {
                 "type": "introduction",
@@ -38,7 +38,7 @@
           { 
             "title": "Unidad 2. Políticas públicas y normatividad de la Sífilis gestacional y congénita",
             "order" : 2,
-            "hasObjectiveLesson": "Identifica la normatividad en salud para atención a pacientes con sífilis desde las rutas de atención RIAS y los protocolos de manejo de sífilis y sífilis gestacional y congénita para su aplicación en contextos de cuidado del paciente.",
+            "hasObjectiveLesson": "2.jpg",
             "structure": [
               {
                 "type": "introduction",
@@ -69,7 +69,7 @@
           { 
             "title": "Unidad 3. Tamizaje y vigilancia epidemiológica para la Sífilis gestacional y congénita",
             "order": 3,
-            "hasObjectiveLesson": "Valorar pruebas diagnósticas a casos sospechosos de la enfermedad a nivel de signos, síntomas,tratamiento y plan de cuidados para el tamizaje y vigilancia epidemiológica de la sífilis gestacional y congénita.",
+            "hasObjectiveLesson": "2.jpg",
             "structure": [
               {
                 "type": "introduction",
@@ -100,7 +100,7 @@
           { 
             "title": "Unidad 4. Tratamiento de la sífilis gestacional y prevención de la sífilis congénita",
             "order": 4,
-            "hasObjectiveLesson": "Examina los posibles riesgos y eventos adversos del tratamiento y cuidado del paciente a partir de los esquemas terapéuticos para el manejo de la sífilis y sífilis gestacional y congénita.",
+            "hasObjectiveLesson": "4.jpg",
             "structure": [
               {
                 "type": "introduction",
