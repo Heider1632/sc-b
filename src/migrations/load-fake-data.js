@@ -184,7 +184,6 @@ async function generateFakeResources(){
   }
 }
 
-
 async function generateFakeCases(){
   try{
     for (let index = 0; index < 500; index++) {
@@ -281,9 +280,11 @@ async function generateFakeInterview() {
         ).then(async (pushed) => {
           let questions = await db.question.insertMany(pushed);
 
+          let lesson = await db.lesson.find({ order: interview.title });
+
           await db.interview.create({
             title: interview.title,
-            lesson: interview.lesson,
+            lesson: lesson._id,
             questions: questions,
             feedback: interview.feedback,
           });

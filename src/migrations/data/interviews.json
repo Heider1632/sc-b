@@ -1,6 +1,6 @@
 [
     {
-        "lesson": "6192bd31d74567228c796d98",
+        "lesson": 1,
         "questions": [
             {
                 "name" : "Según Sheldon Morris, menciona que la sífilis es caracterizada por 3 estadios o fases clínicas sintomáticas secuenciales separados por períodos de infección asintomática latente. Las manifestaciones más frecuentes son las úlceras genitales, las lesiones cutáneas, la meningitis, la enfermedad aórtica y los síndromes neurológicos. Para su diagnóstico se realizan pruebas serológicas y estudios auxiliares seleccionados sobre la base del estadio de la enfermedad. Estos estadios son:",
@@ -324,7 +324,7 @@
         "feedback": "En el transcurso de la historia, las Infecciones de Transmisión sexual (I. T. S) han estado presentes en el entorno humano, algunas de ellas llegando a ser causa de epidemias globales. Actualmente los tratamientos y medidas preventivas continúan avanzando. Las ITS son un problema de salud pública. La transmisión ocurre cuando se presenta un comportamiento sexual de riesgo, el cual puede definirse como el antecedente de por lo menos un contacto sexual sin protección (sin uso de condón u otro método protector), con una persona infectada. La Sífilis es una infección de transmisión sexual exclusiva del ser humano, sus manifestaciones clínicas pueden ser variables y de evolución crónica."
     },
     {
-        "lesson": "6192bd31d74567228c796d99",
+        "lesson": 2,
         "questions": [
             {
                 "name" : "Se propone la sexualidad como una dimensión indispensable para los procedimientos en salud pública, dado su reconocimiento como una condición esencialmente humana que compromete a la mujer a lo largo de todos los momentos del ciclo vital, lo que permite sustraerla de la mirada exclusivamente biológica o médica, para también abordarla desde lo social, con todos sus determinantes dentro de un marco de sus derechos.",
@@ -609,7 +609,7 @@
         "feedback": "En Colombia se garantiza a todas las personas el acceso a los servicios de promoción, protección y recuperación de la salud; y que corresponde al Estado organizar, dirigir y reglamentar la prestación de servicios de salud a los habitantes y de saneamiento ambiental conforme a los principios de eficiencia, universalidad y solidaridad. En este sentido existen políticas y normatividad en la que se establecen las consideraciones que atienden a problemas de salud. Existen guías prácticas clínicas que le permiten al personal de salud llevar el seguimiento y control de distintas situaciones en el área de las ciencias de la salud."
     },
     {
-        "lesson": "6192bd31d74567228c796d9a",
+        "lesson": 3,
         "questions": [
             {
                 "name" : "La vigilancia epidemiológica de la sífilis, corresponde al grupo de las Infecciones de Transmisión Sexual (ITS); dicho monitoreo y seguimiento se realiza partiendo de las actividades de:",
@@ -834,8 +834,7 @@
         "feedback": "La epidemiología es la rama de la salud pública que tiene como objetivo describir y explicar la dinámica de la salud poblacional, permitiendo intervenir en su curso natural mediante el monitoreo de enfermedades sujetas a vigilancia epidemiológica. El sistema de vigilancia es alimentado por diferentes fuentes de información y actores involucrados: el componente clínico que se inicia con la consulta médica en cualquier efector de salud y el componente de laboratorio que parte de los estudios realizados a partir de muestras clínicas para el tamizaje o confirmación de infecciones y la identificación de las características de los agentes microbiológicos involucrados."
     },
     {
-        "title": "Diagnóstico y tratamiento",
-        "lesson": "6192bd31d74567228c796d9b",
+        "lesson": 4,
         "questions": [
             {
                 "name": "Carmen es una mujer que tuvo anteriormente sífilis gestacional, la cuál fue tratada y eliminada. Sin embargo, semanas después en el control se le identificó una reinfección. Por lo tanto, Qué cree usted que sea lo adecuado para realizar en este caso:",
