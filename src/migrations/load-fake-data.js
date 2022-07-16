@@ -282,6 +282,8 @@ async function generateFakeInterview() {
 
           let lesson = await db.lesson.find({ order: interview.lesson });
 
+          console.log(lesson);
+
           await db.interview.create({
             title: interview.title,
             lesson: lesson._id,
