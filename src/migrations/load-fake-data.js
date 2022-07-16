@@ -51,7 +51,7 @@ async function generateFakeUserStudent() {
     const course = await db.course.find({});
     const ROLE_USER = await db.role.findOne({ name: "user" });
     
-    for (let index = 0; index < 100; index++) {
+    for (let index = 1; index <= 4; index++) {
 
       let name = null;
 
@@ -64,22 +64,22 @@ async function generateFakeUserStudent() {
       });
 
 
-      let learningStyles = await db.learningStyle.find({})
+      // let learningStyles = await db.learningStyle.find({})
 
-      let learningStyleDimensions = [];
+      // let learningStyleDimensions = [];
 
-      learningStyles.map((ls, index) => {
-        if(index < 3){
-          let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
-          learningStyleDimensions.push(lsd);
-        }
-      })
+      // learningStyles.map((ls, index) => {
+      //   if(index < 3){
+      //     let lsd = ls.learningStyleDimensions[Math.floor(Math.random()*2)];
+      //     learningStyleDimensions.push(lsd);
+      //   }
+      // })
 
       if(newUser){
         db.student.create({
           name: name,
           lastname: "test",
-          learningStyleDimensions: learningStyleDimensions,
+          learningStyleDimensions: [],
           user: newUser._id,
           course: [course[0]._id]
         });
