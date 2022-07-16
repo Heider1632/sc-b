@@ -280,7 +280,7 @@ async function generateFakeInterview() {
         ).then(async (pushed) => {
           let questions = await db.question.insertMany(pushed);
 
-          let lesson = await db.lesson.find({ order: interview.lesson });
+          let lesson = await db.lesson.findOne({ order: interview.lesson });
 
           console.log(lesson);
 
