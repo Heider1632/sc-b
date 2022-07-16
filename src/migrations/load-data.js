@@ -76,54 +76,68 @@ async function generateUser() {
       roles: [ROLE_MODERATOR._id],
     });
 
-    let laura = await db.user.create({
-      email: "lauramarquez@gmail.com",
+    let diego = await db.user.create({
+      email: "diegofernando@gmail.com",
       password: bcrypt.hashSync("12345", 8),
       roles: [ROLE_USER._id],
     });
 
     await db.student.create({
-      name: "Laura",
-      lastname: "Marquez",
-      user: laura._id,
+      name: "Diego",
+      lastname: "Fernando",
+      user: diego._id,
       course: [course[0]._id],
     });
 
-    let heider = await db.user.create({
-      email: "heiderzapa@gmail.com",
-      password: bcrypt.hashSync("12345", 8),
-      roles: [ROLE_USER._id],
-    });
 
-    await db.student.create({
-      name: "Heider",
-      lastname: "Zapa",
-      user: heider._id,
-      course: [course[0]._id],
-    });
+    // let laura = await db.user.create({
+    //   email: "lauramarquez@gmail.com",
+    //   password: bcrypt.hashSync("12345", 8),
+    //   roles: [ROLE_USER._id],
+    // });
 
-    _students.forEach(async (student) => {
-      let user = await db.user.create({
-        email: student.email,
-        password: bcrypt.hashSync("12345", 8),
-        roles: [ROLE_USER._id],
-      });
+    // await db.student.create({
+    //   name: "Laura",
+    //   lastname: "Marquez",
+    //   user: laura._id,
+    //   course: [course[0]._id],
+    // });
 
-      if (student.name.includes(",")) {
-        let name = student.name.split(",")[1].replace(" ", "");
-        let lastname = student.name.split(",")[0];
+    // let heider = await db.user.create({
+    //   email: "heiderzapa@gmail.com",
+    //   password: bcrypt.hashSync("12345", 8),
+    //   roles: [ROLE_USER._id],
+    // });
 
-        student.name = name;
-        student.lastname = lastname;
-      }
+    // await db.student.create({
+    //   name: "Heider",
+    //   lastname: "Zapa",
+    //   user: heider._id,
+    //   course: [course[0]._id],
+    // });
 
-      await db.student.create({
-        name: student.name,
-        lastname: student.lastname,
-        user: user._id,
-        course: [course[0]._id],
-      });
-    });
+    // _students.forEach(async (student) => {
+    //   let user = await db.user.create({
+    //     email: student.email,
+    //     password: bcrypt.hashSync("12345", 8),
+    //     roles: [ROLE_USER._id],
+    //   });
+
+    //   if (student.name.includes(",")) {
+    //     let name = student.name.split(",")[1].replace(" ", "");
+    //     let lastname = student.name.split(",")[0];
+
+    //     student.name = name;
+    //     student.lastname = lastname;
+    //   }
+
+    //   await db.student.create({
+    //     name: student.name,
+    //     lastname: student.lastname,
+    //     user: user._id,
+    //     course: [course[0]._id],
+    //   });
+    // });
 
     // console.log("done");
     // process.exit();
