@@ -400,12 +400,12 @@ async function syncResourcesByLesson() {
     new Promise(async (resolve, reject) => {
       var i = 0;
 
+      var ps = await db.pedagogicalStrategy.find({});
+
       Object.keys(_resources).map(async (key) => {
         let order = parseInt(key);
 
         var lesson = await db.lesson.findOne({ order: order });
-
-        var ps = await db.pedagogicalStrategy.find({});
 
         //TODO:: relacionar la estrategia pedagogica bien
 
@@ -478,8 +478,8 @@ async function syncResourcesByLesson() {
               }
             }
 
-            // r.format = "embed";
-            // r.estimatedTime = r.estimaredTime ? parseInt(r.estimatedTime) : 60;
+            r.format = "embed";
+            r.estimatedTime = r.estimatedTime ? parseInt(r.estimatedTime) : 60;
 
             await db.resource.create(r);
           }

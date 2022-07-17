@@ -40,4 +40,7 @@ db.case = require("./Case");
 db.historyCase = require("./HistoryCase");
 db.historyLesson = require("./HistoryLesson");
 
+//HELPERS
+db.log = require("./Log")
+
 module.exports = db;

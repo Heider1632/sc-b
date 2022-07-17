@@ -10,20 +10,34 @@ class CbrService {
     return metacore;
   }
 
-  async validate(id_student, id_course, id_lesson) {
-    return await db.case.findOne({
-      "context.id_student": id_student,
-      "context.id_course": id_course,
-      "context.id_lesson": id_lesson,
-      "euclideanWeight": 0,
-    });
+  isValidCase(c, index, traces) {
+
+    console.log(c.solution.resources[index]);
+    if(c.solution.resources[index]){
+      console.log(c.solution.resources[index].resource);
+      console.log(c.solution.resources[index].rating > 3);
+      console.log(traces.length > 0);
+      console.log(traces[traces.length - 1].resources[index]);
+      console.log(c.solution.resources[index].time_use);
+      console.log(traces[traces.length - 1].resources[index].estimatedTime);
+    }
+
+    return (c.solution.resources[index] &&
+      c.solution.resources[index].resource &&
+      c.solution.resources[index].rating > 3 &&
+      traces.length > 0 && 
+      traces[traces.length - 1].resources[index] && 
+      c.solution.resources[index].time_use >
+          traces[traces.length - 1].resources[index].estimatedTime);
   }
 
-  async performance(id_student) {
-    return await db.case.find({ "context.id_student": id_student }).populate({
-      path: "solution.resources.resource",
-      model: "Resource",
-    });
+  isValidResource(trace, index) {
+    return (
+      trace.assessments[index] &&
+      trace.assessments[index].like > 3 &&
+      trace.assessments[index].time_use >=
+        trace.resources[index].estimatedTime
+    );
   }
 
   async coincident(id_student, id_course, id_lesson, structure) {
@@ -209,21 +223,34 @@ class CbrService {
 
   async adapt(c) {
 
+    console.log("id_case");
     console.log(c._id);
 
     let selectedLesson = await db.lesson.findById(
       mongoose.Types.ObjectId(c.context.id_lesson)
     );
+    
+    console.log("lesson");
+    console.log(selectedLesson);
 
     let traces = await db.trace
       .find({ student: c.context.id_student, lesson: selectedLesson._id })
       .populate("resources", 'estimatedTime');
 
+    console.log("traces")
+    console.log(traces);
+
     let student = await db.student
       .findById(c.context.id_student)
       .populate("learningStyleDimensions", "_id");
 
+    console.log("student");
+    console.log(student);
+
     let learningStyleDimensions = student.learningStyleDimensions.map(ls => ls._id);
+    
+    console.log("learningStyleDimensions");
+    console.log(learningStyleDimensions);
   
     let pedagogicalStrategies = await db.pedagogicalStrategy.find({});
 
@@ -240,197 +267,73 @@ class CbrService {
     var indice = counts.sort((a,b)=>b.count-a.count)[0].index
     
     let pedagogicalStrategy = pedagogicalStrategies[indice];
-
+  
+    console.log("pedagogicalStartegy");
     console.log(pedagogicalStrategy);
 
-    if (c.solution.resources && c.solution.resources.length > 0) {
+    return Promise.all(
+      c.context.structure.map(async (l, index) => {
 
-      return Promise.all(
-        c.context.structure.map(async (l, index) => {
+        //skip evaluation
+        if(index < 5){
 
-          if (
-            c.solution.resources[index] &&
-            c.solution.resources[index].resource != null &&
-            c.solution.resources[index].rating > 3 &&
-            traces.length > 0 && 
-            traces[traces.length - 1].resources[index] && 
-            c.solution.resources[index].time_use >
-                traces[traces.length - 1].resources[index].estimatedTime
-          ) {
-
+          console.log("structure");
+          let selectedStructure = await db.structure.findById(
+            mongoose.Types.ObjectId(l)
+          );
+  
+          if(this.isValidCase(c, index, traces)){
+  
+            console.log("recurso seleccionado del caso");
+            console.log(c.solution.resources[index].resource);
+  
             return {
               resource: c.solution.resources[index].resource,
               time_use: 0,
               like: 0,
             };
           } else {
-
-            let selectedStructure = await db.structure.findById(
-              mongoose.Types.ObjectId(l)
-            );
-
-            if (pedagogicalStrategy) {
-              var foundR = false;
-
-              let resource = null;
-
-              if (traces.length > 0) {
-                  let _ids = [];
-
-                  traces.map(async (trace) => {
-
-                    if (trace.assessments[index]) {
-
-                      if (
-                        trace.assessments[index].like > 3 &&
-                        trace.assessments[index].time_use >=
-                          trace.resources[index].estimatedTime
-                      ) {
-
-                        let sr = await db.resource.findById(
-                          trace.resources[index]._id
-                        );
-                        foundR = true;
-                        resource = { resource: sr, rating: 0, time_use: 0 };
-                      } else {
-                        foundR = false;
-                        if (trace.resources[index]) {
-                          _ids.push(trace.resources[index]._id);
-                        }
-                      }
-                    } else {
-                      if (trace.resources[index]) {
-                        _ids.push(trace.resources[index]._id);
-                      }
-                    }
-                  });
-
-                  if (foundR == false) {
-
-                    resource = await db.resource.findOne({
-                      _id: { $nin: _ids },
-                      pedagogicalStrategy: pedagogicalStrategy._id,
-                      structure: selectedStructure._id,
-                    });
-
-                    if(resource == null){
-                      resource = await db.resource.findOne({
-                        pedagogicalStrategy: pedagogicalStrategy._id,
-                        structure: selectedStructure._id,
-                      });
-                    }
-
-                  } else {
-                    let _ids = [];
-                    traces.map(async (trace) => {
-                      if (trace.assessments[index]) {
-
-                        if (
-                          trace.assessments[index].like > 3 &&
-                          trace.assessments[index].time_use >=
-                            trace.resources[index].estimatedTime
-                        ) {
-
-                          let sr = await db.resource.findById(
-                            trace.resources[index]._id
-                          );
-                          foundR = true;
-                          resource = { resource: sr, rating: 0, time_use: 0 };
-                        } else {
-                          foundR = false;
-                          if (trace.resources[index]) {
-                            _ids.push(trace.resources[index]._id);
-                          }
-                        }
-                      } else {
-                        if (trace.resources[index]) {
-                          _ids.push(trace.resources[index]._id);
-                        }
-                      }
-                    });
-
-                    if (foundR == false || resource == null) {
-
-                      resource = await db.resource.findOne({
-                        _id: { $nin: _ids },
-                        pedagogicalStrategy: pedagogicalStrategy._id,
-                        structure: selectedStructure._id,
-                      });
-                      
-                    }
-                  }
-              } else {
-
-                resource = await db.resource.findOne({
-                  pedagogicalStrategy: pedagogicalStrategy._id,
-                  structure: selectedStructure._id,
-                });
-              }
-
-              if (resource) {
-                return { resource: resource, rating: 0, time_use: 0 };
-              }
-            }
-          }
-        })
-      ).then(async (plan) => {
-
-        let resources = [];
-
-        plan.map(async (data, index) => {
-          if (data && data.resource) {
-            resources.push(data.resource._id);
-          }
-        });
-
-        return { id_case: c._id, plan: plan };
-      });
-    } else {
-
-      return Promise.all(
-        c.context.structure.map(async (l, index) => {
-
-          let selectedStructure = await db.structure.findById(
-            mongoose.Types.ObjectId(l)
-          );
-
-          if (pedagogicalStrategy) {
-
-            var foundR = false;
+  
+            console.log("recurso seleccionado de las condiciones");
+  
+            console.log(traces.length);
+            console.log(traces);
 
             let resource = null;
-
-            if (traces.length > 0) {
-
+  
+            if(traces.lenght > 0){
+  
               if (traces.length >= 3) {
-
+  
+                console.log("paso a buscar de la traza el mejor recurso");
+  
                 let assessments_academics = traces.map((trace) => {
                   if (trace.assessments[index]) {
                     return trace.assessments[index]
                   }
                 });
-
+  
                 let resources_academics = traces.map((trace) => {
                   if (trace.resources[index]) {
                     return trace.resources[index]
                   }
                 });
-
+  
                 assessments_academics = assessments_academics.filter((a_a) => a_a);
                 resources_academics = resources_academics.filter((r_a) => r_a);
                 
                 if(assessments_academics.length > 0){
-
+  
                   let ra = assessments_academics.reduce((prev, current) => 
                     (prev.like > current.like) ? prev : current 
                   )
-
+  
                   let indexF = assessments_academics.indexOf(ra);
-
+  
                   resource = await db.resource.findOne({
                     _id: resources_academics[indexF]
                   });
-
+  
                   if(resource == null){
                     resource = await db.resource.findOne({
                       pedagogicalStrategy: pedagogicalStrategy._id,
@@ -438,86 +341,94 @@ class CbrService {
                     });
                   }
                 }
-
+  
               } else {
 
+                let foundR = false;
                 let _ids = [];
 
-                traces.map(async (trace) => {
-                  if (trace.assessments[index]) {
+                for (var i = 0; i < traces.length; i++) {
+  
+                  if(this.isValidResource(traces[i], index)){
 
-                    if (
-                      trace.assessments[index].like > 3 &&
-                      trace.resources[index] && 
-                      trace.assessments[index].time_use >=
-                        trace.resources[index].estimatedTime
-                    ) {
+                    console.log("recurso valido de la traza")
 
-                      let sr = await db.resource.findById(
-                        trace.resources[index]._id
-                      );
-                      foundR = true;
-                      resource = { resource: sr, rating: 0, time_use: 0 };
-                    } else {
-                      foundR = false;
-                      
-                      if (trace.resources[index]) {
-                        _ids.push(trace.resources[index]._id);
-                      }
-                    }
+                    foundR = true;
+                    resource = await db.resource.findById(
+                      traces[i].resources[index]._id
+                    );
+                    
+                    console.log(resource);
+
+                    break;
                   } else {
+                    foundR = false;
                     if (trace.resources[index]) {
                       _ids.push(trace.resources[index]._id);
                     }
                   }
-                });
-
-                if (foundR == false || resource == null) {
-
+                }
+    
+                if (foundR == false) {
+    
+                  console.log("recurso no encontrado");
+    
                   resource = await db.resource.findOne({
                     _id: { $nin: _ids },
                     pedagogicalStrategy: pedagogicalStrategy._id,
                     structure: selectedStructure._id,
                   });
-
+    
+                  console.log(resource);
+    
                   if(resource == null){
+    
+                    console.log("no seleccion ninguno");
+    
                     resource = await db.resource.findOne({
                       pedagogicalStrategy: pedagogicalStrategy._id,
                       structure: selectedStructure._id,
                     });
+    
+                    console.log(resource);
+    
                   }
-
                 }
               }
+              
             } else {
-
               resource = await db.resource.findOne({
                 pedagogicalStrategy: pedagogicalStrategy._id,
                 structure: selectedStructure._id,
               });
-
             }
-
+  
             if (resource) {
               return { resource: resource, rating: 0, time_use: 0 };
             }
+  
           }
-        })
-      ).then(async (plan) => {
-        
-        let resources = [];
+        }
 
-        plan.map(async (data, index) => {
-          if (data && data.resource) {
-            resources.push(data.resource._id);
-          }
-        });
-
-        console.log(plan);
         
-        return { id_case: c._id, plan: plan };
+      })
+    ).then((plan) => {
+      let resources = [];
+
+      plan.map(async (data, index) => {
+        if (data && data.resource) {
+          resources.push(data.resource._id);
+        }
       });
-    }
+
+      console.log("plan");
+      console.log(plan);
+
+      console.log("resources");
+      console.log(resources); 
+
+      return { id_case: c._id, plan: plan };
+    });
   }
 
   async reviewCase(id_case, id_trace, success, error, time) {
