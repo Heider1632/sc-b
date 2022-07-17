@@ -304,7 +304,7 @@ class CbrService {
 
             let resource = null;
   
-            if(traces.lenght > 0){
+            if(traces.length > 0){
   
               if (traces.length >= 3) {
   
