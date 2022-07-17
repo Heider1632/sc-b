@@ -349,7 +349,7 @@ async function generateFakePedagogicalStrategies() {
       await db.pedagogicalStrategy.create({
         learningTheory: learningTheory._id,
         pedagogicalTactic: pt._id,
-        learningStyleDimenions: ls
+        learningStyleDimensions: ls
       });
     })
 
