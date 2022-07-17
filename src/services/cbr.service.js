@@ -278,6 +278,7 @@ class CbrService {
         if(index < 5){
 
           console.log("structure");
+
           let selectedStructure = await db.structure.findById(
             mongoose.Types.ObjectId(l)
           );
@@ -363,8 +364,8 @@ class CbrService {
                     break;
                   } else {
                     foundR = false;
-                    if (trace.resources[index]) {
-                      _ids.push(trace.resources[index]._id);
+                    if (traces[i].resources[index]) {
+                      _ids.push(traces[i].resources[index]._id);
                     }
                   }
                 }
@@ -410,7 +411,6 @@ class CbrService {
           }
         }
 
-        
       })
     ).then((plan) => {
       let resources = [];
