@@ -282,6 +282,8 @@ class CbrService {
           let selectedStructure = await db.structure.findById(
             mongoose.Types.ObjectId(l)
           );
+
+          console.log(selectedStructure);
   
           if(this.isValidCase(c, index, traces)){
   
@@ -364,11 +366,18 @@ class CbrService {
                     break;
                   } else {
                     foundR = false;
+                    console.log("esta guardando los recursos vistos");
                     if (traces[i].resources[index]) {
+                      console.log(traces[i].resources[index]._id);
                       _ids.push(traces[i].resources[index]._id);
                     }
                   }
                 }
+                
+                console.log("validar esta variable");
+                console.log(foundR);
+
+                console.log(_ids);
     
                 if (foundR == false) {
     
