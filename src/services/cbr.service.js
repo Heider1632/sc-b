@@ -18,10 +18,16 @@ class CbrService {
     if(c.solution.resources[index]){
       console.log(c.solution.resources[index].resource);
       console.log(c.solution.resources[index].rating > 3);
+    
       console.log(traces.length > 0);
-      console.log(traces[traces.length - 1].resources[index]);
-      console.log(c.solution.resources[index].time_use);
-      console.log(traces[traces.length - 1].resources[index].estimatedTime);
+
+      if(traces.length > 0){
+        console.log(traces[traces.length - 1].resources[index]);
+        console.log(c.solution.resources[index].time_use);
+        console.log(traces[traces.length - 1].resources[index].estimatedTime);
+      }
+
+      
     }
 
     return (c.solution.resources[index] &&
