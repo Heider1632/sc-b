@@ -223,27 +223,27 @@ class CbrService {
     return savedCase;
   }
 
-  async adapt(c) {
+  async adapt(c, id_student, id_lesson) {
 
     console.log("id_case");
     console.log(c._id);
 
     let selectedLesson = await db.lesson.findById(
-      mongoose.Types.ObjectId(c.context.id_lesson)
+      mongoose.Types.ObjectId(id_lesson)
     );
     
     console.log("lesson");
     console.log(selectedLesson);
 
     let traces = await db.trace
-      .find({ student: c.context.id_student, lesson: selectedLesson._id })
+      .find({ student: id_student, lesson: selectedLesson._id })
       .populate("resources", 'estimatedTime');
 
     console.log("traces")
     console.log(traces);
 
     let student = await db.student
-      .findById(c.context.id_student)
+      .findById(id_student)
       .populate("learningStyleDimensions", "_id");
 
     console.log("student");

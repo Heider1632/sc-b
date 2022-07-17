@@ -119,7 +119,7 @@ class MetacorePackage  {
         }
 
         if(selectedCase){
-            let plan = await cbrService.adapt(selectedCase);
+            let plan = await cbrService.adapt(selectedCase, id_student, id_lesson);
 
             console.log(plan);
             return plan;
