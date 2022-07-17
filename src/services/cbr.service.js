@@ -12,7 +12,9 @@ class CbrService {
 
   isValidCase(c, index, traces) {
 
+    console.log("ejecutando metodo is valid case");
     console.log(c.solution.resources[index]);
+
     if(c.solution.resources[index]){
       console.log(c.solution.resources[index].resource);
       console.log(c.solution.resources[index].rating > 3);
