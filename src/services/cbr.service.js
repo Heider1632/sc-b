@@ -390,7 +390,8 @@ class CbrService {
                     pedagogicalStrategy: pedagogicalStrategy._id,
                     structure: selectedStructure._id,
                   });
-    
+                  
+                  console.log("este es el recurso seleccionado del historial de las trazas");
                   console.log(resource);
     
                   if(resource == null){
