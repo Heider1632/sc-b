@@ -1,6 +1,8 @@
 const db = require("../models");
 const axios = require("axios");
+
 const mongoose = require("mongoose");
+
 class CbrService {
   constructor(metacore) {
     this.metacoreIntance(metacore);
@@ -12,31 +14,33 @@ class CbrService {
 
   isValidCase(c, index, traces) {
 
-    console.log("ejecutando metodo is valid case");
+    console.log("Ejecutando isValidCase");
     console.log(c.solution.resources[index]);
 
-    if(c.solution.resources[index]){
-      console.log(c.solution.resources[index].resource);
-      console.log(c.solution.resources[index].rating > 3);
-    
-      console.log(traces.length > 0);
+    console.log("isValidCase::validando recursos");
+    if (c.solution.resources[index]) {
 
-      if(traces.length > 0){
+      console.log("c.solution.resources[index].resource: " + c.solution.resources[index].resource);
+      console.log("c.solution.resources[index].rating > 3:" + c.solution.resources[index].rating > 3);
+      console.log("traces.length > 0:" + traces.length > 0);
+
+      /* TODO: Remove
+      if (traces.length > 0) {
         console.log(traces[traces.length - 1].resources[index]);
         console.log(c.solution.resources[index].time_use);
         console.log(traces[traces.length - 1].resources[index].estimatedTime);
       }
-
-      
+      */
     }
 
+    // TODO: refactor
     return (c.solution.resources[index] &&
       c.solution.resources[index].resource &&
       c.solution.resources[index].rating > 3 &&
-      traces.length > 0 && 
-      traces[traces.length - 1].resources[index] && 
+      traces.length > 0 &&
+      traces[traces.length - 1].resources[index] &&
       c.solution.resources[index].time_use >
-          traces[traces.length - 1].resources[index].estimatedTime);
+      traces[traces.length - 1].resources[index].estimatedTime);
   }
 
   isValidResource(trace, index) {
@@ -44,7 +48,7 @@ class CbrService {
       trace.assessments[index] &&
       trace.assessments[index].like > 3 &&
       trace.assessments[index].time_use >=
-        trace.resources[index].estimatedTime
+      trace.resources[index].estimatedTime
     );
   }
 
@@ -68,11 +72,11 @@ class CbrService {
       },
       {
         $lookup: {
-            from: "students",
-            localField: "context.id_student",
-            foreignField: "_id",
-            as: "student"
-          }
+          from: "students",
+          localField: "context.id_student",
+          foreignField: "_id",
+          as: "student"
+        }
       },
       {
         $lookup: {
@@ -93,7 +97,7 @@ class CbrService {
       },
     ]);
 
-    if(maxUses.length > 0){
+    if (maxUses.length > 0) {
 
       let mostSuccessFiltered = maxUses.sort((a, b) => {
         if (a.results.success > b.results.success) {
@@ -105,21 +109,21 @@ class CbrService {
         return 0;
       });
 
-      if(mostSuccessFiltered.lenght >= 4){
+      if (mostSuccessFiltered.lenght >= 4) {
         let mostSuccess = mostSuccessFiltered.slice(0, parseInt(maxUses.length / 2));
 
         const busqueda = mostSuccess.reduce((acc, c) => {
           acc[c.results.success] = ++acc[c.results.success] || 0;
           return acc;
         }, {});
-        
-        const duplicados = mostSuccess.filter( (c) => {
+
+        const duplicados = mostSuccess.filter((c) => {
           return busqueda[c.results.success];
         });
 
-        if(duplicados.length > 0){
+        if (duplicados.length > 0) {
 
-          let lessErrors =  mostSuccess.sort((a, b) => {
+          let lessErrors = mostSuccess.sort((a, b) => {
             if (a.results.errors < b.results.errors) {
               return -1;
             }
@@ -136,19 +140,19 @@ class CbrService {
       } else {
         cases = mostSuccessFiltered;
       }
-      
+
     }
 
-    let historyCases = await db.historyCase.find({ student:  student._id });
+    let historyCases = await db.historyCase.find({ student: student._id });
 
-    if(historyCases.length > 0){
+    if (historyCases.length > 0) {
 
       cases = cases.map((c) => {
         let filter = historyCases.filter(hc => hc.case.equals(c._id));
-        if(filter.length == 0) return c;
+        if (filter.length == 0) return c;
       });
 
-      cases = cases.filter(function(x) {
+      cases = cases.filter(function (x) {
         return x !== undefined;
       });
 
@@ -156,7 +160,7 @@ class CbrService {
 
     return cases;
   }
-  
+
   async recovery(cases) {
 
     let dataset = [];
@@ -170,9 +174,9 @@ class CbrService {
     if (process.env.NODE_ENV === "development") {
       url = "http://localhost:5000/api/knn"
     }
-    
+
     if (process.env.NODE_ENV === "production") {
-     url = "https://stip.fichasyprotocolosensalud.com/api/knn"
+      url = "https://stip.fichasyprotocolosensalud.com/api/knn"
     }
 
     let response = await axios.post(url, {
@@ -189,7 +193,7 @@ class CbrService {
         let item = response.data[0][1];
 
         selectedCase = await db.case.findOne({ _id: cases[item]._id }).populate('solution.resources.resource');
-        
+
       }
 
       return selectedCase;
@@ -231,207 +235,221 @@ class CbrService {
 
   async adapt(c, id_student, id_lesson) {
 
-    console.log("id_case");
-    console.log(c._id);
+    console.log("OPERATION INIT: adapt");
+    console.log("id_case: " + c._id);
 
     let selectedLesson = await db.lesson.findById(
       mongoose.Types.ObjectId(id_lesson)
     );
-    
-    console.log("lesson");
+
+    console.log("selected lesson");
     console.log(selectedLesson);
 
     let traces = await db.trace
       .find({ student: id_student, lesson: selectedLesson._id })
       .populate("resources", 'estimatedTime');
 
-    console.log("traces")
+    console.log("selected traces for id_student and lessons")
     console.log(traces);
 
     let student = await db.student
       .findById(id_student)
       .populate("learningStyleDimensions", "_id");
 
-    console.log("student");
+    console.log("selected students by id_student");
     console.log(student);
 
     let learningStyleDimensions = student.learningStyleDimensions.map(ls => ls._id);
-    
-    console.log("learningStyleDimensions");
+
+    console.log("selected learning style dimessions");
     console.log(learningStyleDimensions);
-  
+
     let pedagogicalStrategies = await db.pedagogicalStrategy.find({});
+    console.log("selected pedagogical strategies");
+    console.log(pedagogicalStrategies);
 
     let counts = pedagogicalStrategies.map((ps, indice) => {
       let count = 0;
       ps.learningStyleDimensions.forEach((val) => {
-        if(learningStyleDimensions.includes(val)){
+        if (learningStyleDimensions.includes(val)) {
           count++
-        } 
+        }
       });
-      return { index : indice, count: count };
+      return { index: indice, count: count };
     });
 
-    var indice = counts.sort((a,b)=>b.count-a.count)[0].index
-    
+    var indice = counts.sort((a, b) => b.count - a.count)[0].index
     let pedagogicalStrategy = pedagogicalStrategies[indice];
-  
-    console.log("pedagogicalStartegy");
+
+    console.log("selected SINGLE pedagogical strategy");
     console.log(pedagogicalStrategy);
 
     return Promise.all(
       c.context.structure.map(async (l, index) => {
 
-        //skip evaluation
-        if(index < 5){
-
-          console.log("structure");
+        // skip evaluation
+        if (index < 5) {
 
           let selectedStructure = await db.structure.findById(
             mongoose.Types.ObjectId(l)
           );
-
+          console.log("selecting structures");
           console.log(selectedStructure);
-  
-          if(this.isValidCase(c, index, traces)){
-  
-            console.log("recurso seleccionado del caso");
+
+          if (this.isValidCase(c, index, traces)) {
+
+            console.log("calling isValidCase");
+            console.log("c.solution.resources[index].resource");
             console.log(c.solution.resources[index].resource);
-  
+
             return {
               resource: c.solution.resources[index].resource,
               time_use: 0,
               like: 0,
             };
+
           } else {
-  
-            console.log("recurso seleccionado de las condiciones");
-  
-            console.log(traces.length);
+            // if not skip evaluation
+
+            console.log("Recurso seleccionado de las condiciones");
+
+            console.log("traces:" + traces.length);
             console.log(traces);
 
             let resource = null;
-  
-            if(traces.length > 0){
-  
+
+            if (traces.length > 0) {
+
               if (traces.length >= 3) {
-  
-                console.log("paso a buscar de la traza el mejor recurso");
-  
+
+                console.log("Paso a buscar del trace el mejor recurso");
                 let assessments_academics = traces.map((trace) => {
                   if (trace.assessments[index]) {
                     return trace.assessments[index]
                   }
                 });
-  
+                console.log("assessments_academics");
+                console.log(assessments_academics);
+
                 let resources_academics = traces.map((trace) => {
                   if (trace.resources[index]) {
                     return trace.resources[index]
                   }
                 });
-  
+                console.log("resources_academics");
+                console.log(resources_academics);
+
                 assessments_academics = assessments_academics.filter((a_a) => a_a);
                 resources_academics = resources_academics.filter((r_a) => r_a);
-                
-                if(assessments_academics.length > 0){
-  
-                  let ra = assessments_academics.reduce((prev, current) => 
-                    (prev.like > current.like) ? prev : current 
+
+                console.log("assessments_academics.length > 0: " + assessments_academics.length > 0);
+                if (assessments_academics.length > 0) {
+
+                  console.log("Validación exitosa:  " + assessments_academics.length);
+                  let ra = assessments_academics.reduce((prev, current) =>
+                    (prev.like > current.like) ? prev : current
                   )
-  
+
                   let indexF = assessments_academics.indexOf(ra);
-  
+
                   resource = await db.resource.findOne({
                     _id: resources_academics[indexF]
                   });
-  
-                  if(resource == null){
+
+                  console.log("Validando si el recurso es nulo");
+                  if (resource == null) {
+                    console.log("Si, el recurso es nulo");
+                    console.log(resource);
                     resource = await db.resource.findOne({
                       pedagogicalStrategy: pedagogicalStrategy._id,
                       structure: selectedStructure._id,
                     });
+                    console.log("Recurso seleccionado de BD:");
+                    console.log(resource);
                   }
                 }
-  
+
               } else {
 
                 let foundR = false;
                 let _ids = [];
 
                 for (var i = 0; i < traces.length; i++) {
-  
-                  if(this.isValidResource(traces[i], index)){
 
-                    console.log("recurso valido de la traza")
+                  if (this.isValidResource(traces[i], index)) {
 
+                    console.log("isValidResource::validando si el recurso en el trace es valido")
                     foundR = true;
                     resource = await db.resource.findById(
                       traces[i].resources[index]._id
                     );
-                    
+                    console.log("resource");
                     console.log(resource);
-
                     break;
+
                   } else {
                     foundR = false;
-                    console.log("esta guardando los recursos vistos");
+                    console.log("Pusheando los recursos vistos");
                     if (traces[i].resources[index]) {
                       console.log(traces[i].resources[index]._id);
                       _ids.push(traces[i].resources[index]._id);
                     }
                   }
                 }
-                
-                console.log("validar esta variable");
-                console.log(foundR);
 
+                console.log("Validando::foundR: " + foundR);
+
+                console.log("_ids pusheados");
                 console.log(_ids);
-    
+
                 if (foundR == false) {
-    
-                  console.log("recurso no encontrado");
-    
+                  console.log("RECURSO NO ENCONTRADO");
+
                   resource = await db.resource.findOne({
                     _id: { $nin: _ids },
                     pedagogicalStrategy: pedagogicalStrategy._id,
                     structure: selectedStructure._id,
                   });
-                  
-                  console.log("este es el recurso seleccionado del historial de las trazas");
+
+                  console.log("Seleccionando recursos del historial de trazas");
                   console.log(resource);
-    
-                  if(resource == null){
-    
-                    console.log("no seleccion ninguno");
-    
+
+                  if (resource == null) {
+
+                    console.log("No se ha seleccionado ningún recurso");
                     resource = await db.resource.findOne({
                       pedagogicalStrategy: pedagogicalStrategy._id,
                       structure: selectedStructure._id,
                     });
-    
+                    console.log("Se intento seleccionar un recurso y este fue el seleccionado:");
                     console.log(resource);
-    
                   }
                 }
               }
-              
+
             } else {
+              console.log("ELSE PESIMISTA");
+              console.log("Buscando un recurso de la base de datos");
               resource = await db.resource.findOne({
                 pedagogicalStrategy: pedagogicalStrategy._id,
                 structure: selectedStructure._id,
               });
+              console.log(resource);
             }
-  
+
             if (resource) {
               return { resource: resource, rating: 0, time_use: 0 };
             }
-  
+
           }
         }
 
       })
     ).then((plan) => {
       let resources = [];
+     
+      console.log("plan before map");
+      console.log(plan);
 
       plan.map(async (data, index) => {
         if (data && data.resource) {
@@ -439,11 +457,11 @@ class CbrService {
         }
       });
 
-      console.log("plan");
+      console.log("plan after map");
       console.log(plan);
 
-      console.log("resources");
-      console.log(resources); 
+      console.log("RESOURCES TO RETURN");
+      console.log(resources);
 
       return { id_case: c._id, plan: plan };
     });
@@ -459,24 +477,24 @@ class CbrService {
 
       let trace = await db.trace.findOne({ _id: id_trace });
 
-      if(trace.assessments){
+      if (trace.assessments) {
         timeSpend = trace.assessments.reduce(function (accumulator, curValue) {
-          if(curValue != null){
-            return  accumulator + curValue.time_use;
+          if (curValue != null) {
+            return accumulator + curValue.time_use;
           } else {
             return accumulator + 0;
           }
         }, caseS.euclideanWeight)
       } else {
         timeSpend = caseS.solution.resources.reduce(function (accumulator, curValue) {
-          if(curValue != null){
-            return  accumulator + curValue.time_use;
+          if (curValue != null) {
+            return accumulator + curValue.time_use;
           } else {
             return accumulator + 0;
           }
         }, caseS.euclideanWeight)
       }
-       
+
       let euclideanWeight = timeSpend / uses;
 
       if (success) {

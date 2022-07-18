@@ -79,6 +79,3 @@ exports.delete = (req, res) => {
         res.send({ message: "Course deleted successful "});
     })
 }
-
-
-
