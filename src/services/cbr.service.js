@@ -52,7 +52,7 @@ class CbrService {
       //traces[traces.length - 1].resources[index] && 
       //c.solution.resources[index].time_use >
       //    traces[traces.length - 1].resources[index].estimatedTime);
-      c.solution.resource[index].time_use > c.solution.resource[index].resource.estimatedTime)
+      c.solution.resources[index].time_use > c.solution.resources[index].resource.estimatedTime)
   }
 
   isValidResource(trace, index) {
