@@ -488,7 +488,12 @@ class CbrService {
           return r;
         });
       } else {
-        caseS.solution.resources = trace.assessments;
+        caseS.solution.resources = trace.assessments.map((assessment, index) => {
+          return {
+            ...assessments,
+            resource: trace.resources[index]
+          }
+        });
       }
 
       if(trace.assessments){
@@ -513,7 +518,7 @@ class CbrService {
 
       if (success) {
         let success = caseS.results.success + 1;
-
+        console.log("actualizacion por exito")
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.success": success,
@@ -525,6 +530,7 @@ class CbrService {
       } else if (error) {
         let errors = caseS.results.errors + 1;
 
+        console.log("actualizacion por error")
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.errors": errors,
