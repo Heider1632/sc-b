@@ -501,8 +501,8 @@ class CbrService {
 
         resources = caseS.solution.resources.map((r, index) => {
           if(trace.assessments[index]){
-            r.rating = Math.floor((r.rating + trace.assessments[index].like ) / caseS.results.uses);
-            r.time_use = (r.time_use + trace.assessments[index].time_use ) / caseS.results.uses;
+            r.rating = Math.floor((r.rating + trace.assessments[index].like ) / uses);
+            r.time_use = (r.time_use + trace.assessments[index].time_use ) / uses;
           }
 
           return r;
