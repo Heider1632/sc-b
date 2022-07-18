@@ -30,13 +30,26 @@ class CbrService {
       
     }
 
+    if(traces.length > 0){
+      return (c.solution.resources[index] &&
+        c.solution.resources[index].resource &&
+        c.solution.resources[index].rating > 3 &&
+        traces.length > 0 && 
+        traces[traces.length - 1].resources[index] && 
+        c.solution.resources[index].time_use >
+            traces[traces.length - 1].resources[index].estimatedTime);
+    } else {
+      
+    }
+
     return (c.solution.resources[index] &&
       c.solution.resources[index].resource &&
       c.solution.resources[index].rating > 3 &&
-      traces.length > 0 && 
-      traces[traces.length - 1].resources[index] && 
-      c.solution.resources[index].time_use >
-          traces[traces.length - 1].resources[index].estimatedTime);
+      //traces.length > 0 && 
+      //traces[traces.length - 1].resources[index] && 
+      //c.solution.resources[index].time_use >
+      //    traces[traces.length - 1].resources[index].estimatedTime);
+      c.solution.resource[index].time_user > c.solution.resource[index].resource.estimatedTime)
   }
 
   isValidResource(trace, index) {
