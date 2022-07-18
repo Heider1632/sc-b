@@ -506,7 +506,7 @@ class CbrService {
       } else {
         caseS.solution.resources = trace.assessments.map((assessment, index) => {
           return {
-            ...assessments,
+            ...assessment,
             resource: trace.resources[index]
           }
         });
