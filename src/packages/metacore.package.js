@@ -165,6 +165,8 @@ class MetacorePackage  {
         const caseUser = await db.case.findByIdAndUpdate(id_case, {
             $set: { "solution.resources" : resources }
         });
+
+        //TODO:: promediar tiempo de los estudiantes
         
         return caseUser;
     }

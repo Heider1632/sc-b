@@ -33,14 +33,26 @@ class CbrService {
       */
     }
 
-    // TODO: refactor
+    if(traces.length > 0){
+      return (c.solution.resources[index] &&
+        c.solution.resources[index].resource &&
+        c.solution.resources[index].rating > 3 &&
+        traces.length > 0 && 
+        traces[traces.length - 1].resources[index] && 
+        c.solution.resources[index].time_use >
+            traces[traces.length - 1].resources[index].estimatedTime);
+    } else {
+      
+    }
+
     return (c.solution.resources[index] &&
       c.solution.resources[index].resource &&
       c.solution.resources[index].rating > 3 &&
-      traces.length > 0 &&
-      traces[traces.length - 1].resources[index] &&
-      c.solution.resources[index].time_use >
-      traces[traces.length - 1].resources[index].estimatedTime);
+      //traces.length > 0 && 
+      //traces[traces.length - 1].resources[index] && 
+      //c.solution.resources[index].time_use >
+      //    traces[traces.length - 1].resources[index].estimatedTime);
+      c.solution.resource[index].time_user > c.solution.resource[index].resource.estimatedTime)
   }
 
   isValidResource(trace, index) {
@@ -471,13 +483,36 @@ class CbrService {
 
     let caseS = await db.case.findById(id_case);
 
+    console.log(caseS);
+
     if (caseS) {
       let uses = caseS.results.uses + 1;
       let timeSpend = 0;
 
       let trace = await db.trace.findOne({ _id: id_trace });
 
-      if (trace.assessments) {
+      console.log(trace);
+      console.log('paso a actulizar los recursos del caso');
+
+      if(caseS.solution.resources.length > 0){
+        caseS.solution.resources = caseS.solution.resources.map((r, index) => {
+          if(trace.assessments[index]){
+            r.rating = Math.floor((r.rating + trace.assessments[index].like ) / caseS.results.uses);
+            r.time_use = (r.time_use + trace.assessments[index].time_use ) / caseS.results.uses;
+          }
+
+          return r;
+        });
+      } else {
+        caseS.solution.resources = trace.assessments.map((assessment, index) => {
+          return {
+            ...assessments,
+            resource: trace.resources[index]
+          }
+        });
+      }
+
+      if(trace.assessments){
         timeSpend = trace.assessments.reduce(function (accumulator, curValue) {
           if (curValue != null) {
             return accumulator + curValue.time_use;
@@ -499,10 +534,11 @@ class CbrService {
 
       if (success) {
         let success = caseS.results.success + 1;
-
+        console.log("actualizacion por exito")
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.success": success,
+            "solution.resources": caseS.solution.resources,
             "results.uses": uses,
             "euclideanWeight": euclideanWeight
           },
@@ -510,9 +546,11 @@ class CbrService {
       } else if (error) {
         let errors = caseS.results.errors + 1;
 
+        console.log("actualizacion por error")
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.errors": errors,
+            "solution.resources": caseS.solution.resources,
             "results.uses": uses,
             "euclideanWeight": euclideanWeight
           },
