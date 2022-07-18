@@ -510,6 +510,7 @@ class CbrService {
       } else {
 
         console.log('paso a actualizar de manera normal');
+        console.log(trace.assessments);
 
         Promise.all(trace.assessments.map((assessment, index) => {
           return {
@@ -520,8 +521,7 @@ class CbrService {
         .then((value) => {
           console.log(value);
           resources = value;
-        })
-        ;
+        });
       }
 
       if(trace.assessments){
