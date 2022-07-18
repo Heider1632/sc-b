@@ -488,6 +488,7 @@ class CbrService {
     if (caseS) {
       let uses = caseS.results.uses + 1;
       let timeSpend = 0;
+      let resources = [];
 
       let trace = await db.trace.findOne({ _id: id_trace });
 
@@ -495,7 +496,10 @@ class CbrService {
       console.log('paso a actulizar los recursos del caso');
 
       if(caseS.solution.resources.length > 0){
-        let resources = caseS.solution.resources.map((r, index) => {
+
+        console.log('paso a actualizar con promedio');
+
+        resources = caseS.solution.resources.map((r, index) => {
           if(trace.assessments[index]){
             r.rating = Math.floor((r.rating + trace.assessments[index].like ) / caseS.results.uses);
             r.time_use = (r.time_use + trace.assessments[index].time_use ) / caseS.results.uses;
@@ -504,7 +508,10 @@ class CbrService {
           return r;
         });
       } else {
-        let resources = trace.assessments.map((assessment, index) => {
+
+        console.log('paso a actualizar de manera normal');
+
+        resources = trace.assessments.map((assessment, index) => {
           return {
             ...assessment,
             resource: trace.resources[index]
