@@ -490,7 +490,7 @@ class CbrService {
       let timeSpend = 0;
       let resources = [];
 
-      let trace = await db.trace.findOne({ _id: id_trace });
+      let trace = await db.trace.findOne({ _id: id_trace }).populate('resources');
 
       console.log(trace);
       console.log('paso a actulizar los recursos del caso');
@@ -514,7 +514,7 @@ class CbrService {
         resources = trace.assessments.map((assessment, index) => {
           return {
             ...assessment,
-            resource: trace.resources[index]
+            resource: trace.resources[index]._id
           }
         });
       }
