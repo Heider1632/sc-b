@@ -509,6 +509,7 @@ class CbrService {
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.success": success,
+            "results.solution.resources": caseS.solution.resources,
             "results.uses": uses,
             "euclideanWeight": euclideanWeight
           },
