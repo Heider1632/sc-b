@@ -466,18 +466,26 @@ class CbrService {
 
     let caseS = await db.case.findById(id_case);
 
+    console.log(caseS);
+
     if (caseS) {
       let uses = caseS.results.uses + 1;
       let timeSpend = 0;
 
       let trace = await db.trace.findOne({ _id: id_trace });
 
+      console.log(trace);
+
+      console.log('paso a actulizar los recursos del caso');
+
       if(caseS.solution.resources.length > 0){
-        caseS.solution.resources.map((r, index) => {
+        caseS.solution.resources = caseS.solution.resources.map((r, index) => {
           if(trace.assessments[index]){
-            caseS.solution.resources[index].rating = Math.floor((caseS.solution.resources[index].rating + trace.assessments[index].like ) / caseS.results.uses);
-            caseS.solution.resources[index].time_use = (caseS.solution.resources[index].time_use + trace.assessments[index].time_use ) / caseS.results.uses;
+            r.rating = Math.floor((r.rating + trace.assessments[index].like ) / caseS.results.uses);
+            r.time_use = (r.time_use + trace.assessments[index].time_use ) / caseS.results.uses;
           }
+
+          return r;
         });
       } else {
         caseS.solution.resources = trace.assessments;
@@ -520,6 +528,7 @@ class CbrService {
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.errors": errors,
+            "solution.resources": caseS.solution.resources,
             "results.uses": uses,
             "euclideanWeight": euclideanWeight
           },
