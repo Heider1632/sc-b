@@ -526,7 +526,8 @@ class CbrService {
         
         resources = trace.assessments.map((assessment, index) => {
           return {
-            ...assessment,
+            rating: assessment.like,
+            time_use: assessment.time_use,
             resource: trace.resources[index]._id
           }
         });
