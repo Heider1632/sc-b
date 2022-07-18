@@ -512,16 +512,27 @@ class CbrService {
         console.log('paso a actualizar de manera normal');
         console.log(trace.assessments);
 
-        Promise.all(trace.assessments.map((assessment, index) => {
+        // Promise.all(trace.assessments.map((assessment, index) => {
+        //   return {
+        //     ...assessment,
+        //     resource: trace.resources[index]._id
+        //   }
+        // }))
+        // .then((value) => {
+        //   console.log(value);
+        //   resources = value;
+        // });
+
+        
+        resources = trace.assessments.map((assessment, index) => {
           return {
             ...assessment,
             resource: trace.resources[index]._id
           }
-        }))
-        .then((value) => {
-          console.log(value);
-          resources = value;
         });
+        
+        console.log("resources despues de map")
+        console.log(resources);
       }
 
       if(trace.assessments){
