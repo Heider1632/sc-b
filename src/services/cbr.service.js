@@ -490,7 +490,7 @@ class CbrService {
       let timeSpend = 0;
       let resources = [];
 
-      let trace = await db.trace.findOne({ _id: id_trace }).populate('resources');
+      let trace = await db.trace.findOne({ _id: id_trace }).populate('resources', '_id');
 
       console.log(trace);
       console.log('paso a actulizar los recursos del caso');
@@ -511,12 +511,17 @@ class CbrService {
 
         console.log('paso a actualizar de manera normal');
 
-        resources = trace.assessments.map((assessment, index) => {
+        Promise.all(trace.assessments.map((assessment, index) => {
           return {
             ...assessment,
             resource: trace.resources[index]._id
           }
-        });
+        }))
+        .then((value) => {
+          console.log(value);
+          resources = value;
+        })
+        ;
       }
 
       if(trace.assessments){
