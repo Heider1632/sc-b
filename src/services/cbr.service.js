@@ -472,6 +472,17 @@ class CbrService {
 
       let trace = await db.trace.findOne({ _id: id_trace });
 
+      if(caseS.solution.resources.length > 0){
+        caseS.solution.resources.map((r, index) => {
+          if(trace.assessments[index]){
+            caseS.solution.resources[index].rating = Math.floor((caseS.solution.resources[index].rating + trace.assessments[index].like ) / caseS.results.uses);
+            caseS.solution.resources[index].time_use = (caseS.solution.resources[index].time_use + trace.assessments[index].time_use ) / caseS.results.uses;
+          }
+        });
+      } else {
+        caseS.solution.resources = trace.assessments;
+      }
+
       if(trace.assessments){
         timeSpend = trace.assessments.reduce(function (accumulator, curValue) {
           if(curValue != null){
