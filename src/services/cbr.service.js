@@ -534,7 +534,8 @@ class CbrService {
 
       if (success) {
         let success = caseS.results.success + 1;
-        console.log("actualizacion por exito")
+        console.log("actualizacion por exito");
+        console.log(caseS.solution.resources);
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.success": success,
@@ -547,6 +548,7 @@ class CbrService {
         let errors = caseS.results.errors + 1;
 
         console.log("actualizacion por error")
+        console.log(caseS.solution.resources);
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.errors": errors,
