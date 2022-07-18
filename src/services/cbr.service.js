@@ -495,7 +495,7 @@ class CbrService {
       console.log('paso a actulizar los recursos del caso');
 
       if(caseS.solution.resources.length > 0){
-        caseS.solution.resources = caseS.solution.resources.map((r, index) => {
+        let resources = caseS.solution.resources.map((r, index) => {
           if(trace.assessments[index]){
             r.rating = Math.floor((r.rating + trace.assessments[index].like ) / caseS.results.uses);
             r.time_use = (r.time_use + trace.assessments[index].time_use ) / caseS.results.uses;
@@ -504,7 +504,7 @@ class CbrService {
           return r;
         });
       } else {
-        caseS.solution.resources = trace.assessments.map((assessment, index) => {
+        let resources = trace.assessments.map((assessment, index) => {
           return {
             ...assessment,
             resource: trace.resources[index]
@@ -535,11 +535,11 @@ class CbrService {
       if (success) {
         let success = caseS.results.success + 1;
         console.log("actualizacion por exito");
-        console.log(caseS.solution.resources);
+        console.log(resources);
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.success": success,
-            "solution.resources": caseS.solution.resources,
+            "solution.resources": resources,
             "results.uses": uses,
             "euclideanWeight": euclideanWeight
           },
@@ -548,11 +548,11 @@ class CbrService {
         let errors = caseS.results.errors + 1;
 
         console.log("actualizacion por error")
-        console.log(caseS.solution.resources);
+        console.log(resources);
         await db.case.findByIdAndUpdate(caseS._id, {
           $set: {
             "results.errors": errors,
-            "solution.resources": caseS.solution.resources,
+            "solution.resources": resources,
             "results.uses": uses,
             "euclideanWeight": euclideanWeight
           },
