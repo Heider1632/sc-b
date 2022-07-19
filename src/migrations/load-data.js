@@ -87,9 +87,9 @@ async function generateUser() {
       lastname: "test",
       user: user5._id,
       learningStyleDimensions: [
-        ObjectId("62d3113ee1e1633e5b6d7ef3"),
-        ObjectId("62d3113ee1e1633e5b6d7ef7"),
-        ObjectId("62d3113ee1e1633e5b6d7ef5")
+        "62d3113ee1e1633e5b6d7ef3",
+        "62d3113ee1e1633e5b6d7ef7",
+        "62d3113ee1e1633e5b6d7ef5"
       ],
       course: [course[0]._id],
     });
