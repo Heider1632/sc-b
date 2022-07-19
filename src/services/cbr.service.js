@@ -511,18 +511,6 @@ class CbrService {
 
         console.log('paso a actualizar de manera normal');
         console.log(trace.assessments);
-
-        // Promise.all(trace.assessments.map((assessment, index) => {
-        //   return {
-        //     ...assessment,
-        //     resource: trace.resources[index]._id
-        //   }
-        // }))
-        // .then((value) => {
-        //   console.log(value);
-        //   resources = value;
-        // });
-
         
         resources = trace.assessments.map((assessment, index) => {
           return {
@@ -568,7 +556,7 @@ class CbrService {
             "euclideanWeight": euclideanWeight
           },
         });
-      } else if (error) {
+      } else {
         let errors = caseS.results.errors + 1;
 
         console.log("actualizacion por error")
