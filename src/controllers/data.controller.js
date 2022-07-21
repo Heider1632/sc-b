@@ -40,11 +40,11 @@ exports.all = async (req, res) => {
         type: "string",
       },
       {
-        value: t.course.name,
+        value: t.course ? t.course.name : "no-course",
         type: "string"
       },
       {
-        value: t.lesson.title,
+        value: t.lesson ? t.lesson.title : "no-lesson",
         type: "string"
       },
       {
