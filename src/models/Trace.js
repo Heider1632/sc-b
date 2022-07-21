@@ -15,10 +15,25 @@ const Trace = mongoose.model(
       name: String
     }],
     case: {  type: mongoose.Schema.Types.ObjectId, ref: "Case" },
+    index: {
+      type: Number,
+      default: 0
+    },
+    confirm: {
+      type: Boolean,
+      default: false
+    },
     evaluation: {
       type: Boolean,
       default: false
-
+    },
+    feedback: {
+      type: Boolean,
+      default: false
+    },
+    complete: {
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true }

@@ -2,7 +2,7 @@ const db = require("../models");
 const mongoose = require("mongoose");
 
 exports.all = (req, res) => {
-    const traces = db.trace.find({});
+    const traces = db.trace.find({ complete: false });
     res.send(traces);
 }
 
@@ -43,7 +43,8 @@ exports.create = (req, res) => {
         resources: req.body.resources,
         assessments: req.body.assessments,
         logs: req.body.logs,
-        case: req.body.case
+        case: req.body.case,
+        index: req.body.index
     });
 
     trace.save((err, trace) => {
@@ -58,27 +59,68 @@ exports.create = (req, res) => {
 
 exports.update = (req, res) => {
     
-    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { "resources": req.body.resources, "assessments" : req.body.assessments, "logs" : req.body.logs, evaluation: req.body.evaluation }})
+    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { "resources" : req.body.resources, "assessments" : req.body.assessments, "logs" : req.body.logs, "confirm": req.body.confirm, "index" : req.body.index, "case": req.body.case }}, { new: true })
     .exec((err, trace) => {
         if(err){
             res.status(500).send({ messsage: err });
         }
 
-        res.send({ message: "Trace update successful" });
+        console.log(trace);
+
+        res.status(200).send(trace);
+    });
+}
+
+exports.updateConfirm = (req, res) => {
+    
+    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { confirm: req.body.confirm }}, { new: true })
+    .exec((err, trace) => {
+        if(err){
+            res.status(500).send({ messsage: err });
+        }
+
+        console.log(trace);
+
+        res.status(200).send(trace);
     });
 }
 
 exports.updateEvaluation = (req, res) => {
     
-    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { evaluation: req.body.evaluation }})
+    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { evaluation: req.body.evaluation }}, { new: true })
     .exec((err, trace) => {
         if(err){
             res.status(500).send({ messsage: err });
         }
 
-        res.send({ message: "Trace update successful" });
+        console.log(trace);
+        
+        res.status(200).send(trace);
     });
 }
+
+exports.updateFeedback = (req, res) => {
+    
+    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { feedback: req.body.feedback }}, { new: true })
+    .exec((err, trace) => {
+        if(err){
+            res.status(500).send({ messsage: err });
+        }
+        res.status(200).send(trace);
+    });
+}
+
+exports.updateComplete = (req, res) => {
+    
+    db.trace.findByIdAndUpdate(new mongoose.Types.ObjectId(req.body.id), { $set: { complete: req.body.complete }}, { new: true })
+    .exec((err, trace) => {
+        if(err){
+            res.status(500).send({ messsage: err });
+        }
+        res.status(200).send(trace);
+    });
+}
+
 
 
 exports.delete = (req, res) => {

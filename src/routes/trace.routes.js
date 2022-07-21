@@ -17,7 +17,10 @@ module.exports = function(app) {
 
     app.post("/api/trace/create", [authJwt.verifyToken], TraceController.create);
     app.post("/api/trace/update", [authJwt.verifyToken], TraceController.update);
+    app.post("/api/trace/update-confirm", [authJwt.verifyToken], TraceController.updateConfirm);
     app.post("/api/trace/update-evaluation", [authJwt.verifyToken], TraceController.updateEvaluation);
+    app.post("/api/trace/update-feedback", [authJwt.verifyToken], TraceController.updateFeedback);
+    app.post("/api/trace/update-complete", [authJwt.verifyToken], TraceController.updateComplete);
     app.post("/api/trace/delete", [authJwt.verifyToken], TraceController.delete);
 
 }

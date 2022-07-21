@@ -11,6 +11,7 @@ module.exports = function(app) {
     // });
 
     app.get("/api/progress/one", [authJwt.verifyToken], ProgressController.one);
+    app.get("/api/progress/percentage", [authJwt.verifyToken], ProgressController.percentageStudent);
     app.get("/api/progress/all", [authJwt.verifyToken], ProgressController.all);
     app.get("/api/progress/status", [authJwt.verifyToken], ProgressController.status);
 

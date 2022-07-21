@@ -15,7 +15,28 @@ exports.one = async (req, res) => {
         res.status(200).send(progress);
     }
 
-} 
+}
+
+exports.percentageStudent = async (req, res) => {
+
+    const documents = await db.progress.countDocuments({
+        student: new mongoose.Types.ObjectId(req.query.student),
+        course: new mongoose.Types.ObjectId(req.query.course),
+        complete: true
+    });
+
+    console.log(documents);
+
+    let percentage = documents / 4 * 100;
+
+    if(percentage == undefined){
+        res.status(404).send({ message: "Percentage not calculate" });
+    } else {
+        res.status(200).send({ count: percentage });
+    }
+
+
+}
 
 exports.all = async (req, res) => {
     const progress = await db.progress.find({

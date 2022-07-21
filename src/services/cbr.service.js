@@ -332,7 +332,7 @@ class CbrService {
 
             if (traces.length > 0) {
 
-              if (traces.length >= 3) {
+              if (traces.length > 3) {
 
                 console.log("Paso a buscar del trace el mejor recurso");
                 let assessments_academics = traces.map((trace) => {
@@ -365,7 +365,7 @@ class CbrService {
                   let indexF = assessments_academics.indexOf(ra);
 
                   resource = await db.resource.findOne({
-                    _id: resources_academics[indexF]
+                    _id: resources_academics[indexF]._id
                   });
 
                   console.log("Validando si el recurso es nulo");

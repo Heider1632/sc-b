@@ -12,6 +12,7 @@ exports.student = async (req, res) => {
         student: new mongoose.Types.ObjectId(req.query.student),
         course: new mongoose.Types.ObjectId(req.query.course),
         lesson: new mongoose.Types.ObjectId(req.query.lesson),
+        complete: false
     }).populate('resources', '_id estimatedTime');
 
     if(!assessments){
