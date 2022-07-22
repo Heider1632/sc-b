@@ -26,6 +26,8 @@ exports.attempts = async (req, res) => {
         lesson: new mongoose.Types.ObjectId(req.query.lesson)
     });
 
+    console.log(attempts);
+
     res.status(200).send({ count: attempts });
 }
 
