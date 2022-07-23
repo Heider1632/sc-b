@@ -85,7 +85,7 @@ async function generateUser() {
     await db.student.create({
       name: "User6",
       lastname: "test",
-      user: user5._id,
+      user: user6._id,
       learningStyleDimensions: [
         "62d3113ee1e1633e5b6d7ef3",
         "62d3113ee1e1633e5b6d7ef7",
