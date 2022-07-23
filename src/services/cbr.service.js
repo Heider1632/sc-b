@@ -479,11 +479,17 @@ class CbrService {
     });
   }
 
-  async reviewCase(id_case, id_trace, success, error, time) {
+  async reviewCase(id_case, id_trace, success, error) {
 
     let caseS = await db.case.findById(id_case);
 
     console.log(caseS);
+
+    console.log('es extioso')
+    console.log(success);
+
+    console.log('es errado')
+    console.log(error)
 
     if (caseS) {
       let uses = caseS.results.uses + 1;
