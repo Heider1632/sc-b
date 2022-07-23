@@ -76,14 +76,14 @@ async function generateUser() {
     //   roles: [ROLE_MODERATOR._id],
     // });
 
-    let user5 = await db.user.create({
-      email: "user5@gmail.com",
-      password: bcrypt.hashSync("user5", 8),
+    let user6 = await db.user.create({
+      email: "user6@gmail.com",
+      password: bcrypt.hashSync("user6", 8),
       roles: [ROLE_USER._id],
     });
 
     await db.student.create({
-      name: "User5",
+      name: "User6",
       lastname: "test",
       user: user5._id,
       learningStyleDimensions: [
