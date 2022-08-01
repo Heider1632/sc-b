@@ -282,8 +282,6 @@ async function generateFakeInterview() {
 
           let lesson = await db.lesson.findOne({ order: interview.lesson });
 
-          console.log(lesson);
-
           await db.interview.create({
             title: interview.title,
             lesson: lesson._id,
@@ -349,6 +347,7 @@ async function generateFakePedagogicalStrategies() {
       await db.pedagogicalStrategy.create({
         learningTheory: learningTheory._id,
         pedagogicalTactic: pt._id,
+        key: index + 1,
         learningStyleDimensions: ls
       });
     })

@@ -20,6 +20,9 @@ const Lesson = mongoose.model(
       type: Number,
       default: 0
     },
+    prefix: {
+      type: String
+    },
     learningStyleDimensions: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "learningStyleDimension" 

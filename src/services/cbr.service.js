@@ -277,6 +277,7 @@ class CbrService {
     console.log(learningStyleDimensions);
 
     let pedagogicalStrategies = await db.pedagogicalStrategy.find({});
+    
     console.log("selected pedagogical strategies");
     console.log(pedagogicalStrategies);
 

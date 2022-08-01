@@ -1,132 +1,136 @@
 {
-    "name": "Protocolos de atención de sífilis gestacional y congénita",
-    "description": "",
-    "hasObjectiveCoursd" : "",
-    "teacher" : "618b258eb1247131dc6729a0",
-    "lessons": [
+  "name": "Protocolos de atención de sífilis gestacional y congénita",
+  "description": "",
+  "hasObjectiveCoursd": "",
+  "teacher": "618b258eb1247131dc6729a0",
+  "lessons": [
+    {
+      "title": "Unidad 1. Historia y origen de la sífilis",
+      "order": 1,
+      "hasObjectiveLesson": "1.jpg",
+      "prefix": "L1",
+      "structure": [
         {
-            "title": "Unidad 1. Historia y origen de la sífilis",
-            "order" : 1,
-            "hasObjectiveLesson": "1.jpg",
-            "structure": [
-              {
-                "type": "introduction",
-                "order": 1
-              },
-              {
-                "type": "definition",
-                "order": 2
-              },
-              {
-                "type": "description",
-                "order": 3
-              },
-              {
-                "type": "example",
-                "order": 4
-              },
-              {
-                "type":  "activity",
-                "order": 5
-              },
-              {
-                "type": "evaluation",
-                "order": 6
-              }
-            ]
-          }, 
-          { 
-            "title": "Unidad 2. Políticas públicas y normatividad de la Sífilis gestacional y congénita",
-            "order" : 2,
-            "hasObjectiveLesson": "2.jpg",
-            "structure": [
-              {
-                "type": "introduction",
-                "order": 1
-              },
-              {
-                "type": "definition",
-                "order": 2
-              },
-              {
-                "type": "description",
-                "order": 3
-              },
-              {
-                "type": "example",
-                "order": 4
-              },
-              {
-                "type":  "activity",
-                "order": 5
-              },
-              {
-                "type": "evaluation",
-                "order": 6
-              }
-            ]
-          },
-          { 
-            "title": "Unidad 3. Tamizaje y vigilancia epidemiológica para la Sífilis gestacional y congénita",
-            "order": 3,
-            "hasObjectiveLesson": "2.jpg",
-            "structure": [
-              {
-                "type": "introduction",
-                "order": 1
-              },
-              {
-                "type": "definition",
-                "order": 2
-              },
-              {
-                "type": "description",
-                "order": 3
-              },
-              {
-                "type": "example",
-                "order": 4
-              },
-              {
-                "type":  "activity",
-                "order": 5
-              },
-              {
-                "type": "evaluation",
-                "order": 6
-              }
-            ]
-          },
-          { 
-            "title": "Unidad 4. Tratamiento de la sífilis gestacional y prevención de la sífilis congénita",
-            "order": 4,
-            "hasObjectiveLesson": "4.jpg",
-            "structure": [
-              {
-                "type": "introduction",
-                "order": 1
-              },
-              {
-                "type": "definition",
-                "order": 2
-              },
-              {
-                "type": "description",
-                "order": 3
-              },
-              {
-                "type": "example",
-                "order": 4
-              },
-              {
-                "type":  "activity",
-                "order": 5
-              },
-              {
-                "type": "evaluation",
-                "order": 6
-              }
-            ]
+          "type": "introduction",
+          "order": 1
+        },
+        {
+          "type": "definition",
+          "order": 2
+        },
+        {
+          "type": "description",
+          "order": 3
+        },
+        {
+          "type": "example",
+          "order": 4
+        },
+        {
+          "type": "activity",
+          "order": 5
+        },
+        {
+          "type": "evaluation",
+          "order": 6
         }
-    ]
+      ]
+    },
+    {
+      "title": "Unidad 2. Políticas públicas y normatividad de la Sífilis gestacional y congénita",
+      "order": 2,
+      "hasObjectiveLesson": "2.jpg",
+      "prefix": "L2",
+      "structure": [
+        {
+          "type": "introduction",
+          "order": 1
+        },
+        {
+          "type": "definition",
+          "order": 2
+        },
+        {
+          "type": "description",
+          "order": 3
+        },
+        {
+          "type": "example",
+          "order": 4
+        },
+        {
+          "type": "activity",
+          "order": 5
+        },
+        {
+          "type": "evaluation",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "title": "Unidad 3. Tamizaje y vigilancia epidemiológica para la Sífilis gestacional y congénita",
+      "order": 3,
+      "hasObjectiveLesson": "3.jpg",
+      "prefix": "L3",
+      "structure": [
+        {
+          "type": "introduction",
+          "order": 1
+        },
+        {
+          "type": "definition",
+          "order": 2
+        },
+        {
+          "type": "description",
+          "order": 3
+        },
+        {
+          "type": "example",
+          "order": 4
+        },
+        {
+          "type": "activity",
+          "order": 5
+        },
+        {
+          "type": "evaluation",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "title": "Unidad 4. Tratamiento de la sífilis gestacional y prevención de la sífilis congénita",
+      "order": 4,
+      "hasObjectiveLesson": "4.jpg",
+      "prefix": "L4",
+      "structure": [
+        {
+          "type": "introduction",
+          "order": 1
+        },
+        {
+          "type": "definition",
+          "order": 2
+        },
+        {
+          "type": "description",
+          "order": 3
+        },
+        {
+          "type": "example",
+          "order": 4
+        },
+        {
+          "type": "activity",
+          "order": 5
+        },
+        {
+          "type": "evaluation",
+          "order": 6
+        }
+      ]
+    }
+  ]
 }

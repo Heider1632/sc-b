@@ -29,6 +29,10 @@ const Student = mongoose.model(
     },
     institution: {
       type: String
+    },
+    key: {
+      type: Number,
+      default: 0
     }
   })
 );

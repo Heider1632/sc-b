@@ -22,6 +22,7 @@ db.resource = require("./Resource");
 db.pedagogicalTactic = require("./PedagogicalTactic");
 db.learningTheory = require("./LearningTheory");
 db.pedagogicalStrategy = require("./PedagogicalStrategy");
+db.userSeen = require("./UserSeen");
 
 db.question = require("./Question");
 db.interview = require("./Interview");
@@ -36,7 +37,6 @@ db.trace = require("./Trace");
 db.profile = require("./Profile");
 
 //CBR
-db.case = require("./Case");
 db.historyCase = require("./HistoryCase");
 db.historyLesson = require("./HistoryLesson");
 

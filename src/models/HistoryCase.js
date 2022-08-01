@@ -5,9 +5,9 @@ const HistoryCaseSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Student"
     },
-    case: {
+    trace: {
         type: mongoose.Types.ObjectId,
-        ref: "Case"
+        ref: "Trace"
     },
     was: {
         type: String,

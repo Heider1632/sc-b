@@ -70,56 +70,51 @@ async function generateUser() {
     const ROLE_MODERATOR = await db.role.findOne({ name: "moderator" });
     const course = await db.course.find({});
 
-    // let moderator = await db.user.create({
-    //   email: "moderato@gmail.com",
-    //   password: bcrypt.hashSync("12345", 8),
-    //   roles: [ROLE_MODERATOR._id],
-    // });
+    let moderator = await db.user.create({
+      email: "moderato@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      roles: [ROLE_MODERATOR._id],
+    });
 
-    let user6 = await db.user.create({
-      email: "user6@gmail.com",
+    let user1 = await db.user.create({
+      email: "user1@gmail.com",
       password: bcrypt.hashSync("user6", 8),
       roles: [ROLE_USER._id],
     });
 
     await db.student.create({
-      name: "User6",
+      name: "User1",
       lastname: "test",
-      user: user6._id,
-      learningStyleDimensions: [
-        "62d3113ee1e1633e5b6d7ef3",
-        "62d3113ee1e1633e5b6d7ef7",
-        "62d3113ee1e1633e5b6d7ef5"
-      ],
+      user: user1._id,
       course: [course[0]._id],
     });
 
 
-    // let laura = await db.user.create({
-    //   email: "lauramarquez@gmail.com",
-    //   password: bcrypt.hashSync("12345", 8),
-    //   roles: [ROLE_USER._id],
-    // });
+    let laura = await db.user.create({
+      email: "lauramarquez@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      roles: [ROLE_USER._id],
+    });
 
-    // await db.student.create({
-    //   name: "Laura",
-    //   lastname: "Marquez",
-    //   user: laura._id,
-    //   course: [course[0]._id],
-    // });
+    await db.student.create({
+      name: "Laura",
+      lastname: "Marquez",
+      user: laura._id,
+      course: [course[0]._id],
+    });
 
-    // let heider = await db.user.create({
-    //   email: "heiderzapa@gmail.com",
-    //   password: bcrypt.hashSync("12345", 8),
-    //   roles: [ROLE_USER._id],
-    // });
+    let heider = await db.user.create({
+      email: "heiderzapa@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      roles: [ROLE_USER._id],
+    });
 
-    // await db.student.create({
-    //   name: "Heider",
-    //   lastname: "Zapa",
-    //   user: heider._id,
-    //   course: [course[0]._id],
-    // });
+    await db.student.create({
+      name: "Heider",
+      lastname: "Zapa",
+      user: heider._id,
+      course: [course[0]._id],
+    });
 
     // _students.forEach(async (student) => {
     //   let user = await db.user.create({
@@ -333,6 +328,21 @@ async function generateKnowledgeComponent() {
   }
 }
 
+async function syncStudents(){
+  try {
+
+    let students = await db.student.find({});
+
+      students.forEach(async (s, index) => {
+        await db.student.findByIdAndUpdate(s._id, { $set: { key : index + 1 } });
+      });
+
+  } catch(error){
+    console.error(erros.message);
+    process.exit();
+  }
+}
+
 async function syncQuestions() {
   try {
     // let questions = await db.question.find({});
@@ -379,8 +389,6 @@ async function syncCases(){
     Promise.all(cases.map(async c => {
 
       let resources = c.solution.resources.map(d => d.resource);
-
-      console.log(resources);
 
       let trace = await db.trace.findOne({ resources: { $eq: resources } });
 
