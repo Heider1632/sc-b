@@ -245,7 +245,7 @@ class RecommenderService {
       body: content,
     };
 
-    let response = await axios.post(process.env.NODE_ENV  === "development" ? 'http://localhost:5000/api/recommender/dataset/update' : 'https://scp.protocolosensalud.com/recommender/dataset/update', data);
+    let response = await axios.post(process.env.NODE_ENV  === "development" ? 'http://localhost:5000/api/recommender/dataset/update' : 'https://scp.protocolosensalud.com/api/recommender/dataset/update', data);
 
     if (response.status == 200) {
       return true;
