@@ -60,7 +60,7 @@ class RecommenderService {
 
     let pedagogicalStrategy = pedagogicalStrategies[indice];
 
-    let response = await axios.get(process.env.NODE_ENV === "development" ? 'http://localhost:5000/api/recommender/user' : 'http://localhost:5000/api/recommender/resources', {
+    let response = await axios.get(process.env.NODE_ENV === "development" ? 'http://localhost:5000/api/recommender/user' : 'https://scp.protocolosensalud.com/api/recommender/user', {
       params: { id: student.key, name: student.id + "-" + student.name },
     });
 
@@ -87,7 +87,7 @@ class RecommenderService {
       if (!vus || newIndex) {
 
         console.log(newIndex);
-        let r = await axios.get(process.env.NODE_ENV === "production" ? 'https://scp.protocolosensalud.com/api/recommender/user' : 'http://localhost:5000/api/recommender/resources', {
+        let r = await axios.get(process.env.NODE_ENV === "production" ? 'https://scp.protocolosensalud.com/api/recommender/resources' : 'http://localhost:5000/api/recommender/resources', {
           params: {
             id: data[newIndex ?? index],
             name: student.id + "-" + student.name,
