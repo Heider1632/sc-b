@@ -79,10 +79,6 @@ class RecommenderService {
       if (vus) {
         var newIndex = await this.validateUserSeen(student.key, data, index);
       }
-      
-
-      console.log(vus, newIndex);
-      console.log(index);
 
       if (!vus || newIndex) {
 
@@ -101,6 +97,7 @@ class RecommenderService {
           await db.userSeen.create({
             user: student.key,
             ref: data[newIndex ?? index],
+            data: data
           });
 
           var d = r.data;
@@ -229,15 +226,32 @@ class RecommenderService {
 
   async retrain(args) {
 
-    console.log(args);
-
     let student = await db.student.findOne({_id: args.id_student });
     let trace = await db.trace.findOne({ _id: args.id_trace }).populate('resources');
+    
+    let lastSeen = await db.userSeen.findOne({$query: { user: student.key }, $orderby: {$natural : -1}});
+
+    console.log(lastSeen);
+    await db.userSeen.findOneAndUpdate({ _id: lastSeen._id }, { $set: { trace: trace._id } });
 
     let name = student.id + "-" + student.name;
 
     let content = trace.assessments.map((s, index) => {
-      return [student.key, trace.resources[index].key, (s.time_use * s.like * args.note) / 100];
+
+      let c = trace.resources[index].estimatedTime * s.like * args.note;
+      let b = s.time_use * s.like * args.note;
+      console.log(c);
+
+      console.log(b);
+
+      console.log((b * 5 )/ c)
+
+      //TODO:: resolve
+      let a = (b * 5) / c;
+
+      if(a > 5) a = 5;
+      
+      return [student.key, trace.resources[index].key, a];
     });
 
     let data = {  

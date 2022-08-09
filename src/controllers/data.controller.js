@@ -3,24 +3,25 @@ const _ = require("lodash");
 
 exports.all = async (req, res) => {
 
-  let traces = await db.trace.find({}).populate("student course lesson resources case");
+  let traces = await db.trace.find({}).populate("student course lesson resources");
 
   console.log(traces);
 
   Promise.all(traces.map(async (t, index) => {
-
-    let historycase;
    
     let sum = 0;
     
     let resources = [];
+    let d = [];
 
-    if(t.case){
-      historycase = await db.historyCase.findOne({
-        student: t.student._id,
-        case: t.case._id
-      });
-    }
+    let historycase = await db.historyCase.findOne({
+      student: t.student._id,
+      trace: t._id
+    });
+
+    let userSeen = await db.userSeen.findOne({
+      trace: t._id
+    });
 
     for(let j = 0; j < traces[index].resources.length; j++){
 
@@ -32,6 +33,13 @@ exports.all = async (req, res) => {
         if(traces[index].assessments[j] && traces[index].assessments[j].time_use){
             sum += traces[index].assessments[j].time_use;
         }
+    }
+
+    for(let k = 0; k < userSeen.data.length; k++){
+      d.push({
+        value: userSeen.data[k], 
+        type: "number" 
+      })
     }
   
     return [
@@ -45,18 +53,6 @@ exports.all = async (req, res) => {
       },
       {
         value: t.lesson ? t.lesson.title : "no-lesson",
-        type: "string"
-      },
-      {
-        value: t.case ? t.case.id : "no-case",
-        type: "string"
-      },
-      {
-        value: t.case ? t.case.euclideanWeight : "no-euclidean-weight",
-        type: "string"
-      },
-      {
-        value: t.case ? t.case.results.uses : "no-uses",
         type: "string"
       },
       {
@@ -79,7 +75,12 @@ exports.all = async (req, res) => {
         value: sum,
         type: "number"
       },
-      ...resources
+      {
+        value: userSeen ? userSeen.ref : "no-user-seen-ref",
+        type: "number"
+      },
+      ...resources,
+      ...d
     ];
   }))
   .then(data => {
