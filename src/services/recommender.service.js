@@ -13,6 +13,15 @@ class RecommenderService {
     return metacore;
   }
 
+  isValidResource(trace, index) {
+    return (
+      trace.assessments[index] &&
+      trace.assessments[index].like > 3 &&
+      trace.assessments[index].time_use >=
+      trace.resources[index].estimatedTime
+    );
+  }
+
   async validateUserSeen(user, data, index) {
     let vus = await db.userSeen.findOne({ user: user, ref: data[index] });
 
@@ -112,70 +121,107 @@ class RecommenderService {
                 });
 
                 let y = _.maxBy(x, "rating");
+                
+                console.log('recursos calificado en el dataset');
+                console.log(y);
 
                 if (y) {
                   let r = await db.resource.findOne({ title: y.title });
+                  
+                  console.log('recurso seleccionado');
+                  console.log(r);
 
                   if (r) {
                     return { time_use: 0, rating: 0, resource: r };
                   } else {
+
+                    console.log('recursos sacado de las condiciones');
+                    //TODO:: revisar como esta seleccionado el recurso en esta parte (falla)
+                    let resource = null;
+
                     if (traces.length > 0) {
-                      let resource = null;
+                      
                       let foundR = null;
                       let _ids = [];
-                      traces.map(async (trace) => {
-                        if (trace.assessments[index]) {
-                          if (
-                            trace.assessments[index].like > 3 &&
-                            trace.assessments[index].time_use >=
-                              trace.resources[index].estimatedTime
-                          ) {
-                            let sr = await db.resource.findById(
-                              trace.resources[index]._id
-                            );
-                            foundR = true;
-                            resource = { resource: sr, rating: 0, time_use: 0 };
-                          } else {
-                            foundR = false;
-                            if (trace.resources[index]) {
-                              _ids.push(trace.resources[index]._id);
-                            }
-                          }
+
+                      for (var i = 0; i < traces.length; i++) {
+
+                        if (this.isValidResource(traces[i], index)) {
+      
+                          console.log("isValidResource::validando si el recurso en el trace es valido")
+                          foundR = true;
+                          resource = await db.resource.findById(
+                            traces[i].resources[index]._id
+                          );
+                          console.log("resource");
+                          console.log(resource);
+
+
+                          break;
+      
                         } else {
-                          if (trace.resources[index]) {
-                            _ids.push(trace.resources[index]._id);
+                          foundR = false;
+                          console.log("Pusheando los recursos vistos");
+                          if (traces[i].resources[index]) {
+                            console.log(traces[i].resources[index]._id);
+                            _ids.push(traces[i].resources[index]._id);
                           }
                         }
-                      });
+                      }
+      
+                      console.log("Validando::foundR: " + foundR);
+      
+                      console.log("_ids pusheados");
+                      console.log(_ids);
+      
                       if (foundR == false) {
+                        console.log("RECURSO NO ENCONTRADO");
+      
                         resource = await db.resource.findOne({
                           _id: { $nin: _ids },
                           pedagogicalStrategy: pedagogicalStrategy._id,
                           structure: structure._id,
                         });
-                      }
-                      if (resource) {
-                        return { resource: resource, rating: 0, time_use: 0 };
+      
+                        console.log("Seleccionando recursos del historial de trazas");
+                        console.log(r);
+      
+                        if (resource == null) {
+      
+                          console.log("No se ha seleccionado ningún recurso");
+                          resource = await db.resource.findOne({
+                            pedagogicalStrategy: pedagogicalStrategy._id,
+                            structure: structure._id,
+                          });
+                          console.log("Se intento seleccionar un recurso y este fue el seleccionado:");
+                          console.log(resource);
+
+                          return { resource: resource, time_use: 0, like: 0 };
+                        } else {
+                          return { resource: resource, time_use: 0, rating: 0 };
+                        }
                       } else {
-                        let rs = d.find((r) => r.structure === structure.type);
-                        let r = await db.resource.findOne({
-                          key: rs.resourceId,
-                        });
-                        return { time_use: 0, rating: 0, resource: r };
+                        return { time_use: 0, rating: 0, resource: resource };
                       }
                     } else {
-                      let rs = d.find((r) => r.structure === structure.type);
-                      let r = await db.resource.findOne({
-                        key: { $not: { $in: [rs.resourceId] } },
+                      console.log("No se ha seleccionado ningún recurso");
+                      resource = await db.resource.findOne({
+                        pedagogicalStrategy: pedagogicalStrategy._id,
+                        structure: structure._id,
                       });
-                      return { time_use: 0, rating: 0, resource: r };
+                      console.log("Se intento seleccionar un recurso y este fue el seleccionado:");
+                      console.log(resource);
+                      return { time_use: 0, rating: 0, resource: resource };
                     }
                   }
+                } else {
+                  console.log('--------ERRORRR--------');
                 }
               }
             })
           ).then((value) => {
             resources = value.filter((r) => r);
+            console.log(resources);
             return resources;
           });
         } else {
@@ -192,10 +238,10 @@ class RecommenderService {
     let student = await db.student.findOne({_id: args.id_student });
     let trace = await db.trace.findOne({ _id: args.id_trace }).populate('resources');
     
-    let lastSeen = await db.userSeen.findOne({$query: { user: student.key }, $orderby: {$natural : -1}});
+    let lastSeen = await db.userSeen.find({ user: student.key });
 
     console.log(lastSeen);
-    await db.userSeen.findOneAndUpdate({ _id: lastSeen._id }, { $set: { trace: trace._id } });
+    await db.userSeen.findOneAndUpdate({ _id: lastSeen[lastSeen.length -1]._id }, { $set: { trace: trace._id } });
 
     let name = student.id + "-" + student.name;
 

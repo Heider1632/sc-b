@@ -56,14 +56,6 @@ exports.all = async (req, res) => {
         type: "string"
       },
       {
-        value: t.case ? t.case.results.success : "no-success",
-        type: "string"
-      },
-      {
-        value: t.case ? t.case.results.errors : "no-errors",
-        type: "string"
-      },
-      {
         value: historycase ? historycase.was : "no-history-case-use",
         type: "string"
       },

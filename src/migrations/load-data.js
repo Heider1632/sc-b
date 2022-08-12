@@ -87,9 +87,9 @@ async function generateUser() {
       lastname: "test",
       user: user2._id,
       learningStyleDimensions: [
-        "62e878b91aa88b6b6ab3c60f",
-        "62e878b91aa88b6b6ab3c613",
-        "62e878b91aa88b6b6ab3c611"
+        "62dda6df0341fe44941bf6f3",
+        "62dda6df0341fe44941bf6f2",
+        "62dda6df0341fe44941bf6f5"
       ],
       course: [course[0]._id],
     });
@@ -105,9 +105,9 @@ async function generateUser() {
       lastname: "test",
       user: user3._id,
       learningStyleDimensions: [
-        "62e878b91aa88b6b6ab3c60f",
-        "62e878b91aa88b6b6ab3c613",
-        "62e878b91aa88b6b6ab3c611"
+        "62dda6df0341fe44941bf6f3",
+        "62dda6df0341fe44941bf6f2",
+        "62dda6df0341fe44941bf6f5"
       ],
       course: [course[0]._id],
     });
