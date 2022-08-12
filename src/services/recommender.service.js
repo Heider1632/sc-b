@@ -153,43 +153,6 @@ class RecommenderService {
                           pedagogicalStrategy: pedagogicalStrategy._id,
                           structure: structure._id,
                         });
-                      } else {
-                        let _ids = [];
-                        traces.map(async (trace) => {
-                          if (trace.assessments[index]) {
-                            if (
-                              trace.assessments[index].like > 3 &&
-                              trace.assessments[index].time_use >=
-                                trace.resources[index].estimatedTime
-                            ) {
-                              let sr = await db.resource.findById(
-                                trace.resources[index]._id
-                              );
-                              foundR = true;
-                              resource = {
-                                resource: sr,
-                                rating: 0,
-                                time_use: 0,
-                              };
-                            } else {
-                              foundR = false;
-                              if (trace.resources[index]) {
-                                _ids.push(trace.resources[index]._id);
-                              }
-                            }
-                          } else {
-                            if (trace.resources[index]) {
-                              _ids.push(trace.resources[index]._id);
-                            }
-                          }
-                        });
-                        if (foundR == false) {
-                          resource = await db.resource.findOne({
-                            _id: { $nin: _ids },
-                            pedagogicalStrategy: pedagogicalStrategy._id,
-                            structure: structure._id,
-                          });
-                        }
                       }
                       if (resource) {
                         return { resource: resource, rating: 0, time_use: 0 };
