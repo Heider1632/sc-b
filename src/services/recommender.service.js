@@ -253,12 +253,14 @@ class RecommenderService {
 
       console.log(b);
 
-      console.log((b * 5 )/ c)
-
       //TODO:: resolve
       let a = (b * 5) / c;
 
-      if(a > 5) a = 5;
+      if(Number.isNaN(a)) { 
+        a = 0;
+      } else if (a > 5) { 
+        a = 5;
+      };
       
       return [student.key, trace.resources[index].key, a];
     });
