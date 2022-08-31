@@ -15,7 +15,8 @@ const HistoryCaseSchema = new mongoose.Schema({
     },
     note: {
         type: Number
-    }
+    },
+    questions: [mongoose.Schema.Types.Mixed]
 }, { timestamp: true });
 
 module.exports = mongoose.model("historyCase", HistoryCaseSchema);

@@ -11,5 +11,6 @@ module.exports = function(app) {
     });
 
     app.get("/api/data/all", [], DataController.all);
+    app.post("/api/data/upload", [], DataController.upload);
 
 }
