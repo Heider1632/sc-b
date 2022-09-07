@@ -22,12 +22,12 @@ class RecommenderService {
     );
   }
 
-  async validateUserSeen(user, data, index) {
-    let vus = await db.userSeen.findOne({ user: user, ref: data[index] });
+  async validateUserSeen(user, data, prefix, index) {
+    let vus = await db.userSeen.findOne({ user: user, ref: data[index], lesson: prefix });
 
     if (vus) {
       index++;
-      return this.validateUserSeen(user, data, index);
+      return this.validateUserSeen(user, data, prefix, index);
     } else {
       return index;
     }
@@ -79,11 +79,11 @@ class RecommenderService {
       let vus = await db.userSeen.findOne({
         user: student.key,
         ref: data[index],
-        trace: { $exists: false }
+        lesson: lesson.prefix,
       });
 
       if (vus) {
-        var newIndex = await this.validateUserSeen(student.key, data, index);
+        var newIndex = await this.validateUserSeen(student.key, data, lesson.prefix, index);
       }
 
       if (!vus || newIndex) {
@@ -102,7 +102,8 @@ class RecommenderService {
           await db.userSeen.create({
             user: student.key,
             ref: data[newIndex ?? index],
-            data: data
+            data: data,
+            lesson: lesson.prefix
           });
 
           var d = r.data;
@@ -147,7 +148,6 @@ class RecommenderService {
                           foundR = false;
 
                           if (traces[i].resources[index]) {
-                            console.log(traces[i].resources[index]._id);
                             _ids.push(traces[i].resources[index]._id);
                           }
                         }
@@ -206,9 +206,10 @@ class RecommenderService {
   async retrain(args) {
 
     let student = await db.student.findOne({ _id: args.id_student });
+    
     let trace = await db.trace.findOne({ _id: args.id_trace }).populate('resources');
     
-    let lastSeen = await db.userSeen.find({ user: student.key, trace: { $exists: false }});
+    let lastSeen = await db.userSeen.find({ user: student.key, lesson: args.prefix,  trace: { $exists: false }});
 
     await db.userSeen.findOneAndUpdate({ _id: lastSeen[lastSeen.length -1]._id }, { $set: { trace: trace._id } });
 

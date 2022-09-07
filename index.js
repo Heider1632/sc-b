@@ -21,8 +21,8 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 //Parsear el body usando body parser
-app.use(bodyParser.json()); // body en formato json
-app.use(bodyParser.urlencoded({ extended: false })); //body formulario
+app.use(bodyParser.json({ limit: '50mb' })); // body en formato json
+app.use(bodyParser.urlencoded({ extended: false, limit: '50mb', parameterLimit: 100000, })); //body formulario
 
 const db = require("./src/models");
 const dbConfig = require("./src/config/db.config");
