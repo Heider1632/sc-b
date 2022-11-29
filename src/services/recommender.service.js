@@ -88,7 +88,7 @@ class RecommenderService {
 
       if (!vus || newIndex) {
 
-        let r = await axios.get(process.env.NODE_ENV === "production" ? 'https://scp.protocolosensalud.com/api/recommender/resources' : 'http://localhost:5000/api/recommender/resources', {
+        let r = await axios.get(process.env.NODE_ENV === "development" ? 'http://localhost:5000/api/recommender/resources' : 'https://scp.protocolosensalud.com/api/recommender/resources', {
           params: {
             id: data[newIndex ?? index],
             name: student.id + "-" + student.name,
