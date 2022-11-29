@@ -70,31 +70,26 @@ async function generateUser() {
     const ROLE_MODERATOR = await db.role.findOne({ name: "moderator" });
     const course = await db.course.find({});
 
-    // let moderator = await db.user.create({
-    //   email: "moderato@gmail.com",
-    //   password: bcrypt.hashSync("12345", 8),
-    //   roles: [ROLE_MODERATOR._id],
-    // });
+    let moderator = await db.user.create({
+      email: "moderato@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      roles: [ROLE_MODERATOR._id],
+    });
 
-    let user2 = await db.user.create({
-      email: "user2@gmail.com",
-      password: bcrypt.hashSync("user2", 8),
+    /*let user1 = await db.user.create({
+      email: "user1@gmail.com",
+      password: bcrypt.hashSync("user1", 8),
       roles: [ROLE_USER._id],
     });
 
     await db.student.create({
-      name: "User2",
+      name: "User1",
       lastname: "test",
-      user: user2._id,
-      learningStyleDimensions: [
-        "62dda6df0341fe44941bf6f3",
-        "62dda6df0341fe44941bf6f2",
-        "62dda6df0341fe44941bf6f5"
-      ],
+      user: user1._id,
       course: [course[0]._id],
-    });
+    });*/
 
-    let user3 = await db.user.create({
+    /*let user3 = await db.user.create({
       email: "user3@gmail.com",
       password: bcrypt.hashSync("user3", 8),
       roles: [ROLE_USER._id],
@@ -110,7 +105,7 @@ async function generateUser() {
         "62dda6df0341fe44941bf6f5"
       ],
       course: [course[0]._id],
-    });
+    });*/
 
 
 
